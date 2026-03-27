@@ -1,0 +1,23 @@
+# genqlient configuration for Pipe2.ai Go SDK
+# Docs: https://github.com/Khan/genqlient/blob/main/docs/genqlient.yaml
+schema: ../graphql/user-schema.graphql
+operations:
+  - ../graphql/operations/*.graphql
+generated: ./generated.go
+package: pipe2
+
+# Hasura custom scalar mappings
+bindings:
+  uuid:
+    type: string
+  timestamp:
+    type: string
+  timestamptz:
+    type: string
+  jsonb:
+    type: encoding/json.RawMessage
+  bigint:
+    type: int64
+
+# Use pointer for optional fields
+optional: pointer
