@@ -69,10 +69,12 @@ type Assets_bool_exp struct {
 	Not             *Assets_bool_exp             `json:"_not"`
 	Or              []Assets_bool_exp            `json:"_or"`
 	Created_at      *Timestamptz_comparison_exp  `json:"created_at"`
+	Duration_sec    *Numeric_comparison_exp      `json:"duration_sec"`
 	Id              *Uuid_comparison_exp         `json:"id"`
 	Metadata        *Jsonb_comparison_exp        `json:"metadata"`
 	Pipeline_run    *Pipeline_runs_bool_exp      `json:"pipeline_run"`
 	Pipeline_run_id *Uuid_comparison_exp         `json:"pipeline_run_id"`
+	Preview_frames  *String_array_comparison_exp `json:"preview_frames"`
 	Tags            *String_array_comparison_exp `json:"tags"`
 	Thumbnail_url   *String_comparison_exp       `json:"thumbnail_url"`
 	Type            *String_comparison_exp       `json:"type"`
@@ -91,6 +93,9 @@ func (v *Assets_bool_exp) GetOr() []Assets_bool_exp { return v.Or }
 // GetCreated_at returns Assets_bool_exp.Created_at, and is useful for accessing the field via an interface.
 func (v *Assets_bool_exp) GetCreated_at() *Timestamptz_comparison_exp { return v.Created_at }
 
+// GetDuration_sec returns Assets_bool_exp.Duration_sec, and is useful for accessing the field via an interface.
+func (v *Assets_bool_exp) GetDuration_sec() *Numeric_comparison_exp { return v.Duration_sec }
+
 // GetId returns Assets_bool_exp.Id, and is useful for accessing the field via an interface.
 func (v *Assets_bool_exp) GetId() *Uuid_comparison_exp { return v.Id }
 
@@ -102,6 +107,9 @@ func (v *Assets_bool_exp) GetPipeline_run() *Pipeline_runs_bool_exp { return v.P
 
 // GetPipeline_run_id returns Assets_bool_exp.Pipeline_run_id, and is useful for accessing the field via an interface.
 func (v *Assets_bool_exp) GetPipeline_run_id() *Uuid_comparison_exp { return v.Pipeline_run_id }
+
+// GetPreview_frames returns Assets_bool_exp.Preview_frames, and is useful for accessing the field via an interface.
+func (v *Assets_bool_exp) GetPreview_frames() *String_array_comparison_exp { return v.Preview_frames }
 
 // GetTags returns Assets_bool_exp.Tags, and is useful for accessing the field via an interface.
 func (v *Assets_bool_exp) GetTags() *String_array_comparison_exp { return v.Tags }
@@ -122,11 +130,15 @@ const (
 	// column name
 	Assets_select_columnCreatedAt Assets_select_column = "created_at"
 	// column name
+	Assets_select_columnDurationSec Assets_select_column = "duration_sec"
+	// column name
 	Assets_select_columnId Assets_select_column = "id"
 	// column name
 	Assets_select_columnMetadata Assets_select_column = "metadata"
 	// column name
 	Assets_select_columnPipelineRunId Assets_select_column = "pipeline_run_id"
+	// column name
+	Assets_select_columnPreviewFrames Assets_select_column = "preview_frames"
 	// column name
 	Assets_select_columnTags Assets_select_column = "tags"
 	// column name
@@ -139,13 +151,246 @@ const (
 
 var AllAssets_select_column = []Assets_select_column{
 	Assets_select_columnCreatedAt,
+	Assets_select_columnDurationSec,
 	Assets_select_columnId,
 	Assets_select_columnMetadata,
 	Assets_select_columnPipelineRunId,
+	Assets_select_columnPreviewFrames,
 	Assets_select_columnTags,
 	Assets_select_columnThumbnailUrl,
 	Assets_select_columnType,
 	Assets_select_columnUrl,
+}
+
+// Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'.
+type Boolean_comparison_exp struct {
+	Eq      *bool  `json:"_eq"`
+	Gt      *bool  `json:"_gt"`
+	Gte     *bool  `json:"_gte"`
+	In      []bool `json:"_in"`
+	Is_null *bool  `json:"_is_null"`
+	Lt      *bool  `json:"_lt"`
+	Lte     *bool  `json:"_lte"`
+	Neq     *bool  `json:"_neq"`
+	Nin     []bool `json:"_nin"`
+}
+
+// GetEq returns Boolean_comparison_exp.Eq, and is useful for accessing the field via an interface.
+func (v *Boolean_comparison_exp) GetEq() *bool { return v.Eq }
+
+// GetGt returns Boolean_comparison_exp.Gt, and is useful for accessing the field via an interface.
+func (v *Boolean_comparison_exp) GetGt() *bool { return v.Gt }
+
+// GetGte returns Boolean_comparison_exp.Gte, and is useful for accessing the field via an interface.
+func (v *Boolean_comparison_exp) GetGte() *bool { return v.Gte }
+
+// GetIn returns Boolean_comparison_exp.In, and is useful for accessing the field via an interface.
+func (v *Boolean_comparison_exp) GetIn() []bool { return v.In }
+
+// GetIs_null returns Boolean_comparison_exp.Is_null, and is useful for accessing the field via an interface.
+func (v *Boolean_comparison_exp) GetIs_null() *bool { return v.Is_null }
+
+// GetLt returns Boolean_comparison_exp.Lt, and is useful for accessing the field via an interface.
+func (v *Boolean_comparison_exp) GetLt() *bool { return v.Lt }
+
+// GetLte returns Boolean_comparison_exp.Lte, and is useful for accessing the field via an interface.
+func (v *Boolean_comparison_exp) GetLte() *bool { return v.Lte }
+
+// GetNeq returns Boolean_comparison_exp.Neq, and is useful for accessing the field via an interface.
+func (v *Boolean_comparison_exp) GetNeq() *bool { return v.Neq }
+
+// GetNin returns Boolean_comparison_exp.Nin, and is useful for accessing the field via an interface.
+func (v *Boolean_comparison_exp) GetNin() []bool { return v.Nin }
+
+// CancelAccountDeletionCancel_account_deletionCancel_account_deletion_output includes the requested fields of the GraphQL type cancel_account_deletion_output.
+type CancelAccountDeletionCancel_account_deletionCancel_account_deletion_output struct {
+	Success bool   `json:"success"`
+	Message string `json:"message"`
+}
+
+// GetSuccess returns CancelAccountDeletionCancel_account_deletionCancel_account_deletion_output.Success, and is useful for accessing the field via an interface.
+func (v *CancelAccountDeletionCancel_account_deletionCancel_account_deletion_output) GetSuccess() bool {
+	return v.Success
+}
+
+// GetMessage returns CancelAccountDeletionCancel_account_deletionCancel_account_deletion_output.Message, and is useful for accessing the field via an interface.
+func (v *CancelAccountDeletionCancel_account_deletionCancel_account_deletion_output) GetMessage() string {
+	return v.Message
+}
+
+// CancelAccountDeletionResponse is returned by CancelAccountDeletion on success.
+type CancelAccountDeletionResponse struct {
+	// Cancel a pending scheduled account deletion during the grace period.
+	Cancel_account_deletion CancelAccountDeletionCancel_account_deletionCancel_account_deletion_output `json:"cancel_account_deletion"`
+}
+
+// GetCancel_account_deletion returns CancelAccountDeletionResponse.Cancel_account_deletion, and is useful for accessing the field via an interface.
+func (v *CancelAccountDeletionResponse) GetCancel_account_deletion() CancelAccountDeletionCancel_account_deletionCancel_account_deletion_output {
+	return v.Cancel_account_deletion
+}
+
+// CancelPipelineRunCancel_pipeline_runCancel_pipeline_run_output includes the requested fields of the GraphQL type cancel_pipeline_run_output.
+type CancelPipelineRunCancel_pipeline_runCancel_pipeline_run_output struct {
+	Success bool `json:"success"`
+}
+
+// GetSuccess returns CancelPipelineRunCancel_pipeline_runCancel_pipeline_run_output.Success, and is useful for accessing the field via an interface.
+func (v *CancelPipelineRunCancel_pipeline_runCancel_pipeline_run_output) GetSuccess() bool {
+	return v.Success
+}
+
+// CancelPipelineRunResponse is returned by CancelPipelineRun on success.
+type CancelPipelineRunResponse struct {
+	// Cancel a running pipeline and refund credits
+	Cancel_pipeline_run *CancelPipelineRunCancel_pipeline_runCancel_pipeline_run_output `json:"cancel_pipeline_run"`
+}
+
+// GetCancel_pipeline_run returns CancelPipelineRunResponse.Cancel_pipeline_run, and is useful for accessing the field via an interface.
+func (v *CancelPipelineRunResponse) GetCancel_pipeline_run() *CancelPipelineRunCancel_pipeline_runCancel_pipeline_run_output {
+	return v.Cancel_pipeline_run
+}
+
+// CancelSubscriptionCancel_subscriptionCancel_subscription_output includes the requested fields of the GraphQL type cancel_subscription_output.
+type CancelSubscriptionCancel_subscriptionCancel_subscription_output struct {
+	Success              bool   `json:"success"`
+	Message              string `json:"message"`
+	Cancel_at_period_end bool   `json:"cancel_at_period_end"`
+}
+
+// GetSuccess returns CancelSubscriptionCancel_subscriptionCancel_subscription_output.Success, and is useful for accessing the field via an interface.
+func (v *CancelSubscriptionCancel_subscriptionCancel_subscription_output) GetSuccess() bool {
+	return v.Success
+}
+
+// GetMessage returns CancelSubscriptionCancel_subscriptionCancel_subscription_output.Message, and is useful for accessing the field via an interface.
+func (v *CancelSubscriptionCancel_subscriptionCancel_subscription_output) GetMessage() string {
+	return v.Message
+}
+
+// GetCancel_at_period_end returns CancelSubscriptionCancel_subscriptionCancel_subscription_output.Cancel_at_period_end, and is useful for accessing the field via an interface.
+func (v *CancelSubscriptionCancel_subscriptionCancel_subscription_output) GetCancel_at_period_end() bool {
+	return v.Cancel_at_period_end
+}
+
+// CancelSubscriptionResponse is returned by CancelSubscription on success.
+type CancelSubscriptionResponse struct {
+	// Cancel the user's subscription at the end of the current billing period
+	Cancel_subscription CancelSubscriptionCancel_subscriptionCancel_subscription_output `json:"cancel_subscription"`
+}
+
+// GetCancel_subscription returns CancelSubscriptionResponse.Cancel_subscription, and is useful for accessing the field via an interface.
+func (v *CancelSubscriptionResponse) GetCancel_subscription() CancelSubscriptionCancel_subscriptionCancel_subscription_output {
+	return v.Cancel_subscription
+}
+
+// ChangeAvatarChange_avatarChange_avatar_output includes the requested fields of the GraphQL type change_avatar_output.
+type ChangeAvatarChange_avatarChange_avatar_output struct {
+	Success    bool   `json:"success"`
+	Message    string `json:"message"`
+	Avatar_url string `json:"avatar_url"`
+}
+
+// GetSuccess returns ChangeAvatarChange_avatarChange_avatar_output.Success, and is useful for accessing the field via an interface.
+func (v *ChangeAvatarChange_avatarChange_avatar_output) GetSuccess() bool { return v.Success }
+
+// GetMessage returns ChangeAvatarChange_avatarChange_avatar_output.Message, and is useful for accessing the field via an interface.
+func (v *ChangeAvatarChange_avatarChange_avatar_output) GetMessage() string { return v.Message }
+
+// GetAvatar_url returns ChangeAvatarChange_avatarChange_avatar_output.Avatar_url, and is useful for accessing the field via an interface.
+func (v *ChangeAvatarChange_avatarChange_avatar_output) GetAvatar_url() string { return v.Avatar_url }
+
+// ChangeAvatarResponse is returned by ChangeAvatar on success.
+type ChangeAvatarResponse struct {
+	// Persist the user's avatar URL after a successful upload
+	Change_avatar ChangeAvatarChange_avatarChange_avatar_output `json:"change_avatar"`
+}
+
+// GetChange_avatar returns ChangeAvatarResponse.Change_avatar, and is useful for accessing the field via an interface.
+func (v *ChangeAvatarResponse) GetChange_avatar() ChangeAvatarChange_avatarChange_avatar_output {
+	return v.Change_avatar
+}
+
+// ChangeNameChange_nameChange_name_output includes the requested fields of the GraphQL type change_name_output.
+type ChangeNameChange_nameChange_name_output struct {
+	Success bool   `json:"success"`
+	Message string `json:"message"`
+	Name    string `json:"name"`
+}
+
+// GetSuccess returns ChangeNameChange_nameChange_name_output.Success, and is useful for accessing the field via an interface.
+func (v *ChangeNameChange_nameChange_name_output) GetSuccess() bool { return v.Success }
+
+// GetMessage returns ChangeNameChange_nameChange_name_output.Message, and is useful for accessing the field via an interface.
+func (v *ChangeNameChange_nameChange_name_output) GetMessage() string { return v.Message }
+
+// GetName returns ChangeNameChange_nameChange_name_output.Name, and is useful for accessing the field via an interface.
+func (v *ChangeNameChange_nameChange_name_output) GetName() string { return v.Name }
+
+// ChangeNameResponse is returned by ChangeName on success.
+type ChangeNameResponse struct {
+	// Update the current user's display name
+	Change_name ChangeNameChange_nameChange_name_output `json:"change_name"`
+}
+
+// GetChange_name returns ChangeNameResponse.Change_name, and is useful for accessing the field via an interface.
+func (v *ChangeNameResponse) GetChange_name() ChangeNameChange_nameChange_name_output {
+	return v.Change_name
+}
+
+// ChangePasswordChange_passwordChange_password_output includes the requested fields of the GraphQL type change_password_output.
+type ChangePasswordChange_passwordChange_password_output struct {
+	Success bool   `json:"success"`
+	Message string `json:"message"`
+}
+
+// GetSuccess returns ChangePasswordChange_passwordChange_password_output.Success, and is useful for accessing the field via an interface.
+func (v *ChangePasswordChange_passwordChange_password_output) GetSuccess() bool { return v.Success }
+
+// GetMessage returns ChangePasswordChange_passwordChange_password_output.Message, and is useful for accessing the field via an interface.
+func (v *ChangePasswordChange_passwordChange_password_output) GetMessage() string { return v.Message }
+
+// ChangePasswordResponse is returned by ChangePassword on success.
+type ChangePasswordResponse struct {
+	// Change the current user's password via Kratos settings flow
+	Change_password ChangePasswordChange_passwordChange_password_output `json:"change_password"`
+}
+
+// GetChange_password returns ChangePasswordResponse.Change_password, and is useful for accessing the field via an interface.
+func (v *ChangePasswordResponse) GetChange_password() ChangePasswordChange_passwordChange_password_output {
+	return v.Change_password
+}
+
+// ConfirmAccountDeletionConfirm_account_deletionConfirm_account_deletion_output includes the requested fields of the GraphQL type confirm_account_deletion_output.
+type ConfirmAccountDeletionConfirm_account_deletionConfirm_account_deletion_output struct {
+	Success      bool   `json:"success"`
+	Message      string `json:"message"`
+	Effective_at string `json:"effective_at"`
+}
+
+// GetSuccess returns ConfirmAccountDeletionConfirm_account_deletionConfirm_account_deletion_output.Success, and is useful for accessing the field via an interface.
+func (v *ConfirmAccountDeletionConfirm_account_deletionConfirm_account_deletion_output) GetSuccess() bool {
+	return v.Success
+}
+
+// GetMessage returns ConfirmAccountDeletionConfirm_account_deletionConfirm_account_deletion_output.Message, and is useful for accessing the field via an interface.
+func (v *ConfirmAccountDeletionConfirm_account_deletionConfirm_account_deletion_output) GetMessage() string {
+	return v.Message
+}
+
+// GetEffective_at returns ConfirmAccountDeletionConfirm_account_deletionConfirm_account_deletion_output.Effective_at, and is useful for accessing the field via an interface.
+func (v *ConfirmAccountDeletionConfirm_account_deletionConfirm_account_deletion_output) GetEffective_at() string {
+	return v.Effective_at
+}
+
+// ConfirmAccountDeletionResponse is returned by ConfirmAccountDeletion on success.
+type ConfirmAccountDeletionResponse struct {
+	// Validate a deletion JWT and schedule the account for deletion (token-authed, anonymous-allowed).
+	Confirm_account_deletion ConfirmAccountDeletionConfirm_account_deletionConfirm_account_deletion_output `json:"confirm_account_deletion"`
+}
+
+// GetConfirm_account_deletion returns ConfirmAccountDeletionResponse.Confirm_account_deletion, and is useful for accessing the field via an interface.
+func (v *ConfirmAccountDeletionResponse) GetConfirm_account_deletion() ConfirmAccountDeletionConfirm_account_deletionConfirm_account_deletion_output {
+	return v.Confirm_account_deletion
 }
 
 // CreateAssetCreate_assetCreate_asset_output includes the requested fields of the GraphQL type create_asset_output.
@@ -272,6 +517,167 @@ func (v *EnsureAffiliateResponse) GetEnsure_affiliate() EnsureAffiliateEnsure_af
 	return v.Ensure_affiliate
 }
 
+// GetActivePipelineRunsActive_countPipeline_runs_aggregate includes the requested fields of the GraphQL type pipeline_runs_aggregate.
+// The GraphQL type's documentation follows.
+//
+// aggregated selection of "pipeline_runs"
+type GetActivePipelineRunsActive_countPipeline_runs_aggregate struct {
+	Aggregate *GetActivePipelineRunsActive_countPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fields `json:"aggregate"`
+}
+
+// GetAggregate returns GetActivePipelineRunsActive_countPipeline_runs_aggregate.Aggregate, and is useful for accessing the field via an interface.
+func (v *GetActivePipelineRunsActive_countPipeline_runs_aggregate) GetAggregate() *GetActivePipelineRunsActive_countPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fields {
+	return v.Aggregate
+}
+
+// GetActivePipelineRunsActive_countPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fields includes the requested fields of the GraphQL type pipeline_runs_aggregate_fields.
+// The GraphQL type's documentation follows.
+//
+// aggregate fields of "pipeline_runs"
+type GetActivePipelineRunsActive_countPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fields struct {
+	Count int `json:"count"`
+}
+
+// GetCount returns GetActivePipelineRunsActive_countPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fields.Count, and is useful for accessing the field via an interface.
+func (v *GetActivePipelineRunsActive_countPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fields) GetCount() int {
+	return v.Count
+}
+
+// GetActivePipelineRunsPipeline_runs includes the requested fields of the GraphQL type pipeline_runs.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "pipeline_runs"
+type GetActivePipelineRunsPipeline_runs struct {
+	Id         string `json:"id"`
+	Status     string `json:"status"`
+	Created_at string `json:"created_at"`
+	// An object relationship
+	Pipeline GetActivePipelineRunsPipeline_runsPipelinePipelines `json:"pipeline"`
+}
+
+// GetId returns GetActivePipelineRunsPipeline_runs.Id, and is useful for accessing the field via an interface.
+func (v *GetActivePipelineRunsPipeline_runs) GetId() string { return v.Id }
+
+// GetStatus returns GetActivePipelineRunsPipeline_runs.Status, and is useful for accessing the field via an interface.
+func (v *GetActivePipelineRunsPipeline_runs) GetStatus() string { return v.Status }
+
+// GetCreated_at returns GetActivePipelineRunsPipeline_runs.Created_at, and is useful for accessing the field via an interface.
+func (v *GetActivePipelineRunsPipeline_runs) GetCreated_at() string { return v.Created_at }
+
+// GetPipeline returns GetActivePipelineRunsPipeline_runs.Pipeline, and is useful for accessing the field via an interface.
+func (v *GetActivePipelineRunsPipeline_runs) GetPipeline() GetActivePipelineRunsPipeline_runsPipelinePipelines {
+	return v.Pipeline
+}
+
+// GetActivePipelineRunsPipeline_runsPipelinePipelines includes the requested fields of the GraphQL type pipelines.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "pipelines"
+type GetActivePipelineRunsPipeline_runsPipelinePipelines struct {
+	Name string `json:"name"`
+	Slug string `json:"slug"`
+}
+
+// GetName returns GetActivePipelineRunsPipeline_runsPipelinePipelines.Name, and is useful for accessing the field via an interface.
+func (v *GetActivePipelineRunsPipeline_runsPipelinePipelines) GetName() string { return v.Name }
+
+// GetSlug returns GetActivePipelineRunsPipeline_runsPipelinePipelines.Slug, and is useful for accessing the field via an interface.
+func (v *GetActivePipelineRunsPipeline_runsPipelinePipelines) GetSlug() string { return v.Slug }
+
+// GetActivePipelineRunsResponse is returned by GetActivePipelineRuns on success.
+type GetActivePipelineRunsResponse struct {
+	// fetch data from the table: "pipeline_runs"
+	Pipeline_runs []GetActivePipelineRunsPipeline_runs `json:"pipeline_runs"`
+	// fetch aggregated fields from the table: "pipeline_runs"
+	Active_count GetActivePipelineRunsActive_countPipeline_runs_aggregate `json:"active_count"`
+}
+
+// GetPipeline_runs returns GetActivePipelineRunsResponse.Pipeline_runs, and is useful for accessing the field via an interface.
+func (v *GetActivePipelineRunsResponse) GetPipeline_runs() []GetActivePipelineRunsPipeline_runs {
+	return v.Pipeline_runs
+}
+
+// GetActive_count returns GetActivePipelineRunsResponse.Active_count, and is useful for accessing the field via an interface.
+func (v *GetActivePipelineRunsResponse) GetActive_count() GetActivePipelineRunsActive_countPipeline_runs_aggregate {
+	return v.Active_count
+}
+
+// GetAssetThumbnailAssets_by_pkAssets includes the requested fields of the GraphQL type assets.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "assets"
+type GetAssetThumbnailAssets_by_pkAssets struct {
+	Id             string   `json:"id"`
+	Type           string   `json:"type"`
+	Url            string   `json:"url"`
+	Thumbnail_url  *string  `json:"thumbnail_url"`
+	Preview_frames []string `json:"preview_frames"`
+}
+
+// GetId returns GetAssetThumbnailAssets_by_pkAssets.Id, and is useful for accessing the field via an interface.
+func (v *GetAssetThumbnailAssets_by_pkAssets) GetId() string { return v.Id }
+
+// GetType returns GetAssetThumbnailAssets_by_pkAssets.Type, and is useful for accessing the field via an interface.
+func (v *GetAssetThumbnailAssets_by_pkAssets) GetType() string { return v.Type }
+
+// GetUrl returns GetAssetThumbnailAssets_by_pkAssets.Url, and is useful for accessing the field via an interface.
+func (v *GetAssetThumbnailAssets_by_pkAssets) GetUrl() string { return v.Url }
+
+// GetThumbnail_url returns GetAssetThumbnailAssets_by_pkAssets.Thumbnail_url, and is useful for accessing the field via an interface.
+func (v *GetAssetThumbnailAssets_by_pkAssets) GetThumbnail_url() *string { return v.Thumbnail_url }
+
+// GetPreview_frames returns GetAssetThumbnailAssets_by_pkAssets.Preview_frames, and is useful for accessing the field via an interface.
+func (v *GetAssetThumbnailAssets_by_pkAssets) GetPreview_frames() []string { return v.Preview_frames }
+
+// GetAssetThumbnailResponse is returned by GetAssetThumbnail on success.
+type GetAssetThumbnailResponse struct {
+	// fetch data from the table: "assets" using primary key columns
+	Assets_by_pk *GetAssetThumbnailAssets_by_pkAssets `json:"assets_by_pk"`
+}
+
+// GetAssets_by_pk returns GetAssetThumbnailResponse.Assets_by_pk, and is useful for accessing the field via an interface.
+func (v *GetAssetThumbnailResponse) GetAssets_by_pk() *GetAssetThumbnailAssets_by_pkAssets {
+	return v.Assets_by_pk
+}
+
+// GetAssetThumbnailsByIdsAssets includes the requested fields of the GraphQL type assets.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "assets"
+type GetAssetThumbnailsByIdsAssets struct {
+	Id             string   `json:"id"`
+	Type           string   `json:"type"`
+	Url            string   `json:"url"`
+	Thumbnail_url  *string  `json:"thumbnail_url"`
+	Preview_frames []string `json:"preview_frames"`
+}
+
+// GetId returns GetAssetThumbnailsByIdsAssets.Id, and is useful for accessing the field via an interface.
+func (v *GetAssetThumbnailsByIdsAssets) GetId() string { return v.Id }
+
+// GetType returns GetAssetThumbnailsByIdsAssets.Type, and is useful for accessing the field via an interface.
+func (v *GetAssetThumbnailsByIdsAssets) GetType() string { return v.Type }
+
+// GetUrl returns GetAssetThumbnailsByIdsAssets.Url, and is useful for accessing the field via an interface.
+func (v *GetAssetThumbnailsByIdsAssets) GetUrl() string { return v.Url }
+
+// GetThumbnail_url returns GetAssetThumbnailsByIdsAssets.Thumbnail_url, and is useful for accessing the field via an interface.
+func (v *GetAssetThumbnailsByIdsAssets) GetThumbnail_url() *string { return v.Thumbnail_url }
+
+// GetPreview_frames returns GetAssetThumbnailsByIdsAssets.Preview_frames, and is useful for accessing the field via an interface.
+func (v *GetAssetThumbnailsByIdsAssets) GetPreview_frames() []string { return v.Preview_frames }
+
+// GetAssetThumbnailsByIdsResponse is returned by GetAssetThumbnailsByIds on success.
+type GetAssetThumbnailsByIdsResponse struct {
+	// An array relationship
+	Assets []GetAssetThumbnailsByIdsAssets `json:"assets"`
+}
+
+// GetAssets returns GetAssetThumbnailsByIdsResponse.Assets, and is useful for accessing the field via an interface.
+func (v *GetAssetThumbnailsByIdsResponse) GetAssets() []GetAssetThumbnailsByIdsAssets {
+	return v.Assets
+}
+
 // GetCreditBalanceGet_credit_balanceCredit_balance_output includes the requested fields of the GraphQL type credit_balance_output.
 type GetCreditBalanceGet_credit_balanceCredit_balance_output struct {
 	Balance   int `json:"balance"`
@@ -386,11 +792,13 @@ func (v *GetCreditPacksResponse) GetCredit_packs() []GetCreditPacksCredit_packs 
 
 // GetCurrentUserCurrent_userCurrent_user_output includes the requested fields of the GraphQL type current_user_output.
 type GetCurrentUserCurrent_userCurrent_user_output struct {
-	Id             string  `json:"id"`
-	Email          string  `json:"email"`
-	Name           string  `json:"name"`
-	Email_verified bool    `json:"email_verified"`
-	Avatar_url     *string `json:"avatar_url"`
+	Id                    string  `json:"id"`
+	Email                 string  `json:"email"`
+	Name                  string  `json:"name"`
+	Email_verified        bool    `json:"email_verified"`
+	Avatar_url            *string `json:"avatar_url"`
+	Deletion_scheduled_at *string `json:"deletion_scheduled_at"`
+	Deletion_effective_at *string `json:"deletion_effective_at"`
 }
 
 // GetId returns GetCurrentUserCurrent_userCurrent_user_output.Id, and is useful for accessing the field via an interface.
@@ -409,6 +817,16 @@ func (v *GetCurrentUserCurrent_userCurrent_user_output) GetEmail_verified() bool
 
 // GetAvatar_url returns GetCurrentUserCurrent_userCurrent_user_output.Avatar_url, and is useful for accessing the field via an interface.
 func (v *GetCurrentUserCurrent_userCurrent_user_output) GetAvatar_url() *string { return v.Avatar_url }
+
+// GetDeletion_scheduled_at returns GetCurrentUserCurrent_userCurrent_user_output.Deletion_scheduled_at, and is useful for accessing the field via an interface.
+func (v *GetCurrentUserCurrent_userCurrent_user_output) GetDeletion_scheduled_at() *string {
+	return v.Deletion_scheduled_at
+}
+
+// GetDeletion_effective_at returns GetCurrentUserCurrent_userCurrent_user_output.Deletion_effective_at, and is useful for accessing the field via an interface.
+func (v *GetCurrentUserCurrent_userCurrent_user_output) GetDeletion_effective_at() *string {
+	return v.Deletion_effective_at
+}
 
 // GetCurrentUserResponse is returned by GetCurrentUser on success.
 type GetCurrentUserResponse struct {
@@ -658,6 +1076,85 @@ func (v *GetMyReferralsResponse) GetGet_my_referrals() GetMyReferralsGet_my_refe
 	return v.Get_my_referrals
 }
 
+// GetNotificationsNotifications includes the requested fields of the GraphQL type notifications.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "notifications"
+type GetNotificationsNotifications struct {
+	Id         string           `json:"id"`
+	Type       string           `json:"type"`
+	Title      string           `json:"title"`
+	Body       *string          `json:"body"`
+	Metadata   *json.RawMessage `json:"metadata"`
+	Read       bool             `json:"read"`
+	Created_at string           `json:"created_at"`
+}
+
+// GetId returns GetNotificationsNotifications.Id, and is useful for accessing the field via an interface.
+func (v *GetNotificationsNotifications) GetId() string { return v.Id }
+
+// GetType returns GetNotificationsNotifications.Type, and is useful for accessing the field via an interface.
+func (v *GetNotificationsNotifications) GetType() string { return v.Type }
+
+// GetTitle returns GetNotificationsNotifications.Title, and is useful for accessing the field via an interface.
+func (v *GetNotificationsNotifications) GetTitle() string { return v.Title }
+
+// GetBody returns GetNotificationsNotifications.Body, and is useful for accessing the field via an interface.
+func (v *GetNotificationsNotifications) GetBody() *string { return v.Body }
+
+// GetMetadata returns GetNotificationsNotifications.Metadata, and is useful for accessing the field via an interface.
+func (v *GetNotificationsNotifications) GetMetadata() *json.RawMessage { return v.Metadata }
+
+// GetRead returns GetNotificationsNotifications.Read, and is useful for accessing the field via an interface.
+func (v *GetNotificationsNotifications) GetRead() bool { return v.Read }
+
+// GetCreated_at returns GetNotificationsNotifications.Created_at, and is useful for accessing the field via an interface.
+func (v *GetNotificationsNotifications) GetCreated_at() string { return v.Created_at }
+
+// GetNotificationsResponse is returned by GetNotifications on success.
+type GetNotificationsResponse struct {
+	// fetch data from the table: "notifications"
+	Notifications []GetNotificationsNotifications `json:"notifications"`
+	// fetch aggregated fields from the table: "notifications"
+	Unread GetNotificationsUnreadNotifications_aggregate `json:"unread"`
+}
+
+// GetNotifications returns GetNotificationsResponse.Notifications, and is useful for accessing the field via an interface.
+func (v *GetNotificationsResponse) GetNotifications() []GetNotificationsNotifications {
+	return v.Notifications
+}
+
+// GetUnread returns GetNotificationsResponse.Unread, and is useful for accessing the field via an interface.
+func (v *GetNotificationsResponse) GetUnread() GetNotificationsUnreadNotifications_aggregate {
+	return v.Unread
+}
+
+// GetNotificationsUnreadNotifications_aggregate includes the requested fields of the GraphQL type notifications_aggregate.
+// The GraphQL type's documentation follows.
+//
+// aggregated selection of "notifications"
+type GetNotificationsUnreadNotifications_aggregate struct {
+	Aggregate *GetNotificationsUnreadNotifications_aggregateAggregateNotifications_aggregate_fields `json:"aggregate"`
+}
+
+// GetAggregate returns GetNotificationsUnreadNotifications_aggregate.Aggregate, and is useful for accessing the field via an interface.
+func (v *GetNotificationsUnreadNotifications_aggregate) GetAggregate() *GetNotificationsUnreadNotifications_aggregateAggregateNotifications_aggregate_fields {
+	return v.Aggregate
+}
+
+// GetNotificationsUnreadNotifications_aggregateAggregateNotifications_aggregate_fields includes the requested fields of the GraphQL type notifications_aggregate_fields.
+// The GraphQL type's documentation follows.
+//
+// aggregate fields of "notifications"
+type GetNotificationsUnreadNotifications_aggregateAggregateNotifications_aggregate_fields struct {
+	Count int `json:"count"`
+}
+
+// GetCount returns GetNotificationsUnreadNotifications_aggregateAggregateNotifications_aggregate_fields.Count, and is useful for accessing the field via an interface.
+func (v *GetNotificationsUnreadNotifications_aggregateAggregateNotifications_aggregate_fields) GetCount() int {
+	return v.Count
+}
+
 // GetPipelineRunPipeline_runs_by_pkPipeline_runs includes the requested fields of the GraphQL type pipeline_runs.
 // The GraphQL type's documentation follows.
 //
@@ -665,6 +1162,7 @@ func (v *GetMyReferralsResponse) GetGet_my_referrals() GetMyReferralsGet_my_refe
 type GetPipelineRunPipeline_runs_by_pkPipeline_runs struct {
 	Id              string           `json:"id"`
 	Status          string           `json:"status"`
+	Input           json.RawMessage  `json:"input"`
 	Output          *json.RawMessage `json:"output"`
 	Error_message   *string          `json:"error_message"`
 	Credits_charged *int             `json:"credits_charged"`
@@ -682,6 +1180,9 @@ func (v *GetPipelineRunPipeline_runs_by_pkPipeline_runs) GetId() string { return
 
 // GetStatus returns GetPipelineRunPipeline_runs_by_pkPipeline_runs.Status, and is useful for accessing the field via an interface.
 func (v *GetPipelineRunPipeline_runs_by_pkPipeline_runs) GetStatus() string { return v.Status }
+
+// GetInput returns GetPipelineRunPipeline_runs_by_pkPipeline_runs.Input, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunPipeline_runs_by_pkPipeline_runs) GetInput() json.RawMessage { return v.Input }
 
 // GetOutput returns GetPipelineRunPipeline_runs_by_pkPipeline_runs.Output, and is useful for accessing the field via an interface.
 func (v *GetPipelineRunPipeline_runs_by_pkPipeline_runs) GetOutput() *json.RawMessage {
@@ -760,6 +1261,8 @@ type GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines struct {
 	Name          string          `json:"name"`
 	Slug          string          `json:"slug"`
 	Output_schema json.RawMessage `json:"output_schema"`
+	Input_schema  json.RawMessage `json:"input_schema"`
+	Ui_schema     json.RawMessage `json:"ui_schema"`
 }
 
 // GetName returns GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines.Name, and is useful for accessing the field via an interface.
@@ -775,6 +1278,16 @@ func (v *GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines) GetSlu
 // GetOutput_schema returns GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines.Output_schema, and is useful for accessing the field via an interface.
 func (v *GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines) GetOutput_schema() json.RawMessage {
 	return v.Output_schema
+}
+
+// GetInput_schema returns GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines.Input_schema, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines) GetInput_schema() json.RawMessage {
+	return v.Input_schema
+}
+
+// GetUi_schema returns GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines.Ui_schema, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines) GetUi_schema() json.RawMessage {
+	return v.Ui_schema
 }
 
 // GetPipelineRunPipeline_runs_by_pkPipeline_runsWorkflow_executionExecutions_visibility includes the requested fields of the GraphQL type executions_visibility.
@@ -821,12 +1334,15 @@ type GetPipelineRunsBySlugPipeline_runs struct {
 	Id     string `json:"id"`
 	Status string `json:"status"`
 	// An object relationship
-	Pipeline           GetPipelineRunsBySlugPipeline_runsPipelinePipelines                        `json:"pipeline"`
-	Output             *json.RawMessage                                                           `json:"output"`
-	Error_message      *string                                                                    `json:"error_message"`
-	Credits_charged    *int                                                                       `json:"credits_charged"`
-	Created_at         string                                                                     `json:"created_at"`
-	Completed_at       *string                                                                    `json:"completed_at"`
+	Pipeline        GetPipelineRunsBySlugPipeline_runsPipelinePipelines `json:"pipeline"`
+	Input           json.RawMessage                                     `json:"input"`
+	Output          *json.RawMessage                                    `json:"output"`
+	Error_message   *string                                             `json:"error_message"`
+	Credits_charged *int                                                `json:"credits_charged"`
+	Created_at      string                                              `json:"created_at"`
+	Completed_at    *string                                             `json:"completed_at"`
+	// An array relationship
+	Assets             []GetPipelineRunsBySlugPipeline_runsAssets                                 `json:"assets"`
 	Workflow_execution *GetPipelineRunsBySlugPipeline_runsWorkflow_executionExecutions_visibility `json:"workflow_execution"`
 }
 
@@ -840,6 +1356,9 @@ func (v *GetPipelineRunsBySlugPipeline_runs) GetStatus() string { return v.Statu
 func (v *GetPipelineRunsBySlugPipeline_runs) GetPipeline() GetPipelineRunsBySlugPipeline_runsPipelinePipelines {
 	return v.Pipeline
 }
+
+// GetInput returns GetPipelineRunsBySlugPipeline_runs.Input, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsBySlugPipeline_runs) GetInput() json.RawMessage { return v.Input }
 
 // GetOutput returns GetPipelineRunsBySlugPipeline_runs.Output, and is useful for accessing the field via an interface.
 func (v *GetPipelineRunsBySlugPipeline_runs) GetOutput() *json.RawMessage { return v.Output }
@@ -856,10 +1375,38 @@ func (v *GetPipelineRunsBySlugPipeline_runs) GetCreated_at() string { return v.C
 // GetCompleted_at returns GetPipelineRunsBySlugPipeline_runs.Completed_at, and is useful for accessing the field via an interface.
 func (v *GetPipelineRunsBySlugPipeline_runs) GetCompleted_at() *string { return v.Completed_at }
 
+// GetAssets returns GetPipelineRunsBySlugPipeline_runs.Assets, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsBySlugPipeline_runs) GetAssets() []GetPipelineRunsBySlugPipeline_runsAssets {
+	return v.Assets
+}
+
 // GetWorkflow_execution returns GetPipelineRunsBySlugPipeline_runs.Workflow_execution, and is useful for accessing the field via an interface.
 func (v *GetPipelineRunsBySlugPipeline_runs) GetWorkflow_execution() *GetPipelineRunsBySlugPipeline_runsWorkflow_executionExecutions_visibility {
 	return v.Workflow_execution
 }
+
+// GetPipelineRunsBySlugPipeline_runsAssets includes the requested fields of the GraphQL type assets.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "assets"
+type GetPipelineRunsBySlugPipeline_runsAssets struct {
+	Id            string  `json:"id"`
+	Type          string  `json:"type"`
+	Url           string  `json:"url"`
+	Thumbnail_url *string `json:"thumbnail_url"`
+}
+
+// GetId returns GetPipelineRunsBySlugPipeline_runsAssets.Id, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsBySlugPipeline_runsAssets) GetId() string { return v.Id }
+
+// GetType returns GetPipelineRunsBySlugPipeline_runsAssets.Type, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsBySlugPipeline_runsAssets) GetType() string { return v.Type }
+
+// GetUrl returns GetPipelineRunsBySlugPipeline_runsAssets.Url, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsBySlugPipeline_runsAssets) GetUrl() string { return v.Url }
+
+// GetThumbnail_url returns GetPipelineRunsBySlugPipeline_runsAssets.Thumbnail_url, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsBySlugPipeline_runsAssets) GetThumbnail_url() *string { return v.Thumbnail_url }
 
 // GetPipelineRunsBySlugPipeline_runsPipelinePipelines includes the requested fields of the GraphQL type pipelines.
 // The GraphQL type's documentation follows.
@@ -869,6 +1416,8 @@ type GetPipelineRunsBySlugPipeline_runsPipelinePipelines struct {
 	Name          string          `json:"name"`
 	Slug          string          `json:"slug"`
 	Output_schema json.RawMessage `json:"output_schema"`
+	Input_schema  json.RawMessage `json:"input_schema"`
+	Ui_schema     json.RawMessage `json:"ui_schema"`
 }
 
 // GetName returns GetPipelineRunsBySlugPipeline_runsPipelinePipelines.Name, and is useful for accessing the field via an interface.
@@ -880,6 +1429,16 @@ func (v *GetPipelineRunsBySlugPipeline_runsPipelinePipelines) GetSlug() string {
 // GetOutput_schema returns GetPipelineRunsBySlugPipeline_runsPipelinePipelines.Output_schema, and is useful for accessing the field via an interface.
 func (v *GetPipelineRunsBySlugPipeline_runsPipelinePipelines) GetOutput_schema() json.RawMessage {
 	return v.Output_schema
+}
+
+// GetInput_schema returns GetPipelineRunsBySlugPipeline_runsPipelinePipelines.Input_schema, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsBySlugPipeline_runsPipelinePipelines) GetInput_schema() json.RawMessage {
+	return v.Input_schema
+}
+
+// GetUi_schema returns GetPipelineRunsBySlugPipeline_runsPipelinePipelines.Ui_schema, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsBySlugPipeline_runsPipelinePipelines) GetUi_schema() json.RawMessage {
+	return v.Ui_schema
 }
 
 // GetPipelineRunsBySlugPipeline_runsWorkflow_executionExecutions_visibility includes the requested fields of the GraphQL type executions_visibility.
@@ -969,12 +1528,31 @@ func (v *GetPipelineRunsCompletedPipeline_runs_aggregate) GetAggregate() *GetPip
 //
 // aggregate fields of "pipeline_runs"
 type GetPipelineRunsCompletedPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fields struct {
-	Count int `json:"count"`
+	Count int                                                                                                                `json:"count"`
+	Sum   *GetPipelineRunsCompletedPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fieldsSumPipeline_runs_sum_fields `json:"sum"`
 }
 
 // GetCount returns GetPipelineRunsCompletedPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fields.Count, and is useful for accessing the field via an interface.
 func (v *GetPipelineRunsCompletedPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fields) GetCount() int {
 	return v.Count
+}
+
+// GetSum returns GetPipelineRunsCompletedPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fields.Sum, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsCompletedPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fields) GetSum() *GetPipelineRunsCompletedPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fieldsSumPipeline_runs_sum_fields {
+	return v.Sum
+}
+
+// GetPipelineRunsCompletedPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fieldsSumPipeline_runs_sum_fields includes the requested fields of the GraphQL type pipeline_runs_sum_fields.
+// The GraphQL type's documentation follows.
+//
+// aggregate sum on columns
+type GetPipelineRunsCompletedPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fieldsSumPipeline_runs_sum_fields struct {
+	Credits_charged *int `json:"credits_charged"`
+}
+
+// GetCredits_charged returns GetPipelineRunsCompletedPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fieldsSumPipeline_runs_sum_fields.Credits_charged, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsCompletedPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fieldsSumPipeline_runs_sum_fields) GetCredits_charged() *int {
+	return v.Credits_charged
 }
 
 // GetPipelineRunsPipeline_runs includes the requested fields of the GraphQL type pipeline_runs.
@@ -984,13 +1562,15 @@ func (v *GetPipelineRunsCompletedPipeline_runs_aggregateAggregatePipeline_runs_a
 type GetPipelineRunsPipeline_runs struct {
 	Id string `json:"id"`
 	// An object relationship
-	Pipeline        GetPipelineRunsPipeline_runsPipelinePipelines `json:"pipeline"`
-	Status          string                                        `json:"status"`
-	Output          *json.RawMessage                              `json:"output"`
-	Error_message   *string                                       `json:"error_message"`
-	Credits_charged *int                                          `json:"credits_charged"`
-	Created_at      string                                        `json:"created_at"`
-	Completed_at    *string                                       `json:"completed_at"`
+	Pipeline           GetPipelineRunsPipeline_runsPipelinePipelines                        `json:"pipeline"`
+	Status             string                                                               `json:"status"`
+	Input              json.RawMessage                                                      `json:"input"`
+	Output             *json.RawMessage                                                     `json:"output"`
+	Error_message      *string                                                              `json:"error_message"`
+	Credits_charged    *int                                                                 `json:"credits_charged"`
+	Created_at         string                                                               `json:"created_at"`
+	Completed_at       *string                                                              `json:"completed_at"`
+	Workflow_execution *GetPipelineRunsPipeline_runsWorkflow_executionExecutions_visibility `json:"workflow_execution"`
 }
 
 // GetId returns GetPipelineRunsPipeline_runs.Id, and is useful for accessing the field via an interface.
@@ -1003,6 +1583,9 @@ func (v *GetPipelineRunsPipeline_runs) GetPipeline() GetPipelineRunsPipeline_run
 
 // GetStatus returns GetPipelineRunsPipeline_runs.Status, and is useful for accessing the field via an interface.
 func (v *GetPipelineRunsPipeline_runs) GetStatus() string { return v.Status }
+
+// GetInput returns GetPipelineRunsPipeline_runs.Input, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsPipeline_runs) GetInput() json.RawMessage { return v.Input }
 
 // GetOutput returns GetPipelineRunsPipeline_runs.Output, and is useful for accessing the field via an interface.
 func (v *GetPipelineRunsPipeline_runs) GetOutput() *json.RawMessage { return v.Output }
@@ -1019,6 +1602,11 @@ func (v *GetPipelineRunsPipeline_runs) GetCreated_at() string { return v.Created
 // GetCompleted_at returns GetPipelineRunsPipeline_runs.Completed_at, and is useful for accessing the field via an interface.
 func (v *GetPipelineRunsPipeline_runs) GetCompleted_at() *string { return v.Completed_at }
 
+// GetWorkflow_execution returns GetPipelineRunsPipeline_runs.Workflow_execution, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsPipeline_runs) GetWorkflow_execution() *GetPipelineRunsPipeline_runsWorkflow_executionExecutions_visibility {
+	return v.Workflow_execution
+}
+
 // GetPipelineRunsPipeline_runsPipelinePipelines includes the requested fields of the GraphQL type pipelines.
 // The GraphQL type's documentation follows.
 //
@@ -1027,6 +1615,8 @@ type GetPipelineRunsPipeline_runsPipelinePipelines struct {
 	Name          string          `json:"name"`
 	Slug          string          `json:"slug"`
 	Output_schema json.RawMessage `json:"output_schema"`
+	Input_schema  json.RawMessage `json:"input_schema"`
+	Ui_schema     json.RawMessage `json:"ui_schema"`
 }
 
 // GetName returns GetPipelineRunsPipeline_runsPipelinePipelines.Name, and is useful for accessing the field via an interface.
@@ -1038,6 +1628,41 @@ func (v *GetPipelineRunsPipeline_runsPipelinePipelines) GetSlug() string { retur
 // GetOutput_schema returns GetPipelineRunsPipeline_runsPipelinePipelines.Output_schema, and is useful for accessing the field via an interface.
 func (v *GetPipelineRunsPipeline_runsPipelinePipelines) GetOutput_schema() json.RawMessage {
 	return v.Output_schema
+}
+
+// GetInput_schema returns GetPipelineRunsPipeline_runsPipelinePipelines.Input_schema, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsPipeline_runsPipelinePipelines) GetInput_schema() json.RawMessage {
+	return v.Input_schema
+}
+
+// GetUi_schema returns GetPipelineRunsPipeline_runsPipelinePipelines.Ui_schema, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsPipeline_runsPipelinePipelines) GetUi_schema() json.RawMessage {
+	return v.Ui_schema
+}
+
+// GetPipelineRunsPipeline_runsWorkflow_executionExecutions_visibility includes the requested fields of the GraphQL type executions_visibility.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "executions_visibility"
+type GetPipelineRunsPipeline_runsWorkflow_executionExecutions_visibility struct {
+	Status     int     `json:"status"`
+	Start_time string  `json:"start_time"`
+	Close_time *string `json:"close_time"`
+}
+
+// GetStatus returns GetPipelineRunsPipeline_runsWorkflow_executionExecutions_visibility.Status, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsPipeline_runsWorkflow_executionExecutions_visibility) GetStatus() int {
+	return v.Status
+}
+
+// GetStart_time returns GetPipelineRunsPipeline_runsWorkflow_executionExecutions_visibility.Start_time, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsPipeline_runsWorkflow_executionExecutions_visibility) GetStart_time() string {
+	return v.Start_time
+}
+
+// GetClose_time returns GetPipelineRunsPipeline_runsWorkflow_executionExecutions_visibility.Close_time, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsPipeline_runsWorkflow_executionExecutions_visibility) GetClose_time() *string {
+	return v.Close_time
 }
 
 // GetPipelineRunsPipeline_runs_aggregate includes the requested fields of the GraphQL type pipeline_runs_aggregate.
@@ -1058,31 +1683,12 @@ func (v *GetPipelineRunsPipeline_runs_aggregate) GetAggregate() *GetPipelineRuns
 //
 // aggregate fields of "pipeline_runs"
 type GetPipelineRunsPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fields struct {
-	Count int                                                                                                       `json:"count"`
-	Sum   *GetPipelineRunsPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fieldsSumPipeline_runs_sum_fields `json:"sum"`
+	Count int `json:"count"`
 }
 
 // GetCount returns GetPipelineRunsPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fields.Count, and is useful for accessing the field via an interface.
 func (v *GetPipelineRunsPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fields) GetCount() int {
 	return v.Count
-}
-
-// GetSum returns GetPipelineRunsPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fields.Sum, and is useful for accessing the field via an interface.
-func (v *GetPipelineRunsPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fields) GetSum() *GetPipelineRunsPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fieldsSumPipeline_runs_sum_fields {
-	return v.Sum
-}
-
-// GetPipelineRunsPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fieldsSumPipeline_runs_sum_fields includes the requested fields of the GraphQL type pipeline_runs_sum_fields.
-// The GraphQL type's documentation follows.
-//
-// aggregate sum on columns
-type GetPipelineRunsPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fieldsSumPipeline_runs_sum_fields struct {
-	Credits_charged *int `json:"credits_charged"`
-}
-
-// GetCredits_charged returns GetPipelineRunsPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fieldsSumPipeline_runs_sum_fields.Credits_charged, and is useful for accessing the field via an interface.
-func (v *GetPipelineRunsPipeline_runs_aggregateAggregatePipeline_runs_aggregate_fieldsSumPipeline_runs_sum_fields) GetCredits_charged() *int {
-	return v.Credits_charged
 }
 
 // GetPipelineRunsResponse is returned by GetPipelineRuns on success.
@@ -1123,12 +1729,16 @@ type GetPipelinesPipelines struct {
 	Icon_url           *string          `json:"icon_url"`
 	Preview_url        *string          `json:"preview_url"`
 	Required_providers []string         `json:"required_providers"`
-	Credit_cost        int              `json:"credit_cost"`
 	Input_schema       json.RawMessage  `json:"input_schema"`
 	Ui_schema          json.RawMessage  `json:"ui_schema"`
 	Output_schema      json.RawMessage  `json:"output_schema"`
 	Seo_content        *string          `json:"seo_content"`
 	Seo_faq            *json.RawMessage `json:"seo_faq"`
+	Tags               []string         `json:"tags"`
+	// Structured metadata for AI orchestrators: best_for, avoid_for, limitations, output_characteristics, composability, quality_tips
+	Hints       json.RawMessage `json:"hints"`
+	Pricing     json.RawMessage `json:"pricing"`
+	Cancellable bool            `json:"cancellable"`
 }
 
 // GetId returns GetPipelinesPipelines.Id, and is useful for accessing the field via an interface.
@@ -1155,9 +1765,6 @@ func (v *GetPipelinesPipelines) GetPreview_url() *string { return v.Preview_url 
 // GetRequired_providers returns GetPipelinesPipelines.Required_providers, and is useful for accessing the field via an interface.
 func (v *GetPipelinesPipelines) GetRequired_providers() []string { return v.Required_providers }
 
-// GetCredit_cost returns GetPipelinesPipelines.Credit_cost, and is useful for accessing the field via an interface.
-func (v *GetPipelinesPipelines) GetCredit_cost() int { return v.Credit_cost }
-
 // GetInput_schema returns GetPipelinesPipelines.Input_schema, and is useful for accessing the field via an interface.
 func (v *GetPipelinesPipelines) GetInput_schema() json.RawMessage { return v.Input_schema }
 
@@ -1172,6 +1779,18 @@ func (v *GetPipelinesPipelines) GetSeo_content() *string { return v.Seo_content 
 
 // GetSeo_faq returns GetPipelinesPipelines.Seo_faq, and is useful for accessing the field via an interface.
 func (v *GetPipelinesPipelines) GetSeo_faq() *json.RawMessage { return v.Seo_faq }
+
+// GetTags returns GetPipelinesPipelines.Tags, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelines) GetTags() []string { return v.Tags }
+
+// GetHints returns GetPipelinesPipelines.Hints, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelines) GetHints() json.RawMessage { return v.Hints }
+
+// GetPricing returns GetPipelinesPipelines.Pricing, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelines) GetPricing() json.RawMessage { return v.Pricing }
+
+// GetCancellable returns GetPipelinesPipelines.Cancellable, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelines) GetCancellable() bool { return v.Cancellable }
 
 // GetPipelinesResponse is returned by GetPipelines on success.
 type GetPipelinesResponse struct {
@@ -1313,6 +1932,7 @@ type GetUserAssetsAssets struct {
 	Type            string           `json:"type"`
 	Url             string           `json:"url"`
 	Thumbnail_url   *string          `json:"thumbnail_url"`
+	Preview_frames  []string         `json:"preview_frames"`
 	Metadata        *json.RawMessage `json:"metadata"`
 	Tags            []string         `json:"tags"`
 	Created_at      string           `json:"created_at"`
@@ -1330,6 +1950,9 @@ func (v *GetUserAssetsAssets) GetUrl() string { return v.Url }
 
 // GetThumbnail_url returns GetUserAssetsAssets.Thumbnail_url, and is useful for accessing the field via an interface.
 func (v *GetUserAssetsAssets) GetThumbnail_url() *string { return v.Thumbnail_url }
+
+// GetPreview_frames returns GetUserAssetsAssets.Preview_frames, and is useful for accessing the field via an interface.
+func (v *GetUserAssetsAssets) GetPreview_frames() []string { return v.Preview_frames }
 
 // GetMetadata returns GetUserAssetsAssets.Metadata, and is useful for accessing the field via an interface.
 func (v *GetUserAssetsAssets) GetMetadata() *json.RawMessage { return v.Metadata }
@@ -1595,6 +2218,97 @@ func (v *Jsonb_comparison_exp) GetNeq() *json.RawMessage { return v.Neq }
 // GetNin returns Jsonb_comparison_exp.Nin, and is useful for accessing the field via an interface.
 func (v *Jsonb_comparison_exp) GetNin() []json.RawMessage { return v.Nin }
 
+// MarkAllNotificationsReadResponse is returned by MarkAllNotificationsRead on success.
+type MarkAllNotificationsReadResponse struct {
+	// update data of the table: "notifications"
+	Update_notifications *MarkAllNotificationsReadUpdate_notificationsNotifications_mutation_response `json:"update_notifications"`
+}
+
+// GetUpdate_notifications returns MarkAllNotificationsReadResponse.Update_notifications, and is useful for accessing the field via an interface.
+func (v *MarkAllNotificationsReadResponse) GetUpdate_notifications() *MarkAllNotificationsReadUpdate_notificationsNotifications_mutation_response {
+	return v.Update_notifications
+}
+
+// MarkAllNotificationsReadUpdate_notificationsNotifications_mutation_response includes the requested fields of the GraphQL type notifications_mutation_response.
+// The GraphQL type's documentation follows.
+//
+// response of any mutation on the table "notifications"
+type MarkAllNotificationsReadUpdate_notificationsNotifications_mutation_response struct {
+	// number of rows affected by the mutation
+	Affected_rows int `json:"affected_rows"`
+}
+
+// GetAffected_rows returns MarkAllNotificationsReadUpdate_notificationsNotifications_mutation_response.Affected_rows, and is useful for accessing the field via an interface.
+func (v *MarkAllNotificationsReadUpdate_notificationsNotifications_mutation_response) GetAffected_rows() int {
+	return v.Affected_rows
+}
+
+// MarkNotificationReadResponse is returned by MarkNotificationRead on success.
+type MarkNotificationReadResponse struct {
+	// update single row of the table: "notifications"
+	Update_notifications_by_pk *MarkNotificationReadUpdate_notifications_by_pkNotifications `json:"update_notifications_by_pk"`
+}
+
+// GetUpdate_notifications_by_pk returns MarkNotificationReadResponse.Update_notifications_by_pk, and is useful for accessing the field via an interface.
+func (v *MarkNotificationReadResponse) GetUpdate_notifications_by_pk() *MarkNotificationReadUpdate_notifications_by_pkNotifications {
+	return v.Update_notifications_by_pk
+}
+
+// MarkNotificationReadUpdate_notifications_by_pkNotifications includes the requested fields of the GraphQL type notifications.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "notifications"
+type MarkNotificationReadUpdate_notifications_by_pkNotifications struct {
+	Id   string `json:"id"`
+	Read bool   `json:"read"`
+}
+
+// GetId returns MarkNotificationReadUpdate_notifications_by_pkNotifications.Id, and is useful for accessing the field via an interface.
+func (v *MarkNotificationReadUpdate_notifications_by_pkNotifications) GetId() string { return v.Id }
+
+// GetRead returns MarkNotificationReadUpdate_notifications_by_pkNotifications.Read, and is useful for accessing the field via an interface.
+func (v *MarkNotificationReadUpdate_notifications_by_pkNotifications) GetRead() bool { return v.Read }
+
+// Boolean expression to compare columns of type "numeric". All fields are combined with logical 'AND'.
+type Numeric_comparison_exp struct {
+	Eq      *float64  `json:"_eq"`
+	Gt      *float64  `json:"_gt"`
+	Gte     *float64  `json:"_gte"`
+	In      []float64 `json:"_in"`
+	Is_null *bool     `json:"_is_null"`
+	Lt      *float64  `json:"_lt"`
+	Lte     *float64  `json:"_lte"`
+	Neq     *float64  `json:"_neq"`
+	Nin     []float64 `json:"_nin"`
+}
+
+// GetEq returns Numeric_comparison_exp.Eq, and is useful for accessing the field via an interface.
+func (v *Numeric_comparison_exp) GetEq() *float64 { return v.Eq }
+
+// GetGt returns Numeric_comparison_exp.Gt, and is useful for accessing the field via an interface.
+func (v *Numeric_comparison_exp) GetGt() *float64 { return v.Gt }
+
+// GetGte returns Numeric_comparison_exp.Gte, and is useful for accessing the field via an interface.
+func (v *Numeric_comparison_exp) GetGte() *float64 { return v.Gte }
+
+// GetIn returns Numeric_comparison_exp.In, and is useful for accessing the field via an interface.
+func (v *Numeric_comparison_exp) GetIn() []float64 { return v.In }
+
+// GetIs_null returns Numeric_comparison_exp.Is_null, and is useful for accessing the field via an interface.
+func (v *Numeric_comparison_exp) GetIs_null() *bool { return v.Is_null }
+
+// GetLt returns Numeric_comparison_exp.Lt, and is useful for accessing the field via an interface.
+func (v *Numeric_comparison_exp) GetLt() *float64 { return v.Lt }
+
+// GetLte returns Numeric_comparison_exp.Lte, and is useful for accessing the field via an interface.
+func (v *Numeric_comparison_exp) GetLte() *float64 { return v.Lte }
+
+// GetNeq returns Numeric_comparison_exp.Neq, and is useful for accessing the field via an interface.
+func (v *Numeric_comparison_exp) GetNeq() *float64 { return v.Neq }
+
+// GetNin returns Numeric_comparison_exp.Nin, and is useful for accessing the field via an interface.
+func (v *Numeric_comparison_exp) GetNin() []float64 { return v.Nin }
+
 // Boolean expression to filter rows from the table "pipeline_runs". All fields are combined with a logical 'AND'.
 type Pipeline_runs_bool_exp struct {
 	And                  []Pipeline_runs_bool_exp    `json:"_and"`
@@ -1676,20 +2390,24 @@ type Pipelines_bool_exp struct {
 	And                []Pipelines_bool_exp         `json:"_and"`
 	Not                *Pipelines_bool_exp          `json:"_not"`
 	Or                 []Pipelines_bool_exp         `json:"_or"`
+	Cancellable        *Boolean_comparison_exp      `json:"cancellable"`
 	Category           *String_comparison_exp       `json:"category"`
-	Credit_cost        *Int_comparison_exp          `json:"credit_cost"`
 	Description        *String_comparison_exp       `json:"description"`
+	Hints              *Jsonb_comparison_exp        `json:"hints"`
 	Icon_url           *String_comparison_exp       `json:"icon_url"`
 	Id                 *Uuid_comparison_exp         `json:"id"`
 	Input_schema       *Jsonb_comparison_exp        `json:"input_schema"`
+	Is_active          *Boolean_comparison_exp      `json:"is_active"`
 	Name               *String_comparison_exp       `json:"name"`
 	Output_schema      *Jsonb_comparison_exp        `json:"output_schema"`
 	Preview_url        *String_comparison_exp       `json:"preview_url"`
+	Pricing            *Jsonb_comparison_exp        `json:"pricing"`
 	Required_providers *String_array_comparison_exp `json:"required_providers"`
 	Seo_content        *String_comparison_exp       `json:"seo_content"`
 	Seo_faq            *Jsonb_comparison_exp        `json:"seo_faq"`
 	Slug               *String_comparison_exp       `json:"slug"`
 	Sort_order         *Int_comparison_exp          `json:"sort_order"`
+	Tags               *String_array_comparison_exp `json:"tags"`
 	Ui_schema          *Jsonb_comparison_exp        `json:"ui_schema"`
 }
 
@@ -1702,14 +2420,17 @@ func (v *Pipelines_bool_exp) GetNot() *Pipelines_bool_exp { return v.Not }
 // GetOr returns Pipelines_bool_exp.Or, and is useful for accessing the field via an interface.
 func (v *Pipelines_bool_exp) GetOr() []Pipelines_bool_exp { return v.Or }
 
+// GetCancellable returns Pipelines_bool_exp.Cancellable, and is useful for accessing the field via an interface.
+func (v *Pipelines_bool_exp) GetCancellable() *Boolean_comparison_exp { return v.Cancellable }
+
 // GetCategory returns Pipelines_bool_exp.Category, and is useful for accessing the field via an interface.
 func (v *Pipelines_bool_exp) GetCategory() *String_comparison_exp { return v.Category }
 
-// GetCredit_cost returns Pipelines_bool_exp.Credit_cost, and is useful for accessing the field via an interface.
-func (v *Pipelines_bool_exp) GetCredit_cost() *Int_comparison_exp { return v.Credit_cost }
-
 // GetDescription returns Pipelines_bool_exp.Description, and is useful for accessing the field via an interface.
 func (v *Pipelines_bool_exp) GetDescription() *String_comparison_exp { return v.Description }
+
+// GetHints returns Pipelines_bool_exp.Hints, and is useful for accessing the field via an interface.
+func (v *Pipelines_bool_exp) GetHints() *Jsonb_comparison_exp { return v.Hints }
 
 // GetIcon_url returns Pipelines_bool_exp.Icon_url, and is useful for accessing the field via an interface.
 func (v *Pipelines_bool_exp) GetIcon_url() *String_comparison_exp { return v.Icon_url }
@@ -1720,6 +2441,9 @@ func (v *Pipelines_bool_exp) GetId() *Uuid_comparison_exp { return v.Id }
 // GetInput_schema returns Pipelines_bool_exp.Input_schema, and is useful for accessing the field via an interface.
 func (v *Pipelines_bool_exp) GetInput_schema() *Jsonb_comparison_exp { return v.Input_schema }
 
+// GetIs_active returns Pipelines_bool_exp.Is_active, and is useful for accessing the field via an interface.
+func (v *Pipelines_bool_exp) GetIs_active() *Boolean_comparison_exp { return v.Is_active }
+
 // GetName returns Pipelines_bool_exp.Name, and is useful for accessing the field via an interface.
 func (v *Pipelines_bool_exp) GetName() *String_comparison_exp { return v.Name }
 
@@ -1728,6 +2452,9 @@ func (v *Pipelines_bool_exp) GetOutput_schema() *Jsonb_comparison_exp { return v
 
 // GetPreview_url returns Pipelines_bool_exp.Preview_url, and is useful for accessing the field via an interface.
 func (v *Pipelines_bool_exp) GetPreview_url() *String_comparison_exp { return v.Preview_url }
+
+// GetPricing returns Pipelines_bool_exp.Pricing, and is useful for accessing the field via an interface.
+func (v *Pipelines_bool_exp) GetPricing() *Jsonb_comparison_exp { return v.Pricing }
 
 // GetRequired_providers returns Pipelines_bool_exp.Required_providers, and is useful for accessing the field via an interface.
 func (v *Pipelines_bool_exp) GetRequired_providers() *String_array_comparison_exp {
@@ -1746,8 +2473,89 @@ func (v *Pipelines_bool_exp) GetSlug() *String_comparison_exp { return v.Slug }
 // GetSort_order returns Pipelines_bool_exp.Sort_order, and is useful for accessing the field via an interface.
 func (v *Pipelines_bool_exp) GetSort_order() *Int_comparison_exp { return v.Sort_order }
 
+// GetTags returns Pipelines_bool_exp.Tags, and is useful for accessing the field via an interface.
+func (v *Pipelines_bool_exp) GetTags() *String_array_comparison_exp { return v.Tags }
+
 // GetUi_schema returns Pipelines_bool_exp.Ui_schema, and is useful for accessing the field via an interface.
 func (v *Pipelines_bool_exp) GetUi_schema() *Jsonb_comparison_exp { return v.Ui_schema }
+
+// RequestAccountDeletionRequest_account_deletionRequest_account_deletion_output includes the requested fields of the GraphQL type request_account_deletion_output.
+type RequestAccountDeletionRequest_account_deletionRequest_account_deletion_output struct {
+	Success    bool   `json:"success"`
+	Message    string `json:"message"`
+	Expires_at string `json:"expires_at"`
+}
+
+// GetSuccess returns RequestAccountDeletionRequest_account_deletionRequest_account_deletion_output.Success, and is useful for accessing the field via an interface.
+func (v *RequestAccountDeletionRequest_account_deletionRequest_account_deletion_output) GetSuccess() bool {
+	return v.Success
+}
+
+// GetMessage returns RequestAccountDeletionRequest_account_deletionRequest_account_deletion_output.Message, and is useful for accessing the field via an interface.
+func (v *RequestAccountDeletionRequest_account_deletionRequest_account_deletion_output) GetMessage() string {
+	return v.Message
+}
+
+// GetExpires_at returns RequestAccountDeletionRequest_account_deletionRequest_account_deletion_output.Expires_at, and is useful for accessing the field via an interface.
+func (v *RequestAccountDeletionRequest_account_deletionRequest_account_deletion_output) GetExpires_at() string {
+	return v.Expires_at
+}
+
+// RequestAccountDeletionResponse is returned by RequestAccountDeletion on success.
+type RequestAccountDeletionResponse struct {
+	// Send an email-link confirmation for account deletion. No state change until the link is clicked.
+	Request_account_deletion RequestAccountDeletionRequest_account_deletionRequest_account_deletion_output `json:"request_account_deletion"`
+}
+
+// GetRequest_account_deletion returns RequestAccountDeletionResponse.Request_account_deletion, and is useful for accessing the field via an interface.
+func (v *RequestAccountDeletionResponse) GetRequest_account_deletion() RequestAccountDeletionRequest_account_deletionRequest_account_deletion_output {
+	return v.Request_account_deletion
+}
+
+// RequestAvatarUploadRequest_avatar_uploadRequest_avatar_upload_output includes the requested fields of the GraphQL type request_avatar_upload_output.
+type RequestAvatarUploadRequest_avatar_uploadRequest_avatar_upload_output struct {
+	Success    bool   `json:"success"`
+	Upload_url string `json:"upload_url"`
+	Asset_url  string `json:"asset_url"`
+	Key        string `json:"key"`
+	Max_size   int    `json:"max_size"`
+}
+
+// GetSuccess returns RequestAvatarUploadRequest_avatar_uploadRequest_avatar_upload_output.Success, and is useful for accessing the field via an interface.
+func (v *RequestAvatarUploadRequest_avatar_uploadRequest_avatar_upload_output) GetSuccess() bool {
+	return v.Success
+}
+
+// GetUpload_url returns RequestAvatarUploadRequest_avatar_uploadRequest_avatar_upload_output.Upload_url, and is useful for accessing the field via an interface.
+func (v *RequestAvatarUploadRequest_avatar_uploadRequest_avatar_upload_output) GetUpload_url() string {
+	return v.Upload_url
+}
+
+// GetAsset_url returns RequestAvatarUploadRequest_avatar_uploadRequest_avatar_upload_output.Asset_url, and is useful for accessing the field via an interface.
+func (v *RequestAvatarUploadRequest_avatar_uploadRequest_avatar_upload_output) GetAsset_url() string {
+	return v.Asset_url
+}
+
+// GetKey returns RequestAvatarUploadRequest_avatar_uploadRequest_avatar_upload_output.Key, and is useful for accessing the field via an interface.
+func (v *RequestAvatarUploadRequest_avatar_uploadRequest_avatar_upload_output) GetKey() string {
+	return v.Key
+}
+
+// GetMax_size returns RequestAvatarUploadRequest_avatar_uploadRequest_avatar_upload_output.Max_size, and is useful for accessing the field via an interface.
+func (v *RequestAvatarUploadRequest_avatar_uploadRequest_avatar_upload_output) GetMax_size() int {
+	return v.Max_size
+}
+
+// RequestAvatarUploadResponse is returned by RequestAvatarUpload on success.
+type RequestAvatarUploadResponse struct {
+	// Mint a presigned S3 PUT URL for an avatar image
+	Request_avatar_upload RequestAvatarUploadRequest_avatar_uploadRequest_avatar_upload_output `json:"request_avatar_upload"`
+}
+
+// GetRequest_avatar_upload returns RequestAvatarUploadResponse.Request_avatar_upload, and is useful for accessing the field via an interface.
+func (v *RequestAvatarUploadResponse) GetRequest_avatar_upload() RequestAvatarUploadRequest_avatar_uploadRequest_avatar_upload_output {
+	return v.Request_avatar_upload
+}
 
 // RequestUploadRequest_uploadRequest_upload_output includes the requested fields of the GraphQL type request_upload_output.
 type RequestUploadRequest_uploadRequest_upload_output struct {
@@ -2209,16 +3017,117 @@ func (v *Uuid_comparison_exp) GetNeq() *string { return v.Neq }
 // GetNin returns Uuid_comparison_exp.Nin, and is useful for accessing the field via an interface.
 func (v *Uuid_comparison_exp) GetNin() []string { return v.Nin }
 
+// WatchActivePipelineRunsPipeline_runs includes the requested fields of the GraphQL type pipeline_runs.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "pipeline_runs"
+type WatchActivePipelineRunsPipeline_runs struct {
+	Id         string `json:"id"`
+	Status     string `json:"status"`
+	Created_at string `json:"created_at"`
+	// An object relationship
+	Pipeline WatchActivePipelineRunsPipeline_runsPipelinePipelines `json:"pipeline"`
+}
+
+// GetId returns WatchActivePipelineRunsPipeline_runs.Id, and is useful for accessing the field via an interface.
+func (v *WatchActivePipelineRunsPipeline_runs) GetId() string { return v.Id }
+
+// GetStatus returns WatchActivePipelineRunsPipeline_runs.Status, and is useful for accessing the field via an interface.
+func (v *WatchActivePipelineRunsPipeline_runs) GetStatus() string { return v.Status }
+
+// GetCreated_at returns WatchActivePipelineRunsPipeline_runs.Created_at, and is useful for accessing the field via an interface.
+func (v *WatchActivePipelineRunsPipeline_runs) GetCreated_at() string { return v.Created_at }
+
+// GetPipeline returns WatchActivePipelineRunsPipeline_runs.Pipeline, and is useful for accessing the field via an interface.
+func (v *WatchActivePipelineRunsPipeline_runs) GetPipeline() WatchActivePipelineRunsPipeline_runsPipelinePipelines {
+	return v.Pipeline
+}
+
+// WatchActivePipelineRunsPipeline_runsPipelinePipelines includes the requested fields of the GraphQL type pipelines.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "pipelines"
+type WatchActivePipelineRunsPipeline_runsPipelinePipelines struct {
+	Name string `json:"name"`
+	Slug string `json:"slug"`
+}
+
+// GetName returns WatchActivePipelineRunsPipeline_runsPipelinePipelines.Name, and is useful for accessing the field via an interface.
+func (v *WatchActivePipelineRunsPipeline_runsPipelinePipelines) GetName() string { return v.Name }
+
+// GetSlug returns WatchActivePipelineRunsPipeline_runsPipelinePipelines.Slug, and is useful for accessing the field via an interface.
+func (v *WatchActivePipelineRunsPipeline_runsPipelinePipelines) GetSlug() string { return v.Slug }
+
+// WatchActivePipelineRunsResponse is returned by WatchActivePipelineRuns on success.
+type WatchActivePipelineRunsResponse struct {
+	// fetch data from the table: "pipeline_runs"
+	Pipeline_runs []WatchActivePipelineRunsPipeline_runs `json:"pipeline_runs"`
+}
+
+// GetPipeline_runs returns WatchActivePipelineRunsResponse.Pipeline_runs, and is useful for accessing the field via an interface.
+func (v *WatchActivePipelineRunsResponse) GetPipeline_runs() []WatchActivePipelineRunsPipeline_runs {
+	return v.Pipeline_runs
+}
+
+// WatchNotificationsNotifications includes the requested fields of the GraphQL type notifications.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "notifications"
+type WatchNotificationsNotifications struct {
+	Id         string           `json:"id"`
+	Type       string           `json:"type"`
+	Title      string           `json:"title"`
+	Body       *string          `json:"body"`
+	Metadata   *json.RawMessage `json:"metadata"`
+	Read       bool             `json:"read"`
+	Created_at string           `json:"created_at"`
+}
+
+// GetId returns WatchNotificationsNotifications.Id, and is useful for accessing the field via an interface.
+func (v *WatchNotificationsNotifications) GetId() string { return v.Id }
+
+// GetType returns WatchNotificationsNotifications.Type, and is useful for accessing the field via an interface.
+func (v *WatchNotificationsNotifications) GetType() string { return v.Type }
+
+// GetTitle returns WatchNotificationsNotifications.Title, and is useful for accessing the field via an interface.
+func (v *WatchNotificationsNotifications) GetTitle() string { return v.Title }
+
+// GetBody returns WatchNotificationsNotifications.Body, and is useful for accessing the field via an interface.
+func (v *WatchNotificationsNotifications) GetBody() *string { return v.Body }
+
+// GetMetadata returns WatchNotificationsNotifications.Metadata, and is useful for accessing the field via an interface.
+func (v *WatchNotificationsNotifications) GetMetadata() *json.RawMessage { return v.Metadata }
+
+// GetRead returns WatchNotificationsNotifications.Read, and is useful for accessing the field via an interface.
+func (v *WatchNotificationsNotifications) GetRead() bool { return v.Read }
+
+// GetCreated_at returns WatchNotificationsNotifications.Created_at, and is useful for accessing the field via an interface.
+func (v *WatchNotificationsNotifications) GetCreated_at() string { return v.Created_at }
+
+// WatchNotificationsResponse is returned by WatchNotifications on success.
+type WatchNotificationsResponse struct {
+	// fetch data from the table: "notifications"
+	Notifications []WatchNotificationsNotifications `json:"notifications"`
+}
+
+// GetNotifications returns WatchNotificationsResponse.Notifications, and is useful for accessing the field via an interface.
+func (v *WatchNotificationsResponse) GetNotifications() []WatchNotificationsNotifications {
+	return v.Notifications
+}
+
 // WatchPipelineRunPipeline_runs_by_pkPipeline_runs includes the requested fields of the GraphQL type pipeline_runs.
 // The GraphQL type's documentation follows.
 //
 // columns and relationships of "pipeline_runs"
 type WatchPipelineRunPipeline_runs_by_pkPipeline_runs struct {
-	Id            string           `json:"id"`
-	Status        string           `json:"status"`
-	Output        *json.RawMessage `json:"output"`
-	Error_message *string          `json:"error_message"`
-	Completed_at  *string          `json:"completed_at"`
+	Id              string           `json:"id"`
+	Status          string           `json:"status"`
+	Input           json.RawMessage  `json:"input"`
+	Output          *json.RawMessage `json:"output"`
+	Error_message   *string          `json:"error_message"`
+	Credits_charged *int             `json:"credits_charged"`
+	Created_at      string           `json:"created_at"`
+	Completed_at    *string          `json:"completed_at"`
 	// An object relationship
 	Pipeline WatchPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines `json:"pipeline"`
 	// An array relationship
@@ -2231,6 +3140,9 @@ func (v *WatchPipelineRunPipeline_runs_by_pkPipeline_runs) GetId() string { retu
 // GetStatus returns WatchPipelineRunPipeline_runs_by_pkPipeline_runs.Status, and is useful for accessing the field via an interface.
 func (v *WatchPipelineRunPipeline_runs_by_pkPipeline_runs) GetStatus() string { return v.Status }
 
+// GetInput returns WatchPipelineRunPipeline_runs_by_pkPipeline_runs.Input, and is useful for accessing the field via an interface.
+func (v *WatchPipelineRunPipeline_runs_by_pkPipeline_runs) GetInput() json.RawMessage { return v.Input }
+
 // GetOutput returns WatchPipelineRunPipeline_runs_by_pkPipeline_runs.Output, and is useful for accessing the field via an interface.
 func (v *WatchPipelineRunPipeline_runs_by_pkPipeline_runs) GetOutput() *json.RawMessage {
 	return v.Output
@@ -2239,6 +3151,16 @@ func (v *WatchPipelineRunPipeline_runs_by_pkPipeline_runs) GetOutput() *json.Raw
 // GetError_message returns WatchPipelineRunPipeline_runs_by_pkPipeline_runs.Error_message, and is useful for accessing the field via an interface.
 func (v *WatchPipelineRunPipeline_runs_by_pkPipeline_runs) GetError_message() *string {
 	return v.Error_message
+}
+
+// GetCredits_charged returns WatchPipelineRunPipeline_runs_by_pkPipeline_runs.Credits_charged, and is useful for accessing the field via an interface.
+func (v *WatchPipelineRunPipeline_runs_by_pkPipeline_runs) GetCredits_charged() *int {
+	return v.Credits_charged
+}
+
+// GetCreated_at returns WatchPipelineRunPipeline_runs_by_pkPipeline_runs.Created_at, and is useful for accessing the field via an interface.
+func (v *WatchPipelineRunPipeline_runs_by_pkPipeline_runs) GetCreated_at() string {
+	return v.Created_at
 }
 
 // GetCompleted_at returns WatchPipelineRunPipeline_runs_by_pkPipeline_runs.Completed_at, and is useful for accessing the field via an interface.
@@ -2286,8 +3208,11 @@ func (v *WatchPipelineRunPipeline_runs_by_pkPipeline_runsAssets) GetThumbnail_ur
 //
 // columns and relationships of "pipelines"
 type WatchPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines struct {
-	Name string `json:"name"`
-	Slug string `json:"slug"`
+	Name          string          `json:"name"`
+	Slug          string          `json:"slug"`
+	Output_schema json.RawMessage `json:"output_schema"`
+	Input_schema  json.RawMessage `json:"input_schema"`
+	Ui_schema     json.RawMessage `json:"ui_schema"`
 }
 
 // GetName returns WatchPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines.Name, and is useful for accessing the field via an interface.
@@ -2298,6 +3223,21 @@ func (v *WatchPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines) GetN
 // GetSlug returns WatchPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines.Slug, and is useful for accessing the field via an interface.
 func (v *WatchPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines) GetSlug() string {
 	return v.Slug
+}
+
+// GetOutput_schema returns WatchPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines.Output_schema, and is useful for accessing the field via an interface.
+func (v *WatchPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines) GetOutput_schema() json.RawMessage {
+	return v.Output_schema
+}
+
+// GetInput_schema returns WatchPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines.Input_schema, and is useful for accessing the field via an interface.
+func (v *WatchPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines) GetInput_schema() json.RawMessage {
+	return v.Input_schema
+}
+
+// GetUi_schema returns WatchPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines.Ui_schema, and is useful for accessing the field via an interface.
+func (v *WatchPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines) GetUi_schema() json.RawMessage {
+	return v.Ui_schema
 }
 
 // WatchPipelineRunResponse is returned by WatchPipelineRun on success.
@@ -2322,6 +3262,50 @@ func (v *__AddAffiliateCodeInput) GetCode() string { return v.Code }
 
 // GetRedirect_path returns __AddAffiliateCodeInput.Redirect_path, and is useful for accessing the field via an interface.
 func (v *__AddAffiliateCodeInput) GetRedirect_path() *string { return v.Redirect_path }
+
+// __CancelPipelineRunInput is used internally by genqlient
+type __CancelPipelineRunInput struct {
+	Run_id string `json:"run_id"`
+}
+
+// GetRun_id returns __CancelPipelineRunInput.Run_id, and is useful for accessing the field via an interface.
+func (v *__CancelPipelineRunInput) GetRun_id() string { return v.Run_id }
+
+// __ChangeAvatarInput is used internally by genqlient
+type __ChangeAvatarInput struct {
+	Avatar_url string `json:"avatar_url"`
+}
+
+// GetAvatar_url returns __ChangeAvatarInput.Avatar_url, and is useful for accessing the field via an interface.
+func (v *__ChangeAvatarInput) GetAvatar_url() string { return v.Avatar_url }
+
+// __ChangeNameInput is used internally by genqlient
+type __ChangeNameInput struct {
+	Name string `json:"name"`
+}
+
+// GetName returns __ChangeNameInput.Name, and is useful for accessing the field via an interface.
+func (v *__ChangeNameInput) GetName() string { return v.Name }
+
+// __ChangePasswordInput is used internally by genqlient
+type __ChangePasswordInput struct {
+	Current_password string `json:"current_password"`
+	New_password     string `json:"new_password"`
+}
+
+// GetCurrent_password returns __ChangePasswordInput.Current_password, and is useful for accessing the field via an interface.
+func (v *__ChangePasswordInput) GetCurrent_password() string { return v.Current_password }
+
+// GetNew_password returns __ChangePasswordInput.New_password, and is useful for accessing the field via an interface.
+func (v *__ChangePasswordInput) GetNew_password() string { return v.New_password }
+
+// __ConfirmAccountDeletionInput is used internally by genqlient
+type __ConfirmAccountDeletionInput struct {
+	Token string `json:"token"`
+}
+
+// GetToken returns __ConfirmAccountDeletionInput.Token, and is useful for accessing the field via an interface.
+func (v *__ConfirmAccountDeletionInput) GetToken() string { return v.Token }
 
 // __CreateAssetInput is used internally by genqlient
 type __CreateAssetInput struct {
@@ -2354,6 +3338,34 @@ type __DeleteAssetActionInput struct {
 
 // GetId returns __DeleteAssetActionInput.Id, and is useful for accessing the field via an interface.
 func (v *__DeleteAssetActionInput) GetId() string { return v.Id }
+
+// __GetAssetThumbnailInput is used internally by genqlient
+type __GetAssetThumbnailInput struct {
+	Id string `json:"id"`
+}
+
+// GetId returns __GetAssetThumbnailInput.Id, and is useful for accessing the field via an interface.
+func (v *__GetAssetThumbnailInput) GetId() string { return v.Id }
+
+// __GetAssetThumbnailsByIdsInput is used internally by genqlient
+type __GetAssetThumbnailsByIdsInput struct {
+	Ids []string `json:"ids"`
+}
+
+// GetIds returns __GetAssetThumbnailsByIdsInput.Ids, and is useful for accessing the field via an interface.
+func (v *__GetAssetThumbnailsByIdsInput) GetIds() []string { return v.Ids }
+
+// __GetNotificationsInput is used internally by genqlient
+type __GetNotificationsInput struct {
+	Limit  int `json:"limit"`
+	Offset int `json:"offset"`
+}
+
+// GetLimit returns __GetNotificationsInput.Limit, and is useful for accessing the field via an interface.
+func (v *__GetNotificationsInput) GetLimit() int { return v.Limit }
+
+// GetOffset returns __GetNotificationsInput.Offset, and is useful for accessing the field via an interface.
+func (v *__GetNotificationsInput) GetOffset() int { return v.Offset }
 
 // __GetPipelineRunInput is used internally by genqlient
 type __GetPipelineRunInput struct {
@@ -2422,10 +3434,34 @@ func (v *__InitRecoveryFlowInput) GetEmail() string { return v.Email }
 // __InitVerificationFlowInput is used internally by genqlient
 type __InitVerificationFlowInput struct {
 	Email *string `json:"email"`
+	Force *bool   `json:"force"`
 }
 
 // GetEmail returns __InitVerificationFlowInput.Email, and is useful for accessing the field via an interface.
 func (v *__InitVerificationFlowInput) GetEmail() *string { return v.Email }
+
+// GetForce returns __InitVerificationFlowInput.Force, and is useful for accessing the field via an interface.
+func (v *__InitVerificationFlowInput) GetForce() *bool { return v.Force }
+
+// __MarkNotificationReadInput is used internally by genqlient
+type __MarkNotificationReadInput struct {
+	Id string `json:"id"`
+}
+
+// GetId returns __MarkNotificationReadInput.Id, and is useful for accessing the field via an interface.
+func (v *__MarkNotificationReadInput) GetId() string { return v.Id }
+
+// __RequestAvatarUploadInput is used internally by genqlient
+type __RequestAvatarUploadInput struct {
+	Filename     string `json:"filename"`
+	Content_type string `json:"content_type"`
+}
+
+// GetFilename returns __RequestAvatarUploadInput.Filename, and is useful for accessing the field via an interface.
+func (v *__RequestAvatarUploadInput) GetFilename() string { return v.Filename }
+
+// GetContent_type returns __RequestAvatarUploadInput.Content_type, and is useful for accessing the field via an interface.
+func (v *__RequestAvatarUploadInput) GetContent_type() string { return v.Content_type }
 
 // __RequestUploadInput is used internally by genqlient
 type __RequestUploadInput struct {
@@ -2559,6 +3595,14 @@ func (v *__UpdateAssetTagsInput) GetId() string { return v.Id }
 // GetTags returns __UpdateAssetTagsInput.Tags, and is useful for accessing the field via an interface.
 func (v *__UpdateAssetTagsInput) GetTags() []string { return v.Tags }
 
+// __WatchNotificationsInput is used internally by genqlient
+type __WatchNotificationsInput struct {
+	Limit int `json:"limit"`
+}
+
+// GetLimit returns __WatchNotificationsInput.Limit, and is useful for accessing the field via an interface.
+func (v *__WatchNotificationsInput) GetLimit() int { return v.Limit }
+
 // __WatchPipelineRunInput is used internally by genqlient
 type __WatchPipelineRunInput struct {
 	Run_id string `json:"run_id"`
@@ -2593,6 +3637,248 @@ func AddAffiliateCode(
 	}
 
 	data_ = &AddAffiliateCodeResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by CancelAccountDeletion.
+const CancelAccountDeletion_Operation = `
+mutation CancelAccountDeletion {
+	cancel_account_deletion {
+		success
+		message
+	}
+}
+`
+
+func CancelAccountDeletion(
+	ctx_ context.Context,
+	client_ graphql.Client,
+) (data_ *CancelAccountDeletionResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "CancelAccountDeletion",
+		Query:  CancelAccountDeletion_Operation,
+	}
+
+	data_ = &CancelAccountDeletionResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by CancelPipelineRun.
+const CancelPipelineRun_Operation = `
+mutation CancelPipelineRun ($run_id: String!) {
+	cancel_pipeline_run(run_id: $run_id) {
+		success
+	}
+}
+`
+
+func CancelPipelineRun(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	run_id string,
+) (data_ *CancelPipelineRunResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "CancelPipelineRun",
+		Query:  CancelPipelineRun_Operation,
+		Variables: &__CancelPipelineRunInput{
+			Run_id: run_id,
+		},
+	}
+
+	data_ = &CancelPipelineRunResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by CancelSubscription.
+const CancelSubscription_Operation = `
+mutation CancelSubscription {
+	cancel_subscription {
+		success
+		message
+		cancel_at_period_end
+	}
+}
+`
+
+func CancelSubscription(
+	ctx_ context.Context,
+	client_ graphql.Client,
+) (data_ *CancelSubscriptionResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "CancelSubscription",
+		Query:  CancelSubscription_Operation,
+	}
+
+	data_ = &CancelSubscriptionResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by ChangeAvatar.
+const ChangeAvatar_Operation = `
+mutation ChangeAvatar ($avatar_url: String!) {
+	change_avatar(avatar_url: $avatar_url) {
+		success
+		message
+		avatar_url
+	}
+}
+`
+
+func ChangeAvatar(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	avatar_url string,
+) (data_ *ChangeAvatarResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "ChangeAvatar",
+		Query:  ChangeAvatar_Operation,
+		Variables: &__ChangeAvatarInput{
+			Avatar_url: avatar_url,
+		},
+	}
+
+	data_ = &ChangeAvatarResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by ChangeName.
+const ChangeName_Operation = `
+mutation ChangeName ($name: String!) {
+	change_name(name: $name) {
+		success
+		message
+		name
+	}
+}
+`
+
+func ChangeName(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	name string,
+) (data_ *ChangeNameResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "ChangeName",
+		Query:  ChangeName_Operation,
+		Variables: &__ChangeNameInput{
+			Name: name,
+		},
+	}
+
+	data_ = &ChangeNameResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by ChangePassword.
+const ChangePassword_Operation = `
+mutation ChangePassword ($current_password: String!, $new_password: String!) {
+	change_password(current_password: $current_password, new_password: $new_password) {
+		success
+		message
+	}
+}
+`
+
+func ChangePassword(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	current_password string,
+	new_password string,
+) (data_ *ChangePasswordResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "ChangePassword",
+		Query:  ChangePassword_Operation,
+		Variables: &__ChangePasswordInput{
+			Current_password: current_password,
+			New_password:     new_password,
+		},
+	}
+
+	data_ = &ChangePasswordResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by ConfirmAccountDeletion.
+const ConfirmAccountDeletion_Operation = `
+mutation ConfirmAccountDeletion ($token: String!) {
+	confirm_account_deletion(token: $token) {
+		success
+		message
+		effective_at
+	}
+}
+`
+
+func ConfirmAccountDeletion(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	token string,
+) (data_ *ConfirmAccountDeletionResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "ConfirmAccountDeletion",
+		Query:  ConfirmAccountDeletion_Operation,
+		Variables: &__ConfirmAccountDeletionInput{
+			Token: token,
+		},
+	}
+
+	data_ = &ConfirmAccountDeletionResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
@@ -2749,6 +4035,123 @@ func EnsureAffiliate(
 	return data_, err_
 }
 
+// The query executed by GetActivePipelineRuns.
+const GetActivePipelineRuns_Operation = `
+query GetActivePipelineRuns {
+	pipeline_runs(where: {status:{_in:["pending","running"]}}, order_by: {created_at:desc}, limit: 10) {
+		id
+		status
+		created_at
+		pipeline {
+			name
+			slug
+		}
+	}
+	active_count: pipeline_runs_aggregate(where: {status:{_in:["pending","running"]}}) {
+		aggregate {
+			count
+		}
+	}
+}
+`
+
+func GetActivePipelineRuns(
+	ctx_ context.Context,
+	client_ graphql.Client,
+) (data_ *GetActivePipelineRunsResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "GetActivePipelineRuns",
+		Query:  GetActivePipelineRuns_Operation,
+	}
+
+	data_ = &GetActivePipelineRunsResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by GetAssetThumbnail.
+const GetAssetThumbnail_Operation = `
+query GetAssetThumbnail ($id: uuid!) {
+	assets_by_pk(id: $id) {
+		id
+		type
+		url
+		thumbnail_url
+		preview_frames
+	}
+}
+`
+
+func GetAssetThumbnail(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	id string,
+) (data_ *GetAssetThumbnailResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "GetAssetThumbnail",
+		Query:  GetAssetThumbnail_Operation,
+		Variables: &__GetAssetThumbnailInput{
+			Id: id,
+		},
+	}
+
+	data_ = &GetAssetThumbnailResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by GetAssetThumbnailsByIds.
+const GetAssetThumbnailsByIds_Operation = `
+query GetAssetThumbnailsByIds ($ids: [uuid!]!) {
+	assets(where: {id:{_in:$ids}}) {
+		id
+		type
+		url
+		thumbnail_url
+		preview_frames
+	}
+}
+`
+
+func GetAssetThumbnailsByIds(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	ids []string,
+) (data_ *GetAssetThumbnailsByIdsResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "GetAssetThumbnailsByIds",
+		Query:  GetAssetThumbnailsByIds_Operation,
+		Variables: &__GetAssetThumbnailsByIdsInput{
+			Ids: ids,
+		},
+	}
+
+	data_ = &GetAssetThumbnailsByIdsResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
 // The query executed by GetCreditBalance.
 const GetCreditBalance_Operation = `
 query GetCreditBalance {
@@ -2859,6 +4262,8 @@ query GetCurrentUser {
 		name
 		email_verified
 		avatar_url
+		deletion_scheduled_at
+		deletion_effective_at
 	}
 }
 `
@@ -3035,12 +4440,60 @@ func GetMyReferrals(
 	return data_, err_
 }
 
+// The query executed by GetNotifications.
+const GetNotifications_Operation = `
+query GetNotifications ($limit: Int!, $offset: Int!) {
+	notifications(order_by: {created_at:desc}, limit: $limit, offset: $offset) {
+		id
+		type
+		title
+		body
+		metadata
+		read
+		created_at
+	}
+	unread: notifications_aggregate(where: {read:{_eq:false}}) {
+		aggregate {
+			count
+		}
+	}
+}
+`
+
+func GetNotifications(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	limit int,
+	offset int,
+) (data_ *GetNotificationsResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "GetNotifications",
+		Query:  GetNotifications_Operation,
+		Variables: &__GetNotificationsInput{
+			Limit:  limit,
+			Offset: offset,
+		},
+	}
+
+	data_ = &GetNotificationsResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
 // The query executed by GetPipelineRun.
 const GetPipelineRun_Operation = `
 query GetPipelineRun ($id: uuid!) {
 	pipeline_runs_by_pk(id: $id) {
 		id
 		status
+		input
 		output
 		error_message
 		credits_charged
@@ -3050,6 +4503,8 @@ query GetPipelineRun ($id: uuid!) {
 			name
 			slug
 			output_schema
+			input_schema
+			ui_schema
 		}
 		assets {
 			id
@@ -3101,25 +4556,33 @@ query GetPipelineRuns ($limit: Int = 12, $offset: Int = 0, $where: pipeline_runs
 			name
 			slug
 			output_schema
+			input_schema
+			ui_schema
 		}
 		status
+		input
 		output
 		error_message
 		credits_charged
 		created_at
 		completed_at
+		workflow_execution {
+			status
+			start_time
+			close_time
+		}
 	}
 	pipeline_runs_aggregate(where: $where) {
+		aggregate {
+			count
+		}
+	}
+	completed: pipeline_runs_aggregate(where: {_and:[$where,{status:{_eq:"completed"}}]}) {
 		aggregate {
 			count
 			sum {
 				credits_charged
 			}
-		}
-	}
-	completed: pipeline_runs_aggregate(where: {_and:[$where,{completed_at:{_is_null:false}}]}) {
-		aggregate {
-			count
 		}
 	}
 }
@@ -3164,12 +4627,21 @@ query GetPipelineRunsBySlug ($slug: String!, $limit: Int = 10, $offset: Int = 0)
 			name
 			slug
 			output_schema
+			input_schema
+			ui_schema
 		}
+		input
 		output
 		error_message
 		credits_charged
 		created_at
 		completed_at
+		assets {
+			id
+			type
+			url
+			thumbnail_url
+		}
 		workflow_execution {
 			status
 			start_time
@@ -3216,7 +4688,7 @@ func GetPipelineRunsBySlug(
 // The query executed by GetPipelines.
 const GetPipelines_Operation = `
 query GetPipelines {
-	pipelines(order_by: {sort_order:asc}) {
+	pipelines(where: {is_active:{_eq:true}}, order_by: {sort_order:asc}) {
 		id
 		slug
 		name
@@ -3225,12 +4697,15 @@ query GetPipelines {
 		icon_url
 		preview_url
 		required_providers
-		credit_cost
 		input_schema
 		ui_schema
 		output_schema
 		seo_content
 		seo_faq
+		tags
+		hints
+		pricing
+		cancellable
 	}
 }
 `
@@ -3343,6 +4818,7 @@ query GetUserAssets ($where: assets_bool_exp = {}, $limit: Int = 20, $offset: In
 		type
 		url
 		thumbnail_url
+		preview_frames
 		metadata
 		tags
 		created_at
@@ -3484,8 +4960,8 @@ func InitSignupFlow(
 
 // The mutation executed by InitVerificationFlow.
 const InitVerificationFlow_Operation = `
-mutation InitVerificationFlow ($email: String) {
-	init_verification_flow(email: $email) {
+mutation InitVerificationFlow ($email: String, $force: Boolean) {
+	init_verification_flow(email: $email, force: $force) {
 		id
 		csrf_token
 	}
@@ -3496,16 +4972,155 @@ func InitVerificationFlow(
 	ctx_ context.Context,
 	client_ graphql.Client,
 	email *string,
+	force *bool,
 ) (data_ *InitVerificationFlowResponse, err_ error) {
 	req_ := &graphql.Request{
 		OpName: "InitVerificationFlow",
 		Query:  InitVerificationFlow_Operation,
 		Variables: &__InitVerificationFlowInput{
 			Email: email,
+			Force: force,
 		},
 	}
 
 	data_ = &InitVerificationFlowResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by MarkAllNotificationsRead.
+const MarkAllNotificationsRead_Operation = `
+mutation MarkAllNotificationsRead {
+	update_notifications(where: {read:{_eq:false}}, _set: {read:true}) {
+		affected_rows
+	}
+}
+`
+
+func MarkAllNotificationsRead(
+	ctx_ context.Context,
+	client_ graphql.Client,
+) (data_ *MarkAllNotificationsReadResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "MarkAllNotificationsRead",
+		Query:  MarkAllNotificationsRead_Operation,
+	}
+
+	data_ = &MarkAllNotificationsReadResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by MarkNotificationRead.
+const MarkNotificationRead_Operation = `
+mutation MarkNotificationRead ($id: uuid!) {
+	update_notifications_by_pk(pk_columns: {id:$id}, _set: {read:true}) {
+		id
+		read
+	}
+}
+`
+
+func MarkNotificationRead(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	id string,
+) (data_ *MarkNotificationReadResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "MarkNotificationRead",
+		Query:  MarkNotificationRead_Operation,
+		Variables: &__MarkNotificationReadInput{
+			Id: id,
+		},
+	}
+
+	data_ = &MarkNotificationReadResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by RequestAccountDeletion.
+const RequestAccountDeletion_Operation = `
+mutation RequestAccountDeletion {
+	request_account_deletion {
+		success
+		message
+		expires_at
+	}
+}
+`
+
+func RequestAccountDeletion(
+	ctx_ context.Context,
+	client_ graphql.Client,
+) (data_ *RequestAccountDeletionResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "RequestAccountDeletion",
+		Query:  RequestAccountDeletion_Operation,
+	}
+
+	data_ = &RequestAccountDeletionResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by RequestAvatarUpload.
+const RequestAvatarUpload_Operation = `
+mutation RequestAvatarUpload ($filename: String!, $content_type: String!) {
+	request_avatar_upload(filename: $filename, content_type: $content_type) {
+		success
+		upload_url
+		asset_url
+		key
+		max_size
+	}
+}
+`
+
+func RequestAvatarUpload(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	filename string,
+	content_type string,
+) (data_ *RequestAvatarUploadResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "RequestAvatarUpload",
+		Query:  RequestAvatarUpload_Operation,
+		Variables: &__RequestAvatarUploadInput{
+			Filename:     filename,
+			Content_type: content_type,
+		},
+	}
+
+	data_ = &RequestAvatarUploadResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
@@ -3866,18 +5481,145 @@ func UpdateAssetTags(
 	return data_, err_
 }
 
+// The subscription executed by WatchActivePipelineRuns.
+const WatchActivePipelineRuns_Operation = `
+subscription WatchActivePipelineRuns {
+	pipeline_runs(where: {status:{_in:["pending","running"]}}, order_by: {created_at:desc}, limit: 10) {
+		id
+		status
+		created_at
+		pipeline {
+			name
+			slug
+		}
+	}
+}
+`
+
+// Active pipeline runs — replaces GetActivePipelineRuns polling in navbar
+// Hasura subscriptions only allow one top-level field, so we just subscribe to runs
+// and compute count client-side
+// To unsubscribe, use [graphql.WebSocketClient.Unsubscribe]
+func WatchActivePipelineRuns(
+	ctx_ context.Context,
+	client_ graphql.WebSocketClient,
+) (dataChan_ chan WatchActivePipelineRunsWsResponse, subscriptionID_ string, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "WatchActivePipelineRuns",
+		Query:  WatchActivePipelineRuns_Operation,
+	}
+
+	dataChan_ = make(chan WatchActivePipelineRunsWsResponse)
+	subscriptionID_, err_ = client_.Subscribe(req_, dataChan_, WatchActivePipelineRunsForwardData)
+
+	return dataChan_, subscriptionID_, err_
+}
+
+type WatchActivePipelineRunsWsResponse graphql.BaseResponse[*WatchActivePipelineRunsResponse]
+
+func WatchActivePipelineRunsForwardData(interfaceChan interface{}, jsonRawMsg json.RawMessage) error {
+	var gqlResp graphql.Response
+	var wsResp WatchActivePipelineRunsWsResponse
+	err := json.Unmarshal(jsonRawMsg, &gqlResp)
+	if err != nil {
+		return err
+	}
+	if len(gqlResp.Errors) == 0 {
+		err = json.Unmarshal(jsonRawMsg, &wsResp)
+		if err != nil {
+			return err
+		}
+	} else {
+		wsResp.Errors = gqlResp.Errors
+	}
+	dataChan_, ok := interfaceChan.(chan WatchActivePipelineRunsWsResponse)
+	if !ok {
+		return errors.New("failed to cast interface into 'chan WatchActivePipelineRunsWsResponse'")
+	}
+	dataChan_ <- wsResp
+	return nil
+}
+
+// The subscription executed by WatchNotifications.
+const WatchNotifications_Operation = `
+subscription WatchNotifications ($limit: Int!) {
+	notifications(order_by: {created_at:desc}, limit: $limit) {
+		id
+		type
+		title
+		body
+		metadata
+		read
+		created_at
+	}
+}
+`
+
+// Notifications — replaces polling in useNotifications
+// Hasura subscriptions only allow one top-level field, so we compute unread count client-side
+// To unsubscribe, use [graphql.WebSocketClient.Unsubscribe]
+func WatchNotifications(
+	ctx_ context.Context,
+	client_ graphql.WebSocketClient,
+	limit int,
+) (dataChan_ chan WatchNotificationsWsResponse, subscriptionID_ string, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "WatchNotifications",
+		Query:  WatchNotifications_Operation,
+		Variables: &__WatchNotificationsInput{
+			Limit: limit,
+		},
+	}
+
+	dataChan_ = make(chan WatchNotificationsWsResponse)
+	subscriptionID_, err_ = client_.Subscribe(req_, dataChan_, WatchNotificationsForwardData)
+
+	return dataChan_, subscriptionID_, err_
+}
+
+type WatchNotificationsWsResponse graphql.BaseResponse[*WatchNotificationsResponse]
+
+func WatchNotificationsForwardData(interfaceChan interface{}, jsonRawMsg json.RawMessage) error {
+	var gqlResp graphql.Response
+	var wsResp WatchNotificationsWsResponse
+	err := json.Unmarshal(jsonRawMsg, &gqlResp)
+	if err != nil {
+		return err
+	}
+	if len(gqlResp.Errors) == 0 {
+		err = json.Unmarshal(jsonRawMsg, &wsResp)
+		if err != nil {
+			return err
+		}
+	} else {
+		wsResp.Errors = gqlResp.Errors
+	}
+	dataChan_, ok := interfaceChan.(chan WatchNotificationsWsResponse)
+	if !ok {
+		return errors.New("failed to cast interface into 'chan WatchNotificationsWsResponse'")
+	}
+	dataChan_ <- wsResp
+	return nil
+}
+
 // The subscription executed by WatchPipelineRun.
 const WatchPipelineRun_Operation = `
 subscription WatchPipelineRun ($run_id: uuid!) {
 	pipeline_runs_by_pk(id: $run_id) {
 		id
 		status
+		input
 		output
 		error_message
+		credits_charged
+		created_at
 		completed_at
 		pipeline {
 			name
 			slug
+			output_schema
+			input_schema
+			ui_schema
 		}
 		assets {
 			id
@@ -3889,6 +5631,8 @@ subscription WatchPipelineRun ($run_id: uuid!) {
 }
 `
 
+// Single pipeline run — replaces GetPipelineRun polling in RunStatus
+// Note: workflow_execution is a remote relationship and cannot be used in subscriptions
 // To unsubscribe, use [graphql.WebSocketClient.Unsubscribe]
 func WatchPipelineRun(
 	ctx_ context.Context,

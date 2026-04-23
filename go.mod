@@ -1,6 +1,6 @@
 module github.com/pipe2-ai/sdk-go
 
-go 1.24.0
+go 1.22.5
 
 require github.com/Khan/genqlient v0.8.1
 

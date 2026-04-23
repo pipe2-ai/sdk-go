@@ -18,6 +18,8 @@ bindings:
     type: encoding/json.RawMessage
   bigint:
     type: int64
+  numeric:
+    type: float64
 
 # Use pointer for optional fields
 optional: pointer
