@@ -10,6 +10,27 @@ import (
 	"github.com/Khan/genqlient/graphql"
 )
 
+// AbortMultipartUploadAbort_multipart_uploadAbort_multipart_upload_output includes the requested fields of the GraphQL type abort_multipart_upload_output.
+type AbortMultipartUploadAbort_multipart_uploadAbort_multipart_upload_output struct {
+	Success bool `json:"success"`
+}
+
+// GetSuccess returns AbortMultipartUploadAbort_multipart_uploadAbort_multipart_upload_output.Success, and is useful for accessing the field via an interface.
+func (v *AbortMultipartUploadAbort_multipart_uploadAbort_multipart_upload_output) GetSuccess() bool {
+	return v.Success
+}
+
+// AbortMultipartUploadResponse is returned by AbortMultipartUpload on success.
+type AbortMultipartUploadResponse struct {
+	// Cancel an in-progress multipart upload (cleanup)
+	Abort_multipart_upload AbortMultipartUploadAbort_multipart_uploadAbort_multipart_upload_output `json:"abort_multipart_upload"`
+}
+
+// GetAbort_multipart_upload returns AbortMultipartUploadResponse.Abort_multipart_upload, and is useful for accessing the field via an interface.
+func (v *AbortMultipartUploadResponse) GetAbort_multipart_upload() AbortMultipartUploadAbort_multipart_uploadAbort_multipart_upload_output {
+	return v.Abort_multipart_upload
+}
+
 // AddAffiliateCodeAdd_affiliate_codeAdd_affiliate_code_output includes the requested fields of the GraphQL type add_affiliate_code_output.
 type AddAffiliateCodeAdd_affiliate_codeAdd_affiliate_code_output struct {
 	Success bool   `json:"success"`
@@ -75,6 +96,7 @@ type Assets_bool_exp struct {
 	Pipeline_run    *Pipeline_runs_bool_exp      `json:"pipeline_run"`
 	Pipeline_run_id *Uuid_comparison_exp         `json:"pipeline_run_id"`
 	Preview_frames  *String_array_comparison_exp `json:"preview_frames"`
+	Size_bytes      *Bigint_comparison_exp       `json:"size_bytes"`
 	Tags            *String_array_comparison_exp `json:"tags"`
 	Thumbnail_url   *String_comparison_exp       `json:"thumbnail_url"`
 	Type            *String_comparison_exp       `json:"type"`
@@ -111,6 +133,9 @@ func (v *Assets_bool_exp) GetPipeline_run_id() *Uuid_comparison_exp { return v.P
 // GetPreview_frames returns Assets_bool_exp.Preview_frames, and is useful for accessing the field via an interface.
 func (v *Assets_bool_exp) GetPreview_frames() *String_array_comparison_exp { return v.Preview_frames }
 
+// GetSize_bytes returns Assets_bool_exp.Size_bytes, and is useful for accessing the field via an interface.
+func (v *Assets_bool_exp) GetSize_bytes() *Bigint_comparison_exp { return v.Size_bytes }
+
 // GetTags returns Assets_bool_exp.Tags, and is useful for accessing the field via an interface.
 func (v *Assets_bool_exp) GetTags() *String_array_comparison_exp { return v.Tags }
 
@@ -140,6 +165,8 @@ const (
 	// column name
 	Assets_select_columnPreviewFrames Assets_select_column = "preview_frames"
 	// column name
+	Assets_select_columnSizeBytes Assets_select_column = "size_bytes"
+	// column name
 	Assets_select_columnTags Assets_select_column = "tags"
 	// column name
 	Assets_select_columnThumbnailUrl Assets_select_column = "thumbnail_url"
@@ -156,11 +183,52 @@ var AllAssets_select_column = []Assets_select_column{
 	Assets_select_columnMetadata,
 	Assets_select_columnPipelineRunId,
 	Assets_select_columnPreviewFrames,
+	Assets_select_columnSizeBytes,
 	Assets_select_columnTags,
 	Assets_select_columnThumbnailUrl,
 	Assets_select_columnType,
 	Assets_select_columnUrl,
 }
+
+// Boolean expression to compare columns of type "bigint". All fields are combined with logical 'AND'.
+type Bigint_comparison_exp struct {
+	Eq      *int64  `json:"_eq"`
+	Gt      *int64  `json:"_gt"`
+	Gte     *int64  `json:"_gte"`
+	In      []int64 `json:"_in"`
+	Is_null *bool   `json:"_is_null"`
+	Lt      *int64  `json:"_lt"`
+	Lte     *int64  `json:"_lte"`
+	Neq     *int64  `json:"_neq"`
+	Nin     []int64 `json:"_nin"`
+}
+
+// GetEq returns Bigint_comparison_exp.Eq, and is useful for accessing the field via an interface.
+func (v *Bigint_comparison_exp) GetEq() *int64 { return v.Eq }
+
+// GetGt returns Bigint_comparison_exp.Gt, and is useful for accessing the field via an interface.
+func (v *Bigint_comparison_exp) GetGt() *int64 { return v.Gt }
+
+// GetGte returns Bigint_comparison_exp.Gte, and is useful for accessing the field via an interface.
+func (v *Bigint_comparison_exp) GetGte() *int64 { return v.Gte }
+
+// GetIn returns Bigint_comparison_exp.In, and is useful for accessing the field via an interface.
+func (v *Bigint_comparison_exp) GetIn() []int64 { return v.In }
+
+// GetIs_null returns Bigint_comparison_exp.Is_null, and is useful for accessing the field via an interface.
+func (v *Bigint_comparison_exp) GetIs_null() *bool { return v.Is_null }
+
+// GetLt returns Bigint_comparison_exp.Lt, and is useful for accessing the field via an interface.
+func (v *Bigint_comparison_exp) GetLt() *int64 { return v.Lt }
+
+// GetLte returns Bigint_comparison_exp.Lte, and is useful for accessing the field via an interface.
+func (v *Bigint_comparison_exp) GetLte() *int64 { return v.Lte }
+
+// GetNeq returns Bigint_comparison_exp.Neq, and is useful for accessing the field via an interface.
+func (v *Bigint_comparison_exp) GetNeq() *int64 { return v.Neq }
+
+// GetNin returns Bigint_comparison_exp.Nin, and is useful for accessing the field via an interface.
+func (v *Bigint_comparison_exp) GetNin() []int64 { return v.Nin }
 
 // Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'.
 type Boolean_comparison_exp struct {
@@ -358,6 +426,51 @@ type ChangePasswordResponse struct {
 // GetChange_password returns ChangePasswordResponse.Change_password, and is useful for accessing the field via an interface.
 func (v *ChangePasswordResponse) GetChange_password() ChangePasswordChange_passwordChange_password_output {
 	return v.Change_password
+}
+
+// CompleteMultipartUploadComplete_multipart_uploadCreate_asset_output includes the requested fields of the GraphQL type create_asset_output.
+type CompleteMultipartUploadComplete_multipart_uploadCreate_asset_output struct {
+	Id         string   `json:"id"`
+	Type       string   `json:"type"`
+	Url        string   `json:"url"`
+	Tags       []string `json:"tags"`
+	Created_at string   `json:"created_at"`
+}
+
+// GetId returns CompleteMultipartUploadComplete_multipart_uploadCreate_asset_output.Id, and is useful for accessing the field via an interface.
+func (v *CompleteMultipartUploadComplete_multipart_uploadCreate_asset_output) GetId() string {
+	return v.Id
+}
+
+// GetType returns CompleteMultipartUploadComplete_multipart_uploadCreate_asset_output.Type, and is useful for accessing the field via an interface.
+func (v *CompleteMultipartUploadComplete_multipart_uploadCreate_asset_output) GetType() string {
+	return v.Type
+}
+
+// GetUrl returns CompleteMultipartUploadComplete_multipart_uploadCreate_asset_output.Url, and is useful for accessing the field via an interface.
+func (v *CompleteMultipartUploadComplete_multipart_uploadCreate_asset_output) GetUrl() string {
+	return v.Url
+}
+
+// GetTags returns CompleteMultipartUploadComplete_multipart_uploadCreate_asset_output.Tags, and is useful for accessing the field via an interface.
+func (v *CompleteMultipartUploadComplete_multipart_uploadCreate_asset_output) GetTags() []string {
+	return v.Tags
+}
+
+// GetCreated_at returns CompleteMultipartUploadComplete_multipart_uploadCreate_asset_output.Created_at, and is useful for accessing the field via an interface.
+func (v *CompleteMultipartUploadComplete_multipart_uploadCreate_asset_output) GetCreated_at() string {
+	return v.Created_at
+}
+
+// CompleteMultipartUploadResponse is returned by CompleteMultipartUpload on success.
+type CompleteMultipartUploadResponse struct {
+	// Finalize a multipart upload and register the asset row
+	Complete_multipart_upload CompleteMultipartUploadComplete_multipart_uploadCreate_asset_output `json:"complete_multipart_upload"`
+}
+
+// GetComplete_multipart_upload returns CompleteMultipartUploadResponse.Complete_multipart_upload, and is useful for accessing the field via an interface.
+func (v *CompleteMultipartUploadResponse) GetComplete_multipart_upload() CompleteMultipartUploadComplete_multipart_uploadCreate_asset_output {
+	return v.Complete_multipart_upload
 }
 
 // ConfirmAccountDeletionConfirm_account_deletionConfirm_account_deletion_output includes the requested fields of the GraphQL type confirm_account_deletion_output.
@@ -749,13 +862,12 @@ func (v *GetCreditHistoryResponse) GetGet_credit_history() []GetCreditHistoryGet
 //
 // columns and relationships of "credit_packs"
 type GetCreditPacksCredit_packs struct {
-	Id           string  `json:"id"`
-	Slug         string  `json:"slug"`
-	Name         string  `json:"name"`
-	Credits      int     `json:"credits"`
-	Price_cents  int     `json:"price_cents"`
-	Sort_order   int     `json:"sort_order"`
-	Whop_plan_id *string `json:"whop_plan_id"`
+	Id         string `json:"id"`
+	Slug       string `json:"slug"`
+	Name       string `json:"name"`
+	Sort_order int    `json:"sort_order"`
+	// An array relationship
+	Versions []GetCreditPacksCredit_packsVersionsCredit_pack_versions `json:"versions"`
 }
 
 // GetId returns GetCreditPacksCredit_packs.Id, and is useful for accessing the field via an interface.
@@ -767,17 +879,40 @@ func (v *GetCreditPacksCredit_packs) GetSlug() string { return v.Slug }
 // GetName returns GetCreditPacksCredit_packs.Name, and is useful for accessing the field via an interface.
 func (v *GetCreditPacksCredit_packs) GetName() string { return v.Name }
 
-// GetCredits returns GetCreditPacksCredit_packs.Credits, and is useful for accessing the field via an interface.
-func (v *GetCreditPacksCredit_packs) GetCredits() int { return v.Credits }
-
-// GetPrice_cents returns GetCreditPacksCredit_packs.Price_cents, and is useful for accessing the field via an interface.
-func (v *GetCreditPacksCredit_packs) GetPrice_cents() int { return v.Price_cents }
-
 // GetSort_order returns GetCreditPacksCredit_packs.Sort_order, and is useful for accessing the field via an interface.
 func (v *GetCreditPacksCredit_packs) GetSort_order() int { return v.Sort_order }
 
-// GetWhop_plan_id returns GetCreditPacksCredit_packs.Whop_plan_id, and is useful for accessing the field via an interface.
-func (v *GetCreditPacksCredit_packs) GetWhop_plan_id() *string { return v.Whop_plan_id }
+// GetVersions returns GetCreditPacksCredit_packs.Versions, and is useful for accessing the field via an interface.
+func (v *GetCreditPacksCredit_packs) GetVersions() []GetCreditPacksCredit_packsVersionsCredit_pack_versions {
+	return v.Versions
+}
+
+// GetCreditPacksCredit_packsVersionsCredit_pack_versions includes the requested fields of the GraphQL type credit_pack_versions.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "credit_pack_versions"
+type GetCreditPacksCredit_packsVersionsCredit_pack_versions struct {
+	Id           string  `json:"id"`
+	Whop_plan_id *string `json:"whop_plan_id"`
+	Price_cents  int     `json:"price_cents"`
+	Credits      int     `json:"credits"`
+}
+
+// GetId returns GetCreditPacksCredit_packsVersionsCredit_pack_versions.Id, and is useful for accessing the field via an interface.
+func (v *GetCreditPacksCredit_packsVersionsCredit_pack_versions) GetId() string { return v.Id }
+
+// GetWhop_plan_id returns GetCreditPacksCredit_packsVersionsCredit_pack_versions.Whop_plan_id, and is useful for accessing the field via an interface.
+func (v *GetCreditPacksCredit_packsVersionsCredit_pack_versions) GetWhop_plan_id() *string {
+	return v.Whop_plan_id
+}
+
+// GetPrice_cents returns GetCreditPacksCredit_packsVersionsCredit_pack_versions.Price_cents, and is useful for accessing the field via an interface.
+func (v *GetCreditPacksCredit_packsVersionsCredit_pack_versions) GetPrice_cents() int {
+	return v.Price_cents
+}
+
+// GetCredits returns GetCreditPacksCredit_packsVersionsCredit_pack_versions.Credits, and is useful for accessing the field via an interface.
+func (v *GetCreditPacksCredit_packsVersionsCredit_pack_versions) GetCredits() int { return v.Credits }
 
 // GetCreditPacksResponse is returned by GetCreditPacks on success.
 type GetCreditPacksResponse struct {
@@ -1074,6 +1209,62 @@ type GetMyReferralsResponse struct {
 // GetGet_my_referrals returns GetMyReferralsResponse.Get_my_referrals, and is useful for accessing the field via an interface.
 func (v *GetMyReferralsResponse) GetGet_my_referrals() GetMyReferralsGet_my_referralsGet_my_referrals_output {
 	return v.Get_my_referrals
+}
+
+// GetMyStorageUsageAssets_aggregate includes the requested fields of the GraphQL type assets_aggregate.
+// The GraphQL type's documentation follows.
+//
+// aggregated selection of "assets"
+type GetMyStorageUsageAssets_aggregate struct {
+	Aggregate *GetMyStorageUsageAssets_aggregateAggregateAssets_aggregate_fields `json:"aggregate"`
+}
+
+// GetAggregate returns GetMyStorageUsageAssets_aggregate.Aggregate, and is useful for accessing the field via an interface.
+func (v *GetMyStorageUsageAssets_aggregate) GetAggregate() *GetMyStorageUsageAssets_aggregateAggregateAssets_aggregate_fields {
+	return v.Aggregate
+}
+
+// GetMyStorageUsageAssets_aggregateAggregateAssets_aggregate_fields includes the requested fields of the GraphQL type assets_aggregate_fields.
+// The GraphQL type's documentation follows.
+//
+// aggregate fields of "assets"
+type GetMyStorageUsageAssets_aggregateAggregateAssets_aggregate_fields struct {
+	Sum   *GetMyStorageUsageAssets_aggregateAggregateAssets_aggregate_fieldsSumAssets_sum_fields `json:"sum"`
+	Count int                                                                                    `json:"count"`
+}
+
+// GetSum returns GetMyStorageUsageAssets_aggregateAggregateAssets_aggregate_fields.Sum, and is useful for accessing the field via an interface.
+func (v *GetMyStorageUsageAssets_aggregateAggregateAssets_aggregate_fields) GetSum() *GetMyStorageUsageAssets_aggregateAggregateAssets_aggregate_fieldsSumAssets_sum_fields {
+	return v.Sum
+}
+
+// GetCount returns GetMyStorageUsageAssets_aggregateAggregateAssets_aggregate_fields.Count, and is useful for accessing the field via an interface.
+func (v *GetMyStorageUsageAssets_aggregateAggregateAssets_aggregate_fields) GetCount() int {
+	return v.Count
+}
+
+// GetMyStorageUsageAssets_aggregateAggregateAssets_aggregate_fieldsSumAssets_sum_fields includes the requested fields of the GraphQL type assets_sum_fields.
+// The GraphQL type's documentation follows.
+//
+// aggregate sum on columns
+type GetMyStorageUsageAssets_aggregateAggregateAssets_aggregate_fieldsSumAssets_sum_fields struct {
+	Size_bytes *int64 `json:"size_bytes"`
+}
+
+// GetSize_bytes returns GetMyStorageUsageAssets_aggregateAggregateAssets_aggregate_fieldsSumAssets_sum_fields.Size_bytes, and is useful for accessing the field via an interface.
+func (v *GetMyStorageUsageAssets_aggregateAggregateAssets_aggregate_fieldsSumAssets_sum_fields) GetSize_bytes() *int64 {
+	return v.Size_bytes
+}
+
+// GetMyStorageUsageResponse is returned by GetMyStorageUsage on success.
+type GetMyStorageUsageResponse struct {
+	// An aggregate relationship
+	Assets_aggregate GetMyStorageUsageAssets_aggregate `json:"assets_aggregate"`
+}
+
+// GetAssets_aggregate returns GetMyStorageUsageResponse.Assets_aggregate, and is useful for accessing the field via an interface.
+func (v *GetMyStorageUsageResponse) GetAssets_aggregate() GetMyStorageUsageAssets_aggregate {
+	return v.Assets_aggregate
 }
 
 // GetNotificationsNotifications includes the requested fields of the GraphQL type notifications.
@@ -1806,15 +1997,14 @@ func (v *GetPipelinesResponse) GetPipelines() []GetPipelinesPipelines { return v
 //
 // columns and relationships of "plans"
 type GetPlansPlans struct {
-	Id              string          `json:"id"`
-	Slug            string          `json:"slug"`
-	Name            string          `json:"name"`
-	Description     *string         `json:"description"`
-	Monthly_credits int             `json:"monthly_credits"`
-	Price_cents     int             `json:"price_cents"`
-	Features        json.RawMessage `json:"features"`
-	Sort_order      int             `json:"sort_order"`
-	Whop_plan_id    *string         `json:"whop_plan_id"`
+	Id          string          `json:"id"`
+	Slug        string          `json:"slug"`
+	Name        string          `json:"name"`
+	Description *string         `json:"description"`
+	Features    json.RawMessage `json:"features"`
+	Sort_order  int             `json:"sort_order"`
+	// An array relationship
+	Versions []GetPlansPlansVersionsPlan_versions `json:"versions"`
 }
 
 // GetId returns GetPlansPlans.Id, and is useful for accessing the field via an interface.
@@ -1829,20 +2019,49 @@ func (v *GetPlansPlans) GetName() string { return v.Name }
 // GetDescription returns GetPlansPlans.Description, and is useful for accessing the field via an interface.
 func (v *GetPlansPlans) GetDescription() *string { return v.Description }
 
-// GetMonthly_credits returns GetPlansPlans.Monthly_credits, and is useful for accessing the field via an interface.
-func (v *GetPlansPlans) GetMonthly_credits() int { return v.Monthly_credits }
-
-// GetPrice_cents returns GetPlansPlans.Price_cents, and is useful for accessing the field via an interface.
-func (v *GetPlansPlans) GetPrice_cents() int { return v.Price_cents }
-
 // GetFeatures returns GetPlansPlans.Features, and is useful for accessing the field via an interface.
 func (v *GetPlansPlans) GetFeatures() json.RawMessage { return v.Features }
 
 // GetSort_order returns GetPlansPlans.Sort_order, and is useful for accessing the field via an interface.
 func (v *GetPlansPlans) GetSort_order() int { return v.Sort_order }
 
-// GetWhop_plan_id returns GetPlansPlans.Whop_plan_id, and is useful for accessing the field via an interface.
-func (v *GetPlansPlans) GetWhop_plan_id() *string { return v.Whop_plan_id }
+// GetVersions returns GetPlansPlans.Versions, and is useful for accessing the field via an interface.
+func (v *GetPlansPlans) GetVersions() []GetPlansPlansVersionsPlan_versions { return v.Versions }
+
+// GetPlansPlansVersionsPlan_versions includes the requested fields of the GraphQL type plan_versions.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "plan_versions"
+type GetPlansPlansVersionsPlan_versions struct {
+	Id              string  `json:"id"`
+	Whop_plan_id    *string `json:"whop_plan_id"`
+	Price_cents     int     `json:"price_cents"`
+	Monthly_credits int     `json:"monthly_credits"`
+	// Total library size cap in bytes. 0 means no quota seeded yet (treat as denied).
+	Max_storage_bytes int64 `json:"max_storage_bytes"`
+	// Per-asset-type upload caps as JSON: {"image": <bytes>, "video": <bytes>, "audio": <bytes>}.
+	Max_upload_bytes json.RawMessage `json:"max_upload_bytes"`
+}
+
+// GetId returns GetPlansPlansVersionsPlan_versions.Id, and is useful for accessing the field via an interface.
+func (v *GetPlansPlansVersionsPlan_versions) GetId() string { return v.Id }
+
+// GetWhop_plan_id returns GetPlansPlansVersionsPlan_versions.Whop_plan_id, and is useful for accessing the field via an interface.
+func (v *GetPlansPlansVersionsPlan_versions) GetWhop_plan_id() *string { return v.Whop_plan_id }
+
+// GetPrice_cents returns GetPlansPlansVersionsPlan_versions.Price_cents, and is useful for accessing the field via an interface.
+func (v *GetPlansPlansVersionsPlan_versions) GetPrice_cents() int { return v.Price_cents }
+
+// GetMonthly_credits returns GetPlansPlansVersionsPlan_versions.Monthly_credits, and is useful for accessing the field via an interface.
+func (v *GetPlansPlansVersionsPlan_versions) GetMonthly_credits() int { return v.Monthly_credits }
+
+// GetMax_storage_bytes returns GetPlansPlansVersionsPlan_versions.Max_storage_bytes, and is useful for accessing the field via an interface.
+func (v *GetPlansPlansVersionsPlan_versions) GetMax_storage_bytes() int64 { return v.Max_storage_bytes }
+
+// GetMax_upload_bytes returns GetPlansPlansVersionsPlan_versions.Max_upload_bytes, and is useful for accessing the field via an interface.
+func (v *GetPlansPlansVersionsPlan_versions) GetMax_upload_bytes() json.RawMessage {
+	return v.Max_upload_bytes
+}
 
 // GetPlansResponse is returned by GetPlans on success.
 type GetPlansResponse struct {
@@ -1855,7 +2074,7 @@ func (v *GetPlansResponse) GetPlans() []GetPlansPlans { return v.Plans }
 
 // GetSubscriptionResponse is returned by GetSubscription on success.
 type GetSubscriptionResponse struct {
-	// fetch data from the table: "subscriptions"
+	// An array relationship
 	Subscriptions []GetSubscriptionSubscriptions `json:"subscriptions"`
 }
 
@@ -1871,12 +2090,15 @@ func (v *GetSubscriptionResponse) GetSubscriptions() []GetSubscriptionSubscripti
 type GetSubscriptionSubscriptions struct {
 	Id                   string `json:"id"`
 	Plan_id              string `json:"plan_id"`
+	Plan_version_id      string `json:"plan_version_id"`
 	Status               string `json:"status"`
 	Period_start         string `json:"period_start"`
 	Period_end           string `json:"period_end"`
 	Cancel_at_period_end bool   `json:"cancel_at_period_end"`
 	// An object relationship
 	Plan GetSubscriptionSubscriptionsPlanPlans `json:"plan"`
+	// An object relationship
+	Plan_version GetSubscriptionSubscriptionsPlan_versionPlan_versions `json:"plan_version"`
 }
 
 // GetId returns GetSubscriptionSubscriptions.Id, and is useful for accessing the field via an interface.
@@ -1884,6 +2106,9 @@ func (v *GetSubscriptionSubscriptions) GetId() string { return v.Id }
 
 // GetPlan_id returns GetSubscriptionSubscriptions.Plan_id, and is useful for accessing the field via an interface.
 func (v *GetSubscriptionSubscriptions) GetPlan_id() string { return v.Plan_id }
+
+// GetPlan_version_id returns GetSubscriptionSubscriptions.Plan_version_id, and is useful for accessing the field via an interface.
+func (v *GetSubscriptionSubscriptions) GetPlan_version_id() string { return v.Plan_version_id }
 
 // GetStatus returns GetSubscriptionSubscriptions.Status, and is useful for accessing the field via an interface.
 func (v *GetSubscriptionSubscriptions) GetStatus() string { return v.Status }
@@ -1900,15 +2125,19 @@ func (v *GetSubscriptionSubscriptions) GetCancel_at_period_end() bool { return v
 // GetPlan returns GetSubscriptionSubscriptions.Plan, and is useful for accessing the field via an interface.
 func (v *GetSubscriptionSubscriptions) GetPlan() GetSubscriptionSubscriptionsPlanPlans { return v.Plan }
 
+// GetPlan_version returns GetSubscriptionSubscriptions.Plan_version, and is useful for accessing the field via an interface.
+func (v *GetSubscriptionSubscriptions) GetPlan_version() GetSubscriptionSubscriptionsPlan_versionPlan_versions {
+	return v.Plan_version
+}
+
 // GetSubscriptionSubscriptionsPlanPlans includes the requested fields of the GraphQL type plans.
 // The GraphQL type's documentation follows.
 //
 // columns and relationships of "plans"
 type GetSubscriptionSubscriptionsPlanPlans struct {
-	Slug            string `json:"slug"`
-	Name            string `json:"name"`
-	Monthly_credits int    `json:"monthly_credits"`
-	Sort_order      int    `json:"sort_order"`
+	Slug       string `json:"slug"`
+	Name       string `json:"name"`
+	Sort_order int    `json:"sort_order"`
 }
 
 // GetSlug returns GetSubscriptionSubscriptionsPlanPlans.Slug, and is useful for accessing the field via an interface.
@@ -1917,11 +2146,49 @@ func (v *GetSubscriptionSubscriptionsPlanPlans) GetSlug() string { return v.Slug
 // GetName returns GetSubscriptionSubscriptionsPlanPlans.Name, and is useful for accessing the field via an interface.
 func (v *GetSubscriptionSubscriptionsPlanPlans) GetName() string { return v.Name }
 
-// GetMonthly_credits returns GetSubscriptionSubscriptionsPlanPlans.Monthly_credits, and is useful for accessing the field via an interface.
-func (v *GetSubscriptionSubscriptionsPlanPlans) GetMonthly_credits() int { return v.Monthly_credits }
-
 // GetSort_order returns GetSubscriptionSubscriptionsPlanPlans.Sort_order, and is useful for accessing the field via an interface.
 func (v *GetSubscriptionSubscriptionsPlanPlans) GetSort_order() int { return v.Sort_order }
+
+// GetSubscriptionSubscriptionsPlan_versionPlan_versions includes the requested fields of the GraphQL type plan_versions.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "plan_versions"
+type GetSubscriptionSubscriptionsPlan_versionPlan_versions struct {
+	Id              string `json:"id"`
+	Version         int    `json:"version"`
+	Monthly_credits int    `json:"monthly_credits"`
+	Price_cents     int    `json:"price_cents"`
+	// Total library size cap in bytes. 0 means no quota seeded yet (treat as denied).
+	Max_storage_bytes int64 `json:"max_storage_bytes"`
+	// Per-asset-type upload caps as JSON: {"image": <bytes>, "video": <bytes>, "audio": <bytes>}.
+	Max_upload_bytes json.RawMessage `json:"max_upload_bytes"`
+}
+
+// GetId returns GetSubscriptionSubscriptionsPlan_versionPlan_versions.Id, and is useful for accessing the field via an interface.
+func (v *GetSubscriptionSubscriptionsPlan_versionPlan_versions) GetId() string { return v.Id }
+
+// GetVersion returns GetSubscriptionSubscriptionsPlan_versionPlan_versions.Version, and is useful for accessing the field via an interface.
+func (v *GetSubscriptionSubscriptionsPlan_versionPlan_versions) GetVersion() int { return v.Version }
+
+// GetMonthly_credits returns GetSubscriptionSubscriptionsPlan_versionPlan_versions.Monthly_credits, and is useful for accessing the field via an interface.
+func (v *GetSubscriptionSubscriptionsPlan_versionPlan_versions) GetMonthly_credits() int {
+	return v.Monthly_credits
+}
+
+// GetPrice_cents returns GetSubscriptionSubscriptionsPlan_versionPlan_versions.Price_cents, and is useful for accessing the field via an interface.
+func (v *GetSubscriptionSubscriptionsPlan_versionPlan_versions) GetPrice_cents() int {
+	return v.Price_cents
+}
+
+// GetMax_storage_bytes returns GetSubscriptionSubscriptionsPlan_versionPlan_versions.Max_storage_bytes, and is useful for accessing the field via an interface.
+func (v *GetSubscriptionSubscriptionsPlan_versionPlan_versions) GetMax_storage_bytes() int64 {
+	return v.Max_storage_bytes
+}
+
+// GetMax_upload_bytes returns GetSubscriptionSubscriptionsPlan_versionPlan_versions.Max_upload_bytes, and is useful for accessing the field via an interface.
+func (v *GetSubscriptionSubscriptionsPlan_versionPlan_versions) GetMax_upload_bytes() json.RawMessage {
+	return v.Max_upload_bytes
+}
 
 // GetUserAssetsAssets includes the requested fields of the GraphQL type assets.
 // The GraphQL type's documentation follows.
@@ -2269,6 +2536,17 @@ func (v *MarkNotificationReadUpdate_notifications_by_pkNotifications) GetId() st
 // GetRead returns MarkNotificationReadUpdate_notifications_by_pkNotifications.Read, and is useful for accessing the field via an interface.
 func (v *MarkNotificationReadUpdate_notifications_by_pkNotifications) GetRead() bool { return v.Read }
 
+type Multipart_part_input struct {
+	ETag       string `json:"ETag"`
+	PartNumber int    `json:"PartNumber"`
+}
+
+// GetETag returns Multipart_part_input.ETag, and is useful for accessing the field via an interface.
+func (v *Multipart_part_input) GetETag() string { return v.ETag }
+
+// GetPartNumber returns Multipart_part_input.PartNumber, and is useful for accessing the field via an interface.
+func (v *Multipart_part_input) GetPartNumber() int { return v.PartNumber }
+
 // Boolean expression to compare columns of type "numeric". All fields are combined with logical 'AND'.
 type Numeric_comparison_exp struct {
 	Eq      *float64  `json:"_eq"`
@@ -2555,6 +2833,67 @@ type RequestAvatarUploadResponse struct {
 // GetRequest_avatar_upload returns RequestAvatarUploadResponse.Request_avatar_upload, and is useful for accessing the field via an interface.
 func (v *RequestAvatarUploadResponse) GetRequest_avatar_upload() RequestAvatarUploadRequest_avatar_uploadRequest_avatar_upload_output {
 	return v.Request_avatar_upload
+}
+
+// RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_output includes the requested fields of the GraphQL type request_multipart_upload_output.
+type RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_output struct {
+	Upload_id string                                                                                                     `json:"upload_id"`
+	Key       string                                                                                                     `json:"key"`
+	Asset_url string                                                                                                     `json:"asset_url"`
+	Part_size int64                                                                                                      `json:"part_size"`
+	Part_urls []RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_outputPart_urlsMultipart_part_url `json:"part_urls"`
+}
+
+// GetUpload_id returns RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_output.Upload_id, and is useful for accessing the field via an interface.
+func (v *RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_output) GetUpload_id() string {
+	return v.Upload_id
+}
+
+// GetKey returns RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_output.Key, and is useful for accessing the field via an interface.
+func (v *RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_output) GetKey() string {
+	return v.Key
+}
+
+// GetAsset_url returns RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_output.Asset_url, and is useful for accessing the field via an interface.
+func (v *RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_output) GetAsset_url() string {
+	return v.Asset_url
+}
+
+// GetPart_size returns RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_output.Part_size, and is useful for accessing the field via an interface.
+func (v *RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_output) GetPart_size() int64 {
+	return v.Part_size
+}
+
+// GetPart_urls returns RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_output.Part_urls, and is useful for accessing the field via an interface.
+func (v *RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_output) GetPart_urls() []RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_outputPart_urlsMultipart_part_url {
+	return v.Part_urls
+}
+
+// RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_outputPart_urlsMultipart_part_url includes the requested fields of the GraphQL type multipart_part_url.
+type RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_outputPart_urlsMultipart_part_url struct {
+	Part_number int    `json:"part_number"`
+	Url         string `json:"url"`
+}
+
+// GetPart_number returns RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_outputPart_urlsMultipart_part_url.Part_number, and is useful for accessing the field via an interface.
+func (v *RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_outputPart_urlsMultipart_part_url) GetPart_number() int {
+	return v.Part_number
+}
+
+// GetUrl returns RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_outputPart_urlsMultipart_part_url.Url, and is useful for accessing the field via an interface.
+func (v *RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_outputPart_urlsMultipart_part_url) GetUrl() string {
+	return v.Url
+}
+
+// RequestMultipartUploadResponse is returned by RequestMultipartUpload on success.
+type RequestMultipartUploadResponse struct {
+	// Initiate an S3 multipart upload and return one presigned PUT URL per part
+	Request_multipart_upload RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_output `json:"request_multipart_upload"`
+}
+
+// GetRequest_multipart_upload returns RequestMultipartUploadResponse.Request_multipart_upload, and is useful for accessing the field via an interface.
+func (v *RequestMultipartUploadResponse) GetRequest_multipart_upload() RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_output {
+	return v.Request_multipart_upload
 }
 
 // RequestUploadRequest_uploadRequest_upload_output includes the requested fields of the GraphQL type request_upload_output.
@@ -3251,6 +3590,18 @@ func (v *WatchPipelineRunResponse) GetPipeline_runs_by_pk() *WatchPipelineRunPip
 	return v.Pipeline_runs_by_pk
 }
 
+// __AbortMultipartUploadInput is used internally by genqlient
+type __AbortMultipartUploadInput struct {
+	Upload_id string `json:"upload_id"`
+	Key       string `json:"key"`
+}
+
+// GetUpload_id returns __AbortMultipartUploadInput.Upload_id, and is useful for accessing the field via an interface.
+func (v *__AbortMultipartUploadInput) GetUpload_id() string { return v.Upload_id }
+
+// GetKey returns __AbortMultipartUploadInput.Key, and is useful for accessing the field via an interface.
+func (v *__AbortMultipartUploadInput) GetKey() string { return v.Key }
+
 // __AddAffiliateCodeInput is used internally by genqlient
 type __AddAffiliateCodeInput struct {
 	Code          string  `json:"code"`
@@ -3299,6 +3650,30 @@ func (v *__ChangePasswordInput) GetCurrent_password() string { return v.Current_
 // GetNew_password returns __ChangePasswordInput.New_password, and is useful for accessing the field via an interface.
 func (v *__ChangePasswordInput) GetNew_password() string { return v.New_password }
 
+// __CompleteMultipartUploadInput is used internally by genqlient
+type __CompleteMultipartUploadInput struct {
+	Upload_id    string                 `json:"upload_id"`
+	Key          string                 `json:"key"`
+	Content_type string                 `json:"content_type"`
+	Parts        []Multipart_part_input `json:"parts"`
+	Tags         []string               `json:"tags"`
+}
+
+// GetUpload_id returns __CompleteMultipartUploadInput.Upload_id, and is useful for accessing the field via an interface.
+func (v *__CompleteMultipartUploadInput) GetUpload_id() string { return v.Upload_id }
+
+// GetKey returns __CompleteMultipartUploadInput.Key, and is useful for accessing the field via an interface.
+func (v *__CompleteMultipartUploadInput) GetKey() string { return v.Key }
+
+// GetContent_type returns __CompleteMultipartUploadInput.Content_type, and is useful for accessing the field via an interface.
+func (v *__CompleteMultipartUploadInput) GetContent_type() string { return v.Content_type }
+
+// GetParts returns __CompleteMultipartUploadInput.Parts, and is useful for accessing the field via an interface.
+func (v *__CompleteMultipartUploadInput) GetParts() []Multipart_part_input { return v.Parts }
+
+// GetTags returns __CompleteMultipartUploadInput.Tags, and is useful for accessing the field via an interface.
+func (v *__CompleteMultipartUploadInput) GetTags() []string { return v.Tags }
+
 // __ConfirmAccountDeletionInput is used internally by genqlient
 type __ConfirmAccountDeletionInput struct {
 	Token string `json:"token"`
@@ -3309,16 +3684,12 @@ func (v *__ConfirmAccountDeletionInput) GetToken() string { return v.Token }
 
 // __CreateAssetInput is used internally by genqlient
 type __CreateAssetInput struct {
-	Asset_type string   `json:"asset_type"`
-	Url        string   `json:"url"`
-	Tags       []string `json:"tags"`
+	Key  string   `json:"key"`
+	Tags []string `json:"tags"`
 }
 
-// GetAsset_type returns __CreateAssetInput.Asset_type, and is useful for accessing the field via an interface.
-func (v *__CreateAssetInput) GetAsset_type() string { return v.Asset_type }
-
-// GetUrl returns __CreateAssetInput.Url, and is useful for accessing the field via an interface.
-func (v *__CreateAssetInput) GetUrl() string { return v.Url }
+// GetKey returns __CreateAssetInput.Key, and is useful for accessing the field via an interface.
+func (v *__CreateAssetInput) GetKey() string { return v.Key }
 
 // GetTags returns __CreateAssetInput.Tags, and is useful for accessing the field via an interface.
 func (v *__CreateAssetInput) GetTags() []string { return v.Tags }
@@ -3462,6 +3833,26 @@ func (v *__RequestAvatarUploadInput) GetFilename() string { return v.Filename }
 
 // GetContent_type returns __RequestAvatarUploadInput.Content_type, and is useful for accessing the field via an interface.
 func (v *__RequestAvatarUploadInput) GetContent_type() string { return v.Content_type }
+
+// __RequestMultipartUploadInput is used internally by genqlient
+type __RequestMultipartUploadInput struct {
+	Filename     string `json:"filename"`
+	Content_type string `json:"content_type"`
+	Total_size   int64  `json:"total_size"`
+	Part_size    *int64 `json:"part_size"`
+}
+
+// GetFilename returns __RequestMultipartUploadInput.Filename, and is useful for accessing the field via an interface.
+func (v *__RequestMultipartUploadInput) GetFilename() string { return v.Filename }
+
+// GetContent_type returns __RequestMultipartUploadInput.Content_type, and is useful for accessing the field via an interface.
+func (v *__RequestMultipartUploadInput) GetContent_type() string { return v.Content_type }
+
+// GetTotal_size returns __RequestMultipartUploadInput.Total_size, and is useful for accessing the field via an interface.
+func (v *__RequestMultipartUploadInput) GetTotal_size() int64 { return v.Total_size }
+
+// GetPart_size returns __RequestMultipartUploadInput.Part_size, and is useful for accessing the field via an interface.
+func (v *__RequestMultipartUploadInput) GetPart_size() *int64 { return v.Part_size }
 
 // __RequestUploadInput is used internally by genqlient
 type __RequestUploadInput struct {
@@ -3610,6 +4001,42 @@ type __WatchPipelineRunInput struct {
 
 // GetRun_id returns __WatchPipelineRunInput.Run_id, and is useful for accessing the field via an interface.
 func (v *__WatchPipelineRunInput) GetRun_id() string { return v.Run_id }
+
+// The mutation executed by AbortMultipartUpload.
+const AbortMultipartUpload_Operation = `
+mutation AbortMultipartUpload ($upload_id: String!, $key: String!) {
+	abort_multipart_upload(upload_id: $upload_id, key: $key) {
+		success
+	}
+}
+`
+
+func AbortMultipartUpload(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	upload_id string,
+	key string,
+) (data_ *AbortMultipartUploadResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "AbortMultipartUpload",
+		Query:  AbortMultipartUpload_Operation,
+		Variables: &__AbortMultipartUploadInput{
+			Upload_id: upload_id,
+			Key:       key,
+		},
+	}
+
+	data_ = &AbortMultipartUploadResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
 
 // The mutation executed by AddAffiliateCode.
 const AddAffiliateCode_Operation = `
@@ -3854,6 +4281,52 @@ func ChangePassword(
 	return data_, err_
 }
 
+// The mutation executed by CompleteMultipartUpload.
+const CompleteMultipartUpload_Operation = `
+mutation CompleteMultipartUpload ($upload_id: String!, $key: String!, $content_type: String!, $parts: [multipart_part_input!]!, $tags: [String!] = []) {
+	complete_multipart_upload(upload_id: $upload_id, key: $key, content_type: $content_type, parts: $parts, tags: $tags) {
+		id
+		type
+		url
+		tags
+		created_at
+	}
+}
+`
+
+func CompleteMultipartUpload(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	upload_id string,
+	key string,
+	content_type string,
+	parts []Multipart_part_input,
+	tags []string,
+) (data_ *CompleteMultipartUploadResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "CompleteMultipartUpload",
+		Query:  CompleteMultipartUpload_Operation,
+		Variables: &__CompleteMultipartUploadInput{
+			Upload_id:    upload_id,
+			Key:          key,
+			Content_type: content_type,
+			Parts:        parts,
+			Tags:         tags,
+		},
+	}
+
+	data_ = &CompleteMultipartUploadResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
 // The mutation executed by ConfirmAccountDeletion.
 const ConfirmAccountDeletion_Operation = `
 mutation ConfirmAccountDeletion ($token: String!) {
@@ -3892,8 +4365,8 @@ func ConfirmAccountDeletion(
 
 // The mutation executed by CreateAsset.
 const CreateAsset_Operation = `
-mutation CreateAsset ($asset_type: String!, $url: String!, $tags: [String!] = []) {
-	create_asset(type: $asset_type, url: $url, tags: $tags) {
+mutation CreateAsset ($key: String!, $tags: [String!] = []) {
+	create_asset(key: $key, tags: $tags) {
 		id
 		type
 		url
@@ -3906,17 +4379,15 @@ mutation CreateAsset ($asset_type: String!, $url: String!, $tags: [String!] = []
 func CreateAsset(
 	ctx_ context.Context,
 	client_ graphql.Client,
-	asset_type string,
-	url string,
+	key string,
 	tags []string,
 ) (data_ *CreateAssetResponse, err_ error) {
 	req_ := &graphql.Request{
 		OpName: "CreateAsset",
 		Query:  CreateAsset_Operation,
 		Variables: &__CreateAssetInput{
-			Asset_type: asset_type,
-			Url:        url,
-			Tags:       tags,
+			Key:  key,
+			Tags: tags,
 		},
 	}
 
@@ -4224,10 +4695,13 @@ query GetCreditPacks {
 		id
 		slug
 		name
-		credits
-		price_cents
 		sort_order
-		whop_plan_id
+		versions(where: {is_current:{_eq:true}}, limit: 1) {
+			id
+			whop_plan_id
+			price_cents
+			credits
+		}
 	}
 }
 `
@@ -4429,6 +4903,41 @@ func GetMyReferrals(
 	}
 
 	data_ = &GetMyReferralsResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by GetMyStorageUsage.
+const GetMyStorageUsage_Operation = `
+query GetMyStorageUsage {
+	assets_aggregate {
+		aggregate {
+			sum {
+				size_bytes
+			}
+			count
+		}
+	}
+}
+`
+
+func GetMyStorageUsage(
+	ctx_ context.Context,
+	client_ graphql.Client,
+) (data_ *GetMyStorageUsageResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "GetMyStorageUsage",
+		Query:  GetMyStorageUsage_Operation,
+	}
+
+	data_ = &GetMyStorageUsageResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
@@ -4739,11 +5248,16 @@ query GetPlans {
 		slug
 		name
 		description
-		monthly_credits
-		price_cents
 		features
 		sort_order
-		whop_plan_id
+		versions(where: {is_current:{_eq:true}}, limit: 1) {
+			id
+			whop_plan_id
+			price_cents
+			monthly_credits
+			max_storage_bytes
+			max_upload_bytes
+		}
 	}
 }
 `
@@ -4775,6 +5289,7 @@ query GetSubscription {
 	subscriptions {
 		id
 		plan_id
+		plan_version_id
 		status
 		period_start
 		period_end
@@ -4782,8 +5297,15 @@ query GetSubscription {
 		plan {
 			slug
 			name
-			monthly_credits
 			sort_order
+		}
+		plan_version {
+			id
+			version
+			monthly_credits
+			price_cents
+			max_storage_bytes
+			max_upload_bytes
 		}
 	}
 }
@@ -5121,6 +5643,53 @@ func RequestAvatarUpload(
 	}
 
 	data_ = &RequestAvatarUploadResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by RequestMultipartUpload.
+const RequestMultipartUpload_Operation = `
+mutation RequestMultipartUpload ($filename: String!, $content_type: String!, $total_size: bigint!, $part_size: bigint) {
+	request_multipart_upload(filename: $filename, content_type: $content_type, total_size: $total_size, part_size: $part_size) {
+		upload_id
+		key
+		asset_url
+		part_size
+		part_urls {
+			part_number
+			url
+		}
+	}
+}
+`
+
+func RequestMultipartUpload(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	filename string,
+	content_type string,
+	total_size int64,
+	part_size *int64,
+) (data_ *RequestMultipartUploadResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "RequestMultipartUpload",
+		Query:  RequestMultipartUpload_Operation,
+		Variables: &__RequestMultipartUploadInput{
+			Filename:     filename,
+			Content_type: content_type,
+			Total_size:   total_size,
+			Part_size:    part_size,
+		},
+	}
+
+	data_ = &RequestMultipartUploadResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
