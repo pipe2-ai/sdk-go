@@ -1974,6 +1974,75 @@ func (v *GetPipelineRunsResponse) GetCompleted() GetPipelineRunsCompletedPipelin
 	return v.Completed
 }
 
+// GetPipelinesListPipelines includes the requested fields of the GraphQL type pipelines.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "pipelines"
+type GetPipelinesListPipelines struct {
+	Id          string   `json:"id"`
+	Slug        string   `json:"slug"`
+	Name        string   `json:"name"`
+	Description *string  `json:"description"`
+	Category    string   `json:"category"`
+	Icon_url    *string  `json:"icon_url"`
+	Preview_url *string  `json:"preview_url"`
+	Providers   []string `json:"providers"`
+	Models      []string `json:"models"`
+	Tags        []string `json:"tags"`
+	// Structured metadata for AI orchestrators: best_for, avoid_for, limitations, output_characteristics, composability, quality_tips
+	Hints       json.RawMessage `json:"hints"`
+	Pricing     json.RawMessage `json:"pricing"`
+	Cancellable bool            `json:"cancellable"`
+}
+
+// GetId returns GetPipelinesListPipelines.Id, and is useful for accessing the field via an interface.
+func (v *GetPipelinesListPipelines) GetId() string { return v.Id }
+
+// GetSlug returns GetPipelinesListPipelines.Slug, and is useful for accessing the field via an interface.
+func (v *GetPipelinesListPipelines) GetSlug() string { return v.Slug }
+
+// GetName returns GetPipelinesListPipelines.Name, and is useful for accessing the field via an interface.
+func (v *GetPipelinesListPipelines) GetName() string { return v.Name }
+
+// GetDescription returns GetPipelinesListPipelines.Description, and is useful for accessing the field via an interface.
+func (v *GetPipelinesListPipelines) GetDescription() *string { return v.Description }
+
+// GetCategory returns GetPipelinesListPipelines.Category, and is useful for accessing the field via an interface.
+func (v *GetPipelinesListPipelines) GetCategory() string { return v.Category }
+
+// GetIcon_url returns GetPipelinesListPipelines.Icon_url, and is useful for accessing the field via an interface.
+func (v *GetPipelinesListPipelines) GetIcon_url() *string { return v.Icon_url }
+
+// GetPreview_url returns GetPipelinesListPipelines.Preview_url, and is useful for accessing the field via an interface.
+func (v *GetPipelinesListPipelines) GetPreview_url() *string { return v.Preview_url }
+
+// GetProviders returns GetPipelinesListPipelines.Providers, and is useful for accessing the field via an interface.
+func (v *GetPipelinesListPipelines) GetProviders() []string { return v.Providers }
+
+// GetModels returns GetPipelinesListPipelines.Models, and is useful for accessing the field via an interface.
+func (v *GetPipelinesListPipelines) GetModels() []string { return v.Models }
+
+// GetTags returns GetPipelinesListPipelines.Tags, and is useful for accessing the field via an interface.
+func (v *GetPipelinesListPipelines) GetTags() []string { return v.Tags }
+
+// GetHints returns GetPipelinesListPipelines.Hints, and is useful for accessing the field via an interface.
+func (v *GetPipelinesListPipelines) GetHints() json.RawMessage { return v.Hints }
+
+// GetPricing returns GetPipelinesListPipelines.Pricing, and is useful for accessing the field via an interface.
+func (v *GetPipelinesListPipelines) GetPricing() json.RawMessage { return v.Pricing }
+
+// GetCancellable returns GetPipelinesListPipelines.Cancellable, and is useful for accessing the field via an interface.
+func (v *GetPipelinesListPipelines) GetCancellable() bool { return v.Cancellable }
+
+// GetPipelinesListResponse is returned by GetPipelinesList on success.
+type GetPipelinesListResponse struct {
+	// fetch data from the table: "pipelines"
+	Pipelines []GetPipelinesListPipelines `json:"pipelines"`
+}
+
+// GetPipelines returns GetPipelinesListResponse.Pipelines, and is useful for accessing the field via an interface.
+func (v *GetPipelinesListResponse) GetPipelines() []GetPipelinesListPipelines { return v.Pipelines }
+
 // GetPipelinesPipelines includes the requested fields of the GraphQL type pipelines.
 // The GraphQL type's documentation follows.
 //
@@ -3889,6 +3958,18 @@ func (v *__GetPipelineRunsInput) GetOffset() *int { return v.Offset }
 // GetWhere returns __GetPipelineRunsInput.Where, and is useful for accessing the field via an interface.
 func (v *__GetPipelineRunsInput) GetWhere() *Pipeline_runs_bool_exp { return v.Where }
 
+// __GetPipelinesListInput is used internally by genqlient
+type __GetPipelinesListInput struct {
+	Limit  *int `json:"limit"`
+	Offset *int `json:"offset"`
+}
+
+// GetLimit returns __GetPipelinesListInput.Limit, and is useful for accessing the field via an interface.
+func (v *__GetPipelinesListInput) GetLimit() *int { return v.Limit }
+
+// GetOffset returns __GetPipelinesListInput.Offset, and is useful for accessing the field via an interface.
+func (v *__GetPipelinesListInput) GetOffset() *int { return v.Offset }
+
 // __GetPipelinesPricingInput is used internally by genqlient
 type __GetPipelinesPricingInput struct {
 	Slugs []string `json:"slugs"`
@@ -5387,6 +5468,11 @@ query GetPipelines {
 }
 `
 
+// GetPipelines — full pipeline catalog record. Used by the web frontend
+// (workspace form needs input/ui/output schemas; pipeline pages render
+// seo_content/seo_faq) and the MCP cache (needs schemas to build tools and
+// prompts). Keep this the complete projection — clients that want fewer
+// bytes use GetPipelinesList below.
 func GetPipelines(
 	ctx_ context.Context,
 	client_ graphql.Client,
@@ -5397,6 +5483,59 @@ func GetPipelines(
 	}
 
 	data_ = &GetPipelinesResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by GetPipelinesList.
+const GetPipelinesList_Operation = `
+query GetPipelinesList ($limit: Int = 20, $offset: Int = 0) {
+	pipelines(where: {is_active:{_eq:true}}, order_by: {sort_order:asc}, limit: $limit, offset: $offset) {
+		id
+		slug
+		name
+		description
+		category
+		icon_url
+		preview_url
+		providers
+		models
+		tags
+		hints
+		pricing
+		cancellable
+	}
+}
+`
+
+// GetPipelinesList — lightweight, paginated catalog listing for the CLI's
+// `pipelines list`. Deliberately omits the heavy fields (input/ui/output
+// schemas, seo_content, seo_faq) so the common listing path stays small over
+// the wire on slow links (PIP-13). Anything needing the full record uses
+// GetPipelines above.
+func GetPipelinesList(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	limit *int,
+	offset *int,
+) (data_ *GetPipelinesListResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "GetPipelinesList",
+		Query:  GetPipelinesList_Operation,
+		Variables: &__GetPipelinesListInput{
+			Limit:  limit,
+			Offset: offset,
+		},
+	}
+
+	data_ = &GetPipelinesListResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
