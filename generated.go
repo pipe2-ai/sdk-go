@@ -351,6 +351,54 @@ func (v *CancelSubscriptionResponse) GetCancel_subscription() CancelSubscription
 	return v.Cancel_subscription
 }
 
+type Capabilities_enum string
+
+const (
+	Capabilities_enumAudioToText  Capabilities_enum = "audio_to_text"
+	Capabilities_enumImageToImage Capabilities_enum = "image_to_image"
+	Capabilities_enumImageToVideo Capabilities_enum = "image_to_video"
+	Capabilities_enumTextToImage  Capabilities_enum = "text_to_image"
+	Capabilities_enumTextToMusic  Capabilities_enum = "text_to_music"
+	Capabilities_enumTextToSpeech Capabilities_enum = "text_to_speech"
+	Capabilities_enumTextToVideo  Capabilities_enum = "text_to_video"
+	Capabilities_enumVideoToVideo Capabilities_enum = "video_to_video"
+)
+
+var AllCapabilities_enum = []Capabilities_enum{
+	Capabilities_enumAudioToText,
+	Capabilities_enumImageToImage,
+	Capabilities_enumImageToVideo,
+	Capabilities_enumTextToImage,
+	Capabilities_enumTextToMusic,
+	Capabilities_enumTextToSpeech,
+	Capabilities_enumTextToVideo,
+	Capabilities_enumVideoToVideo,
+}
+
+// Boolean expression to compare columns of type "capabilities_enum". All fields are combined with logical 'AND'.
+type Capabilities_enum_comparison_exp struct {
+	Eq      *Capabilities_enum  `json:"_eq"`
+	In      []Capabilities_enum `json:"_in"`
+	Is_null *bool               `json:"_is_null"`
+	Neq     *Capabilities_enum  `json:"_neq"`
+	Nin     []Capabilities_enum `json:"_nin"`
+}
+
+// GetEq returns Capabilities_enum_comparison_exp.Eq, and is useful for accessing the field via an interface.
+func (v *Capabilities_enum_comparison_exp) GetEq() *Capabilities_enum { return v.Eq }
+
+// GetIn returns Capabilities_enum_comparison_exp.In, and is useful for accessing the field via an interface.
+func (v *Capabilities_enum_comparison_exp) GetIn() []Capabilities_enum { return v.In }
+
+// GetIs_null returns Capabilities_enum_comparison_exp.Is_null, and is useful for accessing the field via an interface.
+func (v *Capabilities_enum_comparison_exp) GetIs_null() *bool { return v.Is_null }
+
+// GetNeq returns Capabilities_enum_comparison_exp.Neq, and is useful for accessing the field via an interface.
+func (v *Capabilities_enum_comparison_exp) GetNeq() *Capabilities_enum { return v.Neq }
+
+// GetNin returns Capabilities_enum_comparison_exp.Nin, and is useful for accessing the field via an interface.
+func (v *Capabilities_enum_comparison_exp) GetNin() []Capabilities_enum { return v.Nin }
+
 // ChangeAvatarChange_avatarChange_avatar_output includes the requested fields of the GraphQL type change_avatar_output.
 type ChangeAvatarChange_avatarChange_avatar_output struct {
 	Success    bool   `json:"success"`
@@ -660,7 +708,7 @@ func (v *EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output
 
 // EstimatePipelineCostResponse is returned by EstimatePipelineCost on success.
 type EstimatePipelineCostResponse struct {
-	// Read-only credit cost preview for a pipeline+input — used by CLI --estimate and FE cost previews
+	// Read-only credit cost preview for a pipeline+input — used by CLI --estimate and FE cost previews (public pipeline pages show per-model prices to logged-out visitors)
 	Estimate_pipeline_cost *EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output `json:"estimate_pipeline_cost"`
 }
 
@@ -726,8 +774,9 @@ func (v *GetActivePipelineRunsPipeline_runs) GetPipeline() GetActivePipelineRuns
 //
 // columns and relationships of "pipelines"
 type GetActivePipelineRunsPipeline_runsPipelinePipelines struct {
-	Name string `json:"name"`
-	Slug string `json:"slug"`
+	Name        string `json:"name"`
+	Slug        string `json:"slug"`
+	Cancellable bool   `json:"cancellable"`
 }
 
 // GetName returns GetActivePipelineRunsPipeline_runsPipelinePipelines.Name, and is useful for accessing the field via an interface.
@@ -735,6 +784,11 @@ func (v *GetActivePipelineRunsPipeline_runsPipelinePipelines) GetName() string {
 
 // GetSlug returns GetActivePipelineRunsPipeline_runsPipelinePipelines.Slug, and is useful for accessing the field via an interface.
 func (v *GetActivePipelineRunsPipeline_runsPipelinePipelines) GetSlug() string { return v.Slug }
+
+// GetCancellable returns GetActivePipelineRunsPipeline_runsPipelinePipelines.Cancellable, and is useful for accessing the field via an interface.
+func (v *GetActivePipelineRunsPipeline_runsPipelinePipelines) GetCancellable() bool {
+	return v.Cancellable
+}
 
 // GetActivePipelineRunsResponse is returned by GetActivePipelineRuns on success.
 type GetActivePipelineRunsResponse struct {
@@ -1521,6 +1575,7 @@ type GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines struct {
 	Output_schema json.RawMessage `json:"output_schema"`
 	Input_schema  json.RawMessage `json:"input_schema"`
 	Ui_schema     json.RawMessage `json:"ui_schema"`
+	Cancellable   bool            `json:"cancellable"`
 }
 
 // GetName returns GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines.Name, and is useful for accessing the field via an interface.
@@ -1546,6 +1601,11 @@ func (v *GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines) GetInp
 // GetUi_schema returns GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines.Ui_schema, and is useful for accessing the field via an interface.
 func (v *GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines) GetUi_schema() json.RawMessage {
 	return v.Ui_schema
+}
+
+// GetCancellable returns GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines.Cancellable, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines) GetCancellable() bool {
+	return v.Cancellable
 }
 
 // GetPipelineRunPipeline_runs_by_pkPipeline_runsWorkflow_executionExecutions_visibility includes the requested fields of the GraphQL type executions_visibility.
@@ -1676,6 +1736,7 @@ type GetPipelineRunsBySlugPipeline_runsPipelinePipelines struct {
 	Output_schema json.RawMessage `json:"output_schema"`
 	Input_schema  json.RawMessage `json:"input_schema"`
 	Ui_schema     json.RawMessage `json:"ui_schema"`
+	Cancellable   bool            `json:"cancellable"`
 }
 
 // GetName returns GetPipelineRunsBySlugPipeline_runsPipelinePipelines.Name, and is useful for accessing the field via an interface.
@@ -1697,6 +1758,11 @@ func (v *GetPipelineRunsBySlugPipeline_runsPipelinePipelines) GetInput_schema() 
 // GetUi_schema returns GetPipelineRunsBySlugPipeline_runsPipelinePipelines.Ui_schema, and is useful for accessing the field via an interface.
 func (v *GetPipelineRunsBySlugPipeline_runsPipelinePipelines) GetUi_schema() json.RawMessage {
 	return v.Ui_schema
+}
+
+// GetCancellable returns GetPipelineRunsBySlugPipeline_runsPipelinePipelines.Cancellable, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsBySlugPipeline_runsPipelinePipelines) GetCancellable() bool {
+	return v.Cancellable
 }
 
 // GetPipelineRunsBySlugPipeline_runsWorkflow_executionExecutions_visibility includes the requested fields of the GraphQL type executions_visibility.
@@ -1875,6 +1941,7 @@ type GetPipelineRunsPipeline_runsPipelinePipelines struct {
 	Output_schema json.RawMessage `json:"output_schema"`
 	Input_schema  json.RawMessage `json:"input_schema"`
 	Ui_schema     json.RawMessage `json:"ui_schema"`
+	Cancellable   bool            `json:"cancellable"`
 }
 
 // GetName returns GetPipelineRunsPipeline_runsPipelinePipelines.Name, and is useful for accessing the field via an interface.
@@ -1897,6 +1964,9 @@ func (v *GetPipelineRunsPipeline_runsPipelinePipelines) GetInput_schema() json.R
 func (v *GetPipelineRunsPipeline_runsPipelinePipelines) GetUi_schema() json.RawMessage {
 	return v.Ui_schema
 }
+
+// GetCancellable returns GetPipelineRunsPipeline_runsPipelinePipelines.Cancellable, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsPipeline_runsPipelinePipelines) GetCancellable() bool { return v.Cancellable }
 
 // GetPipelineRunsPipeline_runsWorkflow_executionExecutions_visibility includes the requested fields of the GraphQL type executions_visibility.
 // The GraphQL type's documentation follows.
@@ -1991,7 +2061,6 @@ type GetPipelinesListPipelines struct {
 	Tags        []string `json:"tags"`
 	// Structured metadata for AI orchestrators: best_for, avoid_for, limitations, output_characteristics, composability, quality_tips
 	Hints       json.RawMessage `json:"hints"`
-	Pricing     json.RawMessage `json:"pricing"`
 	Cancellable bool            `json:"cancellable"`
 }
 
@@ -2028,9 +2097,6 @@ func (v *GetPipelinesListPipelines) GetTags() []string { return v.Tags }
 // GetHints returns GetPipelinesListPipelines.Hints, and is useful for accessing the field via an interface.
 func (v *GetPipelinesListPipelines) GetHints() json.RawMessage { return v.Hints }
 
-// GetPricing returns GetPipelinesListPipelines.Pricing, and is useful for accessing the field via an interface.
-func (v *GetPipelinesListPipelines) GetPricing() json.RawMessage { return v.Pricing }
-
 // GetCancellable returns GetPipelinesListPipelines.Cancellable, and is useful for accessing the field via an interface.
 func (v *GetPipelinesListPipelines) GetCancellable() bool { return v.Cancellable }
 
@@ -2065,7 +2131,6 @@ type GetPipelinesPipelines struct {
 	Tags          []string         `json:"tags"`
 	// Structured metadata for AI orchestrators: best_for, avoid_for, limitations, output_characteristics, composability, quality_tips
 	Hints       json.RawMessage `json:"hints"`
-	Pricing     json.RawMessage `json:"pricing"`
 	Cancellable bool            `json:"cancellable"`
 }
 
@@ -2117,37 +2182,8 @@ func (v *GetPipelinesPipelines) GetTags() []string { return v.Tags }
 // GetHints returns GetPipelinesPipelines.Hints, and is useful for accessing the field via an interface.
 func (v *GetPipelinesPipelines) GetHints() json.RawMessage { return v.Hints }
 
-// GetPricing returns GetPipelinesPipelines.Pricing, and is useful for accessing the field via an interface.
-func (v *GetPipelinesPipelines) GetPricing() json.RawMessage { return v.Pricing }
-
 // GetCancellable returns GetPipelinesPipelines.Cancellable, and is useful for accessing the field via an interface.
 func (v *GetPipelinesPipelines) GetCancellable() bool { return v.Cancellable }
-
-// GetPipelinesPricingPipelines includes the requested fields of the GraphQL type pipelines.
-// The GraphQL type's documentation follows.
-//
-// columns and relationships of "pipelines"
-type GetPipelinesPricingPipelines struct {
-	Slug    string          `json:"slug"`
-	Pricing json.RawMessage `json:"pricing"`
-}
-
-// GetSlug returns GetPipelinesPricingPipelines.Slug, and is useful for accessing the field via an interface.
-func (v *GetPipelinesPricingPipelines) GetSlug() string { return v.Slug }
-
-// GetPricing returns GetPipelinesPricingPipelines.Pricing, and is useful for accessing the field via an interface.
-func (v *GetPipelinesPricingPipelines) GetPricing() json.RawMessage { return v.Pricing }
-
-// GetPipelinesPricingResponse is returned by GetPipelinesPricing on success.
-type GetPipelinesPricingResponse struct {
-	// fetch data from the table: "pipelines"
-	Pipelines []GetPipelinesPricingPipelines `json:"pipelines"`
-}
-
-// GetPipelines returns GetPipelinesPricingResponse.Pipelines, and is useful for accessing the field via an interface.
-func (v *GetPipelinesPricingResponse) GetPipelines() []GetPipelinesPricingPipelines {
-	return v.Pipelines
-}
 
 // GetPipelinesResponse is returned by GetPipelines on success.
 type GetPipelinesResponse struct {
@@ -2702,6 +2738,84 @@ func (v *MarkNotificationReadUpdate_notifications_by_pkNotifications) GetId() st
 // GetRead returns MarkNotificationReadUpdate_notifications_by_pkNotifications.Read, and is useful for accessing the field via an interface.
 func (v *MarkNotificationReadUpdate_notifications_by_pkNotifications) GetRead() bool { return v.Read }
 
+// Boolean expression to filter rows from the table "model_capabilities". All fields are combined with a logical 'AND'.
+type Model_capabilities_bool_exp struct {
+	And             []Model_capabilities_bool_exp     `json:"_and"`
+	Not             *Model_capabilities_bool_exp      `json:"_not"`
+	Or              []Model_capabilities_bool_exp     `json:"_or"`
+	Capability_slug *Capabilities_enum_comparison_exp `json:"capability_slug"`
+	Model           *Models_bool_exp                  `json:"model"`
+	Model_slug      *String_comparison_exp            `json:"model_slug"`
+}
+
+// GetAnd returns Model_capabilities_bool_exp.And, and is useful for accessing the field via an interface.
+func (v *Model_capabilities_bool_exp) GetAnd() []Model_capabilities_bool_exp { return v.And }
+
+// GetNot returns Model_capabilities_bool_exp.Not, and is useful for accessing the field via an interface.
+func (v *Model_capabilities_bool_exp) GetNot() *Model_capabilities_bool_exp { return v.Not }
+
+// GetOr returns Model_capabilities_bool_exp.Or, and is useful for accessing the field via an interface.
+func (v *Model_capabilities_bool_exp) GetOr() []Model_capabilities_bool_exp { return v.Or }
+
+// GetCapability_slug returns Model_capabilities_bool_exp.Capability_slug, and is useful for accessing the field via an interface.
+func (v *Model_capabilities_bool_exp) GetCapability_slug() *Capabilities_enum_comparison_exp {
+	return v.Capability_slug
+}
+
+// GetModel returns Model_capabilities_bool_exp.Model, and is useful for accessing the field via an interface.
+func (v *Model_capabilities_bool_exp) GetModel() *Models_bool_exp { return v.Model }
+
+// GetModel_slug returns Model_capabilities_bool_exp.Model_slug, and is useful for accessing the field via an interface.
+func (v *Model_capabilities_bool_exp) GetModel_slug() *String_comparison_exp { return v.Model_slug }
+
+// Boolean expression to filter rows from the table "models". All fields are combined with a logical 'AND'.
+type Models_bool_exp struct {
+	And             []Models_bool_exp              `json:"_and"`
+	Not             *Models_bool_exp               `json:"_not"`
+	Or              []Models_bool_exp              `json:"_or"`
+	Capabilities    *Model_capabilities_bool_exp   `json:"capabilities"`
+	Description     *String_comparison_exp         `json:"description"`
+	Is_active       *Boolean_comparison_exp        `json:"is_active"`
+	Label           *String_comparison_exp         `json:"label"`
+	Pipeline_models *Pipeline_models_bool_exp      `json:"pipeline_models"`
+	Provider        *Providers_enum_comparison_exp `json:"provider"`
+	Slug            *String_comparison_exp         `json:"slug"`
+	Sort_order      *Int_comparison_exp            `json:"sort_order"`
+}
+
+// GetAnd returns Models_bool_exp.And, and is useful for accessing the field via an interface.
+func (v *Models_bool_exp) GetAnd() []Models_bool_exp { return v.And }
+
+// GetNot returns Models_bool_exp.Not, and is useful for accessing the field via an interface.
+func (v *Models_bool_exp) GetNot() *Models_bool_exp { return v.Not }
+
+// GetOr returns Models_bool_exp.Or, and is useful for accessing the field via an interface.
+func (v *Models_bool_exp) GetOr() []Models_bool_exp { return v.Or }
+
+// GetCapabilities returns Models_bool_exp.Capabilities, and is useful for accessing the field via an interface.
+func (v *Models_bool_exp) GetCapabilities() *Model_capabilities_bool_exp { return v.Capabilities }
+
+// GetDescription returns Models_bool_exp.Description, and is useful for accessing the field via an interface.
+func (v *Models_bool_exp) GetDescription() *String_comparison_exp { return v.Description }
+
+// GetIs_active returns Models_bool_exp.Is_active, and is useful for accessing the field via an interface.
+func (v *Models_bool_exp) GetIs_active() *Boolean_comparison_exp { return v.Is_active }
+
+// GetLabel returns Models_bool_exp.Label, and is useful for accessing the field via an interface.
+func (v *Models_bool_exp) GetLabel() *String_comparison_exp { return v.Label }
+
+// GetPipeline_models returns Models_bool_exp.Pipeline_models, and is useful for accessing the field via an interface.
+func (v *Models_bool_exp) GetPipeline_models() *Pipeline_models_bool_exp { return v.Pipeline_models }
+
+// GetProvider returns Models_bool_exp.Provider, and is useful for accessing the field via an interface.
+func (v *Models_bool_exp) GetProvider() *Providers_enum_comparison_exp { return v.Provider }
+
+// GetSlug returns Models_bool_exp.Slug, and is useful for accessing the field via an interface.
+func (v *Models_bool_exp) GetSlug() *String_comparison_exp { return v.Slug }
+
+// GetSort_order returns Models_bool_exp.Sort_order, and is useful for accessing the field via an interface.
+func (v *Models_bool_exp) GetSort_order() *Int_comparison_exp { return v.Sort_order }
+
 type Multipart_part_input struct {
 	ETag       string `json:"ETag"`
 	PartNumber int    `json:"PartNumber"`
@@ -2752,6 +2866,121 @@ func (v *Numeric_comparison_exp) GetNeq() *float64 { return v.Neq }
 
 // GetNin returns Numeric_comparison_exp.Nin, and is useful for accessing the field via an interface.
 func (v *Numeric_comparison_exp) GetNin() []float64 { return v.Nin }
+
+// PipelineModelsPipeline_models includes the requested fields of the GraphQL type pipeline_models.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "pipeline_models"
+type PipelineModelsPipeline_models struct {
+	Model_slug string `json:"model_slug"`
+	// An object relationship
+	Model PipelineModelsPipeline_modelsModelModels `json:"model"`
+}
+
+// GetModel_slug returns PipelineModelsPipeline_models.Model_slug, and is useful for accessing the field via an interface.
+func (v *PipelineModelsPipeline_models) GetModel_slug() string { return v.Model_slug }
+
+// GetModel returns PipelineModelsPipeline_models.Model, and is useful for accessing the field via an interface.
+func (v *PipelineModelsPipeline_models) GetModel() PipelineModelsPipeline_modelsModelModels {
+	return v.Model
+}
+
+// PipelineModelsPipeline_modelsModelModels includes the requested fields of the GraphQL type models.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "models"
+type PipelineModelsPipeline_modelsModelModels struct {
+	Slug        string `json:"slug"`
+	Label       string `json:"label"`
+	Description string `json:"description"`
+}
+
+// GetSlug returns PipelineModelsPipeline_modelsModelModels.Slug, and is useful for accessing the field via an interface.
+func (v *PipelineModelsPipeline_modelsModelModels) GetSlug() string { return v.Slug }
+
+// GetLabel returns PipelineModelsPipeline_modelsModelModels.Label, and is useful for accessing the field via an interface.
+func (v *PipelineModelsPipeline_modelsModelModels) GetLabel() string { return v.Label }
+
+// GetDescription returns PipelineModelsPipeline_modelsModelModels.Description, and is useful for accessing the field via an interface.
+func (v *PipelineModelsPipeline_modelsModelModels) GetDescription() string { return v.Description }
+
+// PipelineModelsResponse is returned by PipelineModels on success.
+type PipelineModelsResponse struct {
+	// An array relationship
+	Pipeline_models []PipelineModelsPipeline_models `json:"pipeline_models"`
+}
+
+// GetPipeline_models returns PipelineModelsResponse.Pipeline_models, and is useful for accessing the field via an interface.
+func (v *PipelineModelsResponse) GetPipeline_models() []PipelineModelsPipeline_models {
+	return v.Pipeline_models
+}
+
+// PipelinePricingPipeline_pricingPipeline_pricing_row includes the requested fields of the GraphQL type pipeline_pricing_row.
+type PipelinePricingPipeline_pricingPipeline_pricing_row struct {
+	Slug    string `json:"slug"`
+	From_mc int    `json:"from_mc"`
+	To_mc   *int   `json:"to_mc"`
+	Metered bool   `json:"metered"`
+}
+
+// GetSlug returns PipelinePricingPipeline_pricingPipeline_pricing_row.Slug, and is useful for accessing the field via an interface.
+func (v *PipelinePricingPipeline_pricingPipeline_pricing_row) GetSlug() string { return v.Slug }
+
+// GetFrom_mc returns PipelinePricingPipeline_pricingPipeline_pricing_row.From_mc, and is useful for accessing the field via an interface.
+func (v *PipelinePricingPipeline_pricingPipeline_pricing_row) GetFrom_mc() int { return v.From_mc }
+
+// GetTo_mc returns PipelinePricingPipeline_pricingPipeline_pricing_row.To_mc, and is useful for accessing the field via an interface.
+func (v *PipelinePricingPipeline_pricingPipeline_pricing_row) GetTo_mc() *int { return v.To_mc }
+
+// GetMetered returns PipelinePricingPipeline_pricingPipeline_pricing_row.Metered, and is useful for accessing the field via an interface.
+func (v *PipelinePricingPipeline_pricingPipeline_pricing_row) GetMetered() bool { return v.Metered }
+
+// PipelinePricingResponse is returned by PipelinePricing on success.
+type PipelinePricingResponse struct {
+	// Derived pipeline pricing (from DB wholesale) — FE cost-display read model replacing pipelines.pricing
+	Pipeline_pricing []PipelinePricingPipeline_pricingPipeline_pricing_row `json:"pipeline_pricing"`
+}
+
+// GetPipeline_pricing returns PipelinePricingResponse.Pipeline_pricing, and is useful for accessing the field via an interface.
+func (v *PipelinePricingResponse) GetPipeline_pricing() []PipelinePricingPipeline_pricingPipeline_pricing_row {
+	return v.Pipeline_pricing
+}
+
+// Boolean expression to filter rows from the table "pipeline_models". All fields are combined with a logical 'AND'.
+type Pipeline_models_bool_exp struct {
+	And           []Pipeline_models_bool_exp `json:"_and"`
+	Not           *Pipeline_models_bool_exp  `json:"_not"`
+	Or            []Pipeline_models_bool_exp `json:"_or"`
+	Model         *Models_bool_exp           `json:"model"`
+	Model_slug    *String_comparison_exp     `json:"model_slug"`
+	Pipeline      *Pipelines_bool_exp        `json:"pipeline"`
+	Pipeline_slug *String_comparison_exp     `json:"pipeline_slug"`
+	Sort_order    *Int_comparison_exp        `json:"sort_order"`
+}
+
+// GetAnd returns Pipeline_models_bool_exp.And, and is useful for accessing the field via an interface.
+func (v *Pipeline_models_bool_exp) GetAnd() []Pipeline_models_bool_exp { return v.And }
+
+// GetNot returns Pipeline_models_bool_exp.Not, and is useful for accessing the field via an interface.
+func (v *Pipeline_models_bool_exp) GetNot() *Pipeline_models_bool_exp { return v.Not }
+
+// GetOr returns Pipeline_models_bool_exp.Or, and is useful for accessing the field via an interface.
+func (v *Pipeline_models_bool_exp) GetOr() []Pipeline_models_bool_exp { return v.Or }
+
+// GetModel returns Pipeline_models_bool_exp.Model, and is useful for accessing the field via an interface.
+func (v *Pipeline_models_bool_exp) GetModel() *Models_bool_exp { return v.Model }
+
+// GetModel_slug returns Pipeline_models_bool_exp.Model_slug, and is useful for accessing the field via an interface.
+func (v *Pipeline_models_bool_exp) GetModel_slug() *String_comparison_exp { return v.Model_slug }
+
+// GetPipeline returns Pipeline_models_bool_exp.Pipeline, and is useful for accessing the field via an interface.
+func (v *Pipeline_models_bool_exp) GetPipeline() *Pipelines_bool_exp { return v.Pipeline }
+
+// GetPipeline_slug returns Pipeline_models_bool_exp.Pipeline_slug, and is useful for accessing the field via an interface.
+func (v *Pipeline_models_bool_exp) GetPipeline_slug() *String_comparison_exp { return v.Pipeline_slug }
+
+// GetSort_order returns Pipeline_models_bool_exp.Sort_order, and is useful for accessing the field via an interface.
+func (v *Pipeline_models_bool_exp) GetSort_order() *Int_comparison_exp { return v.Sort_order }
 
 // Boolean expression to filter rows from the table "pipeline_runs". All fields are combined with a logical 'AND'.
 type Pipeline_runs_bool_exp struct {
@@ -2831,29 +3060,29 @@ func (v *Pipeline_runs_bool_exp) GetTemporal_workflow_id() *String_comparison_ex
 
 // Boolean expression to filter rows from the table "pipelines". All fields are combined with a logical 'AND'.
 type Pipelines_bool_exp struct {
-	And           []Pipelines_bool_exp         `json:"_and"`
-	Not           *Pipelines_bool_exp          `json:"_not"`
-	Or            []Pipelines_bool_exp         `json:"_or"`
-	Cancellable   *Boolean_comparison_exp      `json:"cancellable"`
-	Category      *String_comparison_exp       `json:"category"`
-	Description   *String_comparison_exp       `json:"description"`
-	Hints         *Jsonb_comparison_exp        `json:"hints"`
-	Icon_url      *String_comparison_exp       `json:"icon_url"`
-	Id            *Uuid_comparison_exp         `json:"id"`
-	Input_schema  *Jsonb_comparison_exp        `json:"input_schema"`
-	Is_active     *Boolean_comparison_exp      `json:"is_active"`
-	Models        *String_array_comparison_exp `json:"models"`
-	Name          *String_comparison_exp       `json:"name"`
-	Output_schema *Jsonb_comparison_exp        `json:"output_schema"`
-	Preview_url   *String_comparison_exp       `json:"preview_url"`
-	Pricing       *Jsonb_comparison_exp        `json:"pricing"`
-	Providers     *String_array_comparison_exp `json:"providers"`
-	Seo_content   *String_comparison_exp       `json:"seo_content"`
-	Seo_faq       *Jsonb_comparison_exp        `json:"seo_faq"`
-	Slug          *String_comparison_exp       `json:"slug"`
-	Sort_order    *Int_comparison_exp          `json:"sort_order"`
-	Tags          *String_array_comparison_exp `json:"tags"`
-	Ui_schema     *Jsonb_comparison_exp        `json:"ui_schema"`
+	And             []Pipelines_bool_exp         `json:"_and"`
+	Not             *Pipelines_bool_exp          `json:"_not"`
+	Or              []Pipelines_bool_exp         `json:"_or"`
+	Cancellable     *Boolean_comparison_exp      `json:"cancellable"`
+	Category        *String_comparison_exp       `json:"category"`
+	Description     *String_comparison_exp       `json:"description"`
+	Hints           *Jsonb_comparison_exp        `json:"hints"`
+	Icon_url        *String_comparison_exp       `json:"icon_url"`
+	Id              *Uuid_comparison_exp         `json:"id"`
+	Input_schema    *Jsonb_comparison_exp        `json:"input_schema"`
+	Is_active       *Boolean_comparison_exp      `json:"is_active"`
+	Models          *String_array_comparison_exp `json:"models"`
+	Name            *String_comparison_exp       `json:"name"`
+	Output_schema   *Jsonb_comparison_exp        `json:"output_schema"`
+	Pipeline_models *Pipeline_models_bool_exp    `json:"pipeline_models"`
+	Preview_url     *String_comparison_exp       `json:"preview_url"`
+	Providers       *String_array_comparison_exp `json:"providers"`
+	Seo_content     *String_comparison_exp       `json:"seo_content"`
+	Seo_faq         *Jsonb_comparison_exp        `json:"seo_faq"`
+	Slug            *String_comparison_exp       `json:"slug"`
+	Sort_order      *Int_comparison_exp          `json:"sort_order"`
+	Tags            *String_array_comparison_exp `json:"tags"`
+	Ui_schema       *Jsonb_comparison_exp        `json:"ui_schema"`
 }
 
 // GetAnd returns Pipelines_bool_exp.And, and is useful for accessing the field via an interface.
@@ -2898,11 +3127,11 @@ func (v *Pipelines_bool_exp) GetName() *String_comparison_exp { return v.Name }
 // GetOutput_schema returns Pipelines_bool_exp.Output_schema, and is useful for accessing the field via an interface.
 func (v *Pipelines_bool_exp) GetOutput_schema() *Jsonb_comparison_exp { return v.Output_schema }
 
+// GetPipeline_models returns Pipelines_bool_exp.Pipeline_models, and is useful for accessing the field via an interface.
+func (v *Pipelines_bool_exp) GetPipeline_models() *Pipeline_models_bool_exp { return v.Pipeline_models }
+
 // GetPreview_url returns Pipelines_bool_exp.Preview_url, and is useful for accessing the field via an interface.
 func (v *Pipelines_bool_exp) GetPreview_url() *String_comparison_exp { return v.Preview_url }
-
-// GetPricing returns Pipelines_bool_exp.Pricing, and is useful for accessing the field via an interface.
-func (v *Pipelines_bool_exp) GetPricing() *Jsonb_comparison_exp { return v.Pricing }
 
 // GetProviders returns Pipelines_bool_exp.Providers, and is useful for accessing the field via an interface.
 func (v *Pipelines_bool_exp) GetProviders() *String_array_comparison_exp { return v.Providers }
@@ -2924,6 +3153,48 @@ func (v *Pipelines_bool_exp) GetTags() *String_array_comparison_exp { return v.T
 
 // GetUi_schema returns Pipelines_bool_exp.Ui_schema, and is useful for accessing the field via an interface.
 func (v *Pipelines_bool_exp) GetUi_schema() *Jsonb_comparison_exp { return v.Ui_schema }
+
+type Providers_enum string
+
+const (
+	Providers_enumElevenlabs Providers_enum = "elevenlabs"
+	Providers_enumGemini     Providers_enum = "gemini"
+	Providers_enumOpenai     Providers_enum = "openai"
+	Providers_enumVolcengine Providers_enum = "volcengine"
+	Providers_enumXai        Providers_enum = "xai"
+)
+
+var AllProviders_enum = []Providers_enum{
+	Providers_enumElevenlabs,
+	Providers_enumGemini,
+	Providers_enumOpenai,
+	Providers_enumVolcengine,
+	Providers_enumXai,
+}
+
+// Boolean expression to compare columns of type "providers_enum". All fields are combined with logical 'AND'.
+type Providers_enum_comparison_exp struct {
+	Eq      *Providers_enum  `json:"_eq"`
+	In      []Providers_enum `json:"_in"`
+	Is_null *bool            `json:"_is_null"`
+	Neq     *Providers_enum  `json:"_neq"`
+	Nin     []Providers_enum `json:"_nin"`
+}
+
+// GetEq returns Providers_enum_comparison_exp.Eq, and is useful for accessing the field via an interface.
+func (v *Providers_enum_comparison_exp) GetEq() *Providers_enum { return v.Eq }
+
+// GetIn returns Providers_enum_comparison_exp.In, and is useful for accessing the field via an interface.
+func (v *Providers_enum_comparison_exp) GetIn() []Providers_enum { return v.In }
+
+// GetIs_null returns Providers_enum_comparison_exp.Is_null, and is useful for accessing the field via an interface.
+func (v *Providers_enum_comparison_exp) GetIs_null() *bool { return v.Is_null }
+
+// GetNeq returns Providers_enum_comparison_exp.Neq, and is useful for accessing the field via an interface.
+func (v *Providers_enum_comparison_exp) GetNeq() *Providers_enum { return v.Neq }
+
+// GetNin returns Providers_enum_comparison_exp.Nin, and is useful for accessing the field via an interface.
+func (v *Providers_enum_comparison_exp) GetNin() []Providers_enum { return v.Nin }
 
 // RequestAccountDeletionRequest_account_deletionRequest_account_deletion_output includes the requested fields of the GraphQL type request_account_deletion_output.
 type RequestAccountDeletionRequest_account_deletionRequest_account_deletion_output struct {
@@ -3720,6 +3991,7 @@ type WatchPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines struct {
 	Output_schema json.RawMessage `json:"output_schema"`
 	Input_schema  json.RawMessage `json:"input_schema"`
 	Ui_schema     json.RawMessage `json:"ui_schema"`
+	Cancellable   bool            `json:"cancellable"`
 }
 
 // GetName returns WatchPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines.Name, and is useful for accessing the field via an interface.
@@ -3745,6 +4017,11 @@ func (v *WatchPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines) GetI
 // GetUi_schema returns WatchPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines.Ui_schema, and is useful for accessing the field via an interface.
 func (v *WatchPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines) GetUi_schema() json.RawMessage {
 	return v.Ui_schema
+}
+
+// GetCancellable returns WatchPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines.Cancellable, and is useful for accessing the field via an interface.
+func (v *WatchPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines) GetCancellable() bool {
+	return v.Cancellable
 }
 
 // WatchPipelineRunResponse is returned by WatchPipelineRun on success.
@@ -3970,14 +4247,6 @@ func (v *__GetPipelinesListInput) GetLimit() *int { return v.Limit }
 // GetOffset returns __GetPipelinesListInput.Offset, and is useful for accessing the field via an interface.
 func (v *__GetPipelinesListInput) GetOffset() *int { return v.Offset }
 
-// __GetPipelinesPricingInput is used internally by genqlient
-type __GetPipelinesPricingInput struct {
-	Slugs []string `json:"slugs"`
-}
-
-// GetSlugs returns __GetPipelinesPricingInput.Slugs, and is useful for accessing the field via an interface.
-func (v *__GetPipelinesPricingInput) GetSlugs() []string { return v.Slugs }
-
 // __GetUserAssetsInput is used internally by genqlient
 type __GetUserAssetsInput struct {
 	Where  *Assets_bool_exp `json:"where"`
@@ -4021,6 +4290,14 @@ type __MarkNotificationReadInput struct {
 
 // GetId returns __MarkNotificationReadInput.Id, and is useful for accessing the field via an interface.
 func (v *__MarkNotificationReadInput) GetId() string { return v.Id }
+
+// __PipelineModelsInput is used internally by genqlient
+type __PipelineModelsInput struct {
+	Slug string `json:"slug"`
+}
+
+// GetSlug returns __PipelineModelsInput.Slug, and is useful for accessing the field via an interface.
+func (v *__PipelineModelsInput) GetSlug() string { return v.Slug }
 
 // __RequestAvatarUploadInput is used internally by genqlient
 type __RequestAvatarUploadInput struct {
@@ -4759,6 +5036,7 @@ query GetActivePipelineRuns {
 		pipeline {
 			name
 			slug
+			cancellable
 		}
 	}
 	active_count: pipeline_runs_aggregate(where: {status:{_in:["pending","running"]}}) {
@@ -5262,6 +5540,7 @@ query GetPipelineRun ($id: uuid!) {
 			output_schema
 			input_schema
 			ui_schema
+			cancellable
 		}
 		assets {
 			id
@@ -5315,6 +5594,7 @@ query GetPipelineRuns ($limit: Int = 12, $offset: Int = 0, $where: pipeline_runs
 			output_schema
 			input_schema
 			ui_schema
+			cancellable
 		}
 		status
 		input
@@ -5386,6 +5666,7 @@ query GetPipelineRunsBySlug ($slug: String!, $limit: Int = 10, $offset: Int = 0)
 			output_schema
 			input_schema
 			ui_schema
+			cancellable
 		}
 		input
 		output
@@ -5462,7 +5743,6 @@ query GetPipelines {
 		seo_faq
 		tags
 		hints
-		pricing
 		cancellable
 	}
 }
@@ -5509,7 +5789,6 @@ query GetPipelinesList ($limit: Int = 20, $offset: Int = 0) {
 		models
 		tags
 		hints
-		pricing
 		cancellable
 	}
 }
@@ -5536,46 +5815,6 @@ func GetPipelinesList(
 	}
 
 	data_ = &GetPipelinesListResponse{}
-	resp_ := &graphql.Response{Data: data_}
-
-	err_ = client_.MakeRequest(
-		ctx_,
-		req_,
-		resp_,
-	)
-
-	return data_, err_
-}
-
-// The query executed by GetPipelinesPricing.
-const GetPipelinesPricing_Operation = `
-query GetPipelinesPricing ($slugs: [String!]!) {
-	pipelines(where: {slug:{_in:$slugs}}) {
-		slug
-		pricing
-	}
-}
-`
-
-// GetPipelinesPricing — lean lookup used by the CLI's `recipe run --estimate`
-// (and any other client that wants the credit cost without pulling the full
-// pipeline catalog). Returns only `slug` and `pricing` for the given slugs.
-// Authenticated user role can read pipelines.pricing (it's already public
-// via GetPipelines); this is just a narrower projection for fewer bytes.
-func GetPipelinesPricing(
-	ctx_ context.Context,
-	client_ graphql.Client,
-	slugs []string,
-) (data_ *GetPipelinesPricingResponse, err_ error) {
-	req_ := &graphql.Request{
-		OpName: "GetPipelinesPricing",
-		Query:  GetPipelinesPricing_Operation,
-		Variables: &__GetPipelinesPricingInput{
-			Slugs: slugs,
-		},
-	}
-
-	data_ = &GetPipelinesPricingResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
@@ -5918,6 +6157,86 @@ func MarkNotificationRead(
 	}
 
 	data_ = &MarkNotificationReadResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by PipelineModels.
+const PipelineModels_Operation = `
+query PipelineModels ($slug: String!) {
+	pipeline_models(where: {pipeline_slug:{_eq:$slug}}, order_by: {sort_order:asc}) {
+		model_slug
+		model {
+			slug
+			label
+			description
+		}
+	}
+}
+`
+
+// PipelineModels — the models wired to a pipeline (pipeline_models ⋈ models),
+// ordered by sort_order. The user select permission on `models` filters the
+// relationship to active, non-internal SKUs, so `model` is null for hidden ones
+// (the client drops those). Feeds the model-picker card label/description,
+// replacing the generated MODEL_META (web/src/lib/models.generated.ts).
+func PipelineModels(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	slug string,
+) (data_ *PipelineModelsResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "PipelineModels",
+		Query:  PipelineModels_Operation,
+		Variables: &__PipelineModelsInput{
+			Slug: slug,
+		},
+	}
+
+	data_ = &PipelineModelsResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by PipelinePricing.
+const PipelinePricing_Operation = `
+query PipelinePricing {
+	pipeline_pricing {
+		slug
+		from_mc
+		to_mc
+		metered
+	}
+}
+`
+
+// PipelinePricing — every pipeline's derived pricing struct (from DB wholesale),
+// the FE cost-display read model that replaces the pipelines.pricing column. The
+// client-side pricing engine (web/src/lib/credits.ts) consumes `pricing`.
+func PipelinePricing(
+	ctx_ context.Context,
+	client_ graphql.Client,
+) (data_ *PipelinePricingResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "PipelinePricing",
+		Query:  PipelinePricing_Operation,
+	}
+
+	data_ = &PipelinePricingResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
@@ -6536,6 +6855,7 @@ subscription WatchPipelineRun ($run_id: uuid!) {
 			output_schema
 			input_schema
 			ui_schema
+			cancellable
 		}
 		assets {
 			id
