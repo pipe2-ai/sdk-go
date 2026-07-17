@@ -22,7 +22,7 @@ func (v *AbortMultipartUploadAbort_multipart_uploadAbort_multipart_upload_output
 
 // AbortMultipartUploadResponse is returned by AbortMultipartUpload on success.
 type AbortMultipartUploadResponse struct {
-	// Cancel an in-progress multipart upload (cleanup)
+	// Cancel an in-progress multi-part upload
 	Abort_multipart_upload AbortMultipartUploadAbort_multipart_uploadAbort_multipart_upload_output `json:"abort_multipart_upload"`
 }
 
@@ -288,7 +288,7 @@ func (v *CancelAccountDeletionCancel_account_deletionCancel_account_deletion_out
 
 // CancelAccountDeletionResponse is returned by CancelAccountDeletion on success.
 type CancelAccountDeletionResponse struct {
-	// Cancel a pending scheduled account deletion during the grace period.
+	// Cancel a scheduled account deletion during the grace period.
 	Cancel_account_deletion CancelAccountDeletionCancel_account_deletionCancel_account_deletion_output `json:"cancel_account_deletion"`
 }
 
@@ -342,7 +342,7 @@ func (v *CancelSubscriptionCancel_subscriptionCancel_subscription_output) GetCan
 
 // CancelSubscriptionResponse is returned by CancelSubscription on success.
 type CancelSubscriptionResponse struct {
-	// Cancel the user's subscription at the end of the current billing period
+	// Cancel your subscription at the end of the current billing period
 	Cancel_subscription CancelSubscriptionCancel_subscriptionCancel_subscription_output `json:"cancel_subscription"`
 }
 
@@ -350,54 +350,6 @@ type CancelSubscriptionResponse struct {
 func (v *CancelSubscriptionResponse) GetCancel_subscription() CancelSubscriptionCancel_subscriptionCancel_subscription_output {
 	return v.Cancel_subscription
 }
-
-type Capabilities_enum string
-
-const (
-	Capabilities_enumAudioToText  Capabilities_enum = "audio_to_text"
-	Capabilities_enumImageToImage Capabilities_enum = "image_to_image"
-	Capabilities_enumImageToVideo Capabilities_enum = "image_to_video"
-	Capabilities_enumTextToImage  Capabilities_enum = "text_to_image"
-	Capabilities_enumTextToMusic  Capabilities_enum = "text_to_music"
-	Capabilities_enumTextToSpeech Capabilities_enum = "text_to_speech"
-	Capabilities_enumTextToVideo  Capabilities_enum = "text_to_video"
-	Capabilities_enumVideoToVideo Capabilities_enum = "video_to_video"
-)
-
-var AllCapabilities_enum = []Capabilities_enum{
-	Capabilities_enumAudioToText,
-	Capabilities_enumImageToImage,
-	Capabilities_enumImageToVideo,
-	Capabilities_enumTextToImage,
-	Capabilities_enumTextToMusic,
-	Capabilities_enumTextToSpeech,
-	Capabilities_enumTextToVideo,
-	Capabilities_enumVideoToVideo,
-}
-
-// Boolean expression to compare columns of type "capabilities_enum". All fields are combined with logical 'AND'.
-type Capabilities_enum_comparison_exp struct {
-	Eq      *Capabilities_enum  `json:"_eq"`
-	In      []Capabilities_enum `json:"_in"`
-	Is_null *bool               `json:"_is_null"`
-	Neq     *Capabilities_enum  `json:"_neq"`
-	Nin     []Capabilities_enum `json:"_nin"`
-}
-
-// GetEq returns Capabilities_enum_comparison_exp.Eq, and is useful for accessing the field via an interface.
-func (v *Capabilities_enum_comparison_exp) GetEq() *Capabilities_enum { return v.Eq }
-
-// GetIn returns Capabilities_enum_comparison_exp.In, and is useful for accessing the field via an interface.
-func (v *Capabilities_enum_comparison_exp) GetIn() []Capabilities_enum { return v.In }
-
-// GetIs_null returns Capabilities_enum_comparison_exp.Is_null, and is useful for accessing the field via an interface.
-func (v *Capabilities_enum_comparison_exp) GetIs_null() *bool { return v.Is_null }
-
-// GetNeq returns Capabilities_enum_comparison_exp.Neq, and is useful for accessing the field via an interface.
-func (v *Capabilities_enum_comparison_exp) GetNeq() *Capabilities_enum { return v.Neq }
-
-// GetNin returns Capabilities_enum_comparison_exp.Nin, and is useful for accessing the field via an interface.
-func (v *Capabilities_enum_comparison_exp) GetNin() []Capabilities_enum { return v.Nin }
 
 // ChangeAvatarChange_avatarChange_avatar_output includes the requested fields of the GraphQL type change_avatar_output.
 type ChangeAvatarChange_avatarChange_avatar_output struct {
@@ -417,7 +369,7 @@ func (v *ChangeAvatarChange_avatarChange_avatar_output) GetAvatar_url() string {
 
 // ChangeAvatarResponse is returned by ChangeAvatar on success.
 type ChangeAvatarResponse struct {
-	// Persist the user's avatar URL after a successful upload
+	// Update your profile picture
 	Change_avatar ChangeAvatarChange_avatarChange_avatar_output `json:"change_avatar"`
 }
 
@@ -444,7 +396,7 @@ func (v *ChangeNameChange_nameChange_name_output) GetName() string { return v.Na
 
 // ChangeNameResponse is returned by ChangeName on success.
 type ChangeNameResponse struct {
-	// Update the current user's display name
+	// Update your display name
 	Change_name ChangeNameChange_nameChange_name_output `json:"change_name"`
 }
 
@@ -467,7 +419,7 @@ func (v *ChangePasswordChange_passwordChange_password_output) GetMessage() strin
 
 // ChangePasswordResponse is returned by ChangePassword on success.
 type ChangePasswordResponse struct {
-	// Change the current user's password via Kratos settings flow
+	// Change your password
 	Change_password ChangePasswordChange_passwordChange_password_output `json:"change_password"`
 }
 
@@ -512,7 +464,7 @@ func (v *CompleteMultipartUploadComplete_multipart_uploadCreate_asset_output) Ge
 
 // CompleteMultipartUploadResponse is returned by CompleteMultipartUpload on success.
 type CompleteMultipartUploadResponse struct {
-	// Finalize a multipart upload and register the asset row
+	// Finalize a multi-part upload and register the asset
 	Complete_multipart_upload CompleteMultipartUploadComplete_multipart_uploadCreate_asset_output `json:"complete_multipart_upload"`
 }
 
@@ -545,7 +497,7 @@ func (v *ConfirmAccountDeletionConfirm_account_deletionConfirm_account_deletion_
 
 // ConfirmAccountDeletionResponse is returned by ConfirmAccountDeletion on success.
 type ConfirmAccountDeletionResponse struct {
-	// Validate a deletion JWT and schedule the account for deletion (token-authed, anonymous-allowed).
+	// Confirm and schedule account deletion from the emailed link.
 	Confirm_account_deletion ConfirmAccountDeletionConfirm_account_deletionConfirm_account_deletion_output `json:"confirm_account_deletion"`
 }
 
@@ -580,13 +532,40 @@ func (v *CreateAssetCreate_assetCreate_asset_output) GetCreated_at() string { re
 
 // CreateAssetResponse is returned by CreateAsset on success.
 type CreateAssetResponse struct {
-	// Create an asset record after S3 upload
+	// Register an uploaded file as an asset
 	Create_asset CreateAssetCreate_assetCreate_asset_output `json:"create_asset"`
 }
 
 // GetCreate_asset returns CreateAssetResponse.Create_asset, and is useful for accessing the field via an interface.
 func (v *CreateAssetResponse) GetCreate_asset() CreateAssetCreate_assetCreate_asset_output {
 	return v.Create_asset
+}
+
+// CreateCheckoutSessionCreate_checkout_sessionCreate_checkout_session_output includes the requested fields of the GraphQL type create_checkout_session_output.
+type CreateCheckoutSessionCreate_checkout_sessionCreate_checkout_session_output struct {
+	Success bool   `json:"success"`
+	Url     string `json:"url"`
+}
+
+// GetSuccess returns CreateCheckoutSessionCreate_checkout_sessionCreate_checkout_session_output.Success, and is useful for accessing the field via an interface.
+func (v *CreateCheckoutSessionCreate_checkout_sessionCreate_checkout_session_output) GetSuccess() bool {
+	return v.Success
+}
+
+// GetUrl returns CreateCheckoutSessionCreate_checkout_sessionCreate_checkout_session_output.Url, and is useful for accessing the field via an interface.
+func (v *CreateCheckoutSessionCreate_checkout_sessionCreate_checkout_session_output) GetUrl() string {
+	return v.Url
+}
+
+// CreateCheckoutSessionResponse is returned by CreateCheckoutSession on success.
+type CreateCheckoutSessionResponse struct {
+	// Create a Whop checkout session with the buyer's user_id baked into metadata
+	Create_checkout_session CreateCheckoutSessionCreate_checkout_sessionCreate_checkout_session_output `json:"create_checkout_session"`
+}
+
+// GetCreate_checkout_session returns CreateCheckoutSessionResponse.Create_checkout_session, and is useful for accessing the field via an interface.
+func (v *CreateCheckoutSessionResponse) GetCreate_checkout_session() CreateCheckoutSessionCreate_checkout_sessionCreate_checkout_session_output {
+	return v.Create_checkout_session
 }
 
 // CreatePersonalAccessTokenCreate_personal_access_tokenCreate_personal_access_token_output includes the requested fields of the GraphQL type create_personal_access_token_output.
@@ -625,7 +604,7 @@ func (v *CreatePersonalAccessTokenCreate_personal_access_tokenCreate_personal_ac
 
 // CreatePersonalAccessTokenResponse is returned by CreatePersonalAccessToken on success.
 type CreatePersonalAccessTokenResponse struct {
-	// Create a new personal access token for API/MCP authentication
+	// Create a personal access token for API and MCP access
 	Create_personal_access_token CreatePersonalAccessTokenCreate_personal_access_tokenCreate_personal_access_token_output `json:"create_personal_access_token"`
 }
 
@@ -644,7 +623,7 @@ func (v *DeleteAssetActionDelete_assetDelete_asset_output) GetSuccess() bool { r
 
 // DeleteAssetActionResponse is returned by DeleteAssetAction on success.
 type DeleteAssetActionResponse struct {
-	// Delete an asset and its S3 object
+	// Delete an asset
 	Delete_asset DeleteAssetActionDelete_assetDelete_asset_output `json:"delete_asset"`
 }
 
@@ -669,7 +648,7 @@ func (v *EnsureAffiliateEnsure_affiliateEnsure_affiliate_output) GetAffiliate_id
 
 // EnsureAffiliateResponse is returned by EnsureAffiliate on success.
 type EnsureAffiliateResponse struct {
-	// Create affiliate record and referral code for current user if missing
+	// Create an affiliate profile and referral code for the current user if missing
 	Ensure_affiliate EnsureAffiliateEnsure_affiliateEnsure_affiliate_output `json:"ensure_affiliate"`
 }
 
@@ -680,10 +659,15 @@ func (v *EnsureAffiliateResponse) GetEnsure_affiliate() EnsureAffiliateEnsure_af
 
 // EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output includes the requested fields of the GraphQL type estimate_pipeline_cost_output.
 type EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output struct {
-	Pipeline_slug  string `json:"pipeline_slug"`
-	Reservation_mc int    `json:"reservation_mc"`
-	Estimated_mc   int    `json:"estimated_mc"`
-	Is_metered     bool   `json:"is_metered"`
+	Pipeline_slug        string           `json:"pipeline_slug"`
+	Reservation_mc       int              `json:"reservation_mc"`
+	Estimated_mc         int              `json:"estimated_mc"`
+	Is_metered           bool             `json:"is_metered"`
+	Routed_model         *string          `json:"routed_model"`
+	Routed_reason_code   *string          `json:"routed_reason_code"`
+	Routed_reason_params *json.RawMessage `json:"routed_reason_params"`
+	Incompatible_models  *json.RawMessage `json:"incompatible_models"`
+	Engine_caps          *json.RawMessage `json:"engine_caps"`
 }
 
 // GetPipeline_slug returns EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output.Pipeline_slug, and is useful for accessing the field via an interface.
@@ -706,9 +690,34 @@ func (v *EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output
 	return v.Is_metered
 }
 
+// GetRouted_model returns EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output.Routed_model, and is useful for accessing the field via an interface.
+func (v *EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output) GetRouted_model() *string {
+	return v.Routed_model
+}
+
+// GetRouted_reason_code returns EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output.Routed_reason_code, and is useful for accessing the field via an interface.
+func (v *EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output) GetRouted_reason_code() *string {
+	return v.Routed_reason_code
+}
+
+// GetRouted_reason_params returns EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output.Routed_reason_params, and is useful for accessing the field via an interface.
+func (v *EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output) GetRouted_reason_params() *json.RawMessage {
+	return v.Routed_reason_params
+}
+
+// GetIncompatible_models returns EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output.Incompatible_models, and is useful for accessing the field via an interface.
+func (v *EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output) GetIncompatible_models() *json.RawMessage {
+	return v.Incompatible_models
+}
+
+// GetEngine_caps returns EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output.Engine_caps, and is useful for accessing the field via an interface.
+func (v *EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output) GetEngine_caps() *json.RawMessage {
+	return v.Engine_caps
+}
+
 // EstimatePipelineCostResponse is returned by EstimatePipelineCost on success.
 type EstimatePipelineCostResponse struct {
-	// Read-only credit cost preview for a pipeline+input — used by CLI --estimate and FE cost previews (public pipeline pages show per-model prices to logged-out visitors)
+	// Preview the credit cost of running a pipeline with a given input (read-only)
 	Estimate_pipeline_cost *EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output `json:"estimate_pipeline_cost"`
 }
 
@@ -906,7 +915,7 @@ func (v *GetCreditBalanceGet_credit_balanceCredit_balance_output) GetAvailable()
 
 // GetCreditBalanceResponse is returned by GetCreditBalance on success.
 type GetCreditBalanceResponse struct {
-	// Get user credit balance from TigerBeetle
+	// Get your current credit balance
 	Get_credit_balance *GetCreditBalanceGet_credit_balanceCredit_balance_output `json:"get_credit_balance"`
 }
 
@@ -969,7 +978,7 @@ func (v *GetCreditHistoryGet_credit_historyCredit_history_entry) GetReservation_
 
 // GetCreditHistoryResponse is returned by GetCreditHistory on success.
 type GetCreditHistoryResponse struct {
-	// Get user credit transaction history from TigerBeetle
+	// Get your credit transaction history
 	Get_credit_history []GetCreditHistoryGet_credit_historyCredit_history_entry `json:"get_credit_history"`
 }
 
@@ -988,6 +997,8 @@ type GetCreditPacksCredit_packs struct {
 	Name       string `json:"name"`
 	Sort_order int    `json:"sort_order"`
 	// An array relationship
+	Translations []GetCreditPacksCredit_packsTranslationsCredit_pack_translations `json:"translations"`
+	// An array relationship
 	Versions []GetCreditPacksCredit_packsVersionsCredit_pack_versions `json:"versions"`
 }
 
@@ -1003,9 +1014,33 @@ func (v *GetCreditPacksCredit_packs) GetName() string { return v.Name }
 // GetSort_order returns GetCreditPacksCredit_packs.Sort_order, and is useful for accessing the field via an interface.
 func (v *GetCreditPacksCredit_packs) GetSort_order() int { return v.Sort_order }
 
+// GetTranslations returns GetCreditPacksCredit_packs.Translations, and is useful for accessing the field via an interface.
+func (v *GetCreditPacksCredit_packs) GetTranslations() []GetCreditPacksCredit_packsTranslationsCredit_pack_translations {
+	return v.Translations
+}
+
 // GetVersions returns GetCreditPacksCredit_packs.Versions, and is useful for accessing the field via an interface.
 func (v *GetCreditPacksCredit_packs) GetVersions() []GetCreditPacksCredit_packsVersionsCredit_pack_versions {
 	return v.Versions
+}
+
+// GetCreditPacksCredit_packsTranslationsCredit_pack_translations includes the requested fields of the GraphQL type credit_pack_translations.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "credit_pack_translations"
+type GetCreditPacksCredit_packsTranslationsCredit_pack_translations struct {
+	Locale string  `json:"locale"`
+	Name   *string `json:"name"`
+}
+
+// GetLocale returns GetCreditPacksCredit_packsTranslationsCredit_pack_translations.Locale, and is useful for accessing the field via an interface.
+func (v *GetCreditPacksCredit_packsTranslationsCredit_pack_translations) GetLocale() string {
+	return v.Locale
+}
+
+// GetName returns GetCreditPacksCredit_packsTranslationsCredit_pack_translations.Name, and is useful for accessing the field via an interface.
+func (v *GetCreditPacksCredit_packsTranslationsCredit_pack_translations) GetName() *string {
+	return v.Name
 }
 
 // GetCreditPacksCredit_packsVersionsCredit_pack_versions includes the requested fields of the GraphQL type credit_pack_versions.
@@ -1086,7 +1121,7 @@ func (v *GetCurrentUserCurrent_userCurrent_user_output) GetDeletion_effective_at
 
 // GetCurrentUserResponse is returned by GetCurrentUser on success.
 type GetCurrentUserResponse struct {
-	// Get currently authenticated user from JWT claims
+	// Get the currently signed-in user
 	Current_user GetCurrentUserCurrent_userCurrent_user_output `json:"current_user"`
 }
 
@@ -1323,7 +1358,7 @@ func (v *GetMyReferralsGet_my_referralsGet_my_referrals_outputReferralsReferral_
 
 // GetMyReferralsResponse is returned by GetMyReferrals on success.
 type GetMyReferralsResponse struct {
-	// Get affiliate referral stats and referred users
+	// Get your referral stats and referred users
 	Get_my_referrals GetMyReferralsGet_my_referralsGet_my_referrals_output `json:"get_my_referrals"`
 }
 
@@ -1480,6 +1515,8 @@ type GetPipelineRunPipeline_runs_by_pkPipeline_runs struct {
 	Credits_charged *int             `json:"credits_charged"`
 	Created_at      string           `json:"created_at"`
 	Completed_at    *string          `json:"completed_at"`
+	Share_token     *string          `json:"share_token"`
+	Share_watermark bool             `json:"share_watermark"`
 	// An object relationship
 	Pipeline GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines `json:"pipeline"`
 	// An array relationship
@@ -1517,6 +1554,16 @@ func (v *GetPipelineRunPipeline_runs_by_pkPipeline_runs) GetCreated_at() string 
 // GetCompleted_at returns GetPipelineRunPipeline_runs_by_pkPipeline_runs.Completed_at, and is useful for accessing the field via an interface.
 func (v *GetPipelineRunPipeline_runs_by_pkPipeline_runs) GetCompleted_at() *string {
 	return v.Completed_at
+}
+
+// GetShare_token returns GetPipelineRunPipeline_runs_by_pkPipeline_runs.Share_token, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunPipeline_runs_by_pkPipeline_runs) GetShare_token() *string {
+	return v.Share_token
+}
+
+// GetShare_watermark returns GetPipelineRunPipeline_runs_by_pkPipeline_runs.Share_watermark, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunPipeline_runs_by_pkPipeline_runs) GetShare_watermark() bool {
+	return v.Share_watermark
 }
 
 // GetPipeline returns GetPipelineRunPipeline_runs_by_pkPipeline_runs.Pipeline, and is useful for accessing the field via an interface.
@@ -1659,6 +1706,8 @@ type GetPipelineRunsBySlugPipeline_runs struct {
 	Credits_charged *int                                                `json:"credits_charged"`
 	Created_at      string                                              `json:"created_at"`
 	Completed_at    *string                                             `json:"completed_at"`
+	Share_token     *string                                             `json:"share_token"`
+	Share_watermark bool                                                `json:"share_watermark"`
 	// An array relationship
 	Assets             []GetPipelineRunsBySlugPipeline_runsAssets                                 `json:"assets"`
 	Workflow_execution *GetPipelineRunsBySlugPipeline_runsWorkflow_executionExecutions_visibility `json:"workflow_execution"`
@@ -1692,6 +1741,12 @@ func (v *GetPipelineRunsBySlugPipeline_runs) GetCreated_at() string { return v.C
 
 // GetCompleted_at returns GetPipelineRunsBySlugPipeline_runs.Completed_at, and is useful for accessing the field via an interface.
 func (v *GetPipelineRunsBySlugPipeline_runs) GetCompleted_at() *string { return v.Completed_at }
+
+// GetShare_token returns GetPipelineRunsBySlugPipeline_runs.Share_token, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsBySlugPipeline_runs) GetShare_token() *string { return v.Share_token }
+
+// GetShare_watermark returns GetPipelineRunsBySlugPipeline_runs.Share_watermark, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsBySlugPipeline_runs) GetShare_watermark() bool { return v.Share_watermark }
 
 // GetAssets returns GetPipelineRunsBySlugPipeline_runs.Assets, and is useful for accessing the field via an interface.
 func (v *GetPipelineRunsBySlugPipeline_runs) GetAssets() []GetPipelineRunsBySlugPipeline_runsAssets {
@@ -1894,6 +1949,8 @@ type GetPipelineRunsPipeline_runs struct {
 	Credits_charged    *int                                                                 `json:"credits_charged"`
 	Created_at         string                                                               `json:"created_at"`
 	Completed_at       *string                                                              `json:"completed_at"`
+	Share_token        *string                                                              `json:"share_token"`
+	Share_watermark    bool                                                                 `json:"share_watermark"`
 	Workflow_execution *GetPipelineRunsPipeline_runsWorkflow_executionExecutions_visibility `json:"workflow_execution"`
 }
 
@@ -1925,6 +1982,12 @@ func (v *GetPipelineRunsPipeline_runs) GetCreated_at() string { return v.Created
 
 // GetCompleted_at returns GetPipelineRunsPipeline_runs.Completed_at, and is useful for accessing the field via an interface.
 func (v *GetPipelineRunsPipeline_runs) GetCompleted_at() *string { return v.Completed_at }
+
+// GetShare_token returns GetPipelineRunsPipeline_runs.Share_token, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsPipeline_runs) GetShare_token() *string { return v.Share_token }
+
+// GetShare_watermark returns GetPipelineRunsPipeline_runs.Share_watermark, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsPipeline_runs) GetShare_watermark() bool { return v.Share_watermark }
 
 // GetWorkflow_execution returns GetPipelineRunsPipeline_runs.Workflow_execution, and is useful for accessing the field via an interface.
 func (v *GetPipelineRunsPipeline_runs) GetWorkflow_execution() *GetPipelineRunsPipeline_runsWorkflow_executionExecutions_visibility {
@@ -2132,6 +2195,10 @@ type GetPipelinesPipelines struct {
 	// Structured metadata for AI orchestrators: best_for, avoid_for, limitations, output_characteristics, composability, quality_tips
 	Hints       json.RawMessage `json:"hints"`
 	Cancellable bool            `json:"cancellable"`
+	// An array relationship
+	Translations []GetPipelinesPipelinesTranslationsPipeline_translations `json:"translations"`
+	// An array relationship
+	Examples []GetPipelinesPipelinesExamplesPipeline_examples `json:"examples"`
 }
 
 // GetId returns GetPipelinesPipelines.Id, and is useful for accessing the field via an interface.
@@ -2185,6 +2252,172 @@ func (v *GetPipelinesPipelines) GetHints() json.RawMessage { return v.Hints }
 // GetCancellable returns GetPipelinesPipelines.Cancellable, and is useful for accessing the field via an interface.
 func (v *GetPipelinesPipelines) GetCancellable() bool { return v.Cancellable }
 
+// GetTranslations returns GetPipelinesPipelines.Translations, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelines) GetTranslations() []GetPipelinesPipelinesTranslationsPipeline_translations {
+	return v.Translations
+}
+
+// GetExamples returns GetPipelinesPipelines.Examples, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelines) GetExamples() []GetPipelinesPipelinesExamplesPipeline_examples {
+	return v.Examples
+}
+
+// GetPipelinesPipelinesExamplesPipeline_examples includes the requested fields of the GraphQL type pipeline_examples.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "pipeline_examples"
+type GetPipelinesPipelinesExamplesPipeline_examples struct {
+	Id            string           `json:"id"`
+	Title         string           `json:"title"`
+	Caption       *string          `json:"caption"`
+	Output_url    *string          `json:"output_url"`
+	Output_kind   string           `json:"output_kind"`
+	Input_url     *string          `json:"input_url"`
+	Input_kind    *string          `json:"input_kind"`
+	Content       *string          `json:"content"`
+	Inputs        *json.RawMessage `json:"inputs"`
+	Thumbnail_url *string          `json:"thumbnail_url"`
+	Model_slug    *string          `json:"model_slug"`
+	// An object relationship
+	Model *GetPipelinesPipelinesExamplesPipeline_examplesModelModels `json:"model"`
+	// An array relationship
+	Translations []GetPipelinesPipelinesExamplesPipeline_examplesTranslationsPipeline_examples_translations `json:"translations"`
+}
+
+// GetId returns GetPipelinesPipelinesExamplesPipeline_examples.Id, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesExamplesPipeline_examples) GetId() string { return v.Id }
+
+// GetTitle returns GetPipelinesPipelinesExamplesPipeline_examples.Title, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesExamplesPipeline_examples) GetTitle() string { return v.Title }
+
+// GetCaption returns GetPipelinesPipelinesExamplesPipeline_examples.Caption, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesExamplesPipeline_examples) GetCaption() *string { return v.Caption }
+
+// GetOutput_url returns GetPipelinesPipelinesExamplesPipeline_examples.Output_url, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesExamplesPipeline_examples) GetOutput_url() *string { return v.Output_url }
+
+// GetOutput_kind returns GetPipelinesPipelinesExamplesPipeline_examples.Output_kind, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesExamplesPipeline_examples) GetOutput_kind() string {
+	return v.Output_kind
+}
+
+// GetInput_url returns GetPipelinesPipelinesExamplesPipeline_examples.Input_url, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesExamplesPipeline_examples) GetInput_url() *string { return v.Input_url }
+
+// GetInput_kind returns GetPipelinesPipelinesExamplesPipeline_examples.Input_kind, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesExamplesPipeline_examples) GetInput_kind() *string { return v.Input_kind }
+
+// GetContent returns GetPipelinesPipelinesExamplesPipeline_examples.Content, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesExamplesPipeline_examples) GetContent() *string { return v.Content }
+
+// GetInputs returns GetPipelinesPipelinesExamplesPipeline_examples.Inputs, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesExamplesPipeline_examples) GetInputs() *json.RawMessage {
+	return v.Inputs
+}
+
+// GetThumbnail_url returns GetPipelinesPipelinesExamplesPipeline_examples.Thumbnail_url, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesExamplesPipeline_examples) GetThumbnail_url() *string {
+	return v.Thumbnail_url
+}
+
+// GetModel_slug returns GetPipelinesPipelinesExamplesPipeline_examples.Model_slug, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesExamplesPipeline_examples) GetModel_slug() *string { return v.Model_slug }
+
+// GetModel returns GetPipelinesPipelinesExamplesPipeline_examples.Model, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesExamplesPipeline_examples) GetModel() *GetPipelinesPipelinesExamplesPipeline_examplesModelModels {
+	return v.Model
+}
+
+// GetTranslations returns GetPipelinesPipelinesExamplesPipeline_examples.Translations, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesExamplesPipeline_examples) GetTranslations() []GetPipelinesPipelinesExamplesPipeline_examplesTranslationsPipeline_examples_translations {
+	return v.Translations
+}
+
+// GetPipelinesPipelinesExamplesPipeline_examplesModelModels includes the requested fields of the GraphQL type models.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "models"
+type GetPipelinesPipelinesExamplesPipeline_examplesModelModels struct {
+	Slug  string `json:"slug"`
+	Label string `json:"label"`
+}
+
+// GetSlug returns GetPipelinesPipelinesExamplesPipeline_examplesModelModels.Slug, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesExamplesPipeline_examplesModelModels) GetSlug() string { return v.Slug }
+
+// GetLabel returns GetPipelinesPipelinesExamplesPipeline_examplesModelModels.Label, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesExamplesPipeline_examplesModelModels) GetLabel() string { return v.Label }
+
+// GetPipelinesPipelinesExamplesPipeline_examplesTranslationsPipeline_examples_translations includes the requested fields of the GraphQL type pipeline_examples_translations.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "pipeline_examples_translations"
+type GetPipelinesPipelinesExamplesPipeline_examplesTranslationsPipeline_examples_translations struct {
+	Locale  string  `json:"locale"`
+	Title   *string `json:"title"`
+	Caption *string `json:"caption"`
+}
+
+// GetLocale returns GetPipelinesPipelinesExamplesPipeline_examplesTranslationsPipeline_examples_translations.Locale, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesExamplesPipeline_examplesTranslationsPipeline_examples_translations) GetLocale() string {
+	return v.Locale
+}
+
+// GetTitle returns GetPipelinesPipelinesExamplesPipeline_examplesTranslationsPipeline_examples_translations.Title, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesExamplesPipeline_examplesTranslationsPipeline_examples_translations) GetTitle() *string {
+	return v.Title
+}
+
+// GetCaption returns GetPipelinesPipelinesExamplesPipeline_examplesTranslationsPipeline_examples_translations.Caption, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesExamplesPipeline_examplesTranslationsPipeline_examples_translations) GetCaption() *string {
+	return v.Caption
+}
+
+// GetPipelinesPipelinesTranslationsPipeline_translations includes the requested fields of the GraphQL type pipeline_translations.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "pipeline_translations"
+type GetPipelinesPipelinesTranslationsPipeline_translations struct {
+	Locale      string           `json:"locale"`
+	Name        *string          `json:"name"`
+	Description *string          `json:"description"`
+	Seo_content *string          `json:"seo_content"`
+	Seo_faq     *json.RawMessage `json:"seo_faq"`
+	Hints       *json.RawMessage `json:"hints"`
+	Form_i18n   *json.RawMessage `json:"form_i18n"`
+}
+
+// GetLocale returns GetPipelinesPipelinesTranslationsPipeline_translations.Locale, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesTranslationsPipeline_translations) GetLocale() string { return v.Locale }
+
+// GetName returns GetPipelinesPipelinesTranslationsPipeline_translations.Name, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesTranslationsPipeline_translations) GetName() *string { return v.Name }
+
+// GetDescription returns GetPipelinesPipelinesTranslationsPipeline_translations.Description, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesTranslationsPipeline_translations) GetDescription() *string {
+	return v.Description
+}
+
+// GetSeo_content returns GetPipelinesPipelinesTranslationsPipeline_translations.Seo_content, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesTranslationsPipeline_translations) GetSeo_content() *string {
+	return v.Seo_content
+}
+
+// GetSeo_faq returns GetPipelinesPipelinesTranslationsPipeline_translations.Seo_faq, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesTranslationsPipeline_translations) GetSeo_faq() *json.RawMessage {
+	return v.Seo_faq
+}
+
+// GetHints returns GetPipelinesPipelinesTranslationsPipeline_translations.Hints, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesTranslationsPipeline_translations) GetHints() *json.RawMessage {
+	return v.Hints
+}
+
+// GetForm_i18n returns GetPipelinesPipelinesTranslationsPipeline_translations.Form_i18n, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesTranslationsPipeline_translations) GetForm_i18n() *json.RawMessage {
+	return v.Form_i18n
+}
+
 // GetPipelinesResponse is returned by GetPipelines on success.
 type GetPipelinesResponse struct {
 	// fetch data from the table: "pipelines"
@@ -2205,6 +2438,8 @@ type GetPlansPlans struct {
 	Description *string         `json:"description"`
 	Features    json.RawMessage `json:"features"`
 	Sort_order  int             `json:"sort_order"`
+	// An array relationship
+	Translations []GetPlansPlansTranslationsPlan_translations `json:"translations"`
 	// An array relationship
 	Versions []GetPlansPlansVersionsPlan_versions `json:"versions"`
 }
@@ -2227,8 +2462,38 @@ func (v *GetPlansPlans) GetFeatures() json.RawMessage { return v.Features }
 // GetSort_order returns GetPlansPlans.Sort_order, and is useful for accessing the field via an interface.
 func (v *GetPlansPlans) GetSort_order() int { return v.Sort_order }
 
+// GetTranslations returns GetPlansPlans.Translations, and is useful for accessing the field via an interface.
+func (v *GetPlansPlans) GetTranslations() []GetPlansPlansTranslationsPlan_translations {
+	return v.Translations
+}
+
 // GetVersions returns GetPlansPlans.Versions, and is useful for accessing the field via an interface.
 func (v *GetPlansPlans) GetVersions() []GetPlansPlansVersionsPlan_versions { return v.Versions }
+
+// GetPlansPlansTranslationsPlan_translations includes the requested fields of the GraphQL type plan_translations.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "plan_translations"
+type GetPlansPlansTranslationsPlan_translations struct {
+	Locale      string           `json:"locale"`
+	Name        *string          `json:"name"`
+	Description *string          `json:"description"`
+	Features    *json.RawMessage `json:"features"`
+}
+
+// GetLocale returns GetPlansPlansTranslationsPlan_translations.Locale, and is useful for accessing the field via an interface.
+func (v *GetPlansPlansTranslationsPlan_translations) GetLocale() string { return v.Locale }
+
+// GetName returns GetPlansPlansTranslationsPlan_translations.Name, and is useful for accessing the field via an interface.
+func (v *GetPlansPlansTranslationsPlan_translations) GetName() *string { return v.Name }
+
+// GetDescription returns GetPlansPlansTranslationsPlan_translations.Description, and is useful for accessing the field via an interface.
+func (v *GetPlansPlansTranslationsPlan_translations) GetDescription() *string { return v.Description }
+
+// GetFeatures returns GetPlansPlansTranslationsPlan_translations.Features, and is useful for accessing the field via an interface.
+func (v *GetPlansPlansTranslationsPlan_translations) GetFeatures() *json.RawMessage {
+	return v.Features
+}
 
 // GetPlansPlansVersionsPlan_versions includes the requested fields of the GraphQL type plan_versions.
 // The GraphQL type's documentation follows.
@@ -2477,75 +2742,6 @@ func (v *GetUserAssetsResponse) GetAssets_aggregate() GetUserAssetsAssets_aggreg
 	return v.Assets_aggregate
 }
 
-// InitLoginFlowInit_login_flowAuth_flow includes the requested fields of the GraphQL type auth_flow.
-type InitLoginFlowInit_login_flowAuth_flow struct {
-	Id         string `json:"id"`
-	Csrf_token string `json:"csrf_token"`
-}
-
-// GetId returns InitLoginFlowInit_login_flowAuth_flow.Id, and is useful for accessing the field via an interface.
-func (v *InitLoginFlowInit_login_flowAuth_flow) GetId() string { return v.Id }
-
-// GetCsrf_token returns InitLoginFlowInit_login_flowAuth_flow.Csrf_token, and is useful for accessing the field via an interface.
-func (v *InitLoginFlowInit_login_flowAuth_flow) GetCsrf_token() string { return v.Csrf_token }
-
-// InitLoginFlowResponse is returned by InitLoginFlow on success.
-type InitLoginFlowResponse struct {
-	// Initiate Kratos login flow
-	Init_login_flow InitLoginFlowInit_login_flowAuth_flow `json:"init_login_flow"`
-}
-
-// GetInit_login_flow returns InitLoginFlowResponse.Init_login_flow, and is useful for accessing the field via an interface.
-func (v *InitLoginFlowResponse) GetInit_login_flow() InitLoginFlowInit_login_flowAuth_flow {
-	return v.Init_login_flow
-}
-
-// InitRecoveryFlowInit_recovery_flowAuth_result includes the requested fields of the GraphQL type auth_result.
-type InitRecoveryFlowInit_recovery_flowAuth_result struct {
-	Success bool   `json:"success"`
-	Message string `json:"message"`
-}
-
-// GetSuccess returns InitRecoveryFlowInit_recovery_flowAuth_result.Success, and is useful for accessing the field via an interface.
-func (v *InitRecoveryFlowInit_recovery_flowAuth_result) GetSuccess() bool { return v.Success }
-
-// GetMessage returns InitRecoveryFlowInit_recovery_flowAuth_result.Message, and is useful for accessing the field via an interface.
-func (v *InitRecoveryFlowInit_recovery_flowAuth_result) GetMessage() string { return v.Message }
-
-// InitRecoveryFlowResponse is returned by InitRecoveryFlow on success.
-type InitRecoveryFlowResponse struct {
-	// Initiate Kratos password recovery (forgot password) flow
-	Init_recovery_flow InitRecoveryFlowInit_recovery_flowAuth_result `json:"init_recovery_flow"`
-}
-
-// GetInit_recovery_flow returns InitRecoveryFlowResponse.Init_recovery_flow, and is useful for accessing the field via an interface.
-func (v *InitRecoveryFlowResponse) GetInit_recovery_flow() InitRecoveryFlowInit_recovery_flowAuth_result {
-	return v.Init_recovery_flow
-}
-
-// InitSignupFlowInit_signup_flowAuth_flow includes the requested fields of the GraphQL type auth_flow.
-type InitSignupFlowInit_signup_flowAuth_flow struct {
-	Id         string `json:"id"`
-	Csrf_token string `json:"csrf_token"`
-}
-
-// GetId returns InitSignupFlowInit_signup_flowAuth_flow.Id, and is useful for accessing the field via an interface.
-func (v *InitSignupFlowInit_signup_flowAuth_flow) GetId() string { return v.Id }
-
-// GetCsrf_token returns InitSignupFlowInit_signup_flowAuth_flow.Csrf_token, and is useful for accessing the field via an interface.
-func (v *InitSignupFlowInit_signup_flowAuth_flow) GetCsrf_token() string { return v.Csrf_token }
-
-// InitSignupFlowResponse is returned by InitSignupFlow on success.
-type InitSignupFlowResponse struct {
-	// Initiate Kratos signup (registration) flow
-	Init_signup_flow InitSignupFlowInit_signup_flowAuth_flow `json:"init_signup_flow"`
-}
-
-// GetInit_signup_flow returns InitSignupFlowResponse.Init_signup_flow, and is useful for accessing the field via an interface.
-func (v *InitSignupFlowResponse) GetInit_signup_flow() InitSignupFlowInit_signup_flowAuth_flow {
-	return v.Init_signup_flow
-}
-
 // InitVerificationFlowInit_verification_flowAuth_flow includes the requested fields of the GraphQL type auth_flow.
 type InitVerificationFlowInit_verification_flowAuth_flow struct {
 	Id         string `json:"id"`
@@ -2562,7 +2758,7 @@ func (v *InitVerificationFlowInit_verification_flowAuth_flow) GetCsrf_token() st
 
 // InitVerificationFlowResponse is returned by InitVerificationFlow on success.
 type InitVerificationFlowResponse struct {
-	// Initiate Kratos email verification flow
+	// Begin email verification
 	Init_verification_flow InitVerificationFlowInit_verification_flowAuth_flow `json:"init_verification_flow"`
 }
 
@@ -2687,6 +2883,35 @@ func (v *Jsonb_comparison_exp) GetNeq() *json.RawMessage { return v.Neq }
 // GetNin returns Jsonb_comparison_exp.Nin, and is useful for accessing the field via an interface.
 func (v *Jsonb_comparison_exp) GetNin() []json.RawMessage { return v.Nin }
 
+// LoginLoginAuth_result includes the requested fields of the GraphQL type auth_result.
+type LoginLoginAuth_result struct {
+	Success      bool    `json:"success"`
+	Message      string  `json:"message"`
+	Token        *string `json:"token"`
+	Affiliate_id *string `json:"affiliate_id"`
+}
+
+// GetSuccess returns LoginLoginAuth_result.Success, and is useful for accessing the field via an interface.
+func (v *LoginLoginAuth_result) GetSuccess() bool { return v.Success }
+
+// GetMessage returns LoginLoginAuth_result.Message, and is useful for accessing the field via an interface.
+func (v *LoginLoginAuth_result) GetMessage() string { return v.Message }
+
+// GetToken returns LoginLoginAuth_result.Token, and is useful for accessing the field via an interface.
+func (v *LoginLoginAuth_result) GetToken() *string { return v.Token }
+
+// GetAffiliate_id returns LoginLoginAuth_result.Affiliate_id, and is useful for accessing the field via an interface.
+func (v *LoginLoginAuth_result) GetAffiliate_id() *string { return v.Affiliate_id }
+
+// LoginResponse is returned by Login on success.
+type LoginResponse struct {
+	// Sign in with email and password
+	Login LoginLoginAuth_result `json:"login"`
+}
+
+// GetLogin returns LoginResponse.Login, and is useful for accessing the field via an interface.
+func (v *LoginResponse) GetLogin() LoginLoginAuth_result { return v.Login }
+
 // MarkAllNotificationsReadResponse is returned by MarkAllNotificationsRead on success.
 type MarkAllNotificationsReadResponse struct {
 	// update data of the table: "notifications"
@@ -2738,49 +2963,57 @@ func (v *MarkNotificationReadUpdate_notifications_by_pkNotifications) GetId() st
 // GetRead returns MarkNotificationReadUpdate_notifications_by_pkNotifications.Read, and is useful for accessing the field via an interface.
 func (v *MarkNotificationReadUpdate_notifications_by_pkNotifications) GetRead() bool { return v.Read }
 
-// Boolean expression to filter rows from the table "model_capabilities". All fields are combined with a logical 'AND'.
-type Model_capabilities_bool_exp struct {
-	And             []Model_capabilities_bool_exp     `json:"_and"`
-	Not             *Model_capabilities_bool_exp      `json:"_not"`
-	Or              []Model_capabilities_bool_exp     `json:"_or"`
-	Capability_slug *Capabilities_enum_comparison_exp `json:"capability_slug"`
-	Model           *Models_bool_exp                  `json:"model"`
-	Model_slug      *String_comparison_exp            `json:"model_slug"`
+// Boolean expression to filter rows from the table "model_translations". All fields are combined with a logical 'AND'.
+type Model_translations_bool_exp struct {
+	And         []Model_translations_bool_exp `json:"_and"`
+	Not         *Model_translations_bool_exp  `json:"_not"`
+	Or          []Model_translations_bool_exp `json:"_or"`
+	Description *String_comparison_exp        `json:"description"`
+	Locale      *String_comparison_exp        `json:"locale"`
+	Model       *Models_bool_exp              `json:"model"`
+	Model_slug  *String_comparison_exp        `json:"model_slug"`
+	Updated_at  *Timestamptz_comparison_exp   `json:"updated_at"`
 }
 
-// GetAnd returns Model_capabilities_bool_exp.And, and is useful for accessing the field via an interface.
-func (v *Model_capabilities_bool_exp) GetAnd() []Model_capabilities_bool_exp { return v.And }
+// GetAnd returns Model_translations_bool_exp.And, and is useful for accessing the field via an interface.
+func (v *Model_translations_bool_exp) GetAnd() []Model_translations_bool_exp { return v.And }
 
-// GetNot returns Model_capabilities_bool_exp.Not, and is useful for accessing the field via an interface.
-func (v *Model_capabilities_bool_exp) GetNot() *Model_capabilities_bool_exp { return v.Not }
+// GetNot returns Model_translations_bool_exp.Not, and is useful for accessing the field via an interface.
+func (v *Model_translations_bool_exp) GetNot() *Model_translations_bool_exp { return v.Not }
 
-// GetOr returns Model_capabilities_bool_exp.Or, and is useful for accessing the field via an interface.
-func (v *Model_capabilities_bool_exp) GetOr() []Model_capabilities_bool_exp { return v.Or }
+// GetOr returns Model_translations_bool_exp.Or, and is useful for accessing the field via an interface.
+func (v *Model_translations_bool_exp) GetOr() []Model_translations_bool_exp { return v.Or }
 
-// GetCapability_slug returns Model_capabilities_bool_exp.Capability_slug, and is useful for accessing the field via an interface.
-func (v *Model_capabilities_bool_exp) GetCapability_slug() *Capabilities_enum_comparison_exp {
-	return v.Capability_slug
+// GetDescription returns Model_translations_bool_exp.Description, and is useful for accessing the field via an interface.
+func (v *Model_translations_bool_exp) GetDescription() *String_comparison_exp { return v.Description }
+
+// GetLocale returns Model_translations_bool_exp.Locale, and is useful for accessing the field via an interface.
+func (v *Model_translations_bool_exp) GetLocale() *String_comparison_exp { return v.Locale }
+
+// GetModel returns Model_translations_bool_exp.Model, and is useful for accessing the field via an interface.
+func (v *Model_translations_bool_exp) GetModel() *Models_bool_exp { return v.Model }
+
+// GetModel_slug returns Model_translations_bool_exp.Model_slug, and is useful for accessing the field via an interface.
+func (v *Model_translations_bool_exp) GetModel_slug() *String_comparison_exp { return v.Model_slug }
+
+// GetUpdated_at returns Model_translations_bool_exp.Updated_at, and is useful for accessing the field via an interface.
+func (v *Model_translations_bool_exp) GetUpdated_at() *Timestamptz_comparison_exp {
+	return v.Updated_at
 }
-
-// GetModel returns Model_capabilities_bool_exp.Model, and is useful for accessing the field via an interface.
-func (v *Model_capabilities_bool_exp) GetModel() *Models_bool_exp { return v.Model }
-
-// GetModel_slug returns Model_capabilities_bool_exp.Model_slug, and is useful for accessing the field via an interface.
-func (v *Model_capabilities_bool_exp) GetModel_slug() *String_comparison_exp { return v.Model_slug }
 
 // Boolean expression to filter rows from the table "models". All fields are combined with a logical 'AND'.
 type Models_bool_exp struct {
-	And             []Models_bool_exp              `json:"_and"`
-	Not             *Models_bool_exp               `json:"_not"`
-	Or              []Models_bool_exp              `json:"_or"`
-	Capabilities    *Model_capabilities_bool_exp   `json:"capabilities"`
-	Description     *String_comparison_exp         `json:"description"`
-	Is_active       *Boolean_comparison_exp        `json:"is_active"`
-	Label           *String_comparison_exp         `json:"label"`
-	Pipeline_models *Pipeline_models_bool_exp      `json:"pipeline_models"`
-	Provider        *Providers_enum_comparison_exp `json:"provider"`
-	Slug            *String_comparison_exp         `json:"slug"`
-	Sort_order      *Int_comparison_exp            `json:"sort_order"`
+	And             []Models_bool_exp            `json:"_and"`
+	Not             *Models_bool_exp             `json:"_not"`
+	Or              []Models_bool_exp            `json:"_or"`
+	Description     *String_comparison_exp       `json:"description"`
+	Is_active       *Boolean_comparison_exp      `json:"is_active"`
+	Label           *String_comparison_exp       `json:"label"`
+	Pipeline_models *Pipeline_models_bool_exp    `json:"pipeline_models"`
+	Provider        *String_comparison_exp       `json:"provider"`
+	Slug            *String_comparison_exp       `json:"slug"`
+	Sort_order      *Int_comparison_exp          `json:"sort_order"`
+	Translations    *Model_translations_bool_exp `json:"translations"`
 }
 
 // GetAnd returns Models_bool_exp.And, and is useful for accessing the field via an interface.
@@ -2791,9 +3024,6 @@ func (v *Models_bool_exp) GetNot() *Models_bool_exp { return v.Not }
 
 // GetOr returns Models_bool_exp.Or, and is useful for accessing the field via an interface.
 func (v *Models_bool_exp) GetOr() []Models_bool_exp { return v.Or }
-
-// GetCapabilities returns Models_bool_exp.Capabilities, and is useful for accessing the field via an interface.
-func (v *Models_bool_exp) GetCapabilities() *Model_capabilities_bool_exp { return v.Capabilities }
 
 // GetDescription returns Models_bool_exp.Description, and is useful for accessing the field via an interface.
 func (v *Models_bool_exp) GetDescription() *String_comparison_exp { return v.Description }
@@ -2808,13 +3038,16 @@ func (v *Models_bool_exp) GetLabel() *String_comparison_exp { return v.Label }
 func (v *Models_bool_exp) GetPipeline_models() *Pipeline_models_bool_exp { return v.Pipeline_models }
 
 // GetProvider returns Models_bool_exp.Provider, and is useful for accessing the field via an interface.
-func (v *Models_bool_exp) GetProvider() *Providers_enum_comparison_exp { return v.Provider }
+func (v *Models_bool_exp) GetProvider() *String_comparison_exp { return v.Provider }
 
 // GetSlug returns Models_bool_exp.Slug, and is useful for accessing the field via an interface.
 func (v *Models_bool_exp) GetSlug() *String_comparison_exp { return v.Slug }
 
 // GetSort_order returns Models_bool_exp.Sort_order, and is useful for accessing the field via an interface.
 func (v *Models_bool_exp) GetSort_order() *Int_comparison_exp { return v.Sort_order }
+
+// GetTranslations returns Models_bool_exp.Translations, and is useful for accessing the field via an interface.
+func (v *Models_bool_exp) GetTranslations() *Model_translations_bool_exp { return v.Translations }
 
 type Multipart_part_input struct {
 	ETag       string `json:"ETag"`
@@ -2873,12 +3106,16 @@ func (v *Numeric_comparison_exp) GetNin() []float64 { return v.Nin }
 // columns and relationships of "pipeline_models"
 type PipelineModelsPipeline_models struct {
 	Model_slug string `json:"model_slug"`
+	Sort_order int    `json:"sort_order"`
 	// An object relationship
 	Model PipelineModelsPipeline_modelsModelModels `json:"model"`
 }
 
 // GetModel_slug returns PipelineModelsPipeline_models.Model_slug, and is useful for accessing the field via an interface.
 func (v *PipelineModelsPipeline_models) GetModel_slug() string { return v.Model_slug }
+
+// GetSort_order returns PipelineModelsPipeline_models.Sort_order, and is useful for accessing the field via an interface.
+func (v *PipelineModelsPipeline_models) GetSort_order() int { return v.Sort_order }
 
 // GetModel returns PipelineModelsPipeline_models.Model, and is useful for accessing the field via an interface.
 func (v *PipelineModelsPipeline_models) GetModel() PipelineModelsPipeline_modelsModelModels {
@@ -2893,6 +3130,9 @@ type PipelineModelsPipeline_modelsModelModels struct {
 	Slug        string `json:"slug"`
 	Label       string `json:"label"`
 	Description string `json:"description"`
+	Provider    string `json:"provider"`
+	// An array relationship
+	Translations []PipelineModelsPipeline_modelsModelModelsTranslationsModel_translations `json:"translations"`
 }
 
 // GetSlug returns PipelineModelsPipeline_modelsModelModels.Slug, and is useful for accessing the field via an interface.
@@ -2903,6 +3143,33 @@ func (v *PipelineModelsPipeline_modelsModelModels) GetLabel() string { return v.
 
 // GetDescription returns PipelineModelsPipeline_modelsModelModels.Description, and is useful for accessing the field via an interface.
 func (v *PipelineModelsPipeline_modelsModelModels) GetDescription() string { return v.Description }
+
+// GetProvider returns PipelineModelsPipeline_modelsModelModels.Provider, and is useful for accessing the field via an interface.
+func (v *PipelineModelsPipeline_modelsModelModels) GetProvider() string { return v.Provider }
+
+// GetTranslations returns PipelineModelsPipeline_modelsModelModels.Translations, and is useful for accessing the field via an interface.
+func (v *PipelineModelsPipeline_modelsModelModels) GetTranslations() []PipelineModelsPipeline_modelsModelModelsTranslationsModel_translations {
+	return v.Translations
+}
+
+// PipelineModelsPipeline_modelsModelModelsTranslationsModel_translations includes the requested fields of the GraphQL type model_translations.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "model_translations"
+type PipelineModelsPipeline_modelsModelModelsTranslationsModel_translations struct {
+	Locale      string  `json:"locale"`
+	Description *string `json:"description"`
+}
+
+// GetLocale returns PipelineModelsPipeline_modelsModelModelsTranslationsModel_translations.Locale, and is useful for accessing the field via an interface.
+func (v *PipelineModelsPipeline_modelsModelModelsTranslationsModel_translations) GetLocale() string {
+	return v.Locale
+}
+
+// GetDescription returns PipelineModelsPipeline_modelsModelModelsTranslationsModel_translations.Description, and is useful for accessing the field via an interface.
+func (v *PipelineModelsPipeline_modelsModelModelsTranslationsModel_translations) GetDescription() *string {
+	return v.Description
+}
 
 // PipelineModelsResponse is returned by PipelineModels on success.
 type PipelineModelsResponse struct {
@@ -2937,13 +3204,163 @@ func (v *PipelinePricingPipeline_pricingPipeline_pricing_row) GetMetered() bool 
 
 // PipelinePricingResponse is returned by PipelinePricing on success.
 type PipelinePricingResponse struct {
-	// Derived pipeline pricing (from DB wholesale) — FE cost-display read model replacing pipelines.pricing
+	// Credit pricing for pipelines
 	Pipeline_pricing []PipelinePricingPipeline_pricingPipeline_pricing_row `json:"pipeline_pricing"`
 }
 
 // GetPipeline_pricing returns PipelinePricingResponse.Pipeline_pricing, and is useful for accessing the field via an interface.
 func (v *PipelinePricingResponse) GetPipeline_pricing() []PipelinePricingPipeline_pricingPipeline_pricing_row {
 	return v.Pipeline_pricing
+}
+
+// Boolean expression to filter rows from the table "pipeline_examples". All fields are combined with a logical 'AND'.
+type Pipeline_examples_bool_exp struct {
+	And           []Pipeline_examples_bool_exp             `json:"_and"`
+	Not           *Pipeline_examples_bool_exp              `json:"_not"`
+	Or            []Pipeline_examples_bool_exp             `json:"_or"`
+	Caption       *String_comparison_exp                   `json:"caption"`
+	Content       *String_comparison_exp                   `json:"content"`
+	Created_at    *Timestamptz_comparison_exp              `json:"created_at"`
+	Id            *Uuid_comparison_exp                     `json:"id"`
+	Input_kind    *String_comparison_exp                   `json:"input_kind"`
+	Input_url     *String_comparison_exp                   `json:"input_url"`
+	Inputs        *Jsonb_comparison_exp                    `json:"inputs"`
+	Is_active     *Boolean_comparison_exp                  `json:"is_active"`
+	Model         *Models_bool_exp                         `json:"model"`
+	Model_slug    *String_comparison_exp                   `json:"model_slug"`
+	Output_kind   *String_comparison_exp                   `json:"output_kind"`
+	Output_url    *String_comparison_exp                   `json:"output_url"`
+	Pipeline      *Pipelines_bool_exp                      `json:"pipeline"`
+	Pipeline_id   *Uuid_comparison_exp                     `json:"pipeline_id"`
+	Sort_order    *Int_comparison_exp                      `json:"sort_order"`
+	Thumbnail_url *String_comparison_exp                   `json:"thumbnail_url"`
+	Title         *String_comparison_exp                   `json:"title"`
+	Translations  *Pipeline_examples_translations_bool_exp `json:"translations"`
+	Updated_at    *Timestamptz_comparison_exp              `json:"updated_at"`
+}
+
+// GetAnd returns Pipeline_examples_bool_exp.And, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_bool_exp) GetAnd() []Pipeline_examples_bool_exp { return v.And }
+
+// GetNot returns Pipeline_examples_bool_exp.Not, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_bool_exp) GetNot() *Pipeline_examples_bool_exp { return v.Not }
+
+// GetOr returns Pipeline_examples_bool_exp.Or, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_bool_exp) GetOr() []Pipeline_examples_bool_exp { return v.Or }
+
+// GetCaption returns Pipeline_examples_bool_exp.Caption, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_bool_exp) GetCaption() *String_comparison_exp { return v.Caption }
+
+// GetContent returns Pipeline_examples_bool_exp.Content, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_bool_exp) GetContent() *String_comparison_exp { return v.Content }
+
+// GetCreated_at returns Pipeline_examples_bool_exp.Created_at, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_bool_exp) GetCreated_at() *Timestamptz_comparison_exp { return v.Created_at }
+
+// GetId returns Pipeline_examples_bool_exp.Id, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_bool_exp) GetId() *Uuid_comparison_exp { return v.Id }
+
+// GetInput_kind returns Pipeline_examples_bool_exp.Input_kind, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_bool_exp) GetInput_kind() *String_comparison_exp { return v.Input_kind }
+
+// GetInput_url returns Pipeline_examples_bool_exp.Input_url, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_bool_exp) GetInput_url() *String_comparison_exp { return v.Input_url }
+
+// GetInputs returns Pipeline_examples_bool_exp.Inputs, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_bool_exp) GetInputs() *Jsonb_comparison_exp { return v.Inputs }
+
+// GetIs_active returns Pipeline_examples_bool_exp.Is_active, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_bool_exp) GetIs_active() *Boolean_comparison_exp { return v.Is_active }
+
+// GetModel returns Pipeline_examples_bool_exp.Model, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_bool_exp) GetModel() *Models_bool_exp { return v.Model }
+
+// GetModel_slug returns Pipeline_examples_bool_exp.Model_slug, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_bool_exp) GetModel_slug() *String_comparison_exp { return v.Model_slug }
+
+// GetOutput_kind returns Pipeline_examples_bool_exp.Output_kind, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_bool_exp) GetOutput_kind() *String_comparison_exp { return v.Output_kind }
+
+// GetOutput_url returns Pipeline_examples_bool_exp.Output_url, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_bool_exp) GetOutput_url() *String_comparison_exp { return v.Output_url }
+
+// GetPipeline returns Pipeline_examples_bool_exp.Pipeline, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_bool_exp) GetPipeline() *Pipelines_bool_exp { return v.Pipeline }
+
+// GetPipeline_id returns Pipeline_examples_bool_exp.Pipeline_id, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_bool_exp) GetPipeline_id() *Uuid_comparison_exp { return v.Pipeline_id }
+
+// GetSort_order returns Pipeline_examples_bool_exp.Sort_order, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_bool_exp) GetSort_order() *Int_comparison_exp { return v.Sort_order }
+
+// GetThumbnail_url returns Pipeline_examples_bool_exp.Thumbnail_url, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_bool_exp) GetThumbnail_url() *String_comparison_exp {
+	return v.Thumbnail_url
+}
+
+// GetTitle returns Pipeline_examples_bool_exp.Title, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_bool_exp) GetTitle() *String_comparison_exp { return v.Title }
+
+// GetTranslations returns Pipeline_examples_bool_exp.Translations, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_bool_exp) GetTranslations() *Pipeline_examples_translations_bool_exp {
+	return v.Translations
+}
+
+// GetUpdated_at returns Pipeline_examples_bool_exp.Updated_at, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_bool_exp) GetUpdated_at() *Timestamptz_comparison_exp { return v.Updated_at }
+
+// Boolean expression to filter rows from the table "pipeline_examples_translations". All fields are combined with a logical 'AND'.
+type Pipeline_examples_translations_bool_exp struct {
+	And        []Pipeline_examples_translations_bool_exp `json:"_and"`
+	Not        *Pipeline_examples_translations_bool_exp  `json:"_not"`
+	Or         []Pipeline_examples_translations_bool_exp `json:"_or"`
+	Caption    *String_comparison_exp                    `json:"caption"`
+	Example    *Pipeline_examples_bool_exp               `json:"example"`
+	Example_id *Uuid_comparison_exp                      `json:"example_id"`
+	Locale     *String_comparison_exp                    `json:"locale"`
+	Title      *String_comparison_exp                    `json:"title"`
+	Updated_at *Timestamptz_comparison_exp               `json:"updated_at"`
+}
+
+// GetAnd returns Pipeline_examples_translations_bool_exp.And, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_translations_bool_exp) GetAnd() []Pipeline_examples_translations_bool_exp {
+	return v.And
+}
+
+// GetNot returns Pipeline_examples_translations_bool_exp.Not, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_translations_bool_exp) GetNot() *Pipeline_examples_translations_bool_exp {
+	return v.Not
+}
+
+// GetOr returns Pipeline_examples_translations_bool_exp.Or, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_translations_bool_exp) GetOr() []Pipeline_examples_translations_bool_exp {
+	return v.Or
+}
+
+// GetCaption returns Pipeline_examples_translations_bool_exp.Caption, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_translations_bool_exp) GetCaption() *String_comparison_exp {
+	return v.Caption
+}
+
+// GetExample returns Pipeline_examples_translations_bool_exp.Example, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_translations_bool_exp) GetExample() *Pipeline_examples_bool_exp {
+	return v.Example
+}
+
+// GetExample_id returns Pipeline_examples_translations_bool_exp.Example_id, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_translations_bool_exp) GetExample_id() *Uuid_comparison_exp {
+	return v.Example_id
+}
+
+// GetLocale returns Pipeline_examples_translations_bool_exp.Locale, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_translations_bool_exp) GetLocale() *String_comparison_exp { return v.Locale }
+
+// GetTitle returns Pipeline_examples_translations_bool_exp.Title, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_translations_bool_exp) GetTitle() *String_comparison_exp { return v.Title }
+
+// GetUpdated_at returns Pipeline_examples_translations_bool_exp.Updated_at, and is useful for accessing the field via an interface.
+func (v *Pipeline_examples_translations_bool_exp) GetUpdated_at() *Timestamptz_comparison_exp {
+	return v.Updated_at
 }
 
 // Boolean expression to filter rows from the table "pipeline_models". All fields are combined with a logical 'AND'.
@@ -2953,7 +3370,6 @@ type Pipeline_models_bool_exp struct {
 	Or            []Pipeline_models_bool_exp `json:"_or"`
 	Model         *Models_bool_exp           `json:"model"`
 	Model_slug    *String_comparison_exp     `json:"model_slug"`
-	Pipeline      *Pipelines_bool_exp        `json:"pipeline"`
 	Pipeline_slug *String_comparison_exp     `json:"pipeline_slug"`
 	Sort_order    *Int_comparison_exp        `json:"sort_order"`
 }
@@ -2972,9 +3388,6 @@ func (v *Pipeline_models_bool_exp) GetModel() *Models_bool_exp { return v.Model 
 
 // GetModel_slug returns Pipeline_models_bool_exp.Model_slug, and is useful for accessing the field via an interface.
 func (v *Pipeline_models_bool_exp) GetModel_slug() *String_comparison_exp { return v.Model_slug }
-
-// GetPipeline returns Pipeline_models_bool_exp.Pipeline, and is useful for accessing the field via an interface.
-func (v *Pipeline_models_bool_exp) GetPipeline() *Pipelines_bool_exp { return v.Pipeline }
 
 // GetPipeline_slug returns Pipeline_models_bool_exp.Pipeline_slug, and is useful for accessing the field via an interface.
 func (v *Pipeline_models_bool_exp) GetPipeline_slug() *String_comparison_exp { return v.Pipeline_slug }
@@ -2998,6 +3411,8 @@ type Pipeline_runs_bool_exp struct {
 	Output               *Jsonb_comparison_exp       `json:"output"`
 	Pipeline             *Pipelines_bool_exp         `json:"pipeline"`
 	Pipeline_id          *Uuid_comparison_exp        `json:"pipeline_id"`
+	Share_token          *Uuid_comparison_exp        `json:"share_token"`
+	Share_watermark      *Boolean_comparison_exp     `json:"share_watermark"`
 	Started_at           *Timestamptz_comparison_exp `json:"started_at"`
 	Status               *String_comparison_exp      `json:"status"`
 	Temporal_workflow_id *String_comparison_exp      `json:"temporal_workflow_id"`
@@ -3047,6 +3462,14 @@ func (v *Pipeline_runs_bool_exp) GetPipeline() *Pipelines_bool_exp { return v.Pi
 // GetPipeline_id returns Pipeline_runs_bool_exp.Pipeline_id, and is useful for accessing the field via an interface.
 func (v *Pipeline_runs_bool_exp) GetPipeline_id() *Uuid_comparison_exp { return v.Pipeline_id }
 
+// GetShare_token returns Pipeline_runs_bool_exp.Share_token, and is useful for accessing the field via an interface.
+func (v *Pipeline_runs_bool_exp) GetShare_token() *Uuid_comparison_exp { return v.Share_token }
+
+// GetShare_watermark returns Pipeline_runs_bool_exp.Share_watermark, and is useful for accessing the field via an interface.
+func (v *Pipeline_runs_bool_exp) GetShare_watermark() *Boolean_comparison_exp {
+	return v.Share_watermark
+}
+
 // GetStarted_at returns Pipeline_runs_bool_exp.Started_at, and is useful for accessing the field via an interface.
 func (v *Pipeline_runs_bool_exp) GetStarted_at() *Timestamptz_comparison_exp { return v.Started_at }
 
@@ -3058,31 +3481,95 @@ func (v *Pipeline_runs_bool_exp) GetTemporal_workflow_id() *String_comparison_ex
 	return v.Temporal_workflow_id
 }
 
+// Boolean expression to filter rows from the table "pipeline_translations". All fields are combined with a logical 'AND'.
+type Pipeline_translations_bool_exp struct {
+	And         []Pipeline_translations_bool_exp `json:"_and"`
+	Not         *Pipeline_translations_bool_exp  `json:"_not"`
+	Or          []Pipeline_translations_bool_exp `json:"_or"`
+	Description *String_comparison_exp           `json:"description"`
+	Form_i18n   *Jsonb_comparison_exp            `json:"form_i18n"`
+	Hints       *Jsonb_comparison_exp            `json:"hints"`
+	Locale      *String_comparison_exp           `json:"locale"`
+	Name        *String_comparison_exp           `json:"name"`
+	Pipeline    *Pipelines_bool_exp              `json:"pipeline"`
+	Pipeline_id *Uuid_comparison_exp             `json:"pipeline_id"`
+	Seo_content *String_comparison_exp           `json:"seo_content"`
+	Seo_faq     *Jsonb_comparison_exp            `json:"seo_faq"`
+	Updated_at  *Timestamptz_comparison_exp      `json:"updated_at"`
+}
+
+// GetAnd returns Pipeline_translations_bool_exp.And, and is useful for accessing the field via an interface.
+func (v *Pipeline_translations_bool_exp) GetAnd() []Pipeline_translations_bool_exp { return v.And }
+
+// GetNot returns Pipeline_translations_bool_exp.Not, and is useful for accessing the field via an interface.
+func (v *Pipeline_translations_bool_exp) GetNot() *Pipeline_translations_bool_exp { return v.Not }
+
+// GetOr returns Pipeline_translations_bool_exp.Or, and is useful for accessing the field via an interface.
+func (v *Pipeline_translations_bool_exp) GetOr() []Pipeline_translations_bool_exp { return v.Or }
+
+// GetDescription returns Pipeline_translations_bool_exp.Description, and is useful for accessing the field via an interface.
+func (v *Pipeline_translations_bool_exp) GetDescription() *String_comparison_exp {
+	return v.Description
+}
+
+// GetForm_i18n returns Pipeline_translations_bool_exp.Form_i18n, and is useful for accessing the field via an interface.
+func (v *Pipeline_translations_bool_exp) GetForm_i18n() *Jsonb_comparison_exp { return v.Form_i18n }
+
+// GetHints returns Pipeline_translations_bool_exp.Hints, and is useful for accessing the field via an interface.
+func (v *Pipeline_translations_bool_exp) GetHints() *Jsonb_comparison_exp { return v.Hints }
+
+// GetLocale returns Pipeline_translations_bool_exp.Locale, and is useful for accessing the field via an interface.
+func (v *Pipeline_translations_bool_exp) GetLocale() *String_comparison_exp { return v.Locale }
+
+// GetName returns Pipeline_translations_bool_exp.Name, and is useful for accessing the field via an interface.
+func (v *Pipeline_translations_bool_exp) GetName() *String_comparison_exp { return v.Name }
+
+// GetPipeline returns Pipeline_translations_bool_exp.Pipeline, and is useful for accessing the field via an interface.
+func (v *Pipeline_translations_bool_exp) GetPipeline() *Pipelines_bool_exp { return v.Pipeline }
+
+// GetPipeline_id returns Pipeline_translations_bool_exp.Pipeline_id, and is useful for accessing the field via an interface.
+func (v *Pipeline_translations_bool_exp) GetPipeline_id() *Uuid_comparison_exp { return v.Pipeline_id }
+
+// GetSeo_content returns Pipeline_translations_bool_exp.Seo_content, and is useful for accessing the field via an interface.
+func (v *Pipeline_translations_bool_exp) GetSeo_content() *String_comparison_exp {
+	return v.Seo_content
+}
+
+// GetSeo_faq returns Pipeline_translations_bool_exp.Seo_faq, and is useful for accessing the field via an interface.
+func (v *Pipeline_translations_bool_exp) GetSeo_faq() *Jsonb_comparison_exp { return v.Seo_faq }
+
+// GetUpdated_at returns Pipeline_translations_bool_exp.Updated_at, and is useful for accessing the field via an interface.
+func (v *Pipeline_translations_bool_exp) GetUpdated_at() *Timestamptz_comparison_exp {
+	return v.Updated_at
+}
+
 // Boolean expression to filter rows from the table "pipelines". All fields are combined with a logical 'AND'.
 type Pipelines_bool_exp struct {
-	And             []Pipelines_bool_exp         `json:"_and"`
-	Not             *Pipelines_bool_exp          `json:"_not"`
-	Or              []Pipelines_bool_exp         `json:"_or"`
-	Cancellable     *Boolean_comparison_exp      `json:"cancellable"`
-	Category        *String_comparison_exp       `json:"category"`
-	Description     *String_comparison_exp       `json:"description"`
-	Hints           *Jsonb_comparison_exp        `json:"hints"`
-	Icon_url        *String_comparison_exp       `json:"icon_url"`
-	Id              *Uuid_comparison_exp         `json:"id"`
-	Input_schema    *Jsonb_comparison_exp        `json:"input_schema"`
-	Is_active       *Boolean_comparison_exp      `json:"is_active"`
-	Models          *String_array_comparison_exp `json:"models"`
-	Name            *String_comparison_exp       `json:"name"`
-	Output_schema   *Jsonb_comparison_exp        `json:"output_schema"`
-	Pipeline_models *Pipeline_models_bool_exp    `json:"pipeline_models"`
-	Preview_url     *String_comparison_exp       `json:"preview_url"`
-	Providers       *String_array_comparison_exp `json:"providers"`
-	Seo_content     *String_comparison_exp       `json:"seo_content"`
-	Seo_faq         *Jsonb_comparison_exp        `json:"seo_faq"`
-	Slug            *String_comparison_exp       `json:"slug"`
-	Sort_order      *Int_comparison_exp          `json:"sort_order"`
-	Tags            *String_array_comparison_exp `json:"tags"`
-	Ui_schema       *Jsonb_comparison_exp        `json:"ui_schema"`
+	And             []Pipelines_bool_exp            `json:"_and"`
+	Not             *Pipelines_bool_exp             `json:"_not"`
+	Or              []Pipelines_bool_exp            `json:"_or"`
+	Cancellable     *Boolean_comparison_exp         `json:"cancellable"`
+	Category        *String_comparison_exp          `json:"category"`
+	Description     *String_comparison_exp          `json:"description"`
+	Examples        *Pipeline_examples_bool_exp     `json:"examples"`
+	Hints           *Jsonb_comparison_exp           `json:"hints"`
+	Icon_url        *String_comparison_exp          `json:"icon_url"`
+	Id              *Uuid_comparison_exp            `json:"id"`
+	Input_schema    *Jsonb_comparison_exp           `json:"input_schema"`
+	Is_active       *Boolean_comparison_exp         `json:"is_active"`
+	Models          *String_array_comparison_exp    `json:"models"`
+	Name            *String_comparison_exp          `json:"name"`
+	Output_schema   *Jsonb_comparison_exp           `json:"output_schema"`
+	Pipeline_models *Pipeline_models_bool_exp       `json:"pipeline_models"`
+	Preview_url     *String_comparison_exp          `json:"preview_url"`
+	Providers       *String_array_comparison_exp    `json:"providers"`
+	Seo_content     *String_comparison_exp          `json:"seo_content"`
+	Seo_faq         *Jsonb_comparison_exp           `json:"seo_faq"`
+	Slug            *String_comparison_exp          `json:"slug"`
+	Sort_order      *Int_comparison_exp             `json:"sort_order"`
+	Tags            *String_array_comparison_exp    `json:"tags"`
+	Translations    *Pipeline_translations_bool_exp `json:"translations"`
+	Ui_schema       *Jsonb_comparison_exp           `json:"ui_schema"`
 }
 
 // GetAnd returns Pipelines_bool_exp.And, and is useful for accessing the field via an interface.
@@ -3102,6 +3589,9 @@ func (v *Pipelines_bool_exp) GetCategory() *String_comparison_exp { return v.Cat
 
 // GetDescription returns Pipelines_bool_exp.Description, and is useful for accessing the field via an interface.
 func (v *Pipelines_bool_exp) GetDescription() *String_comparison_exp { return v.Description }
+
+// GetExamples returns Pipelines_bool_exp.Examples, and is useful for accessing the field via an interface.
+func (v *Pipelines_bool_exp) GetExamples() *Pipeline_examples_bool_exp { return v.Examples }
 
 // GetHints returns Pipelines_bool_exp.Hints, and is useful for accessing the field via an interface.
 func (v *Pipelines_bool_exp) GetHints() *Jsonb_comparison_exp { return v.Hints }
@@ -3151,50 +3641,40 @@ func (v *Pipelines_bool_exp) GetSort_order() *Int_comparison_exp { return v.Sort
 // GetTags returns Pipelines_bool_exp.Tags, and is useful for accessing the field via an interface.
 func (v *Pipelines_bool_exp) GetTags() *String_array_comparison_exp { return v.Tags }
 
+// GetTranslations returns Pipelines_bool_exp.Translations, and is useful for accessing the field via an interface.
+func (v *Pipelines_bool_exp) GetTranslations() *Pipeline_translations_bool_exp { return v.Translations }
+
 // GetUi_schema returns Pipelines_bool_exp.Ui_schema, and is useful for accessing the field via an interface.
 func (v *Pipelines_bool_exp) GetUi_schema() *Jsonb_comparison_exp { return v.Ui_schema }
 
-type Providers_enum string
-
-const (
-	Providers_enumElevenlabs Providers_enum = "elevenlabs"
-	Providers_enumGemini     Providers_enum = "gemini"
-	Providers_enumOpenai     Providers_enum = "openai"
-	Providers_enumVolcengine Providers_enum = "volcengine"
-	Providers_enumXai        Providers_enum = "xai"
-)
-
-var AllProviders_enum = []Providers_enum{
-	Providers_enumElevenlabs,
-	Providers_enumGemini,
-	Providers_enumOpenai,
-	Providers_enumVolcengine,
-	Providers_enumXai,
+// RegisterRegisterAuth_result includes the requested fields of the GraphQL type auth_result.
+type RegisterRegisterAuth_result struct {
+	Success      bool    `json:"success"`
+	Message      string  `json:"message"`
+	Token        *string `json:"token"`
+	Affiliate_id *string `json:"affiliate_id"`
 }
 
-// Boolean expression to compare columns of type "providers_enum". All fields are combined with logical 'AND'.
-type Providers_enum_comparison_exp struct {
-	Eq      *Providers_enum  `json:"_eq"`
-	In      []Providers_enum `json:"_in"`
-	Is_null *bool            `json:"_is_null"`
-	Neq     *Providers_enum  `json:"_neq"`
-	Nin     []Providers_enum `json:"_nin"`
+// GetSuccess returns RegisterRegisterAuth_result.Success, and is useful for accessing the field via an interface.
+func (v *RegisterRegisterAuth_result) GetSuccess() bool { return v.Success }
+
+// GetMessage returns RegisterRegisterAuth_result.Message, and is useful for accessing the field via an interface.
+func (v *RegisterRegisterAuth_result) GetMessage() string { return v.Message }
+
+// GetToken returns RegisterRegisterAuth_result.Token, and is useful for accessing the field via an interface.
+func (v *RegisterRegisterAuth_result) GetToken() *string { return v.Token }
+
+// GetAffiliate_id returns RegisterRegisterAuth_result.Affiliate_id, and is useful for accessing the field via an interface.
+func (v *RegisterRegisterAuth_result) GetAffiliate_id() *string { return v.Affiliate_id }
+
+// RegisterResponse is returned by Register on success.
+type RegisterResponse struct {
+	// Create an account with email and password
+	Register RegisterRegisterAuth_result `json:"register"`
 }
 
-// GetEq returns Providers_enum_comparison_exp.Eq, and is useful for accessing the field via an interface.
-func (v *Providers_enum_comparison_exp) GetEq() *Providers_enum { return v.Eq }
-
-// GetIn returns Providers_enum_comparison_exp.In, and is useful for accessing the field via an interface.
-func (v *Providers_enum_comparison_exp) GetIn() []Providers_enum { return v.In }
-
-// GetIs_null returns Providers_enum_comparison_exp.Is_null, and is useful for accessing the field via an interface.
-func (v *Providers_enum_comparison_exp) GetIs_null() *bool { return v.Is_null }
-
-// GetNeq returns Providers_enum_comparison_exp.Neq, and is useful for accessing the field via an interface.
-func (v *Providers_enum_comparison_exp) GetNeq() *Providers_enum { return v.Neq }
-
-// GetNin returns Providers_enum_comparison_exp.Nin, and is useful for accessing the field via an interface.
-func (v *Providers_enum_comparison_exp) GetNin() []Providers_enum { return v.Nin }
+// GetRegister returns RegisterResponse.Register, and is useful for accessing the field via an interface.
+func (v *RegisterResponse) GetRegister() RegisterRegisterAuth_result { return v.Register }
 
 // RequestAccountDeletionRequest_account_deletionRequest_account_deletion_output includes the requested fields of the GraphQL type request_account_deletion_output.
 type RequestAccountDeletionRequest_account_deletionRequest_account_deletion_output struct {
@@ -3220,7 +3700,7 @@ func (v *RequestAccountDeletionRequest_account_deletionRequest_account_deletion_
 
 // RequestAccountDeletionResponse is returned by RequestAccountDeletion on success.
 type RequestAccountDeletionResponse struct {
-	// Send an email-link confirmation for account deletion. No state change until the link is clicked.
+	// Send an email link to confirm account deletion. No changes are made until the link is clicked.
 	Request_account_deletion RequestAccountDeletionRequest_account_deletionRequest_account_deletion_output `json:"request_account_deletion"`
 }
 
@@ -3265,7 +3745,7 @@ func (v *RequestAvatarUploadRequest_avatar_uploadRequest_avatar_upload_output) G
 
 // RequestAvatarUploadResponse is returned by RequestAvatarUpload on success.
 type RequestAvatarUploadResponse struct {
-	// Mint a presigned S3 PUT URL for an avatar image
+	// Request an upload URL for a profile picture
 	Request_avatar_upload RequestAvatarUploadRequest_avatar_uploadRequest_avatar_upload_output `json:"request_avatar_upload"`
 }
 
@@ -3326,13 +3806,36 @@ func (v *RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_
 
 // RequestMultipartUploadResponse is returned by RequestMultipartUpload on success.
 type RequestMultipartUploadResponse struct {
-	// Initiate an S3 multipart upload and return one presigned PUT URL per part
+	// Request upload URLs for a large file sent in multiple parts
 	Request_multipart_upload RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_output `json:"request_multipart_upload"`
 }
 
 // GetRequest_multipart_upload returns RequestMultipartUploadResponse.Request_multipart_upload, and is useful for accessing the field via an interface.
 func (v *RequestMultipartUploadResponse) GetRequest_multipart_upload() RequestMultipartUploadRequest_multipart_uploadRequest_multipart_upload_output {
 	return v.Request_multipart_upload
+}
+
+// RequestPasswordResetRequest_password_resetAuth_result includes the requested fields of the GraphQL type auth_result.
+type RequestPasswordResetRequest_password_resetAuth_result struct {
+	Success bool   `json:"success"`
+	Message string `json:"message"`
+}
+
+// GetSuccess returns RequestPasswordResetRequest_password_resetAuth_result.Success, and is useful for accessing the field via an interface.
+func (v *RequestPasswordResetRequest_password_resetAuth_result) GetSuccess() bool { return v.Success }
+
+// GetMessage returns RequestPasswordResetRequest_password_resetAuth_result.Message, and is useful for accessing the field via an interface.
+func (v *RequestPasswordResetRequest_password_resetAuth_result) GetMessage() string { return v.Message }
+
+// RequestPasswordResetResponse is returned by RequestPasswordReset on success.
+type RequestPasswordResetResponse struct {
+	// Send a password reset email
+	Request_password_reset RequestPasswordResetRequest_password_resetAuth_result `json:"request_password_reset"`
+}
+
+// GetRequest_password_reset returns RequestPasswordResetResponse.Request_password_reset, and is useful for accessing the field via an interface.
+func (v *RequestPasswordResetResponse) GetRequest_password_reset() RequestPasswordResetRequest_password_resetAuth_result {
+	return v.Request_password_reset
 }
 
 // RequestUploadRequest_uploadRequest_upload_output includes the requested fields of the GraphQL type request_upload_output.
@@ -3355,13 +3858,36 @@ func (v *RequestUploadRequest_uploadRequest_upload_output) GetKey() string { ret
 
 // RequestUploadResponse is returned by RequestUpload on success.
 type RequestUploadResponse struct {
-	// Generate presigned S3 PUT URL for direct browser uploads
+	// Request a direct upload URL for a file
 	Request_upload RequestUploadRequest_uploadRequest_upload_output `json:"request_upload"`
 }
 
 // GetRequest_upload returns RequestUploadResponse.Request_upload, and is useful for accessing the field via an interface.
 func (v *RequestUploadResponse) GetRequest_upload() RequestUploadRequest_uploadRequest_upload_output {
 	return v.Request_upload
+}
+
+// ResetPasswordReset_passwordAuth_result includes the requested fields of the GraphQL type auth_result.
+type ResetPasswordReset_passwordAuth_result struct {
+	Success bool   `json:"success"`
+	Message string `json:"message"`
+}
+
+// GetSuccess returns ResetPasswordReset_passwordAuth_result.Success, and is useful for accessing the field via an interface.
+func (v *ResetPasswordReset_passwordAuth_result) GetSuccess() bool { return v.Success }
+
+// GetMessage returns ResetPasswordReset_passwordAuth_result.Message, and is useful for accessing the field via an interface.
+func (v *ResetPasswordReset_passwordAuth_result) GetMessage() string { return v.Message }
+
+// ResetPasswordResponse is returned by ResetPassword on success.
+type ResetPasswordResponse struct {
+	// Set a new password using the emailed code
+	Reset_password ResetPasswordReset_passwordAuth_result `json:"reset_password"`
+}
+
+// GetReset_password returns ResetPasswordResponse.Reset_password, and is useful for accessing the field via an interface.
+func (v *ResetPasswordResponse) GetReset_password() ResetPasswordReset_passwordAuth_result {
+	return v.Reset_password
 }
 
 // RevokePersonalAccessTokenResponse is returned by RevokePersonalAccessToken on success.
@@ -3393,7 +3919,7 @@ func (v *RevokePersonalAccessTokenRevoke_personal_access_tokenRevoke_personal_ac
 
 // RunPipelineResponse is returned by RunPipeline on success.
 type RunPipelineResponse struct {
-	// Start a pipeline execution via Temporal workflow
+	// Start a pipeline run
 	Run_pipeline *RunPipelineRun_pipelineRun_pipeline_output `json:"run_pipeline"`
 }
 
@@ -3413,6 +3939,40 @@ func (v *RunPipelineRun_pipelineRun_pipeline_output) GetRun_id() string { return
 
 // GetWorkflow_id returns RunPipelineRun_pipelineRun_pipeline_output.Workflow_id, and is useful for accessing the field via an interface.
 func (v *RunPipelineRun_pipelineRun_pipeline_output) GetWorkflow_id() string { return v.Workflow_id }
+
+// SetRunShareResponse is returned by SetRunShare on success.
+type SetRunShareResponse struct {
+	// update single row of the table: "pipeline_runs"
+	Update_pipeline_runs_by_pk *SetRunShareUpdate_pipeline_runs_by_pkPipeline_runs `json:"update_pipeline_runs_by_pk"`
+}
+
+// GetUpdate_pipeline_runs_by_pk returns SetRunShareResponse.Update_pipeline_runs_by_pk, and is useful for accessing the field via an interface.
+func (v *SetRunShareResponse) GetUpdate_pipeline_runs_by_pk() *SetRunShareUpdate_pipeline_runs_by_pkPipeline_runs {
+	return v.Update_pipeline_runs_by_pk
+}
+
+// SetRunShareUpdate_pipeline_runs_by_pkPipeline_runs includes the requested fields of the GraphQL type pipeline_runs.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "pipeline_runs"
+type SetRunShareUpdate_pipeline_runs_by_pkPipeline_runs struct {
+	Id              string  `json:"id"`
+	Share_token     *string `json:"share_token"`
+	Share_watermark bool    `json:"share_watermark"`
+}
+
+// GetId returns SetRunShareUpdate_pipeline_runs_by_pkPipeline_runs.Id, and is useful for accessing the field via an interface.
+func (v *SetRunShareUpdate_pipeline_runs_by_pkPipeline_runs) GetId() string { return v.Id }
+
+// GetShare_token returns SetRunShareUpdate_pipeline_runs_by_pkPipeline_runs.Share_token, and is useful for accessing the field via an interface.
+func (v *SetRunShareUpdate_pipeline_runs_by_pkPipeline_runs) GetShare_token() *string {
+	return v.Share_token
+}
+
+// GetShare_watermark returns SetRunShareUpdate_pipeline_runs_by_pkPipeline_runs.Share_watermark, and is useful for accessing the field via an interface.
+func (v *SetRunShareUpdate_pipeline_runs_by_pkPipeline_runs) GetShare_watermark() bool {
+	return v.Share_watermark
+}
 
 // Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'.
 type String_array_comparison_exp struct {
@@ -3554,92 +4114,9 @@ func (v *String_comparison_exp) GetRegex() *string { return v.Regex }
 // GetSimilar returns String_comparison_exp.Similar, and is useful for accessing the field via an interface.
 func (v *String_comparison_exp) GetSimilar() *string { return v.Similar }
 
-// SubmitLoginFlowResponse is returned by SubmitLoginFlow on success.
-type SubmitLoginFlowResponse struct {
-	// Submit Kratos login credentials
-	Submit_login_flow SubmitLoginFlowSubmit_login_flowAuth_result `json:"submit_login_flow"`
-}
-
-// GetSubmit_login_flow returns SubmitLoginFlowResponse.Submit_login_flow, and is useful for accessing the field via an interface.
-func (v *SubmitLoginFlowResponse) GetSubmit_login_flow() SubmitLoginFlowSubmit_login_flowAuth_result {
-	return v.Submit_login_flow
-}
-
-// SubmitLoginFlowSubmit_login_flowAuth_result includes the requested fields of the GraphQL type auth_result.
-type SubmitLoginFlowSubmit_login_flowAuth_result struct {
-	Success           bool    `json:"success"`
-	Message           string  `json:"message"`
-	Token             *string `json:"token"`
-	Whop_affiliate_id *string `json:"whop_affiliate_id"`
-}
-
-// GetSuccess returns SubmitLoginFlowSubmit_login_flowAuth_result.Success, and is useful for accessing the field via an interface.
-func (v *SubmitLoginFlowSubmit_login_flowAuth_result) GetSuccess() bool { return v.Success }
-
-// GetMessage returns SubmitLoginFlowSubmit_login_flowAuth_result.Message, and is useful for accessing the field via an interface.
-func (v *SubmitLoginFlowSubmit_login_flowAuth_result) GetMessage() string { return v.Message }
-
-// GetToken returns SubmitLoginFlowSubmit_login_flowAuth_result.Token, and is useful for accessing the field via an interface.
-func (v *SubmitLoginFlowSubmit_login_flowAuth_result) GetToken() *string { return v.Token }
-
-// GetWhop_affiliate_id returns SubmitLoginFlowSubmit_login_flowAuth_result.Whop_affiliate_id, and is useful for accessing the field via an interface.
-func (v *SubmitLoginFlowSubmit_login_flowAuth_result) GetWhop_affiliate_id() *string {
-	return v.Whop_affiliate_id
-}
-
-// SubmitRecoveryFlowResponse is returned by SubmitRecoveryFlow on success.
-type SubmitRecoveryFlowResponse struct {
-	// Submit Kratos password recovery (set new password)
-	Submit_recovery_flow SubmitRecoveryFlowSubmit_recovery_flowAuth_result `json:"submit_recovery_flow"`
-}
-
-// GetSubmit_recovery_flow returns SubmitRecoveryFlowResponse.Submit_recovery_flow, and is useful for accessing the field via an interface.
-func (v *SubmitRecoveryFlowResponse) GetSubmit_recovery_flow() SubmitRecoveryFlowSubmit_recovery_flowAuth_result {
-	return v.Submit_recovery_flow
-}
-
-// SubmitRecoveryFlowSubmit_recovery_flowAuth_result includes the requested fields of the GraphQL type auth_result.
-type SubmitRecoveryFlowSubmit_recovery_flowAuth_result struct {
-	Success bool   `json:"success"`
-	Message string `json:"message"`
-}
-
-// GetSuccess returns SubmitRecoveryFlowSubmit_recovery_flowAuth_result.Success, and is useful for accessing the field via an interface.
-func (v *SubmitRecoveryFlowSubmit_recovery_flowAuth_result) GetSuccess() bool { return v.Success }
-
-// GetMessage returns SubmitRecoveryFlowSubmit_recovery_flowAuth_result.Message, and is useful for accessing the field via an interface.
-func (v *SubmitRecoveryFlowSubmit_recovery_flowAuth_result) GetMessage() string { return v.Message }
-
-// SubmitSignupFlowResponse is returned by SubmitSignupFlow on success.
-type SubmitSignupFlowResponse struct {
-	// Submit Kratos signup (registration) form
-	Submit_signup_flow SubmitSignupFlowSubmit_signup_flowAuth_result `json:"submit_signup_flow"`
-}
-
-// GetSubmit_signup_flow returns SubmitSignupFlowResponse.Submit_signup_flow, and is useful for accessing the field via an interface.
-func (v *SubmitSignupFlowResponse) GetSubmit_signup_flow() SubmitSignupFlowSubmit_signup_flowAuth_result {
-	return v.Submit_signup_flow
-}
-
-// SubmitSignupFlowSubmit_signup_flowAuth_result includes the requested fields of the GraphQL type auth_result.
-type SubmitSignupFlowSubmit_signup_flowAuth_result struct {
-	Success bool    `json:"success"`
-	Message string  `json:"message"`
-	Token   *string `json:"token"`
-}
-
-// GetSuccess returns SubmitSignupFlowSubmit_signup_flowAuth_result.Success, and is useful for accessing the field via an interface.
-func (v *SubmitSignupFlowSubmit_signup_flowAuth_result) GetSuccess() bool { return v.Success }
-
-// GetMessage returns SubmitSignupFlowSubmit_signup_flowAuth_result.Message, and is useful for accessing the field via an interface.
-func (v *SubmitSignupFlowSubmit_signup_flowAuth_result) GetMessage() string { return v.Message }
-
-// GetToken returns SubmitSignupFlowSubmit_signup_flowAuth_result.Token, and is useful for accessing the field via an interface.
-func (v *SubmitSignupFlowSubmit_signup_flowAuth_result) GetToken() *string { return v.Token }
-
 // SubmitSocialLoginResponse is returned by SubmitSocialLogin on success.
 type SubmitSocialLoginResponse struct {
-	// Initiate OIDC social login flow and return provider redirect URL
+	// Begin social sign-in and return the provider redirect URL
 	Submit_social_login SubmitSocialLoginSubmit_social_loginSocial_login_output `json:"submit_social_login"`
 }
 
@@ -3664,7 +4141,7 @@ func (v *SubmitSocialLoginSubmit_social_loginSocial_login_output) GetRedirect_ur
 
 // SubmitVerificationCodeResponse is returned by SubmitVerificationCode on success.
 type SubmitVerificationCodeResponse struct {
-	// Submit Kratos verification code
+	// Submit an email verification code
 	Submit_verification_code SubmitVerificationCodeSubmit_verification_codeAuth_result `json:"submit_verification_code"`
 }
 
@@ -4139,6 +4616,18 @@ func (v *__CreateAssetInput) GetKey() string { return v.Key }
 // GetTags returns __CreateAssetInput.Tags, and is useful for accessing the field via an interface.
 func (v *__CreateAssetInput) GetTags() []string { return v.Tags }
 
+// __CreateCheckoutSessionInput is used internally by genqlient
+type __CreateCheckoutSessionInput struct {
+	Whop_plan_id   string  `json:"whop_plan_id"`
+	Affiliate_code *string `json:"affiliate_code"`
+}
+
+// GetWhop_plan_id returns __CreateCheckoutSessionInput.Whop_plan_id, and is useful for accessing the field via an interface.
+func (v *__CreateCheckoutSessionInput) GetWhop_plan_id() string { return v.Whop_plan_id }
+
+// GetAffiliate_code returns __CreateCheckoutSessionInput.Affiliate_code, and is useful for accessing the field via an interface.
+func (v *__CreateCheckoutSessionInput) GetAffiliate_code() *string { return v.Affiliate_code }
+
 // __CreatePersonalAccessTokenInput is used internally by genqlient
 type __CreatePersonalAccessTokenInput struct {
 	Name string `json:"name"`
@@ -4263,14 +4752,6 @@ func (v *__GetUserAssetsInput) GetLimit() *int { return v.Limit }
 // GetOffset returns __GetUserAssetsInput.Offset, and is useful for accessing the field via an interface.
 func (v *__GetUserAssetsInput) GetOffset() *int { return v.Offset }
 
-// __InitRecoveryFlowInput is used internally by genqlient
-type __InitRecoveryFlowInput struct {
-	Email string `json:"email"`
-}
-
-// GetEmail returns __InitRecoveryFlowInput.Email, and is useful for accessing the field via an interface.
-func (v *__InitRecoveryFlowInput) GetEmail() string { return v.Email }
-
 // __InitVerificationFlowInput is used internally by genqlient
 type __InitVerificationFlowInput struct {
 	Email *string `json:"email"`
@@ -4282,6 +4763,22 @@ func (v *__InitVerificationFlowInput) GetEmail() *string { return v.Email }
 
 // GetForce returns __InitVerificationFlowInput.Force, and is useful for accessing the field via an interface.
 func (v *__InitVerificationFlowInput) GetForce() *bool { return v.Force }
+
+// __LoginInput is used internally by genqlient
+type __LoginInput struct {
+	Email         string  `json:"email"`
+	Password      string  `json:"password"`
+	Referral_code *string `json:"referral_code"`
+}
+
+// GetEmail returns __LoginInput.Email, and is useful for accessing the field via an interface.
+func (v *__LoginInput) GetEmail() string { return v.Email }
+
+// GetPassword returns __LoginInput.Password, and is useful for accessing the field via an interface.
+func (v *__LoginInput) GetPassword() string { return v.Password }
+
+// GetReferral_code returns __LoginInput.Referral_code, and is useful for accessing the field via an interface.
+func (v *__LoginInput) GetReferral_code() *string { return v.Referral_code }
 
 // __MarkNotificationReadInput is used internally by genqlient
 type __MarkNotificationReadInput struct {
@@ -4298,6 +4795,26 @@ type __PipelineModelsInput struct {
 
 // GetSlug returns __PipelineModelsInput.Slug, and is useful for accessing the field via an interface.
 func (v *__PipelineModelsInput) GetSlug() string { return v.Slug }
+
+// __RegisterInput is used internally by genqlient
+type __RegisterInput struct {
+	Email         string  `json:"email"`
+	Password      string  `json:"password"`
+	Name          string  `json:"name"`
+	Referral_code *string `json:"referral_code"`
+}
+
+// GetEmail returns __RegisterInput.Email, and is useful for accessing the field via an interface.
+func (v *__RegisterInput) GetEmail() string { return v.Email }
+
+// GetPassword returns __RegisterInput.Password, and is useful for accessing the field via an interface.
+func (v *__RegisterInput) GetPassword() string { return v.Password }
+
+// GetName returns __RegisterInput.Name, and is useful for accessing the field via an interface.
+func (v *__RegisterInput) GetName() string { return v.Name }
+
+// GetReferral_code returns __RegisterInput.Referral_code, and is useful for accessing the field via an interface.
+func (v *__RegisterInput) GetReferral_code() *string { return v.Referral_code }
 
 // __RequestAvatarUploadInput is used internally by genqlient
 type __RequestAvatarUploadInput struct {
@@ -4331,6 +4848,14 @@ func (v *__RequestMultipartUploadInput) GetTotal_size() int64 { return v.Total_s
 // GetPart_size returns __RequestMultipartUploadInput.Part_size, and is useful for accessing the field via an interface.
 func (v *__RequestMultipartUploadInput) GetPart_size() *int64 { return v.Part_size }
 
+// __RequestPasswordResetInput is used internally by genqlient
+type __RequestPasswordResetInput struct {
+	Email string `json:"email"`
+}
+
+// GetEmail returns __RequestPasswordResetInput.Email, and is useful for accessing the field via an interface.
+func (v *__RequestPasswordResetInput) GetEmail() string { return v.Email }
+
 // __RequestUploadInput is used internally by genqlient
 type __RequestUploadInput struct {
 	Filename     string `json:"filename"`
@@ -4342,6 +4867,22 @@ func (v *__RequestUploadInput) GetFilename() string { return v.Filename }
 
 // GetContent_type returns __RequestUploadInput.Content_type, and is useful for accessing the field via an interface.
 func (v *__RequestUploadInput) GetContent_type() string { return v.Content_type }
+
+// __ResetPasswordInput is used internally by genqlient
+type __ResetPasswordInput struct {
+	Email       string `json:"email"`
+	Code        string `json:"code"`
+	NewPassword string `json:"newPassword"`
+}
+
+// GetEmail returns __ResetPasswordInput.Email, and is useful for accessing the field via an interface.
+func (v *__ResetPasswordInput) GetEmail() string { return v.Email }
+
+// GetCode returns __ResetPasswordInput.Code, and is useful for accessing the field via an interface.
+func (v *__ResetPasswordInput) GetCode() string { return v.Code }
+
+// GetNewPassword returns __ResetPasswordInput.NewPassword, and is useful for accessing the field via an interface.
+func (v *__ResetPasswordInput) GetNewPassword() string { return v.NewPassword }
 
 // __RevokePersonalAccessTokenInput is used internally by genqlient
 type __RevokePersonalAccessTokenInput struct {
@@ -4363,69 +4904,21 @@ func (v *__RunPipelineInput) GetPipeline_slug() string { return v.Pipeline_slug 
 // GetInput returns __RunPipelineInput.Input, and is useful for accessing the field via an interface.
 func (v *__RunPipelineInput) GetInput() json.RawMessage { return v.Input }
 
-// __SubmitLoginFlowInput is used internally by genqlient
-type __SubmitLoginFlowInput struct {
-	FlowId        string  `json:"flowId"`
-	Email         string  `json:"email"`
-	Password      string  `json:"password"`
-	Csrf_token    string  `json:"csrf_token"`
-	Referral_code *string `json:"referral_code"`
+// __SetRunShareInput is used internally by genqlient
+type __SetRunShareInput struct {
+	Id        string  `json:"id"`
+	Token     *string `json:"token"`
+	Watermark bool    `json:"watermark"`
 }
 
-// GetFlowId returns __SubmitLoginFlowInput.FlowId, and is useful for accessing the field via an interface.
-func (v *__SubmitLoginFlowInput) GetFlowId() string { return v.FlowId }
+// GetId returns __SetRunShareInput.Id, and is useful for accessing the field via an interface.
+func (v *__SetRunShareInput) GetId() string { return v.Id }
 
-// GetEmail returns __SubmitLoginFlowInput.Email, and is useful for accessing the field via an interface.
-func (v *__SubmitLoginFlowInput) GetEmail() string { return v.Email }
+// GetToken returns __SetRunShareInput.Token, and is useful for accessing the field via an interface.
+func (v *__SetRunShareInput) GetToken() *string { return v.Token }
 
-// GetPassword returns __SubmitLoginFlowInput.Password, and is useful for accessing the field via an interface.
-func (v *__SubmitLoginFlowInput) GetPassword() string { return v.Password }
-
-// GetCsrf_token returns __SubmitLoginFlowInput.Csrf_token, and is useful for accessing the field via an interface.
-func (v *__SubmitLoginFlowInput) GetCsrf_token() string { return v.Csrf_token }
-
-// GetReferral_code returns __SubmitLoginFlowInput.Referral_code, and is useful for accessing the field via an interface.
-func (v *__SubmitLoginFlowInput) GetReferral_code() *string { return v.Referral_code }
-
-// __SubmitRecoveryFlowInput is used internally by genqlient
-type __SubmitRecoveryFlowInput struct {
-	FlowId     string `json:"flowId"`
-	Password   string `json:"password"`
-	Csrf_token string `json:"csrf_token"`
-}
-
-// GetFlowId returns __SubmitRecoveryFlowInput.FlowId, and is useful for accessing the field via an interface.
-func (v *__SubmitRecoveryFlowInput) GetFlowId() string { return v.FlowId }
-
-// GetPassword returns __SubmitRecoveryFlowInput.Password, and is useful for accessing the field via an interface.
-func (v *__SubmitRecoveryFlowInput) GetPassword() string { return v.Password }
-
-// GetCsrf_token returns __SubmitRecoveryFlowInput.Csrf_token, and is useful for accessing the field via an interface.
-func (v *__SubmitRecoveryFlowInput) GetCsrf_token() string { return v.Csrf_token }
-
-// __SubmitSignupFlowInput is used internally by genqlient
-type __SubmitSignupFlowInput struct {
-	FlowId     string `json:"flowId"`
-	Email      string `json:"email"`
-	Password   string `json:"password"`
-	Name       string `json:"name"`
-	Csrf_token string `json:"csrf_token"`
-}
-
-// GetFlowId returns __SubmitSignupFlowInput.FlowId, and is useful for accessing the field via an interface.
-func (v *__SubmitSignupFlowInput) GetFlowId() string { return v.FlowId }
-
-// GetEmail returns __SubmitSignupFlowInput.Email, and is useful for accessing the field via an interface.
-func (v *__SubmitSignupFlowInput) GetEmail() string { return v.Email }
-
-// GetPassword returns __SubmitSignupFlowInput.Password, and is useful for accessing the field via an interface.
-func (v *__SubmitSignupFlowInput) GetPassword() string { return v.Password }
-
-// GetName returns __SubmitSignupFlowInput.Name, and is useful for accessing the field via an interface.
-func (v *__SubmitSignupFlowInput) GetName() string { return v.Name }
-
-// GetCsrf_token returns __SubmitSignupFlowInput.Csrf_token, and is useful for accessing the field via an interface.
-func (v *__SubmitSignupFlowInput) GetCsrf_token() string { return v.Csrf_token }
+// GetWatermark returns __SetRunShareInput.Watermark, and is useful for accessing the field via an interface.
+func (v *__SetRunShareInput) GetWatermark() bool { return v.Watermark }
 
 // __SubmitSocialLoginInput is used internally by genqlient
 type __SubmitSocialLoginInput struct {
@@ -4880,6 +5373,43 @@ func CreateAsset(
 	return data_, err_
 }
 
+// The mutation executed by CreateCheckoutSession.
+const CreateCheckoutSession_Operation = `
+mutation CreateCheckoutSession ($whop_plan_id: String!, $affiliate_code: String) {
+	create_checkout_session(whop_plan_id: $whop_plan_id, affiliate_code: $affiliate_code) {
+		success
+		url
+	}
+}
+`
+
+func CreateCheckoutSession(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	whop_plan_id string,
+	affiliate_code *string,
+) (data_ *CreateCheckoutSessionResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "CreateCheckoutSession",
+		Query:  CreateCheckoutSession_Operation,
+		Variables: &__CreateCheckoutSessionInput{
+			Whop_plan_id:   whop_plan_id,
+			Affiliate_code: affiliate_code,
+		},
+	}
+
+	data_ = &CreateCheckoutSessionResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
 // The mutation executed by CreatePersonalAccessToken.
 const CreatePersonalAccessToken_Operation = `
 mutation CreatePersonalAccessToken ($name: String!) {
@@ -4991,6 +5521,11 @@ query EstimatePipelineCost ($pipeline_slug: String!, $input: jsonb!) {
 		reservation_mc
 		estimated_mc
 		is_metered
+		routed_model
+		routed_reason_code
+		routed_reason_params
+		incompatible_models
+		engine_caps
 	}
 }
 `
@@ -5222,6 +5757,10 @@ query GetCreditPacks {
 		slug
 		name
 		sort_order
+		translations {
+			locale
+			name
+		}
 		versions(where: {is_current:{_eq:true}}, limit: 1) {
 			id
 			whop_plan_id
@@ -5534,6 +6073,8 @@ query GetPipelineRun ($id: uuid!) {
 		credits_charged
 		created_at
 		completed_at
+		share_token
+		share_watermark
 		pipeline {
 			name
 			slug
@@ -5603,6 +6144,8 @@ query GetPipelineRuns ($limit: Int = 12, $offset: Int = 0, $where: pipeline_runs
 		credits_charged
 		created_at
 		completed_at
+		share_token
+		share_watermark
 		workflow_execution {
 			status
 			start_time
@@ -5674,6 +6217,8 @@ query GetPipelineRunsBySlug ($slug: String!, $limit: Int = 10, $offset: Int = 0)
 		credits_charged
 		created_at
 		completed_at
+		share_token
+		share_watermark
 		assets {
 			id
 			type
@@ -5744,6 +6289,37 @@ query GetPipelines {
 		tags
 		hints
 		cancellable
+		translations {
+			locale
+			name
+			description
+			seo_content
+			seo_faq
+			hints
+			form_i18n
+		}
+		examples(order_by: [{sort_order:asc},{created_at:asc}]) {
+			id
+			title
+			caption
+			output_url
+			output_kind
+			input_url
+			input_kind
+			content
+			inputs
+			thumbnail_url
+			model_slug
+			model {
+				slug
+				label
+			}
+			translations {
+				locale
+				title
+				caption
+			}
+		}
 	}
 }
 `
@@ -5836,6 +6412,12 @@ query GetPlans {
 		description
 		features
 		sort_order
+		translations {
+			locale
+			name
+			description
+			features
+		}
 		versions(where: {is_current:{_eq:true}}, limit: 1) {
 			id
 			whop_plan_id
@@ -5969,103 +6551,6 @@ func GetUserAssets(
 	return data_, err_
 }
 
-// The mutation executed by InitLoginFlow.
-const InitLoginFlow_Operation = `
-mutation InitLoginFlow {
-	init_login_flow {
-		id
-		csrf_token
-	}
-}
-`
-
-func InitLoginFlow(
-	ctx_ context.Context,
-	client_ graphql.Client,
-) (data_ *InitLoginFlowResponse, err_ error) {
-	req_ := &graphql.Request{
-		OpName: "InitLoginFlow",
-		Query:  InitLoginFlow_Operation,
-	}
-
-	data_ = &InitLoginFlowResponse{}
-	resp_ := &graphql.Response{Data: data_}
-
-	err_ = client_.MakeRequest(
-		ctx_,
-		req_,
-		resp_,
-	)
-
-	return data_, err_
-}
-
-// The mutation executed by InitRecoveryFlow.
-const InitRecoveryFlow_Operation = `
-mutation InitRecoveryFlow ($email: String!) {
-	init_recovery_flow(email: $email) {
-		success
-		message
-	}
-}
-`
-
-func InitRecoveryFlow(
-	ctx_ context.Context,
-	client_ graphql.Client,
-	email string,
-) (data_ *InitRecoveryFlowResponse, err_ error) {
-	req_ := &graphql.Request{
-		OpName: "InitRecoveryFlow",
-		Query:  InitRecoveryFlow_Operation,
-		Variables: &__InitRecoveryFlowInput{
-			Email: email,
-		},
-	}
-
-	data_ = &InitRecoveryFlowResponse{}
-	resp_ := &graphql.Response{Data: data_}
-
-	err_ = client_.MakeRequest(
-		ctx_,
-		req_,
-		resp_,
-	)
-
-	return data_, err_
-}
-
-// The mutation executed by InitSignupFlow.
-const InitSignupFlow_Operation = `
-mutation InitSignupFlow {
-	init_signup_flow {
-		id
-		csrf_token
-	}
-}
-`
-
-func InitSignupFlow(
-	ctx_ context.Context,
-	client_ graphql.Client,
-) (data_ *InitSignupFlowResponse, err_ error) {
-	req_ := &graphql.Request{
-		OpName: "InitSignupFlow",
-		Query:  InitSignupFlow_Operation,
-	}
-
-	data_ = &InitSignupFlowResponse{}
-	resp_ := &graphql.Response{Data: data_}
-
-	err_ = client_.MakeRequest(
-		ctx_,
-		req_,
-		resp_,
-	)
-
-	return data_, err_
-}
-
 // The mutation executed by InitVerificationFlow.
 const InitVerificationFlow_Operation = `
 mutation InitVerificationFlow ($email: String, $force: Boolean) {
@@ -6092,6 +6577,47 @@ func InitVerificationFlow(
 	}
 
 	data_ = &InitVerificationFlowResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by Login.
+const Login_Operation = `
+mutation Login ($email: String!, $password: String!, $referral_code: String) {
+	login(email: $email, password: $password, referral_code: $referral_code) {
+		success
+		message
+		token
+		affiliate_id
+	}
+}
+`
+
+func Login(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	email string,
+	password string,
+	referral_code *string,
+) (data_ *LoginResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "Login",
+		Query:  Login_Operation,
+		Variables: &__LoginInput{
+			Email:         email,
+			Password:      password,
+			Referral_code: referral_code,
+		},
+	}
+
+	data_ = &LoginResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
@@ -6173,10 +6699,16 @@ const PipelineModels_Operation = `
 query PipelineModels ($slug: String!) {
 	pipeline_models(where: {pipeline_slug:{_eq:$slug}}, order_by: {sort_order:asc}) {
 		model_slug
+		sort_order
 		model {
 			slug
 			label
 			description
+			provider
+			translations {
+				locale
+				description
+			}
 		}
 	}
 }
@@ -6237,6 +6769,49 @@ func PipelinePricing(
 	}
 
 	data_ = &PipelinePricingResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by Register.
+const Register_Operation = `
+mutation Register ($email: String!, $password: String!, $name: String!, $referral_code: String) {
+	register(email: $email, password: $password, name: $name, referral_code: $referral_code) {
+		success
+		message
+		token
+		affiliate_id
+	}
+}
+`
+
+func Register(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	email string,
+	password string,
+	name string,
+	referral_code *string,
+) (data_ *RegisterResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "Register",
+		Query:  Register_Operation,
+		Variables: &__RegisterInput{
+			Email:         email,
+			Password:      password,
+			Name:          name,
+			Referral_code: referral_code,
+		},
+	}
+
+	data_ = &RegisterResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
@@ -6367,6 +6942,41 @@ func RequestMultipartUpload(
 	return data_, err_
 }
 
+// The mutation executed by RequestPasswordReset.
+const RequestPasswordReset_Operation = `
+mutation RequestPasswordReset ($email: String!) {
+	request_password_reset(email: $email) {
+		success
+		message
+	}
+}
+`
+
+func RequestPasswordReset(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	email string,
+) (data_ *RequestPasswordResetResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "RequestPasswordReset",
+		Query:  RequestPasswordReset_Operation,
+		Variables: &__RequestPasswordResetInput{
+			Email: email,
+		},
+	}
+
+	data_ = &RequestPasswordResetResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
 // The mutation executed by RequestUpload.
 const RequestUpload_Operation = `
 mutation RequestUpload ($filename: String!, $content_type: String!) {
@@ -6394,6 +7004,45 @@ func RequestUpload(
 	}
 
 	data_ = &RequestUploadResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by ResetPassword.
+const ResetPassword_Operation = `
+mutation ResetPassword ($email: String!, $code: String!, $newPassword: String!) {
+	reset_password(email: $email, code: $code, newPassword: $newPassword) {
+		success
+		message
+	}
+}
+`
+
+func ResetPassword(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	email string,
+	code string,
+	newPassword string,
+) (data_ *ResetPasswordResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "ResetPassword",
+		Query:  ResetPassword_Operation,
+		Variables: &__ResetPasswordInput{
+			Email:       email,
+			Code:        code,
+			NewPassword: newPassword,
+		},
+	}
+
+	data_ = &ResetPasswordResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
@@ -6477,123 +7126,38 @@ func RunPipeline(
 	return data_, err_
 }
 
-// The mutation executed by SubmitLoginFlow.
-const SubmitLoginFlow_Operation = `
-mutation SubmitLoginFlow ($flowId: String!, $email: String!, $password: String!, $csrf_token: String!, $referral_code: String) {
-	submit_login_flow(flowId: $flowId, email: $email, password: $password, csrf_token: $csrf_token, referral_code: $referral_code) {
-		success
-		message
-		token
-		whop_affiliate_id
+// The mutation executed by SetRunShare.
+const SetRunShare_Operation = `
+mutation SetRunShare ($id: uuid!, $token: uuid, $watermark: Boolean!) {
+	update_pipeline_runs_by_pk(pk_columns: {id:$id}, _set: {share_token:$token,share_watermark:$watermark}) {
+		id
+		share_token
+		share_watermark
 	}
 }
 `
 
-func SubmitLoginFlow(
+// Owner-only: mint/rotate/clear a run's public share token and its watermark
+// flag. Passing $token: null stops sharing. Guarded by the pipeline_runs
+// user update permission (own rows, share columns only).
+func SetRunShare(
 	ctx_ context.Context,
 	client_ graphql.Client,
-	flowId string,
-	email string,
-	password string,
-	csrf_token string,
-	referral_code *string,
-) (data_ *SubmitLoginFlowResponse, err_ error) {
+	id string,
+	token *string,
+	watermark bool,
+) (data_ *SetRunShareResponse, err_ error) {
 	req_ := &graphql.Request{
-		OpName: "SubmitLoginFlow",
-		Query:  SubmitLoginFlow_Operation,
-		Variables: &__SubmitLoginFlowInput{
-			FlowId:        flowId,
-			Email:         email,
-			Password:      password,
-			Csrf_token:    csrf_token,
-			Referral_code: referral_code,
+		OpName: "SetRunShare",
+		Query:  SetRunShare_Operation,
+		Variables: &__SetRunShareInput{
+			Id:        id,
+			Token:     token,
+			Watermark: watermark,
 		},
 	}
 
-	data_ = &SubmitLoginFlowResponse{}
-	resp_ := &graphql.Response{Data: data_}
-
-	err_ = client_.MakeRequest(
-		ctx_,
-		req_,
-		resp_,
-	)
-
-	return data_, err_
-}
-
-// The mutation executed by SubmitRecoveryFlow.
-const SubmitRecoveryFlow_Operation = `
-mutation SubmitRecoveryFlow ($flowId: String!, $password: String!, $csrf_token: String!) {
-	submit_recovery_flow(flowId: $flowId, password: $password, csrf_token: $csrf_token) {
-		success
-		message
-	}
-}
-`
-
-func SubmitRecoveryFlow(
-	ctx_ context.Context,
-	client_ graphql.Client,
-	flowId string,
-	password string,
-	csrf_token string,
-) (data_ *SubmitRecoveryFlowResponse, err_ error) {
-	req_ := &graphql.Request{
-		OpName: "SubmitRecoveryFlow",
-		Query:  SubmitRecoveryFlow_Operation,
-		Variables: &__SubmitRecoveryFlowInput{
-			FlowId:     flowId,
-			Password:   password,
-			Csrf_token: csrf_token,
-		},
-	}
-
-	data_ = &SubmitRecoveryFlowResponse{}
-	resp_ := &graphql.Response{Data: data_}
-
-	err_ = client_.MakeRequest(
-		ctx_,
-		req_,
-		resp_,
-	)
-
-	return data_, err_
-}
-
-// The mutation executed by SubmitSignupFlow.
-const SubmitSignupFlow_Operation = `
-mutation SubmitSignupFlow ($flowId: String!, $email: String!, $password: String!, $name: String!, $csrf_token: String!) {
-	submit_signup_flow(flowId: $flowId, email: $email, password: $password, name: $name, csrf_token: $csrf_token) {
-		success
-		message
-		token
-	}
-}
-`
-
-func SubmitSignupFlow(
-	ctx_ context.Context,
-	client_ graphql.Client,
-	flowId string,
-	email string,
-	password string,
-	name string,
-	csrf_token string,
-) (data_ *SubmitSignupFlowResponse, err_ error) {
-	req_ := &graphql.Request{
-		OpName: "SubmitSignupFlow",
-		Query:  SubmitSignupFlow_Operation,
-		Variables: &__SubmitSignupFlowInput{
-			FlowId:     flowId,
-			Email:      email,
-			Password:   password,
-			Name:       name,
-			Csrf_token: csrf_token,
-		},
-	}
-
-	data_ = &SubmitSignupFlowResponse{}
+	data_ = &SetRunShareResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
