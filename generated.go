@@ -2912,6 +2912,23 @@ type LoginResponse struct {
 // GetLogin returns LoginResponse.Login, and is useful for accessing the field via an interface.
 func (v *LoginResponse) GetLogin() LoginLoginAuth_result { return v.Login }
 
+// LogoutLogoutLogout_output includes the requested fields of the GraphQL type logout_output.
+type LogoutLogoutLogout_output struct {
+	Success bool `json:"success"`
+}
+
+// GetSuccess returns LogoutLogoutLogout_output.Success, and is useful for accessing the field via an interface.
+func (v *LogoutLogoutLogout_output) GetSuccess() bool { return v.Success }
+
+// LogoutResponse is returned by Logout on success.
+type LogoutResponse struct {
+	// Revoke all Kratos sessions for the current user
+	Logout LogoutLogoutLogout_output `json:"logout"`
+}
+
+// GetLogout returns LogoutResponse.Logout, and is useful for accessing the field via an interface.
+func (v *LogoutResponse) GetLogout() LogoutLogoutLogout_output { return v.Logout }
+
 // MarkAllNotificationsReadResponse is returned by MarkAllNotificationsRead on success.
 type MarkAllNotificationsReadResponse struct {
 	// update data of the table: "notifications"
@@ -4114,31 +4131,6 @@ func (v *String_comparison_exp) GetRegex() *string { return v.Regex }
 // GetSimilar returns String_comparison_exp.Similar, and is useful for accessing the field via an interface.
 func (v *String_comparison_exp) GetSimilar() *string { return v.Similar }
 
-// SubmitSocialLoginResponse is returned by SubmitSocialLogin on success.
-type SubmitSocialLoginResponse struct {
-	// Begin social sign-in and return the provider redirect URL
-	Submit_social_login SubmitSocialLoginSubmit_social_loginSocial_login_output `json:"submit_social_login"`
-}
-
-// GetSubmit_social_login returns SubmitSocialLoginResponse.Submit_social_login, and is useful for accessing the field via an interface.
-func (v *SubmitSocialLoginResponse) GetSubmit_social_login() SubmitSocialLoginSubmit_social_loginSocial_login_output {
-	return v.Submit_social_login
-}
-
-// SubmitSocialLoginSubmit_social_loginSocial_login_output includes the requested fields of the GraphQL type social_login_output.
-type SubmitSocialLoginSubmit_social_loginSocial_login_output struct {
-	Success      bool   `json:"success"`
-	Redirect_url string `json:"redirect_url"`
-}
-
-// GetSuccess returns SubmitSocialLoginSubmit_social_loginSocial_login_output.Success, and is useful for accessing the field via an interface.
-func (v *SubmitSocialLoginSubmit_social_loginSocial_login_output) GetSuccess() bool { return v.Success }
-
-// GetRedirect_url returns SubmitSocialLoginSubmit_social_loginSocial_login_output.Redirect_url, and is useful for accessing the field via an interface.
-func (v *SubmitSocialLoginSubmit_social_loginSocial_login_output) GetRedirect_url() string {
-	return v.Redirect_url
-}
-
 // SubmitVerificationCodeResponse is returned by SubmitVerificationCode on success.
 type SubmitVerificationCodeResponse struct {
 	// Submit an email verification code
@@ -4919,14 +4911,6 @@ func (v *__SetRunShareInput) GetToken() *string { return v.Token }
 
 // GetWatermark returns __SetRunShareInput.Watermark, and is useful for accessing the field via an interface.
 func (v *__SetRunShareInput) GetWatermark() bool { return v.Watermark }
-
-// __SubmitSocialLoginInput is used internally by genqlient
-type __SubmitSocialLoginInput struct {
-	Provider string `json:"provider"`
-}
-
-// GetProvider returns __SubmitSocialLoginInput.Provider, and is useful for accessing the field via an interface.
-func (v *__SubmitSocialLoginInput) GetProvider() string { return v.Provider }
 
 // __SubmitVerificationCodeInput is used internally by genqlient
 type __SubmitVerificationCodeInput struct {
@@ -6629,6 +6613,36 @@ func Login(
 	return data_, err_
 }
 
+// The mutation executed by Logout.
+const Logout_Operation = `
+mutation Logout {
+	logout {
+		success
+	}
+}
+`
+
+func Logout(
+	ctx_ context.Context,
+	client_ graphql.Client,
+) (data_ *LogoutResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "Logout",
+		Query:  Logout_Operation,
+	}
+
+	data_ = &LogoutResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
 // The mutation executed by MarkAllNotificationsRead.
 const MarkAllNotificationsRead_Operation = `
 mutation MarkAllNotificationsRead {
@@ -7158,41 +7172,6 @@ func SetRunShare(
 	}
 
 	data_ = &SetRunShareResponse{}
-	resp_ := &graphql.Response{Data: data_}
-
-	err_ = client_.MakeRequest(
-		ctx_,
-		req_,
-		resp_,
-	)
-
-	return data_, err_
-}
-
-// The mutation executed by SubmitSocialLogin.
-const SubmitSocialLogin_Operation = `
-mutation SubmitSocialLogin ($provider: String!) {
-	submit_social_login(provider: $provider) {
-		success
-		redirect_url
-	}
-}
-`
-
-func SubmitSocialLogin(
-	ctx_ context.Context,
-	client_ graphql.Client,
-	provider string,
-) (data_ *SubmitSocialLoginResponse, err_ error) {
-	req_ := &graphql.Request{
-		OpName: "SubmitSocialLogin",
-		Query:  SubmitSocialLogin_Operation,
-		Variables: &__SubmitSocialLoginInput{
-			Provider: provider,
-		},
-	}
-
-	data_ = &SubmitSocialLoginResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
