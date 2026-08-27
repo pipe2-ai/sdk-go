@@ -101,6 +101,7 @@ type Assets_bool_exp struct {
 	Thumbnail_url   *String_comparison_exp       `json:"thumbnail_url"`
 	Type            *String_comparison_exp       `json:"type"`
 	Url             *String_comparison_exp       `json:"url"`
+	User            *Users_bool_exp              `json:"user"`
 }
 
 // GetAnd returns Assets_bool_exp.And, and is useful for accessing the field via an interface.
@@ -147,6 +148,9 @@ func (v *Assets_bool_exp) GetType() *String_comparison_exp { return v.Type }
 
 // GetUrl returns Assets_bool_exp.Url, and is useful for accessing the field via an interface.
 func (v *Assets_bool_exp) GetUrl() *String_comparison_exp { return v.Url }
+
+// GetUser returns Assets_bool_exp.User, and is useful for accessing the field via an interface.
+func (v *Assets_bool_exp) GetUser() *Users_bool_exp { return v.User }
 
 // select columns of table "assets"
 type Assets_select_column string
@@ -338,6 +342,33 @@ func (v *CancelSubscriptionCancel_subscriptionCancel_subscription_output) GetMes
 // GetCancel_at_period_end returns CancelSubscriptionCancel_subscriptionCancel_subscription_output.Cancel_at_period_end, and is useful for accessing the field via an interface.
 func (v *CancelSubscriptionCancel_subscriptionCancel_subscription_output) GetCancel_at_period_end() bool {
 	return v.Cancel_at_period_end
+}
+
+// CancelSubscriptionPlanChangeCancel_subscription_plan_changeCancel_subscription_plan_change_output includes the requested fields of the GraphQL type cancel_subscription_plan_change_output.
+type CancelSubscriptionPlanChangeCancel_subscription_plan_changeCancel_subscription_plan_change_output struct {
+	Success   bool `json:"success"`
+	Cancelled bool `json:"cancelled"`
+}
+
+// GetSuccess returns CancelSubscriptionPlanChangeCancel_subscription_plan_changeCancel_subscription_plan_change_output.Success, and is useful for accessing the field via an interface.
+func (v *CancelSubscriptionPlanChangeCancel_subscription_plan_changeCancel_subscription_plan_change_output) GetSuccess() bool {
+	return v.Success
+}
+
+// GetCancelled returns CancelSubscriptionPlanChangeCancel_subscription_plan_changeCancel_subscription_plan_change_output.Cancelled, and is useful for accessing the field via an interface.
+func (v *CancelSubscriptionPlanChangeCancel_subscription_plan_changeCancel_subscription_plan_change_output) GetCancelled() bool {
+	return v.Cancelled
+}
+
+// CancelSubscriptionPlanChangeResponse is returned by CancelSubscriptionPlanChange on success.
+type CancelSubscriptionPlanChangeResponse struct {
+	// Cancel the current user's pending downgrade
+	Cancel_subscription_plan_change CancelSubscriptionPlanChangeCancel_subscription_plan_changeCancel_subscription_plan_change_output `json:"cancel_subscription_plan_change"`
+}
+
+// GetCancel_subscription_plan_change returns CancelSubscriptionPlanChangeResponse.Cancel_subscription_plan_change, and is useful for accessing the field via an interface.
+func (v *CancelSubscriptionPlanChangeResponse) GetCancel_subscription_plan_change() CancelSubscriptionPlanChangeCancel_subscription_plan_changeCancel_subscription_plan_change_output {
+	return v.Cancel_subscription_plan_change
 }
 
 // CancelSubscriptionResponse is returned by CancelSubscription on success.
@@ -541,6 +572,33 @@ func (v *CreateAssetResponse) GetCreate_asset() CreateAssetCreate_assetCreate_as
 	return v.Create_asset
 }
 
+// CreateAuthHandoffCodeCreate_auth_handoff_codeCreate_auth_handoff_code_output includes the requested fields of the GraphQL type create_auth_handoff_code_output.
+type CreateAuthHandoffCodeCreate_auth_handoff_codeCreate_auth_handoff_code_output struct {
+	Code       string `json:"code"`
+	Expires_at string `json:"expires_at"`
+}
+
+// GetCode returns CreateAuthHandoffCodeCreate_auth_handoff_codeCreate_auth_handoff_code_output.Code, and is useful for accessing the field via an interface.
+func (v *CreateAuthHandoffCodeCreate_auth_handoff_codeCreate_auth_handoff_code_output) GetCode() string {
+	return v.Code
+}
+
+// GetExpires_at returns CreateAuthHandoffCodeCreate_auth_handoff_codeCreate_auth_handoff_code_output.Expires_at, and is useful for accessing the field via an interface.
+func (v *CreateAuthHandoffCodeCreate_auth_handoff_codeCreate_auth_handoff_code_output) GetExpires_at() string {
+	return v.Expires_at
+}
+
+// CreateAuthHandoffCodeResponse is returned by CreateAuthHandoffCode on success.
+type CreateAuthHandoffCodeResponse struct {
+	// Create a short-lived, PKCE-bound authentication handoff code
+	Create_auth_handoff_code CreateAuthHandoffCodeCreate_auth_handoff_codeCreate_auth_handoff_code_output `json:"create_auth_handoff_code"`
+}
+
+// GetCreate_auth_handoff_code returns CreateAuthHandoffCodeResponse.Create_auth_handoff_code, and is useful for accessing the field via an interface.
+func (v *CreateAuthHandoffCodeResponse) GetCreate_auth_handoff_code() CreateAuthHandoffCodeCreate_auth_handoff_codeCreate_auth_handoff_code_output {
+	return v.Create_auth_handoff_code
+}
+
 // CreateCheckoutSessionCreate_checkout_sessionCreate_checkout_session_output includes the requested fields of the GraphQL type create_checkout_session_output.
 type CreateCheckoutSessionCreate_checkout_sessionCreate_checkout_session_output struct {
 	Success bool   `json:"success"`
@@ -566,6 +624,153 @@ type CreateCheckoutSessionResponse struct {
 // GetCreate_checkout_session returns CreateCheckoutSessionResponse.Create_checkout_session, and is useful for accessing the field via an interface.
 func (v *CreateCheckoutSessionResponse) GetCreate_checkout_session() CreateCheckoutSessionCreate_checkout_sessionCreate_checkout_session_output {
 	return v.Create_checkout_session
+}
+
+// CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output includes the requested fields of the GraphQL type create_crypto_payment_output.
+type CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output struct {
+	Success                 bool     `json:"success"`
+	Payment_id              string   `json:"payment_id"`
+	Deposit_address         string   `json:"deposit_address"`
+	Expected_usdt           float64  `json:"expected_usdt"`
+	Credits                 float64  `json:"credits"`
+	Network                 string   `json:"network"`
+	Currency_id             string   `json:"currency_id"`
+	Expires_at              string   `json:"expires_at"`
+	Provider                string   `json:"provider"`
+	Status                  string   `json:"status"`
+	Asset                   *string  `json:"asset"`
+	Amount                  string   `json:"amount"`
+	Remaining_amount        *string  `json:"remaining_amount"`
+	Payment_uri             *string  `json:"payment_uri"`
+	Qr_code_data_url        *string  `json:"qr_code_data_url"`
+	Top_up_payment_uri      *string  `json:"top_up_payment_uri"`
+	Top_up_qr_code_data_url *string  `json:"top_up_qr_code_data_url"`
+	Required_confirmations  int      `json:"required_confirmations"`
+	Confirmations           int      `json:"confirmations"`
+	Amount_paid_usdt        *float64 `json:"amount_paid_usdt"`
+	Granted_at              *string  `json:"granted_at"`
+	Tx_hash                 *string  `json:"tx_hash"`
+}
+
+// GetSuccess returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Success, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetSuccess() bool {
+	return v.Success
+}
+
+// GetPayment_id returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Payment_id, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetPayment_id() string {
+	return v.Payment_id
+}
+
+// GetDeposit_address returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Deposit_address, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetDeposit_address() string {
+	return v.Deposit_address
+}
+
+// GetExpected_usdt returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Expected_usdt, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetExpected_usdt() float64 {
+	return v.Expected_usdt
+}
+
+// GetCredits returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Credits, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetCredits() float64 {
+	return v.Credits
+}
+
+// GetNetwork returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Network, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetNetwork() string {
+	return v.Network
+}
+
+// GetCurrency_id returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Currency_id, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetCurrency_id() string {
+	return v.Currency_id
+}
+
+// GetExpires_at returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Expires_at, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetExpires_at() string {
+	return v.Expires_at
+}
+
+// GetProvider returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Provider, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetProvider() string {
+	return v.Provider
+}
+
+// GetStatus returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Status, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetStatus() string {
+	return v.Status
+}
+
+// GetAsset returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Asset, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetAsset() *string {
+	return v.Asset
+}
+
+// GetAmount returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Amount, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetAmount() string {
+	return v.Amount
+}
+
+// GetRemaining_amount returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Remaining_amount, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetRemaining_amount() *string {
+	return v.Remaining_amount
+}
+
+// GetPayment_uri returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Payment_uri, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetPayment_uri() *string {
+	return v.Payment_uri
+}
+
+// GetQr_code_data_url returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Qr_code_data_url, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetQr_code_data_url() *string {
+	return v.Qr_code_data_url
+}
+
+// GetTop_up_payment_uri returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Top_up_payment_uri, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetTop_up_payment_uri() *string {
+	return v.Top_up_payment_uri
+}
+
+// GetTop_up_qr_code_data_url returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Top_up_qr_code_data_url, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetTop_up_qr_code_data_url() *string {
+	return v.Top_up_qr_code_data_url
+}
+
+// GetRequired_confirmations returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Required_confirmations, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetRequired_confirmations() int {
+	return v.Required_confirmations
+}
+
+// GetConfirmations returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Confirmations, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetConfirmations() int {
+	return v.Confirmations
+}
+
+// GetAmount_paid_usdt returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Amount_paid_usdt, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetAmount_paid_usdt() *float64 {
+	return v.Amount_paid_usdt
+}
+
+// GetGranted_at returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Granted_at, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetGranted_at() *string {
+	return v.Granted_at
+}
+
+// GetTx_hash returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Tx_hash, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetTx_hash() *string {
+	return v.Tx_hash
+}
+
+// CreateCryptoPaymentResponse is returned by CreateCryptoPayment on success.
+type CreateCryptoPaymentResponse struct {
+	// Create an idempotent server-priced crypto payment or monthly invoice
+	Create_crypto_payment CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output `json:"create_crypto_payment"`
+}
+
+// GetCreate_crypto_payment returns CreateCryptoPaymentResponse.Create_crypto_payment, and is useful for accessing the field via an interface.
+func (v *CreateCryptoPaymentResponse) GetCreate_crypto_payment() CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output {
+	return v.Create_crypto_payment
 }
 
 // CreatePersonalAccessTokenCreate_personal_access_tokenCreate_personal_access_token_output includes the requested fields of the GraphQL type create_personal_access_token_output.
@@ -611,6 +816,65 @@ type CreatePersonalAccessTokenResponse struct {
 // GetCreate_personal_access_token returns CreatePersonalAccessTokenResponse.Create_personal_access_token, and is useful for accessing the field via an interface.
 func (v *CreatePersonalAccessTokenResponse) GetCreate_personal_access_token() CreatePersonalAccessTokenCreate_personal_access_tokenCreate_personal_access_token_output {
 	return v.Create_personal_access_token
+}
+
+// CreateSBPPaymentCreate_sbp_paymentSbp_payment_output includes the requested fields of the GraphQL type sbp_payment_output.
+type CreateSBPPaymentCreate_sbp_paymentSbp_payment_output struct {
+	Success     bool    `json:"success"`
+	Payment_id  string  `json:"payment_id"`
+	Status      string  `json:"status"`
+	Payment_uri string  `json:"payment_uri"`
+	Amount      string  `json:"amount"`
+	Currency    string  `json:"currency"`
+	Credits     float64 `json:"credits"`
+	Expires_at  string  `json:"expires_at"`
+	Detail      *string `json:"detail"`
+}
+
+// GetSuccess returns CreateSBPPaymentCreate_sbp_paymentSbp_payment_output.Success, and is useful for accessing the field via an interface.
+func (v *CreateSBPPaymentCreate_sbp_paymentSbp_payment_output) GetSuccess() bool { return v.Success }
+
+// GetPayment_id returns CreateSBPPaymentCreate_sbp_paymentSbp_payment_output.Payment_id, and is useful for accessing the field via an interface.
+func (v *CreateSBPPaymentCreate_sbp_paymentSbp_payment_output) GetPayment_id() string {
+	return v.Payment_id
+}
+
+// GetStatus returns CreateSBPPaymentCreate_sbp_paymentSbp_payment_output.Status, and is useful for accessing the field via an interface.
+func (v *CreateSBPPaymentCreate_sbp_paymentSbp_payment_output) GetStatus() string { return v.Status }
+
+// GetPayment_uri returns CreateSBPPaymentCreate_sbp_paymentSbp_payment_output.Payment_uri, and is useful for accessing the field via an interface.
+func (v *CreateSBPPaymentCreate_sbp_paymentSbp_payment_output) GetPayment_uri() string {
+	return v.Payment_uri
+}
+
+// GetAmount returns CreateSBPPaymentCreate_sbp_paymentSbp_payment_output.Amount, and is useful for accessing the field via an interface.
+func (v *CreateSBPPaymentCreate_sbp_paymentSbp_payment_output) GetAmount() string { return v.Amount }
+
+// GetCurrency returns CreateSBPPaymentCreate_sbp_paymentSbp_payment_output.Currency, and is useful for accessing the field via an interface.
+func (v *CreateSBPPaymentCreate_sbp_paymentSbp_payment_output) GetCurrency() string {
+	return v.Currency
+}
+
+// GetCredits returns CreateSBPPaymentCreate_sbp_paymentSbp_payment_output.Credits, and is useful for accessing the field via an interface.
+func (v *CreateSBPPaymentCreate_sbp_paymentSbp_payment_output) GetCredits() float64 { return v.Credits }
+
+// GetExpires_at returns CreateSBPPaymentCreate_sbp_paymentSbp_payment_output.Expires_at, and is useful for accessing the field via an interface.
+func (v *CreateSBPPaymentCreate_sbp_paymentSbp_payment_output) GetExpires_at() string {
+	return v.Expires_at
+}
+
+// GetDetail returns CreateSBPPaymentCreate_sbp_paymentSbp_payment_output.Detail, and is useful for accessing the field via an interface.
+func (v *CreateSBPPaymentCreate_sbp_paymentSbp_payment_output) GetDetail() *string { return v.Detail }
+
+// CreateSBPPaymentResponse is returned by CreateSBPPayment on success.
+type CreateSBPPaymentResponse struct {
+	// Create an idempotent server-priced SBP payment through the selected enabled provider
+	Create_sbp_payment CreateSBPPaymentCreate_sbp_paymentSbp_payment_output `json:"create_sbp_payment"`
+}
+
+// GetCreate_sbp_payment returns CreateSBPPaymentResponse.Create_sbp_payment, and is useful for accessing the field via an interface.
+func (v *CreateSBPPaymentResponse) GetCreate_sbp_payment() CreateSBPPaymentCreate_sbp_paymentSbp_payment_output {
+	return v.Create_sbp_payment
 }
 
 // DeleteAssetActionDelete_assetDelete_asset_output includes the requested fields of the GraphQL type delete_asset_output.
@@ -667,7 +931,7 @@ type EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output str
 	Routed_reason_code   *string          `json:"routed_reason_code"`
 	Routed_reason_params *json.RawMessage `json:"routed_reason_params"`
 	Incompatible_models  *json.RawMessage `json:"incompatible_models"`
-	Engine_caps          *json.RawMessage `json:"engine_caps"`
+	Model_input_schema   *json.RawMessage `json:"model_input_schema"`
 }
 
 // GetPipeline_slug returns EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output.Pipeline_slug, and is useful for accessing the field via an interface.
@@ -710,9 +974,9 @@ func (v *EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output
 	return v.Incompatible_models
 }
 
-// GetEngine_caps returns EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output.Engine_caps, and is useful for accessing the field via an interface.
-func (v *EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output) GetEngine_caps() *json.RawMessage {
-	return v.Engine_caps
+// GetModel_input_schema returns EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output.Model_input_schema, and is useful for accessing the field via an interface.
+func (v *EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output) GetModel_input_schema() *json.RawMessage {
+	return v.Model_input_schema
 }
 
 // EstimatePipelineCostResponse is returned by EstimatePipelineCost on success.
@@ -724,6 +988,33 @@ type EstimatePipelineCostResponse struct {
 // GetEstimate_pipeline_cost returns EstimatePipelineCostResponse.Estimate_pipeline_cost, and is useful for accessing the field via an interface.
 func (v *EstimatePipelineCostResponse) GetEstimate_pipeline_cost() *EstimatePipelineCostEstimate_pipeline_costEstimate_pipeline_cost_output {
 	return v.Estimate_pipeline_cost
+}
+
+// ExchangeAuthHandoffCodeExchange_auth_handoff_codeExchange_auth_handoff_code_output includes the requested fields of the GraphQL type exchange_auth_handoff_code_output.
+type ExchangeAuthHandoffCodeExchange_auth_handoff_codeExchange_auth_handoff_code_output struct {
+	Token      string `json:"token"`
+	Expires_at string `json:"expires_at"`
+}
+
+// GetToken returns ExchangeAuthHandoffCodeExchange_auth_handoff_codeExchange_auth_handoff_code_output.Token, and is useful for accessing the field via an interface.
+func (v *ExchangeAuthHandoffCodeExchange_auth_handoff_codeExchange_auth_handoff_code_output) GetToken() string {
+	return v.Token
+}
+
+// GetExpires_at returns ExchangeAuthHandoffCodeExchange_auth_handoff_codeExchange_auth_handoff_code_output.Expires_at, and is useful for accessing the field via an interface.
+func (v *ExchangeAuthHandoffCodeExchange_auth_handoff_codeExchange_auth_handoff_code_output) GetExpires_at() string {
+	return v.Expires_at
+}
+
+// ExchangeAuthHandoffCodeResponse is returned by ExchangeAuthHandoffCode on success.
+type ExchangeAuthHandoffCodeResponse struct {
+	// Exchange a one-time authentication handoff code
+	Exchange_auth_handoff_code ExchangeAuthHandoffCodeExchange_auth_handoff_codeExchange_auth_handoff_code_output `json:"exchange_auth_handoff_code"`
+}
+
+// GetExchange_auth_handoff_code returns ExchangeAuthHandoffCodeResponse.Exchange_auth_handoff_code, and is useful for accessing the field via an interface.
+func (v *ExchangeAuthHandoffCodeResponse) GetExchange_auth_handoff_code() ExchangeAuthHandoffCodeExchange_auth_handoff_codeExchange_auth_handoff_code_output {
+	return v.Exchange_auth_handoff_code
 }
 
 // GetActivePipelineRunsActive_countPipeline_runs_aggregate includes the requested fields of the GraphQL type pipeline_runs_aggregate.
@@ -891,6 +1182,72 @@ type GetAssetThumbnailsByIdsResponse struct {
 // GetAssets returns GetAssetThumbnailsByIdsResponse.Assets, and is useful for accessing the field via an interface.
 func (v *GetAssetThumbnailsByIdsResponse) GetAssets() []GetAssetThumbnailsByIdsAssets {
 	return v.Assets
+}
+
+// GetCheckoutProvidersResolve_payment_providersPayment_provider_resolved_row includes the requested fields of the GraphQL type payment_provider_resolved_row.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "payment_provider_resolved_row"
+type GetCheckoutProvidersResolve_payment_providersPayment_provider_resolved_row struct {
+	Slug               *string `json:"slug"`
+	Kind               *string `json:"kind"`
+	Label              *string `json:"label"`
+	Description        *string `json:"description"`
+	Fee_bps            *int    `json:"fee_bps"`
+	Price_source       *string `json:"price_source"`
+	Sort_order         *int    `json:"sort_order"`
+	Supports_recurring *bool   `json:"supports_recurring"`
+}
+
+// GetSlug returns GetCheckoutProvidersResolve_payment_providersPayment_provider_resolved_row.Slug, and is useful for accessing the field via an interface.
+func (v *GetCheckoutProvidersResolve_payment_providersPayment_provider_resolved_row) GetSlug() *string {
+	return v.Slug
+}
+
+// GetKind returns GetCheckoutProvidersResolve_payment_providersPayment_provider_resolved_row.Kind, and is useful for accessing the field via an interface.
+func (v *GetCheckoutProvidersResolve_payment_providersPayment_provider_resolved_row) GetKind() *string {
+	return v.Kind
+}
+
+// GetLabel returns GetCheckoutProvidersResolve_payment_providersPayment_provider_resolved_row.Label, and is useful for accessing the field via an interface.
+func (v *GetCheckoutProvidersResolve_payment_providersPayment_provider_resolved_row) GetLabel() *string {
+	return v.Label
+}
+
+// GetDescription returns GetCheckoutProvidersResolve_payment_providersPayment_provider_resolved_row.Description, and is useful for accessing the field via an interface.
+func (v *GetCheckoutProvidersResolve_payment_providersPayment_provider_resolved_row) GetDescription() *string {
+	return v.Description
+}
+
+// GetFee_bps returns GetCheckoutProvidersResolve_payment_providersPayment_provider_resolved_row.Fee_bps, and is useful for accessing the field via an interface.
+func (v *GetCheckoutProvidersResolve_payment_providersPayment_provider_resolved_row) GetFee_bps() *int {
+	return v.Fee_bps
+}
+
+// GetPrice_source returns GetCheckoutProvidersResolve_payment_providersPayment_provider_resolved_row.Price_source, and is useful for accessing the field via an interface.
+func (v *GetCheckoutProvidersResolve_payment_providersPayment_provider_resolved_row) GetPrice_source() *string {
+	return v.Price_source
+}
+
+// GetSort_order returns GetCheckoutProvidersResolve_payment_providersPayment_provider_resolved_row.Sort_order, and is useful for accessing the field via an interface.
+func (v *GetCheckoutProvidersResolve_payment_providersPayment_provider_resolved_row) GetSort_order() *int {
+	return v.Sort_order
+}
+
+// GetSupports_recurring returns GetCheckoutProvidersResolve_payment_providersPayment_provider_resolved_row.Supports_recurring, and is useful for accessing the field via an interface.
+func (v *GetCheckoutProvidersResolve_payment_providersPayment_provider_resolved_row) GetSupports_recurring() *bool {
+	return v.Supports_recurring
+}
+
+// GetCheckoutProvidersResponse is returned by GetCheckoutProviders on success.
+type GetCheckoutProvidersResponse struct {
+	// execute function "resolve_payment_providers" which returns "payment_provider_resolved_row"
+	Resolve_payment_providers []GetCheckoutProvidersResolve_payment_providersPayment_provider_resolved_row `json:"resolve_payment_providers"`
+}
+
+// GetResolve_payment_providers returns GetCheckoutProvidersResponse.Resolve_payment_providers, and is useful for accessing the field via an interface.
+func (v *GetCheckoutProvidersResponse) GetResolve_payment_providers() []GetCheckoutProvidersResolve_payment_providersPayment_provider_resolved_row {
+	return v.Resolve_payment_providers
 }
 
 // GetCreditBalanceGet_credit_balanceCredit_balance_output includes the requested fields of the GraphQL type credit_balance_output.
@@ -1081,6 +1438,199 @@ func (v *GetCreditPacksResponse) GetCredit_packs() []GetCreditPacksCredit_packs 
 	return v.Credit_packs
 }
 
+// GetCryptoPaymentCurrenciesCrypto_payment_currencies includes the requested fields of the GraphQL type crypto_payment_currencies.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "crypto_payment_currencies"
+type GetCryptoPaymentCurrenciesCrypto_payment_currencies struct {
+	Currency_id string  `json:"currency_id"`
+	Network     string  `json:"network"`
+	Asset       string  `json:"asset"`
+	Label       string  `json:"label"`
+	Decimals    int     `json:"decimals"`
+	Min_usdt    float64 `json:"min_usdt"`
+}
+
+// GetCurrency_id returns GetCryptoPaymentCurrenciesCrypto_payment_currencies.Currency_id, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentCurrenciesCrypto_payment_currencies) GetCurrency_id() string {
+	return v.Currency_id
+}
+
+// GetNetwork returns GetCryptoPaymentCurrenciesCrypto_payment_currencies.Network, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentCurrenciesCrypto_payment_currencies) GetNetwork() string { return v.Network }
+
+// GetAsset returns GetCryptoPaymentCurrenciesCrypto_payment_currencies.Asset, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentCurrenciesCrypto_payment_currencies) GetAsset() string { return v.Asset }
+
+// GetLabel returns GetCryptoPaymentCurrenciesCrypto_payment_currencies.Label, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentCurrenciesCrypto_payment_currencies) GetLabel() string { return v.Label }
+
+// GetDecimals returns GetCryptoPaymentCurrenciesCrypto_payment_currencies.Decimals, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentCurrenciesCrypto_payment_currencies) GetDecimals() int { return v.Decimals }
+
+// GetMin_usdt returns GetCryptoPaymentCurrenciesCrypto_payment_currencies.Min_usdt, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentCurrenciesCrypto_payment_currencies) GetMin_usdt() float64 {
+	return v.Min_usdt
+}
+
+// GetCryptoPaymentCurrenciesResponse is returned by GetCryptoPaymentCurrencies on success.
+type GetCryptoPaymentCurrenciesResponse struct {
+	// fetch data from the table: "crypto_payment_currencies"
+	Crypto_payment_currencies []GetCryptoPaymentCurrenciesCrypto_payment_currencies `json:"crypto_payment_currencies"`
+}
+
+// GetCrypto_payment_currencies returns GetCryptoPaymentCurrenciesResponse.Crypto_payment_currencies, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentCurrenciesResponse) GetCrypto_payment_currencies() []GetCryptoPaymentCurrenciesCrypto_payment_currencies {
+	return v.Crypto_payment_currencies
+}
+
+// GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output includes the requested fields of the GraphQL type crypto_payment_status_output.
+type GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output struct {
+	Success                 bool     `json:"success"`
+	Payment_id              string   `json:"payment_id"`
+	Provider                string   `json:"provider"`
+	Status                  string   `json:"status"`
+	Credits                 float64  `json:"credits"`
+	Expected_usdt           float64  `json:"expected_usdt"`
+	Amount_paid_usdt        *float64 `json:"amount_paid_usdt"`
+	Deposit_address         string   `json:"deposit_address"`
+	Currency_id             string   `json:"currency_id"`
+	Network                 string   `json:"network"`
+	Expires_at              string   `json:"expires_at"`
+	Granted_at              *string  `json:"granted_at"`
+	Tx_hash                 *string  `json:"tx_hash"`
+	Asset                   *string  `json:"asset"`
+	Amount                  string   `json:"amount"`
+	Remaining_amount        *string  `json:"remaining_amount"`
+	Payment_uri             *string  `json:"payment_uri"`
+	Qr_code_data_url        *string  `json:"qr_code_data_url"`
+	Top_up_payment_uri      *string  `json:"top_up_payment_uri"`
+	Top_up_qr_code_data_url *string  `json:"top_up_qr_code_data_url"`
+	Required_confirmations  int      `json:"required_confirmations"`
+	Confirmations           int      `json:"confirmations"`
+}
+
+// GetSuccess returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Success, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetSuccess() bool {
+	return v.Success
+}
+
+// GetPayment_id returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Payment_id, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetPayment_id() string {
+	return v.Payment_id
+}
+
+// GetProvider returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Provider, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetProvider() string {
+	return v.Provider
+}
+
+// GetStatus returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Status, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetStatus() string {
+	return v.Status
+}
+
+// GetCredits returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Credits, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetCredits() float64 {
+	return v.Credits
+}
+
+// GetExpected_usdt returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Expected_usdt, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetExpected_usdt() float64 {
+	return v.Expected_usdt
+}
+
+// GetAmount_paid_usdt returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Amount_paid_usdt, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetAmount_paid_usdt() *float64 {
+	return v.Amount_paid_usdt
+}
+
+// GetDeposit_address returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Deposit_address, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetDeposit_address() string {
+	return v.Deposit_address
+}
+
+// GetCurrency_id returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Currency_id, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetCurrency_id() string {
+	return v.Currency_id
+}
+
+// GetNetwork returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Network, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetNetwork() string {
+	return v.Network
+}
+
+// GetExpires_at returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Expires_at, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetExpires_at() string {
+	return v.Expires_at
+}
+
+// GetGranted_at returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Granted_at, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetGranted_at() *string {
+	return v.Granted_at
+}
+
+// GetTx_hash returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Tx_hash, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetTx_hash() *string {
+	return v.Tx_hash
+}
+
+// GetAsset returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Asset, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetAsset() *string {
+	return v.Asset
+}
+
+// GetAmount returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Amount, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetAmount() string {
+	return v.Amount
+}
+
+// GetRemaining_amount returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Remaining_amount, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetRemaining_amount() *string {
+	return v.Remaining_amount
+}
+
+// GetPayment_uri returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Payment_uri, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetPayment_uri() *string {
+	return v.Payment_uri
+}
+
+// GetQr_code_data_url returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Qr_code_data_url, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetQr_code_data_url() *string {
+	return v.Qr_code_data_url
+}
+
+// GetTop_up_payment_uri returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Top_up_payment_uri, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetTop_up_payment_uri() *string {
+	return v.Top_up_payment_uri
+}
+
+// GetTop_up_qr_code_data_url returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Top_up_qr_code_data_url, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetTop_up_qr_code_data_url() *string {
+	return v.Top_up_qr_code_data_url
+}
+
+// GetRequired_confirmations returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Required_confirmations, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetRequired_confirmations() int {
+	return v.Required_confirmations
+}
+
+// GetConfirmations returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Confirmations, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetConfirmations() int {
+	return v.Confirmations
+}
+
+// GetCryptoPaymentResponse is returned by GetCryptoPayment on success.
+type GetCryptoPaymentResponse struct {
+	// Poll one owned crypto payment through the server-side gateway client
+	Get_crypto_payment_status GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output `json:"get_crypto_payment_status"`
+}
+
+// GetGet_crypto_payment_status returns GetCryptoPaymentResponse.Get_crypto_payment_status, and is useful for accessing the field via an interface.
+func (v *GetCryptoPaymentResponse) GetGet_crypto_payment_status() GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output {
+	return v.Get_crypto_payment_status
+}
+
 // GetCurrentUserCurrent_userCurrent_user_output includes the requested fields of the GraphQL type current_user_output.
 type GetCurrentUserCurrent_userCurrent_user_output struct {
 	Id                    string  `json:"id"`
@@ -1129,6 +1679,115 @@ type GetCurrentUserResponse struct {
 func (v *GetCurrentUserResponse) GetCurrent_user() GetCurrentUserCurrent_userCurrent_user_output {
 	return v.Current_user
 }
+
+// GetDispatchBlocksDispatch_blocks includes the requested fields of the GraphQL type dispatch_blocks.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "dispatch_blocks"
+type GetDispatchBlocksDispatch_blocks struct {
+	Id            string  `json:"id"`
+	Pipeline_slug *string `json:"pipeline_slug"`
+	User_id       *string `json:"user_id"`
+	Reason        string  `json:"reason"`
+	Created_at    string  `json:"created_at"`
+}
+
+// GetId returns GetDispatchBlocksDispatch_blocks.Id, and is useful for accessing the field via an interface.
+func (v *GetDispatchBlocksDispatch_blocks) GetId() string { return v.Id }
+
+// GetPipeline_slug returns GetDispatchBlocksDispatch_blocks.Pipeline_slug, and is useful for accessing the field via an interface.
+func (v *GetDispatchBlocksDispatch_blocks) GetPipeline_slug() *string { return v.Pipeline_slug }
+
+// GetUser_id returns GetDispatchBlocksDispatch_blocks.User_id, and is useful for accessing the field via an interface.
+func (v *GetDispatchBlocksDispatch_blocks) GetUser_id() *string { return v.User_id }
+
+// GetReason returns GetDispatchBlocksDispatch_blocks.Reason, and is useful for accessing the field via an interface.
+func (v *GetDispatchBlocksDispatch_blocks) GetReason() string { return v.Reason }
+
+// GetCreated_at returns GetDispatchBlocksDispatch_blocks.Created_at, and is useful for accessing the field via an interface.
+func (v *GetDispatchBlocksDispatch_blocks) GetCreated_at() string { return v.Created_at }
+
+// GetDispatchBlocksResponse is returned by GetDispatchBlocks on success.
+type GetDispatchBlocksResponse struct {
+	// fetch data from the table: "dispatch_blocks"
+	Dispatch_blocks []GetDispatchBlocksDispatch_blocks `json:"dispatch_blocks"`
+}
+
+// GetDispatch_blocks returns GetDispatchBlocksResponse.Dispatch_blocks, and is useful for accessing the field via an interface.
+func (v *GetDispatchBlocksResponse) GetDispatch_blocks() []GetDispatchBlocksDispatch_blocks {
+	return v.Dispatch_blocks
+}
+
+// GetLocalizedPricesCountries includes the requested fields of the GraphQL type countries.
+// The GraphQL type's documentation follows.
+//
+// ISO 3166-1 alpha-2, plus a literal '*' row meaning "any country".
+type GetLocalizedPricesCountries struct {
+	Code string `json:"code"`
+	Name string `json:"name"`
+	// ISO-4217 code of the country's current legal tender (CLDR currencyData). DISPLAY ONLY — every rail still settles in USD, so this never touches the amount charged.
+	Currency *string `json:"currency"`
+}
+
+// GetCode returns GetLocalizedPricesCountries.Code, and is useful for accessing the field via an interface.
+func (v *GetLocalizedPricesCountries) GetCode() string { return v.Code }
+
+// GetName returns GetLocalizedPricesCountries.Name, and is useful for accessing the field via an interface.
+func (v *GetLocalizedPricesCountries) GetName() string { return v.Name }
+
+// GetCurrency returns GetLocalizedPricesCountries.Currency, and is useful for accessing the field via an interface.
+func (v *GetLocalizedPricesCountries) GetCurrency() *string { return v.Currency }
+
+// GetLocalizedPricesLocalized_product_prices includes the requested fields of the GraphQL type localized_product_prices.
+// The GraphQL type's documentation follows.
+//
+// Indicative local display prices for current public plans and credit packs. Provider quotes remain authoritative for settlement.
+type GetLocalizedPricesLocalized_product_prices struct {
+	Product_kind    *string  `json:"product_kind"`
+	Product_slug    *string  `json:"product_slug"`
+	Country         *string  `json:"country"`
+	Currency        *string  `json:"currency"`
+	Usd_price_cents *int     `json:"usd_price_cents"`
+	Converted_price *float64 `json:"converted_price"`
+}
+
+// GetProduct_kind returns GetLocalizedPricesLocalized_product_prices.Product_kind, and is useful for accessing the field via an interface.
+func (v *GetLocalizedPricesLocalized_product_prices) GetProduct_kind() *string { return v.Product_kind }
+
+// GetProduct_slug returns GetLocalizedPricesLocalized_product_prices.Product_slug, and is useful for accessing the field via an interface.
+func (v *GetLocalizedPricesLocalized_product_prices) GetProduct_slug() *string { return v.Product_slug }
+
+// GetCountry returns GetLocalizedPricesLocalized_product_prices.Country, and is useful for accessing the field via an interface.
+func (v *GetLocalizedPricesLocalized_product_prices) GetCountry() *string { return v.Country }
+
+// GetCurrency returns GetLocalizedPricesLocalized_product_prices.Currency, and is useful for accessing the field via an interface.
+func (v *GetLocalizedPricesLocalized_product_prices) GetCurrency() *string { return v.Currency }
+
+// GetUsd_price_cents returns GetLocalizedPricesLocalized_product_prices.Usd_price_cents, and is useful for accessing the field via an interface.
+func (v *GetLocalizedPricesLocalized_product_prices) GetUsd_price_cents() *int {
+	return v.Usd_price_cents
+}
+
+// GetConverted_price returns GetLocalizedPricesLocalized_product_prices.Converted_price, and is useful for accessing the field via an interface.
+func (v *GetLocalizedPricesLocalized_product_prices) GetConverted_price() *float64 {
+	return v.Converted_price
+}
+
+// GetLocalizedPricesResponse is returned by GetLocalizedPrices on success.
+type GetLocalizedPricesResponse struct {
+	// fetch data from the table: "localized_product_prices"
+	Localized_product_prices []GetLocalizedPricesLocalized_product_prices `json:"localized_product_prices"`
+	// fetch data from the table: "countries"
+	Countries []GetLocalizedPricesCountries `json:"countries"`
+}
+
+// GetLocalized_product_prices returns GetLocalizedPricesResponse.Localized_product_prices, and is useful for accessing the field via an interface.
+func (v *GetLocalizedPricesResponse) GetLocalized_product_prices() []GetLocalizedPricesLocalized_product_prices {
+	return v.Localized_product_prices
+}
+
+// GetCountries returns GetLocalizedPricesResponse.Countries, and is useful for accessing the field via an interface.
+func (v *GetLocalizedPricesResponse) GetCountries() []GetLocalizedPricesCountries { return v.Countries }
 
 // GetMyAffiliateAffiliates includes the requested fields of the GraphQL type affiliates.
 // The GraphQL type's documentation follows.
@@ -1502,6 +2161,211 @@ func (v *GetNotificationsUnreadNotifications_aggregateAggregateNotifications_agg
 	return v.Count
 }
 
+// GetPendingSubscriptionPlanChangeResponse is returned by GetPendingSubscriptionPlanChange on success.
+type GetPendingSubscriptionPlanChangeResponse struct {
+	// fetch data from the table: "subscription_plan_changes"
+	Subscription_plan_changes []GetPendingSubscriptionPlanChangeSubscription_plan_changes `json:"subscription_plan_changes"`
+}
+
+// GetSubscription_plan_changes returns GetPendingSubscriptionPlanChangeResponse.Subscription_plan_changes, and is useful for accessing the field via an interface.
+func (v *GetPendingSubscriptionPlanChangeResponse) GetSubscription_plan_changes() []GetPendingSubscriptionPlanChangeSubscription_plan_changes {
+	return v.Subscription_plan_changes
+}
+
+// GetPendingSubscriptionPlanChangeSubscription_plan_changes includes the requested fields of the GraphQL type subscription_plan_changes.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "subscription_plan_changes"
+type GetPendingSubscriptionPlanChangeSubscription_plan_changes struct {
+	Id           string `json:"id"`
+	Kind         string `json:"kind"`
+	Status       string `json:"status"`
+	Effective_at string `json:"effective_at"`
+	// An object relationship
+	To_plan_version GetPendingSubscriptionPlanChangeSubscription_plan_changesTo_plan_versionPlan_versions `json:"to_plan_version"`
+}
+
+// GetId returns GetPendingSubscriptionPlanChangeSubscription_plan_changes.Id, and is useful for accessing the field via an interface.
+func (v *GetPendingSubscriptionPlanChangeSubscription_plan_changes) GetId() string { return v.Id }
+
+// GetKind returns GetPendingSubscriptionPlanChangeSubscription_plan_changes.Kind, and is useful for accessing the field via an interface.
+func (v *GetPendingSubscriptionPlanChangeSubscription_plan_changes) GetKind() string { return v.Kind }
+
+// GetStatus returns GetPendingSubscriptionPlanChangeSubscription_plan_changes.Status, and is useful for accessing the field via an interface.
+func (v *GetPendingSubscriptionPlanChangeSubscription_plan_changes) GetStatus() string {
+	return v.Status
+}
+
+// GetEffective_at returns GetPendingSubscriptionPlanChangeSubscription_plan_changes.Effective_at, and is useful for accessing the field via an interface.
+func (v *GetPendingSubscriptionPlanChangeSubscription_plan_changes) GetEffective_at() string {
+	return v.Effective_at
+}
+
+// GetTo_plan_version returns GetPendingSubscriptionPlanChangeSubscription_plan_changes.To_plan_version, and is useful for accessing the field via an interface.
+func (v *GetPendingSubscriptionPlanChangeSubscription_plan_changes) GetTo_plan_version() GetPendingSubscriptionPlanChangeSubscription_plan_changesTo_plan_versionPlan_versions {
+	return v.To_plan_version
+}
+
+// GetPendingSubscriptionPlanChangeSubscription_plan_changesTo_plan_versionPlan_versions includes the requested fields of the GraphQL type plan_versions.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "plan_versions"
+type GetPendingSubscriptionPlanChangeSubscription_plan_changesTo_plan_versionPlan_versions struct {
+	Id string `json:"id"`
+	// An object relationship
+	Plan GetPendingSubscriptionPlanChangeSubscription_plan_changesTo_plan_versionPlan_versionsPlanPlans `json:"plan"`
+}
+
+// GetId returns GetPendingSubscriptionPlanChangeSubscription_plan_changesTo_plan_versionPlan_versions.Id, and is useful for accessing the field via an interface.
+func (v *GetPendingSubscriptionPlanChangeSubscription_plan_changesTo_plan_versionPlan_versions) GetId() string {
+	return v.Id
+}
+
+// GetPlan returns GetPendingSubscriptionPlanChangeSubscription_plan_changesTo_plan_versionPlan_versions.Plan, and is useful for accessing the field via an interface.
+func (v *GetPendingSubscriptionPlanChangeSubscription_plan_changesTo_plan_versionPlan_versions) GetPlan() GetPendingSubscriptionPlanChangeSubscription_plan_changesTo_plan_versionPlan_versionsPlanPlans {
+	return v.Plan
+}
+
+// GetPendingSubscriptionPlanChangeSubscription_plan_changesTo_plan_versionPlan_versionsPlanPlans includes the requested fields of the GraphQL type plans.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "plans"
+type GetPendingSubscriptionPlanChangeSubscription_plan_changesTo_plan_versionPlan_versionsPlanPlans struct {
+	Slug       string `json:"slug"`
+	Name       string `json:"name"`
+	Sort_order int    `json:"sort_order"`
+}
+
+// GetSlug returns GetPendingSubscriptionPlanChangeSubscription_plan_changesTo_plan_versionPlan_versionsPlanPlans.Slug, and is useful for accessing the field via an interface.
+func (v *GetPendingSubscriptionPlanChangeSubscription_plan_changesTo_plan_versionPlan_versionsPlanPlans) GetSlug() string {
+	return v.Slug
+}
+
+// GetName returns GetPendingSubscriptionPlanChangeSubscription_plan_changesTo_plan_versionPlan_versionsPlanPlans.Name, and is useful for accessing the field via an interface.
+func (v *GetPendingSubscriptionPlanChangeSubscription_plan_changesTo_plan_versionPlan_versionsPlanPlans) GetName() string {
+	return v.Name
+}
+
+// GetSort_order returns GetPendingSubscriptionPlanChangeSubscription_plan_changesTo_plan_versionPlan_versionsPlanPlans.Sort_order, and is useful for accessing the field via an interface.
+func (v *GetPendingSubscriptionPlanChangeSubscription_plan_changesTo_plan_versionPlan_versionsPlanPlans) GetSort_order() int {
+	return v.Sort_order
+}
+
+// GetPipelineBySlugPipelines includes the requested fields of the GraphQL type pipelines.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "pipelines"
+type GetPipelineBySlugPipelines struct {
+	Id            string          `json:"id"`
+	Slug          string          `json:"slug"`
+	Name          string          `json:"name"`
+	Description   *string         `json:"description"`
+	Category      string          `json:"category"`
+	Icon_url      *string         `json:"icon_url"`
+	Preview_url   *string         `json:"preview_url"`
+	Providers     []string        `json:"providers"`
+	Models        []string        `json:"models"`
+	Input_schema  json.RawMessage `json:"input_schema"`
+	Ui_schema     json.RawMessage `json:"ui_schema"`
+	Output_schema json.RawMessage `json:"output_schema"`
+	Tags          []string        `json:"tags"`
+	// Structured metadata for AI orchestrators: best_for, avoid_for, limitations, output_characteristics, composability, quality_tips
+	Hints       json.RawMessage `json:"hints"`
+	Cancellable bool            `json:"cancellable"`
+	// An array relationship
+	Translations []GetPipelineBySlugPipelinesTranslationsPipeline_translations `json:"translations"`
+}
+
+// GetId returns GetPipelineBySlugPipelines.Id, and is useful for accessing the field via an interface.
+func (v *GetPipelineBySlugPipelines) GetId() string { return v.Id }
+
+// GetSlug returns GetPipelineBySlugPipelines.Slug, and is useful for accessing the field via an interface.
+func (v *GetPipelineBySlugPipelines) GetSlug() string { return v.Slug }
+
+// GetName returns GetPipelineBySlugPipelines.Name, and is useful for accessing the field via an interface.
+func (v *GetPipelineBySlugPipelines) GetName() string { return v.Name }
+
+// GetDescription returns GetPipelineBySlugPipelines.Description, and is useful for accessing the field via an interface.
+func (v *GetPipelineBySlugPipelines) GetDescription() *string { return v.Description }
+
+// GetCategory returns GetPipelineBySlugPipelines.Category, and is useful for accessing the field via an interface.
+func (v *GetPipelineBySlugPipelines) GetCategory() string { return v.Category }
+
+// GetIcon_url returns GetPipelineBySlugPipelines.Icon_url, and is useful for accessing the field via an interface.
+func (v *GetPipelineBySlugPipelines) GetIcon_url() *string { return v.Icon_url }
+
+// GetPreview_url returns GetPipelineBySlugPipelines.Preview_url, and is useful for accessing the field via an interface.
+func (v *GetPipelineBySlugPipelines) GetPreview_url() *string { return v.Preview_url }
+
+// GetProviders returns GetPipelineBySlugPipelines.Providers, and is useful for accessing the field via an interface.
+func (v *GetPipelineBySlugPipelines) GetProviders() []string { return v.Providers }
+
+// GetModels returns GetPipelineBySlugPipelines.Models, and is useful for accessing the field via an interface.
+func (v *GetPipelineBySlugPipelines) GetModels() []string { return v.Models }
+
+// GetInput_schema returns GetPipelineBySlugPipelines.Input_schema, and is useful for accessing the field via an interface.
+func (v *GetPipelineBySlugPipelines) GetInput_schema() json.RawMessage { return v.Input_schema }
+
+// GetUi_schema returns GetPipelineBySlugPipelines.Ui_schema, and is useful for accessing the field via an interface.
+func (v *GetPipelineBySlugPipelines) GetUi_schema() json.RawMessage { return v.Ui_schema }
+
+// GetOutput_schema returns GetPipelineBySlugPipelines.Output_schema, and is useful for accessing the field via an interface.
+func (v *GetPipelineBySlugPipelines) GetOutput_schema() json.RawMessage { return v.Output_schema }
+
+// GetTags returns GetPipelineBySlugPipelines.Tags, and is useful for accessing the field via an interface.
+func (v *GetPipelineBySlugPipelines) GetTags() []string { return v.Tags }
+
+// GetHints returns GetPipelineBySlugPipelines.Hints, and is useful for accessing the field via an interface.
+func (v *GetPipelineBySlugPipelines) GetHints() json.RawMessage { return v.Hints }
+
+// GetCancellable returns GetPipelineBySlugPipelines.Cancellable, and is useful for accessing the field via an interface.
+func (v *GetPipelineBySlugPipelines) GetCancellable() bool { return v.Cancellable }
+
+// GetTranslations returns GetPipelineBySlugPipelines.Translations, and is useful for accessing the field via an interface.
+func (v *GetPipelineBySlugPipelines) GetTranslations() []GetPipelineBySlugPipelinesTranslationsPipeline_translations {
+	return v.Translations
+}
+
+// GetPipelineBySlugPipelinesTranslationsPipeline_translations includes the requested fields of the GraphQL type pipeline_translations.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "pipeline_translations"
+type GetPipelineBySlugPipelinesTranslationsPipeline_translations struct {
+	Locale      string           `json:"locale"`
+	Name        *string          `json:"name"`
+	Description *string          `json:"description"`
+	Form_i18n   *json.RawMessage `json:"form_i18n"`
+}
+
+// GetLocale returns GetPipelineBySlugPipelinesTranslationsPipeline_translations.Locale, and is useful for accessing the field via an interface.
+func (v *GetPipelineBySlugPipelinesTranslationsPipeline_translations) GetLocale() string {
+	return v.Locale
+}
+
+// GetName returns GetPipelineBySlugPipelinesTranslationsPipeline_translations.Name, and is useful for accessing the field via an interface.
+func (v *GetPipelineBySlugPipelinesTranslationsPipeline_translations) GetName() *string {
+	return v.Name
+}
+
+// GetDescription returns GetPipelineBySlugPipelinesTranslationsPipeline_translations.Description, and is useful for accessing the field via an interface.
+func (v *GetPipelineBySlugPipelinesTranslationsPipeline_translations) GetDescription() *string {
+	return v.Description
+}
+
+// GetForm_i18n returns GetPipelineBySlugPipelinesTranslationsPipeline_translations.Form_i18n, and is useful for accessing the field via an interface.
+func (v *GetPipelineBySlugPipelinesTranslationsPipeline_translations) GetForm_i18n() *json.RawMessage {
+	return v.Form_i18n
+}
+
+// GetPipelineBySlugResponse is returned by GetPipelineBySlug on success.
+type GetPipelineBySlugResponse struct {
+	// fetch data from the table: "pipelines"
+	Pipelines []GetPipelineBySlugPipelines `json:"pipelines"`
+}
+
+// GetPipelines returns GetPipelineBySlugResponse.Pipelines, and is useful for accessing the field via an interface.
+func (v *GetPipelineBySlugResponse) GetPipelines() []GetPipelineBySlugPipelines { return v.Pipelines }
+
 // GetPipelineRunPipeline_runs_by_pkPipeline_runs includes the requested fields of the GraphQL type pipeline_runs.
 // The GraphQL type's documentation follows.
 //
@@ -1623,6 +2487,8 @@ type GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines struct {
 	Input_schema  json.RawMessage `json:"input_schema"`
 	Ui_schema     json.RawMessage `json:"ui_schema"`
 	Cancellable   bool            `json:"cancellable"`
+	// An array relationship
+	Translations []GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelinesTranslationsPipeline_translations `json:"translations"`
 }
 
 // GetName returns GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines.Name, and is useful for accessing the field via an interface.
@@ -1653,6 +2519,30 @@ func (v *GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines) GetUi_
 // GetCancellable returns GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines.Cancellable, and is useful for accessing the field via an interface.
 func (v *GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines) GetCancellable() bool {
 	return v.Cancellable
+}
+
+// GetTranslations returns GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines.Translations, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelines) GetTranslations() []GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelinesTranslationsPipeline_translations {
+	return v.Translations
+}
+
+// GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelinesTranslationsPipeline_translations includes the requested fields of the GraphQL type pipeline_translations.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "pipeline_translations"
+type GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelinesTranslationsPipeline_translations struct {
+	Locale string  `json:"locale"`
+	Name   *string `json:"name"`
+}
+
+// GetLocale returns GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelinesTranslationsPipeline_translations.Locale, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelinesTranslationsPipeline_translations) GetLocale() string {
+	return v.Locale
+}
+
+// GetName returns GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelinesTranslationsPipeline_translations.Name, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunPipeline_runs_by_pkPipeline_runsPipelinePipelinesTranslationsPipeline_translations) GetName() *string {
+	return v.Name
 }
 
 // GetPipelineRunPipeline_runs_by_pkPipeline_runsWorkflow_executionExecutions_visibility includes the requested fields of the GraphQL type executions_visibility.
@@ -2005,6 +2895,8 @@ type GetPipelineRunsPipeline_runsPipelinePipelines struct {
 	Input_schema  json.RawMessage `json:"input_schema"`
 	Ui_schema     json.RawMessage `json:"ui_schema"`
 	Cancellable   bool            `json:"cancellable"`
+	// An array relationship
+	Translations []GetPipelineRunsPipeline_runsPipelinePipelinesTranslationsPipeline_translations `json:"translations"`
 }
 
 // GetName returns GetPipelineRunsPipeline_runsPipelinePipelines.Name, and is useful for accessing the field via an interface.
@@ -2030,6 +2922,30 @@ func (v *GetPipelineRunsPipeline_runsPipelinePipelines) GetUi_schema() json.RawM
 
 // GetCancellable returns GetPipelineRunsPipeline_runsPipelinePipelines.Cancellable, and is useful for accessing the field via an interface.
 func (v *GetPipelineRunsPipeline_runsPipelinePipelines) GetCancellable() bool { return v.Cancellable }
+
+// GetTranslations returns GetPipelineRunsPipeline_runsPipelinePipelines.Translations, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsPipeline_runsPipelinePipelines) GetTranslations() []GetPipelineRunsPipeline_runsPipelinePipelinesTranslationsPipeline_translations {
+	return v.Translations
+}
+
+// GetPipelineRunsPipeline_runsPipelinePipelinesTranslationsPipeline_translations includes the requested fields of the GraphQL type pipeline_translations.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "pipeline_translations"
+type GetPipelineRunsPipeline_runsPipelinePipelinesTranslationsPipeline_translations struct {
+	Locale string  `json:"locale"`
+	Name   *string `json:"name"`
+}
+
+// GetLocale returns GetPipelineRunsPipeline_runsPipelinePipelinesTranslationsPipeline_translations.Locale, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsPipeline_runsPipelinePipelinesTranslationsPipeline_translations) GetLocale() string {
+	return v.Locale
+}
+
+// GetName returns GetPipelineRunsPipeline_runsPipelinePipelinesTranslationsPipeline_translations.Name, and is useful for accessing the field via an interface.
+func (v *GetPipelineRunsPipeline_runsPipelinePipelinesTranslationsPipeline_translations) GetName() *string {
+	return v.Name
+}
 
 // GetPipelineRunsPipeline_runsWorkflow_executionExecutions_visibility includes the requested fields of the GraphQL type executions_visibility.
 // The GraphQL type's documentation follows.
@@ -2338,8 +3254,9 @@ func (v *GetPipelinesPipelinesExamplesPipeline_examples) GetTranslations() []Get
 //
 // columns and relationships of "models"
 type GetPipelinesPipelinesExamplesPipeline_examplesModelModels struct {
-	Slug  string `json:"slug"`
-	Label string `json:"label"`
+	Slug        string  `json:"slug"`
+	Label       string  `json:"label"`
+	Public_name *string `json:"public_name"`
 }
 
 // GetSlug returns GetPipelinesPipelinesExamplesPipeline_examplesModelModels.Slug, and is useful for accessing the field via an interface.
@@ -2347,6 +3264,11 @@ func (v *GetPipelinesPipelinesExamplesPipeline_examplesModelModels) GetSlug() st
 
 // GetLabel returns GetPipelinesPipelinesExamplesPipeline_examplesModelModels.Label, and is useful for accessing the field via an interface.
 func (v *GetPipelinesPipelinesExamplesPipeline_examplesModelModels) GetLabel() string { return v.Label }
+
+// GetPublic_name returns GetPipelinesPipelinesExamplesPipeline_examplesModelModels.Public_name, and is useful for accessing the field via an interface.
+func (v *GetPipelinesPipelinesExamplesPipeline_examplesModelModels) GetPublic_name() *string {
+	return v.Public_name
+}
 
 // GetPipelinesPipelinesExamplesPipeline_examplesTranslationsPipeline_examples_translations includes the requested fields of the GraphQL type pipeline_examples_translations.
 // The GraphQL type's documentation follows.
@@ -2539,6 +3461,67 @@ type GetPlansResponse struct {
 // GetPlans returns GetPlansResponse.Plans, and is useful for accessing the field via an interface.
 func (v *GetPlansResponse) GetPlans() []GetPlansPlans { return v.Plans }
 
+// GetSBPPaymentGet_sbp_payment_statusSbp_payment_output includes the requested fields of the GraphQL type sbp_payment_output.
+type GetSBPPaymentGet_sbp_payment_statusSbp_payment_output struct {
+	Success     bool    `json:"success"`
+	Payment_id  string  `json:"payment_id"`
+	Status      string  `json:"status"`
+	Payment_uri string  `json:"payment_uri"`
+	Amount      string  `json:"amount"`
+	Currency    string  `json:"currency"`
+	Credits     float64 `json:"credits"`
+	Expires_at  string  `json:"expires_at"`
+	Detail      *string `json:"detail"`
+}
+
+// GetSuccess returns GetSBPPaymentGet_sbp_payment_statusSbp_payment_output.Success, and is useful for accessing the field via an interface.
+func (v *GetSBPPaymentGet_sbp_payment_statusSbp_payment_output) GetSuccess() bool { return v.Success }
+
+// GetPayment_id returns GetSBPPaymentGet_sbp_payment_statusSbp_payment_output.Payment_id, and is useful for accessing the field via an interface.
+func (v *GetSBPPaymentGet_sbp_payment_statusSbp_payment_output) GetPayment_id() string {
+	return v.Payment_id
+}
+
+// GetStatus returns GetSBPPaymentGet_sbp_payment_statusSbp_payment_output.Status, and is useful for accessing the field via an interface.
+func (v *GetSBPPaymentGet_sbp_payment_statusSbp_payment_output) GetStatus() string { return v.Status }
+
+// GetPayment_uri returns GetSBPPaymentGet_sbp_payment_statusSbp_payment_output.Payment_uri, and is useful for accessing the field via an interface.
+func (v *GetSBPPaymentGet_sbp_payment_statusSbp_payment_output) GetPayment_uri() string {
+	return v.Payment_uri
+}
+
+// GetAmount returns GetSBPPaymentGet_sbp_payment_statusSbp_payment_output.Amount, and is useful for accessing the field via an interface.
+func (v *GetSBPPaymentGet_sbp_payment_statusSbp_payment_output) GetAmount() string { return v.Amount }
+
+// GetCurrency returns GetSBPPaymentGet_sbp_payment_statusSbp_payment_output.Currency, and is useful for accessing the field via an interface.
+func (v *GetSBPPaymentGet_sbp_payment_statusSbp_payment_output) GetCurrency() string {
+	return v.Currency
+}
+
+// GetCredits returns GetSBPPaymentGet_sbp_payment_statusSbp_payment_output.Credits, and is useful for accessing the field via an interface.
+func (v *GetSBPPaymentGet_sbp_payment_statusSbp_payment_output) GetCredits() float64 {
+	return v.Credits
+}
+
+// GetExpires_at returns GetSBPPaymentGet_sbp_payment_statusSbp_payment_output.Expires_at, and is useful for accessing the field via an interface.
+func (v *GetSBPPaymentGet_sbp_payment_statusSbp_payment_output) GetExpires_at() string {
+	return v.Expires_at
+}
+
+// GetDetail returns GetSBPPaymentGet_sbp_payment_statusSbp_payment_output.Detail, and is useful for accessing the field via an interface.
+func (v *GetSBPPaymentGet_sbp_payment_statusSbp_payment_output) GetDetail() *string { return v.Detail }
+
+// GetSBPPaymentResponse is returned by GetSBPPayment on success.
+type GetSBPPaymentResponse struct {
+	// Poll one owned SBP payment and settle it through its recorded provider
+	Get_sbp_payment_status GetSBPPaymentGet_sbp_payment_statusSbp_payment_output `json:"get_sbp_payment_status"`
+}
+
+// GetGet_sbp_payment_status returns GetSBPPaymentResponse.Get_sbp_payment_status, and is useful for accessing the field via an interface.
+func (v *GetSBPPaymentResponse) GetGet_sbp_payment_status() GetSBPPaymentGet_sbp_payment_statusSbp_payment_output {
+	return v.Get_sbp_payment_status
+}
+
 // GetSubscriptionResponse is returned by GetSubscription on success.
 type GetSubscriptionResponse struct {
 	// An array relationship
@@ -2555,13 +3538,14 @@ func (v *GetSubscriptionResponse) GetSubscriptions() []GetSubscriptionSubscripti
 //
 // columns and relationships of "subscriptions"
 type GetSubscriptionSubscriptions struct {
-	Id                   string `json:"id"`
-	Plan_id              string `json:"plan_id"`
-	Plan_version_id      string `json:"plan_version_id"`
-	Status               string `json:"status"`
-	Period_start         string `json:"period_start"`
-	Period_end           string `json:"period_end"`
-	Cancel_at_period_end bool   `json:"cancel_at_period_end"`
+	Id                   string           `json:"id"`
+	Plan_id              string           `json:"plan_id"`
+	Plan_version_id      string           `json:"plan_version_id"`
+	Status               string           `json:"status"`
+	Period_start         string           `json:"period_start"`
+	Period_end           string           `json:"period_end"`
+	Cancel_at_period_end bool             `json:"cancel_at_period_end"`
+	Metadata             *json.RawMessage `json:"metadata"`
 	// An object relationship
 	Plan GetSubscriptionSubscriptionsPlanPlans `json:"plan"`
 	// An object relationship
@@ -2588,6 +3572,9 @@ func (v *GetSubscriptionSubscriptions) GetPeriod_end() string { return v.Period_
 
 // GetCancel_at_period_end returns GetSubscriptionSubscriptions.Cancel_at_period_end, and is useful for accessing the field via an interface.
 func (v *GetSubscriptionSubscriptions) GetCancel_at_period_end() bool { return v.Cancel_at_period_end }
+
+// GetMetadata returns GetSubscriptionSubscriptions.Metadata, and is useful for accessing the field via an interface.
+func (v *GetSubscriptionSubscriptions) GetMetadata() *json.RawMessage { return v.Metadata }
 
 // GetPlan returns GetSubscriptionSubscriptions.Plan, and is useful for accessing the field via an interface.
 func (v *GetSubscriptionSubscriptions) GetPlan() GetSubscriptionSubscriptionsPlanPlans { return v.Plan }
@@ -2740,6 +3727,48 @@ func (v *GetUserAssetsResponse) GetAssets() []GetUserAssetsAssets { return v.Ass
 // GetAssets_aggregate returns GetUserAssetsResponse.Assets_aggregate, and is useful for accessing the field via an interface.
 func (v *GetUserAssetsResponse) GetAssets_aggregate() GetUserAssetsAssets_aggregate {
 	return v.Assets_aggregate
+}
+
+// GetUserSubscriptionCreditsResponse is returned by GetUserSubscriptionCredits on success.
+type GetUserSubscriptionCreditsResponse struct {
+	// fetch data from the table: "user_credit_balance_breakdown"
+	User_credit_balance_breakdown []GetUserSubscriptionCreditsUser_credit_balance_breakdown `json:"user_credit_balance_breakdown"`
+}
+
+// GetUser_credit_balance_breakdown returns GetUserSubscriptionCreditsResponse.User_credit_balance_breakdown, and is useful for accessing the field via an interface.
+func (v *GetUserSubscriptionCreditsResponse) GetUser_credit_balance_breakdown() []GetUserSubscriptionCreditsUser_credit_balance_breakdown {
+	return v.User_credit_balance_breakdown
+}
+
+// GetUserSubscriptionCreditsUser_credit_balance_breakdown includes the requested fields of the GraphQL type user_credit_balance_breakdown.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "user_credit_balance_breakdown"
+type GetUserSubscriptionCreditsUser_credit_balance_breakdown struct {
+	Subscription_mc *int64  `json:"subscription_mc"`
+	Retry_mc        *int64  `json:"retry_mc"`
+	Expiring_mc     *int64  `json:"expiring_mc"`
+	Next_expiry_at  *string `json:"next_expiry_at"`
+}
+
+// GetSubscription_mc returns GetUserSubscriptionCreditsUser_credit_balance_breakdown.Subscription_mc, and is useful for accessing the field via an interface.
+func (v *GetUserSubscriptionCreditsUser_credit_balance_breakdown) GetSubscription_mc() *int64 {
+	return v.Subscription_mc
+}
+
+// GetRetry_mc returns GetUserSubscriptionCreditsUser_credit_balance_breakdown.Retry_mc, and is useful for accessing the field via an interface.
+func (v *GetUserSubscriptionCreditsUser_credit_balance_breakdown) GetRetry_mc() *int64 {
+	return v.Retry_mc
+}
+
+// GetExpiring_mc returns GetUserSubscriptionCreditsUser_credit_balance_breakdown.Expiring_mc, and is useful for accessing the field via an interface.
+func (v *GetUserSubscriptionCreditsUser_credit_balance_breakdown) GetExpiring_mc() *int64 {
+	return v.Expiring_mc
+}
+
+// GetNext_expiry_at returns GetUserSubscriptionCreditsUser_credit_balance_breakdown.Next_expiry_at, and is useful for accessing the field via an interface.
+func (v *GetUserSubscriptionCreditsUser_credit_balance_breakdown) GetNext_expiry_at() *string {
+	return v.Next_expiry_at
 }
 
 // InitVerificationFlowInit_verification_flowAuth_flow includes the requested fields of the GraphQL type auth_flow.
@@ -2980,16 +4009,47 @@ func (v *MarkNotificationReadUpdate_notifications_by_pkNotifications) GetId() st
 // GetRead returns MarkNotificationReadUpdate_notifications_by_pkNotifications.Read, and is useful for accessing the field via an interface.
 func (v *MarkNotificationReadUpdate_notifications_by_pkNotifications) GetRead() bool { return v.Read }
 
+// Boolean expression to filter rows from the table "model_capabilities". All fields are combined with a logical 'AND'.
+type Model_capabilities_bool_exp struct {
+	And             []Model_capabilities_bool_exp `json:"_and"`
+	Not             *Model_capabilities_bool_exp  `json:"_not"`
+	Or              []Model_capabilities_bool_exp `json:"_or"`
+	Capability_slug *String_comparison_exp        `json:"capability_slug"`
+	Model           *Models_bool_exp              `json:"model"`
+	Model_slug      *String_comparison_exp        `json:"model_slug"`
+}
+
+// GetAnd returns Model_capabilities_bool_exp.And, and is useful for accessing the field via an interface.
+func (v *Model_capabilities_bool_exp) GetAnd() []Model_capabilities_bool_exp { return v.And }
+
+// GetNot returns Model_capabilities_bool_exp.Not, and is useful for accessing the field via an interface.
+func (v *Model_capabilities_bool_exp) GetNot() *Model_capabilities_bool_exp { return v.Not }
+
+// GetOr returns Model_capabilities_bool_exp.Or, and is useful for accessing the field via an interface.
+func (v *Model_capabilities_bool_exp) GetOr() []Model_capabilities_bool_exp { return v.Or }
+
+// GetCapability_slug returns Model_capabilities_bool_exp.Capability_slug, and is useful for accessing the field via an interface.
+func (v *Model_capabilities_bool_exp) GetCapability_slug() *String_comparison_exp {
+	return v.Capability_slug
+}
+
+// GetModel returns Model_capabilities_bool_exp.Model, and is useful for accessing the field via an interface.
+func (v *Model_capabilities_bool_exp) GetModel() *Models_bool_exp { return v.Model }
+
+// GetModel_slug returns Model_capabilities_bool_exp.Model_slug, and is useful for accessing the field via an interface.
+func (v *Model_capabilities_bool_exp) GetModel_slug() *String_comparison_exp { return v.Model_slug }
+
 // Boolean expression to filter rows from the table "model_translations". All fields are combined with a logical 'AND'.
 type Model_translations_bool_exp struct {
-	And         []Model_translations_bool_exp `json:"_and"`
-	Not         *Model_translations_bool_exp  `json:"_not"`
-	Or          []Model_translations_bool_exp `json:"_or"`
-	Description *String_comparison_exp        `json:"description"`
-	Locale      *String_comparison_exp        `json:"locale"`
-	Model       *Models_bool_exp              `json:"model"`
-	Model_slug  *String_comparison_exp        `json:"model_slug"`
-	Updated_at  *Timestamptz_comparison_exp   `json:"updated_at"`
+	And              []Model_translations_bool_exp `json:"_and"`
+	Not              *Model_translations_bool_exp  `json:"_not"`
+	Or               []Model_translations_bool_exp `json:"_or"`
+	Description      *String_comparison_exp        `json:"description"`
+	Locale           *String_comparison_exp        `json:"locale"`
+	Long_description *String_comparison_exp        `json:"long_description"`
+	Model            *Models_bool_exp              `json:"model"`
+	Model_slug       *String_comparison_exp        `json:"model_slug"`
+	Updated_at       *Timestamptz_comparison_exp   `json:"updated_at"`
 }
 
 // GetAnd returns Model_translations_bool_exp.And, and is useful for accessing the field via an interface.
@@ -3007,6 +4067,11 @@ func (v *Model_translations_bool_exp) GetDescription() *String_comparison_exp { 
 // GetLocale returns Model_translations_bool_exp.Locale, and is useful for accessing the field via an interface.
 func (v *Model_translations_bool_exp) GetLocale() *String_comparison_exp { return v.Locale }
 
+// GetLong_description returns Model_translations_bool_exp.Long_description, and is useful for accessing the field via an interface.
+func (v *Model_translations_bool_exp) GetLong_description() *String_comparison_exp {
+	return v.Long_description
+}
+
 // GetModel returns Model_translations_bool_exp.Model, and is useful for accessing the field via an interface.
 func (v *Model_translations_bool_exp) GetModel() *Models_bool_exp { return v.Model }
 
@@ -3018,19 +4083,169 @@ func (v *Model_translations_bool_exp) GetUpdated_at() *Timestamptz_comparison_ex
 	return v.Updated_at
 }
 
+// ModelsModels includes the requested fields of the GraphQL type models.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "models"
+type ModelsModels struct {
+	Slug        string   `json:"slug"`
+	Provider    string   `json:"provider"`
+	Label       string   `json:"label"`
+	Public_name *string  `json:"public_name"`
+	Aliases     []string `json:"aliases"`
+	// An object relationship
+	Provider_info    ModelsModelsProvider_infoProviders `json:"provider_info"`
+	Description      string                             `json:"description"`
+	Long_description *string                            `json:"long_description"`
+	Featured         bool                               `json:"featured"`
+	Sort_order       int                                `json:"sort_order"`
+	// An array relationship
+	Capabilities []ModelsModelsCapabilitiesModel_capabilities `json:"capabilities"`
+	// An array relationship
+	Pipeline_models []ModelsModelsPipeline_models `json:"pipeline_models"`
+	// An array relationship
+	Translations []ModelsModelsTranslationsModel_translations `json:"translations"`
+}
+
+// GetSlug returns ModelsModels.Slug, and is useful for accessing the field via an interface.
+func (v *ModelsModels) GetSlug() string { return v.Slug }
+
+// GetProvider returns ModelsModels.Provider, and is useful for accessing the field via an interface.
+func (v *ModelsModels) GetProvider() string { return v.Provider }
+
+// GetLabel returns ModelsModels.Label, and is useful for accessing the field via an interface.
+func (v *ModelsModels) GetLabel() string { return v.Label }
+
+// GetPublic_name returns ModelsModels.Public_name, and is useful for accessing the field via an interface.
+func (v *ModelsModels) GetPublic_name() *string { return v.Public_name }
+
+// GetAliases returns ModelsModels.Aliases, and is useful for accessing the field via an interface.
+func (v *ModelsModels) GetAliases() []string { return v.Aliases }
+
+// GetProvider_info returns ModelsModels.Provider_info, and is useful for accessing the field via an interface.
+func (v *ModelsModels) GetProvider_info() ModelsModelsProvider_infoProviders { return v.Provider_info }
+
+// GetDescription returns ModelsModels.Description, and is useful for accessing the field via an interface.
+func (v *ModelsModels) GetDescription() string { return v.Description }
+
+// GetLong_description returns ModelsModels.Long_description, and is useful for accessing the field via an interface.
+func (v *ModelsModels) GetLong_description() *string { return v.Long_description }
+
+// GetFeatured returns ModelsModels.Featured, and is useful for accessing the field via an interface.
+func (v *ModelsModels) GetFeatured() bool { return v.Featured }
+
+// GetSort_order returns ModelsModels.Sort_order, and is useful for accessing the field via an interface.
+func (v *ModelsModels) GetSort_order() int { return v.Sort_order }
+
+// GetCapabilities returns ModelsModels.Capabilities, and is useful for accessing the field via an interface.
+func (v *ModelsModels) GetCapabilities() []ModelsModelsCapabilitiesModel_capabilities {
+	return v.Capabilities
+}
+
+// GetPipeline_models returns ModelsModels.Pipeline_models, and is useful for accessing the field via an interface.
+func (v *ModelsModels) GetPipeline_models() []ModelsModelsPipeline_models { return v.Pipeline_models }
+
+// GetTranslations returns ModelsModels.Translations, and is useful for accessing the field via an interface.
+func (v *ModelsModels) GetTranslations() []ModelsModelsTranslationsModel_translations {
+	return v.Translations
+}
+
+// ModelsModelsCapabilitiesModel_capabilities includes the requested fields of the GraphQL type model_capabilities.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "model_capabilities"
+type ModelsModelsCapabilitiesModel_capabilities struct {
+	Capability_slug string `json:"capability_slug"`
+}
+
+// GetCapability_slug returns ModelsModelsCapabilitiesModel_capabilities.Capability_slug, and is useful for accessing the field via an interface.
+func (v *ModelsModelsCapabilitiesModel_capabilities) GetCapability_slug() string {
+	return v.Capability_slug
+}
+
+// ModelsModelsPipeline_models includes the requested fields of the GraphQL type pipeline_models.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "pipeline_models"
+type ModelsModelsPipeline_models struct {
+	Pipeline_slug    string          `json:"pipeline_slug"`
+	Sort_order       int             `json:"sort_order"`
+	Input_schema     json.RawMessage `json:"input_schema"`
+	Auto_route_order *int            `json:"auto_route_order"`
+}
+
+// GetPipeline_slug returns ModelsModelsPipeline_models.Pipeline_slug, and is useful for accessing the field via an interface.
+func (v *ModelsModelsPipeline_models) GetPipeline_slug() string { return v.Pipeline_slug }
+
+// GetSort_order returns ModelsModelsPipeline_models.Sort_order, and is useful for accessing the field via an interface.
+func (v *ModelsModelsPipeline_models) GetSort_order() int { return v.Sort_order }
+
+// GetInput_schema returns ModelsModelsPipeline_models.Input_schema, and is useful for accessing the field via an interface.
+func (v *ModelsModelsPipeline_models) GetInput_schema() json.RawMessage { return v.Input_schema }
+
+// GetAuto_route_order returns ModelsModelsPipeline_models.Auto_route_order, and is useful for accessing the field via an interface.
+func (v *ModelsModelsPipeline_models) GetAuto_route_order() *int { return v.Auto_route_order }
+
+// ModelsModelsProvider_infoProviders includes the requested fields of the GraphQL type providers.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "providers"
+type ModelsModelsProvider_infoProviders struct {
+	Label *string `json:"label"`
+}
+
+// GetLabel returns ModelsModelsProvider_infoProviders.Label, and is useful for accessing the field via an interface.
+func (v *ModelsModelsProvider_infoProviders) GetLabel() *string { return v.Label }
+
+// ModelsModelsTranslationsModel_translations includes the requested fields of the GraphQL type model_translations.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "model_translations"
+type ModelsModelsTranslationsModel_translations struct {
+	Locale           string  `json:"locale"`
+	Description      *string `json:"description"`
+	Long_description *string `json:"long_description"`
+}
+
+// GetLocale returns ModelsModelsTranslationsModel_translations.Locale, and is useful for accessing the field via an interface.
+func (v *ModelsModelsTranslationsModel_translations) GetLocale() string { return v.Locale }
+
+// GetDescription returns ModelsModelsTranslationsModel_translations.Description, and is useful for accessing the field via an interface.
+func (v *ModelsModelsTranslationsModel_translations) GetDescription() *string { return v.Description }
+
+// GetLong_description returns ModelsModelsTranslationsModel_translations.Long_description, and is useful for accessing the field via an interface.
+func (v *ModelsModelsTranslationsModel_translations) GetLong_description() *string {
+	return v.Long_description
+}
+
+// ModelsResponse is returned by Models on success.
+type ModelsResponse struct {
+	// fetch data from the table: "models"
+	Models []ModelsModels `json:"models"`
+}
+
+// GetModels returns ModelsResponse.Models, and is useful for accessing the field via an interface.
+func (v *ModelsResponse) GetModels() []ModelsModels { return v.Models }
+
 // Boolean expression to filter rows from the table "models". All fields are combined with a logical 'AND'.
 type Models_bool_exp struct {
-	And             []Models_bool_exp            `json:"_and"`
-	Not             *Models_bool_exp             `json:"_not"`
-	Or              []Models_bool_exp            `json:"_or"`
-	Description     *String_comparison_exp       `json:"description"`
-	Is_active       *Boolean_comparison_exp      `json:"is_active"`
-	Label           *String_comparison_exp       `json:"label"`
-	Pipeline_models *Pipeline_models_bool_exp    `json:"pipeline_models"`
-	Provider        *String_comparison_exp       `json:"provider"`
-	Slug            *String_comparison_exp       `json:"slug"`
-	Sort_order      *Int_comparison_exp          `json:"sort_order"`
-	Translations    *Model_translations_bool_exp `json:"translations"`
+	And              []Models_bool_exp            `json:"_and"`
+	Not              *Models_bool_exp             `json:"_not"`
+	Or               []Models_bool_exp            `json:"_or"`
+	Aliases          *String_array_comparison_exp `json:"aliases"`
+	Capabilities     *Model_capabilities_bool_exp `json:"capabilities"`
+	Description      *String_comparison_exp       `json:"description"`
+	Featured         *Boolean_comparison_exp      `json:"featured"`
+	Is_active        *Boolean_comparison_exp      `json:"is_active"`
+	Label            *String_comparison_exp       `json:"label"`
+	Long_description *String_comparison_exp       `json:"long_description"`
+	Pipeline_models  *Pipeline_models_bool_exp    `json:"pipeline_models"`
+	Provider         *String_comparison_exp       `json:"provider"`
+	Provider_info    *Providers_bool_exp          `json:"provider_info"`
+	Public_name      *String_comparison_exp       `json:"public_name"`
+	Slug             *String_comparison_exp       `json:"slug"`
+	Sort_order       *Int_comparison_exp          `json:"sort_order"`
+	Translations     *Model_translations_bool_exp `json:"translations"`
 }
 
 // GetAnd returns Models_bool_exp.And, and is useful for accessing the field via an interface.
@@ -3042,8 +4257,17 @@ func (v *Models_bool_exp) GetNot() *Models_bool_exp { return v.Not }
 // GetOr returns Models_bool_exp.Or, and is useful for accessing the field via an interface.
 func (v *Models_bool_exp) GetOr() []Models_bool_exp { return v.Or }
 
+// GetAliases returns Models_bool_exp.Aliases, and is useful for accessing the field via an interface.
+func (v *Models_bool_exp) GetAliases() *String_array_comparison_exp { return v.Aliases }
+
+// GetCapabilities returns Models_bool_exp.Capabilities, and is useful for accessing the field via an interface.
+func (v *Models_bool_exp) GetCapabilities() *Model_capabilities_bool_exp { return v.Capabilities }
+
 // GetDescription returns Models_bool_exp.Description, and is useful for accessing the field via an interface.
 func (v *Models_bool_exp) GetDescription() *String_comparison_exp { return v.Description }
+
+// GetFeatured returns Models_bool_exp.Featured, and is useful for accessing the field via an interface.
+func (v *Models_bool_exp) GetFeatured() *Boolean_comparison_exp { return v.Featured }
 
 // GetIs_active returns Models_bool_exp.Is_active, and is useful for accessing the field via an interface.
 func (v *Models_bool_exp) GetIs_active() *Boolean_comparison_exp { return v.Is_active }
@@ -3051,11 +4275,20 @@ func (v *Models_bool_exp) GetIs_active() *Boolean_comparison_exp { return v.Is_a
 // GetLabel returns Models_bool_exp.Label, and is useful for accessing the field via an interface.
 func (v *Models_bool_exp) GetLabel() *String_comparison_exp { return v.Label }
 
+// GetLong_description returns Models_bool_exp.Long_description, and is useful for accessing the field via an interface.
+func (v *Models_bool_exp) GetLong_description() *String_comparison_exp { return v.Long_description }
+
 // GetPipeline_models returns Models_bool_exp.Pipeline_models, and is useful for accessing the field via an interface.
 func (v *Models_bool_exp) GetPipeline_models() *Pipeline_models_bool_exp { return v.Pipeline_models }
 
 // GetProvider returns Models_bool_exp.Provider, and is useful for accessing the field via an interface.
 func (v *Models_bool_exp) GetProvider() *String_comparison_exp { return v.Provider }
+
+// GetProvider_info returns Models_bool_exp.Provider_info, and is useful for accessing the field via an interface.
+func (v *Models_bool_exp) GetProvider_info() *Providers_bool_exp { return v.Provider_info }
+
+// GetPublic_name returns Models_bool_exp.Public_name, and is useful for accessing the field via an interface.
+func (v *Models_bool_exp) GetPublic_name() *String_comparison_exp { return v.Public_name }
 
 // GetSlug returns Models_bool_exp.Slug, and is useful for accessing the field via an interface.
 func (v *Models_bool_exp) GetSlug() *String_comparison_exp { return v.Slug }
@@ -3122,8 +4355,10 @@ func (v *Numeric_comparison_exp) GetNin() []float64 { return v.Nin }
 //
 // columns and relationships of "pipeline_models"
 type PipelineModelsPipeline_models struct {
-	Model_slug string `json:"model_slug"`
-	Sort_order int    `json:"sort_order"`
+	Model_slug       string          `json:"model_slug"`
+	Sort_order       int             `json:"sort_order"`
+	Input_schema     json.RawMessage `json:"input_schema"`
+	Auto_route_order *int            `json:"auto_route_order"`
 	// An object relationship
 	Model PipelineModelsPipeline_modelsModelModels `json:"model"`
 }
@@ -3133,6 +4368,12 @@ func (v *PipelineModelsPipeline_models) GetModel_slug() string { return v.Model_
 
 // GetSort_order returns PipelineModelsPipeline_models.Sort_order, and is useful for accessing the field via an interface.
 func (v *PipelineModelsPipeline_models) GetSort_order() int { return v.Sort_order }
+
+// GetInput_schema returns PipelineModelsPipeline_models.Input_schema, and is useful for accessing the field via an interface.
+func (v *PipelineModelsPipeline_models) GetInput_schema() json.RawMessage { return v.Input_schema }
+
+// GetAuto_route_order returns PipelineModelsPipeline_models.Auto_route_order, and is useful for accessing the field via an interface.
+func (v *PipelineModelsPipeline_models) GetAuto_route_order() *int { return v.Auto_route_order }
 
 // GetModel returns PipelineModelsPipeline_models.Model, and is useful for accessing the field via an interface.
 func (v *PipelineModelsPipeline_models) GetModel() PipelineModelsPipeline_modelsModelModels {
@@ -3144,10 +4385,11 @@ func (v *PipelineModelsPipeline_models) GetModel() PipelineModelsPipeline_models
 //
 // columns and relationships of "models"
 type PipelineModelsPipeline_modelsModelModels struct {
-	Slug        string `json:"slug"`
-	Label       string `json:"label"`
-	Description string `json:"description"`
-	Provider    string `json:"provider"`
+	Slug        string  `json:"slug"`
+	Label       string  `json:"label"`
+	Public_name *string `json:"public_name"`
+	Description string  `json:"description"`
+	Provider    string  `json:"provider"`
 	// An array relationship
 	Translations []PipelineModelsPipeline_modelsModelModelsTranslationsModel_translations `json:"translations"`
 }
@@ -3157,6 +4399,9 @@ func (v *PipelineModelsPipeline_modelsModelModels) GetSlug() string { return v.S
 
 // GetLabel returns PipelineModelsPipeline_modelsModelModels.Label, and is useful for accessing the field via an interface.
 func (v *PipelineModelsPipeline_modelsModelModels) GetLabel() string { return v.Label }
+
+// GetPublic_name returns PipelineModelsPipeline_modelsModelModels.Public_name, and is useful for accessing the field via an interface.
+func (v *PipelineModelsPipeline_modelsModelModels) GetPublic_name() *string { return v.Public_name }
 
 // GetDescription returns PipelineModelsPipeline_modelsModelModels.Description, and is useful for accessing the field via an interface.
 func (v *PipelineModelsPipeline_modelsModelModels) GetDescription() string { return v.Description }
@@ -3382,13 +4627,16 @@ func (v *Pipeline_examples_translations_bool_exp) GetUpdated_at() *Timestamptz_c
 
 // Boolean expression to filter rows from the table "pipeline_models". All fields are combined with a logical 'AND'.
 type Pipeline_models_bool_exp struct {
-	And           []Pipeline_models_bool_exp `json:"_and"`
-	Not           *Pipeline_models_bool_exp  `json:"_not"`
-	Or            []Pipeline_models_bool_exp `json:"_or"`
-	Model         *Models_bool_exp           `json:"model"`
-	Model_slug    *String_comparison_exp     `json:"model_slug"`
-	Pipeline_slug *String_comparison_exp     `json:"pipeline_slug"`
-	Sort_order    *Int_comparison_exp        `json:"sort_order"`
+	And              []Pipeline_models_bool_exp `json:"_and"`
+	Not              *Pipeline_models_bool_exp  `json:"_not"`
+	Or               []Pipeline_models_bool_exp `json:"_or"`
+	Auto_route_order *Int_comparison_exp        `json:"auto_route_order"`
+	Input_schema     *Jsonb_comparison_exp      `json:"input_schema"`
+	Model            *Models_bool_exp           `json:"model"`
+	Model_slug       *String_comparison_exp     `json:"model_slug"`
+	Pipeline         *Pipelines_bool_exp        `json:"pipeline"`
+	Pipeline_slug    *String_comparison_exp     `json:"pipeline_slug"`
+	Sort_order       *Int_comparison_exp        `json:"sort_order"`
 }
 
 // GetAnd returns Pipeline_models_bool_exp.And, and is useful for accessing the field via an interface.
@@ -3400,11 +4648,22 @@ func (v *Pipeline_models_bool_exp) GetNot() *Pipeline_models_bool_exp { return v
 // GetOr returns Pipeline_models_bool_exp.Or, and is useful for accessing the field via an interface.
 func (v *Pipeline_models_bool_exp) GetOr() []Pipeline_models_bool_exp { return v.Or }
 
+// GetAuto_route_order returns Pipeline_models_bool_exp.Auto_route_order, and is useful for accessing the field via an interface.
+func (v *Pipeline_models_bool_exp) GetAuto_route_order() *Int_comparison_exp {
+	return v.Auto_route_order
+}
+
+// GetInput_schema returns Pipeline_models_bool_exp.Input_schema, and is useful for accessing the field via an interface.
+func (v *Pipeline_models_bool_exp) GetInput_schema() *Jsonb_comparison_exp { return v.Input_schema }
+
 // GetModel returns Pipeline_models_bool_exp.Model, and is useful for accessing the field via an interface.
 func (v *Pipeline_models_bool_exp) GetModel() *Models_bool_exp { return v.Model }
 
 // GetModel_slug returns Pipeline_models_bool_exp.Model_slug, and is useful for accessing the field via an interface.
 func (v *Pipeline_models_bool_exp) GetModel_slug() *String_comparison_exp { return v.Model_slug }
+
+// GetPipeline returns Pipeline_models_bool_exp.Pipeline, and is useful for accessing the field via an interface.
+func (v *Pipeline_models_bool_exp) GetPipeline() *Pipelines_bool_exp { return v.Pipeline }
 
 // GetPipeline_slug returns Pipeline_models_bool_exp.Pipeline_slug, and is useful for accessing the field via an interface.
 func (v *Pipeline_models_bool_exp) GetPipeline_slug() *String_comparison_exp { return v.Pipeline_slug }
@@ -3433,6 +4692,7 @@ type Pipeline_runs_bool_exp struct {
 	Started_at           *Timestamptz_comparison_exp `json:"started_at"`
 	Status               *String_comparison_exp      `json:"status"`
 	Temporal_workflow_id *String_comparison_exp      `json:"temporal_workflow_id"`
+	User                 *Users_bool_exp             `json:"user"`
 }
 
 // GetAnd returns Pipeline_runs_bool_exp.And, and is useful for accessing the field via an interface.
@@ -3497,6 +4757,9 @@ func (v *Pipeline_runs_bool_exp) GetStatus() *String_comparison_exp { return v.S
 func (v *Pipeline_runs_bool_exp) GetTemporal_workflow_id() *String_comparison_exp {
 	return v.Temporal_workflow_id
 }
+
+// GetUser returns Pipeline_runs_bool_exp.User, and is useful for accessing the field via an interface.
+func (v *Pipeline_runs_bool_exp) GetUser() *Users_bool_exp { return v.User }
 
 // Boolean expression to filter rows from the table "pipeline_translations". All fields are combined with a logical 'AND'.
 type Pipeline_translations_bool_exp struct {
@@ -3663,6 +4926,30 @@ func (v *Pipelines_bool_exp) GetTranslations() *Pipeline_translations_bool_exp {
 
 // GetUi_schema returns Pipelines_bool_exp.Ui_schema, and is useful for accessing the field via an interface.
 func (v *Pipelines_bool_exp) GetUi_schema() *Jsonb_comparison_exp { return v.Ui_schema }
+
+// Boolean expression to filter rows from the table "providers". All fields are combined with a logical 'AND'.
+type Providers_bool_exp struct {
+	And   []Providers_bool_exp   `json:"_and"`
+	Not   *Providers_bool_exp    `json:"_not"`
+	Or    []Providers_bool_exp   `json:"_or"`
+	Label *String_comparison_exp `json:"label"`
+	Slug  *String_comparison_exp `json:"slug"`
+}
+
+// GetAnd returns Providers_bool_exp.And, and is useful for accessing the field via an interface.
+func (v *Providers_bool_exp) GetAnd() []Providers_bool_exp { return v.And }
+
+// GetNot returns Providers_bool_exp.Not, and is useful for accessing the field via an interface.
+func (v *Providers_bool_exp) GetNot() *Providers_bool_exp { return v.Not }
+
+// GetOr returns Providers_bool_exp.Or, and is useful for accessing the field via an interface.
+func (v *Providers_bool_exp) GetOr() []Providers_bool_exp { return v.Or }
+
+// GetLabel returns Providers_bool_exp.Label, and is useful for accessing the field via an interface.
+func (v *Providers_bool_exp) GetLabel() *String_comparison_exp { return v.Label }
+
+// GetSlug returns Providers_bool_exp.Slug, and is useful for accessing the field via an interface.
+func (v *Providers_bool_exp) GetSlug() *String_comparison_exp { return v.Slug }
 
 // RegisterRegisterAuth_result includes the requested fields of the GraphQL type auth_result.
 type RegisterRegisterAuth_result struct {
@@ -3957,6 +5244,173 @@ func (v *RunPipelineRun_pipelineRun_pipeline_output) GetRun_id() string { return
 // GetWorkflow_id returns RunPipelineRun_pipelineRun_pipeline_output.Workflow_id, and is useful for accessing the field via an interface.
 func (v *RunPipelineRun_pipelineRun_pipeline_output) GetWorkflow_id() string { return v.Workflow_id }
 
+// ScheduleSubscriptionPlanChangeResponse is returned by ScheduleSubscriptionPlanChange on success.
+type ScheduleSubscriptionPlanChangeResponse struct {
+	// Schedule a subscription downgrade for the next billing boundary
+	Schedule_subscription_plan_change ScheduleSubscriptionPlanChangeSchedule_subscription_plan_changeSubscription_plan_change_output `json:"schedule_subscription_plan_change"`
+}
+
+// GetSchedule_subscription_plan_change returns ScheduleSubscriptionPlanChangeResponse.Schedule_subscription_plan_change, and is useful for accessing the field via an interface.
+func (v *ScheduleSubscriptionPlanChangeResponse) GetSchedule_subscription_plan_change() ScheduleSubscriptionPlanChangeSchedule_subscription_plan_changeSubscription_plan_change_output {
+	return v.Schedule_subscription_plan_change
+}
+
+// ScheduleSubscriptionPlanChangeSchedule_subscription_plan_changeSubscription_plan_change_output includes the requested fields of the GraphQL type subscription_plan_change_output.
+type ScheduleSubscriptionPlanChangeSchedule_subscription_plan_changeSubscription_plan_change_output struct {
+	Success      bool   `json:"success"`
+	Change_id    string `json:"change_id"`
+	Status       string `json:"status"`
+	Effective_at string `json:"effective_at"`
+}
+
+// GetSuccess returns ScheduleSubscriptionPlanChangeSchedule_subscription_plan_changeSubscription_plan_change_output.Success, and is useful for accessing the field via an interface.
+func (v *ScheduleSubscriptionPlanChangeSchedule_subscription_plan_changeSubscription_plan_change_output) GetSuccess() bool {
+	return v.Success
+}
+
+// GetChange_id returns ScheduleSubscriptionPlanChangeSchedule_subscription_plan_changeSubscription_plan_change_output.Change_id, and is useful for accessing the field via an interface.
+func (v *ScheduleSubscriptionPlanChangeSchedule_subscription_plan_changeSubscription_plan_change_output) GetChange_id() string {
+	return v.Change_id
+}
+
+// GetStatus returns ScheduleSubscriptionPlanChangeSchedule_subscription_plan_changeSubscription_plan_change_output.Status, and is useful for accessing the field via an interface.
+func (v *ScheduleSubscriptionPlanChangeSchedule_subscription_plan_changeSubscription_plan_change_output) GetStatus() string {
+	return v.Status
+}
+
+// GetEffective_at returns ScheduleSubscriptionPlanChangeSchedule_subscription_plan_changeSubscription_plan_change_output.Effective_at, and is useful for accessing the field via an interface.
+func (v *ScheduleSubscriptionPlanChangeSchedule_subscription_plan_changeSubscription_plan_change_output) GetEffective_at() string {
+	return v.Effective_at
+}
+
+// SearchPipelinesPipelines includes the requested fields of the GraphQL type pipelines.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "pipelines"
+type SearchPipelinesPipelines struct {
+	Id          string   `json:"id"`
+	Slug        string   `json:"slug"`
+	Name        string   `json:"name"`
+	Description *string  `json:"description"`
+	Category    string   `json:"category"`
+	Icon_url    *string  `json:"icon_url"`
+	Preview_url *string  `json:"preview_url"`
+	Providers   []string `json:"providers"`
+	Models      []string `json:"models"`
+	Tags        []string `json:"tags"`
+	// Structured metadata for AI orchestrators: best_for, avoid_for, limitations, output_characteristics, composability, quality_tips
+	Hints       json.RawMessage `json:"hints"`
+	Cancellable bool            `json:"cancellable"`
+	// An array relationship
+	Translations []SearchPipelinesPipelinesTranslationsPipeline_translations `json:"translations"`
+}
+
+// GetId returns SearchPipelinesPipelines.Id, and is useful for accessing the field via an interface.
+func (v *SearchPipelinesPipelines) GetId() string { return v.Id }
+
+// GetSlug returns SearchPipelinesPipelines.Slug, and is useful for accessing the field via an interface.
+func (v *SearchPipelinesPipelines) GetSlug() string { return v.Slug }
+
+// GetName returns SearchPipelinesPipelines.Name, and is useful for accessing the field via an interface.
+func (v *SearchPipelinesPipelines) GetName() string { return v.Name }
+
+// GetDescription returns SearchPipelinesPipelines.Description, and is useful for accessing the field via an interface.
+func (v *SearchPipelinesPipelines) GetDescription() *string { return v.Description }
+
+// GetCategory returns SearchPipelinesPipelines.Category, and is useful for accessing the field via an interface.
+func (v *SearchPipelinesPipelines) GetCategory() string { return v.Category }
+
+// GetIcon_url returns SearchPipelinesPipelines.Icon_url, and is useful for accessing the field via an interface.
+func (v *SearchPipelinesPipelines) GetIcon_url() *string { return v.Icon_url }
+
+// GetPreview_url returns SearchPipelinesPipelines.Preview_url, and is useful for accessing the field via an interface.
+func (v *SearchPipelinesPipelines) GetPreview_url() *string { return v.Preview_url }
+
+// GetProviders returns SearchPipelinesPipelines.Providers, and is useful for accessing the field via an interface.
+func (v *SearchPipelinesPipelines) GetProviders() []string { return v.Providers }
+
+// GetModels returns SearchPipelinesPipelines.Models, and is useful for accessing the field via an interface.
+func (v *SearchPipelinesPipelines) GetModels() []string { return v.Models }
+
+// GetTags returns SearchPipelinesPipelines.Tags, and is useful for accessing the field via an interface.
+func (v *SearchPipelinesPipelines) GetTags() []string { return v.Tags }
+
+// GetHints returns SearchPipelinesPipelines.Hints, and is useful for accessing the field via an interface.
+func (v *SearchPipelinesPipelines) GetHints() json.RawMessage { return v.Hints }
+
+// GetCancellable returns SearchPipelinesPipelines.Cancellable, and is useful for accessing the field via an interface.
+func (v *SearchPipelinesPipelines) GetCancellable() bool { return v.Cancellable }
+
+// GetTranslations returns SearchPipelinesPipelines.Translations, and is useful for accessing the field via an interface.
+func (v *SearchPipelinesPipelines) GetTranslations() []SearchPipelinesPipelinesTranslationsPipeline_translations {
+	return v.Translations
+}
+
+// SearchPipelinesPipelinesTranslationsPipeline_translations includes the requested fields of the GraphQL type pipeline_translations.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "pipeline_translations"
+type SearchPipelinesPipelinesTranslationsPipeline_translations struct {
+	Locale      string  `json:"locale"`
+	Name        *string `json:"name"`
+	Description *string `json:"description"`
+}
+
+// GetLocale returns SearchPipelinesPipelinesTranslationsPipeline_translations.Locale, and is useful for accessing the field via an interface.
+func (v *SearchPipelinesPipelinesTranslationsPipeline_translations) GetLocale() string {
+	return v.Locale
+}
+
+// GetName returns SearchPipelinesPipelinesTranslationsPipeline_translations.Name, and is useful for accessing the field via an interface.
+func (v *SearchPipelinesPipelinesTranslationsPipeline_translations) GetName() *string { return v.Name }
+
+// GetDescription returns SearchPipelinesPipelinesTranslationsPipeline_translations.Description, and is useful for accessing the field via an interface.
+func (v *SearchPipelinesPipelinesTranslationsPipeline_translations) GetDescription() *string {
+	return v.Description
+}
+
+// SearchPipelinesPipelines_aggregate includes the requested fields of the GraphQL type pipelines_aggregate.
+// The GraphQL type's documentation follows.
+//
+// aggregated selection of "pipelines"
+type SearchPipelinesPipelines_aggregate struct {
+	Aggregate *SearchPipelinesPipelines_aggregateAggregatePipelines_aggregate_fields `json:"aggregate"`
+}
+
+// GetAggregate returns SearchPipelinesPipelines_aggregate.Aggregate, and is useful for accessing the field via an interface.
+func (v *SearchPipelinesPipelines_aggregate) GetAggregate() *SearchPipelinesPipelines_aggregateAggregatePipelines_aggregate_fields {
+	return v.Aggregate
+}
+
+// SearchPipelinesPipelines_aggregateAggregatePipelines_aggregate_fields includes the requested fields of the GraphQL type pipelines_aggregate_fields.
+// The GraphQL type's documentation follows.
+//
+// aggregate fields of "pipelines"
+type SearchPipelinesPipelines_aggregateAggregatePipelines_aggregate_fields struct {
+	Count int `json:"count"`
+}
+
+// GetCount returns SearchPipelinesPipelines_aggregateAggregatePipelines_aggregate_fields.Count, and is useful for accessing the field via an interface.
+func (v *SearchPipelinesPipelines_aggregateAggregatePipelines_aggregate_fields) GetCount() int {
+	return v.Count
+}
+
+// SearchPipelinesResponse is returned by SearchPipelines on success.
+type SearchPipelinesResponse struct {
+	// fetch data from the table: "pipelines"
+	Pipelines []SearchPipelinesPipelines `json:"pipelines"`
+	// fetch aggregated fields from the table: "pipelines"
+	Pipelines_aggregate SearchPipelinesPipelines_aggregate `json:"pipelines_aggregate"`
+}
+
+// GetPipelines returns SearchPipelinesResponse.Pipelines, and is useful for accessing the field via an interface.
+func (v *SearchPipelinesResponse) GetPipelines() []SearchPipelinesPipelines { return v.Pipelines }
+
+// GetPipelines_aggregate returns SearchPipelinesResponse.Pipelines_aggregate, and is useful for accessing the field via an interface.
+func (v *SearchPipelinesResponse) GetPipelines_aggregate() SearchPipelinesPipelines_aggregate {
+	return v.Pipelines_aggregate
+}
+
 // SetRunShareResponse is returned by SetRunShare on success.
 type SetRunShareResponse struct {
 	// update single row of the table: "pipeline_runs"
@@ -4224,6 +5678,26 @@ func (v *UpdateAssetTagsUpdate_assets_by_pkAssets) GetId() string { return v.Id 
 // GetTags returns UpdateAssetTagsUpdate_assets_by_pkAssets.Tags, and is useful for accessing the field via an interface.
 func (v *UpdateAssetTagsUpdate_assets_by_pkAssets) GetTags() []string { return v.Tags }
 
+// Boolean expression to filter rows from the table "users". All fields are combined with a logical 'AND'.
+type Users_bool_exp struct {
+	And        []Users_bool_exp            `json:"_and"`
+	Not        *Users_bool_exp             `json:"_not"`
+	Or         []Users_bool_exp            `json:"_or"`
+	Updated_at *Timestamptz_comparison_exp `json:"updated_at"`
+}
+
+// GetAnd returns Users_bool_exp.And, and is useful for accessing the field via an interface.
+func (v *Users_bool_exp) GetAnd() []Users_bool_exp { return v.And }
+
+// GetNot returns Users_bool_exp.Not, and is useful for accessing the field via an interface.
+func (v *Users_bool_exp) GetNot() *Users_bool_exp { return v.Not }
+
+// GetOr returns Users_bool_exp.Or, and is useful for accessing the field via an interface.
+func (v *Users_bool_exp) GetOr() []Users_bool_exp { return v.Or }
+
+// GetUpdated_at returns Users_bool_exp.Updated_at, and is useful for accessing the field via an interface.
+func (v *Users_bool_exp) GetUpdated_at() *Timestamptz_comparison_exp { return v.Updated_at }
+
 // Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'.
 type Uuid_comparison_exp struct {
 	Eq      *string  `json:"_eq"`
@@ -4315,6 +5789,26 @@ type WatchActivePipelineRunsResponse struct {
 func (v *WatchActivePipelineRunsResponse) GetPipeline_runs() []WatchActivePipelineRunsPipeline_runs {
 	return v.Pipeline_runs
 }
+
+// WatchBillingUpdatesResponse is returned by WatchBillingUpdates on success.
+type WatchBillingUpdatesResponse struct {
+	// fetch data from the table: "users"
+	Users []WatchBillingUpdatesUsers `json:"users"`
+}
+
+// GetUsers returns WatchBillingUpdatesResponse.Users, and is useful for accessing the field via an interface.
+func (v *WatchBillingUpdatesResponse) GetUsers() []WatchBillingUpdatesUsers { return v.Users }
+
+// WatchBillingUpdatesUsers includes the requested fields of the GraphQL type users.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "users"
+type WatchBillingUpdatesUsers struct {
+	Updated_at string `json:"updated_at"`
+}
+
+// GetUpdated_at returns WatchBillingUpdatesUsers.Updated_at, and is useful for accessing the field via an interface.
+func (v *WatchBillingUpdatesUsers) GetUpdated_at() string { return v.Updated_at }
 
 // WatchNotificationsNotifications includes the requested fields of the GraphQL type notifications.
 // The GraphQL type's documentation follows.
@@ -4608,6 +6102,18 @@ func (v *__CreateAssetInput) GetKey() string { return v.Key }
 // GetTags returns __CreateAssetInput.Tags, and is useful for accessing the field via an interface.
 func (v *__CreateAssetInput) GetTags() []string { return v.Tags }
 
+// __CreateAuthHandoffCodeInput is used internally by genqlient
+type __CreateAuthHandoffCodeInput struct {
+	Redirect_uri   string `json:"redirect_uri"`
+	Code_challenge string `json:"code_challenge"`
+}
+
+// GetRedirect_uri returns __CreateAuthHandoffCodeInput.Redirect_uri, and is useful for accessing the field via an interface.
+func (v *__CreateAuthHandoffCodeInput) GetRedirect_uri() string { return v.Redirect_uri }
+
+// GetCode_challenge returns __CreateAuthHandoffCodeInput.Code_challenge, and is useful for accessing the field via an interface.
+func (v *__CreateAuthHandoffCodeInput) GetCode_challenge() string { return v.Code_challenge }
+
 // __CreateCheckoutSessionInput is used internally by genqlient
 type __CreateCheckoutSessionInput struct {
 	Whop_plan_id   string  `json:"whop_plan_id"`
@@ -4620,6 +6126,34 @@ func (v *__CreateCheckoutSessionInput) GetWhop_plan_id() string { return v.Whop_
 // GetAffiliate_code returns __CreateCheckoutSessionInput.Affiliate_code, and is useful for accessing the field via an interface.
 func (v *__CreateCheckoutSessionInput) GetAffiliate_code() *string { return v.Affiliate_code }
 
+// __CreateCryptoPaymentInput is used internally by genqlient
+type __CreateCryptoPaymentInput struct {
+	Provider         string  `json:"provider"`
+	Attempt_id       string  `json:"attempt_id"`
+	Credit_pack_slug *string `json:"credit_pack_slug"`
+	Plan_slug        *string `json:"plan_slug"`
+	Currency_id      string  `json:"currency_id"`
+	Country          *string `json:"country"`
+}
+
+// GetProvider returns __CreateCryptoPaymentInput.Provider, and is useful for accessing the field via an interface.
+func (v *__CreateCryptoPaymentInput) GetProvider() string { return v.Provider }
+
+// GetAttempt_id returns __CreateCryptoPaymentInput.Attempt_id, and is useful for accessing the field via an interface.
+func (v *__CreateCryptoPaymentInput) GetAttempt_id() string { return v.Attempt_id }
+
+// GetCredit_pack_slug returns __CreateCryptoPaymentInput.Credit_pack_slug, and is useful for accessing the field via an interface.
+func (v *__CreateCryptoPaymentInput) GetCredit_pack_slug() *string { return v.Credit_pack_slug }
+
+// GetPlan_slug returns __CreateCryptoPaymentInput.Plan_slug, and is useful for accessing the field via an interface.
+func (v *__CreateCryptoPaymentInput) GetPlan_slug() *string { return v.Plan_slug }
+
+// GetCurrency_id returns __CreateCryptoPaymentInput.Currency_id, and is useful for accessing the field via an interface.
+func (v *__CreateCryptoPaymentInput) GetCurrency_id() string { return v.Currency_id }
+
+// GetCountry returns __CreateCryptoPaymentInput.Country, and is useful for accessing the field via an interface.
+func (v *__CreateCryptoPaymentInput) GetCountry() *string { return v.Country }
+
 // __CreatePersonalAccessTokenInput is used internally by genqlient
 type __CreatePersonalAccessTokenInput struct {
 	Name string `json:"name"`
@@ -4627,6 +6161,34 @@ type __CreatePersonalAccessTokenInput struct {
 
 // GetName returns __CreatePersonalAccessTokenInput.Name, and is useful for accessing the field via an interface.
 func (v *__CreatePersonalAccessTokenInput) GetName() string { return v.Name }
+
+// __CreateSBPPaymentInput is used internally by genqlient
+type __CreateSBPPaymentInput struct {
+	Provider          string  `json:"provider"`
+	Attempt_id        string  `json:"attempt_id"`
+	Credit_pack_slug  *string `json:"credit_pack_slug"`
+	Plan_slug         *string `json:"plan_slug"`
+	Country           *string `json:"country"`
+	Recurring_consent *bool   `json:"recurring_consent"`
+}
+
+// GetProvider returns __CreateSBPPaymentInput.Provider, and is useful for accessing the field via an interface.
+func (v *__CreateSBPPaymentInput) GetProvider() string { return v.Provider }
+
+// GetAttempt_id returns __CreateSBPPaymentInput.Attempt_id, and is useful for accessing the field via an interface.
+func (v *__CreateSBPPaymentInput) GetAttempt_id() string { return v.Attempt_id }
+
+// GetCredit_pack_slug returns __CreateSBPPaymentInput.Credit_pack_slug, and is useful for accessing the field via an interface.
+func (v *__CreateSBPPaymentInput) GetCredit_pack_slug() *string { return v.Credit_pack_slug }
+
+// GetPlan_slug returns __CreateSBPPaymentInput.Plan_slug, and is useful for accessing the field via an interface.
+func (v *__CreateSBPPaymentInput) GetPlan_slug() *string { return v.Plan_slug }
+
+// GetCountry returns __CreateSBPPaymentInput.Country, and is useful for accessing the field via an interface.
+func (v *__CreateSBPPaymentInput) GetCountry() *string { return v.Country }
+
+// GetRecurring_consent returns __CreateSBPPaymentInput.Recurring_consent, and is useful for accessing the field via an interface.
+func (v *__CreateSBPPaymentInput) GetRecurring_consent() *bool { return v.Recurring_consent }
 
 // __DeleteAssetActionInput is used internally by genqlient
 type __DeleteAssetActionInput struct {
@@ -4648,6 +6210,22 @@ func (v *__EstimatePipelineCostInput) GetPipeline_slug() string { return v.Pipel
 // GetInput returns __EstimatePipelineCostInput.Input, and is useful for accessing the field via an interface.
 func (v *__EstimatePipelineCostInput) GetInput() json.RawMessage { return v.Input }
 
+// __ExchangeAuthHandoffCodeInput is used internally by genqlient
+type __ExchangeAuthHandoffCodeInput struct {
+	Code          string `json:"code"`
+	Redirect_uri  string `json:"redirect_uri"`
+	Code_verifier string `json:"code_verifier"`
+}
+
+// GetCode returns __ExchangeAuthHandoffCodeInput.Code, and is useful for accessing the field via an interface.
+func (v *__ExchangeAuthHandoffCodeInput) GetCode() string { return v.Code }
+
+// GetRedirect_uri returns __ExchangeAuthHandoffCodeInput.Redirect_uri, and is useful for accessing the field via an interface.
+func (v *__ExchangeAuthHandoffCodeInput) GetRedirect_uri() string { return v.Redirect_uri }
+
+// GetCode_verifier returns __ExchangeAuthHandoffCodeInput.Code_verifier, and is useful for accessing the field via an interface.
+func (v *__ExchangeAuthHandoffCodeInput) GetCode_verifier() string { return v.Code_verifier }
+
 // __GetAssetThumbnailInput is used internally by genqlient
 type __GetAssetThumbnailInput struct {
 	Id string `json:"id"`
@@ -4664,6 +6242,46 @@ type __GetAssetThumbnailsByIdsInput struct {
 // GetIds returns __GetAssetThumbnailsByIdsInput.Ids, and is useful for accessing the field via an interface.
 func (v *__GetAssetThumbnailsByIdsInput) GetIds() []string { return v.Ids }
 
+// __GetCheckoutProvidersInput is used internally by genqlient
+type __GetCheckoutProvidersInput struct {
+	Country  string `json:"country"`
+	Platform string `json:"platform"`
+	Locale   string `json:"locale"`
+}
+
+// GetCountry returns __GetCheckoutProvidersInput.Country, and is useful for accessing the field via an interface.
+func (v *__GetCheckoutProvidersInput) GetCountry() string { return v.Country }
+
+// GetPlatform returns __GetCheckoutProvidersInput.Platform, and is useful for accessing the field via an interface.
+func (v *__GetCheckoutProvidersInput) GetPlatform() string { return v.Platform }
+
+// GetLocale returns __GetCheckoutProvidersInput.Locale, and is useful for accessing the field via an interface.
+func (v *__GetCheckoutProvidersInput) GetLocale() string { return v.Locale }
+
+// __GetCryptoPaymentCurrenciesInput is used internally by genqlient
+type __GetCryptoPaymentCurrenciesInput struct {
+	Provider string `json:"provider"`
+}
+
+// GetProvider returns __GetCryptoPaymentCurrenciesInput.Provider, and is useful for accessing the field via an interface.
+func (v *__GetCryptoPaymentCurrenciesInput) GetProvider() string { return v.Provider }
+
+// __GetCryptoPaymentInput is used internally by genqlient
+type __GetCryptoPaymentInput struct {
+	Id string `json:"id"`
+}
+
+// GetId returns __GetCryptoPaymentInput.Id, and is useful for accessing the field via an interface.
+func (v *__GetCryptoPaymentInput) GetId() string { return v.Id }
+
+// __GetLocalizedPricesInput is used internally by genqlient
+type __GetLocalizedPricesInput struct {
+	Country string `json:"country"`
+}
+
+// GetCountry returns __GetLocalizedPricesInput.Country, and is useful for accessing the field via an interface.
+func (v *__GetLocalizedPricesInput) GetCountry() string { return v.Country }
+
 // __GetNotificationsInput is used internally by genqlient
 type __GetNotificationsInput struct {
 	Limit  int `json:"limit"`
@@ -4675,6 +6293,14 @@ func (v *__GetNotificationsInput) GetLimit() int { return v.Limit }
 
 // GetOffset returns __GetNotificationsInput.Offset, and is useful for accessing the field via an interface.
 func (v *__GetNotificationsInput) GetOffset() int { return v.Offset }
+
+// __GetPipelineBySlugInput is used internally by genqlient
+type __GetPipelineBySlugInput struct {
+	Slug string `json:"slug"`
+}
+
+// GetSlug returns __GetPipelineBySlugInput.Slug, and is useful for accessing the field via an interface.
+func (v *__GetPipelineBySlugInput) GetSlug() string { return v.Slug }
 
 // __GetPipelineRunInput is used internally by genqlient
 type __GetPipelineRunInput struct {
@@ -4727,6 +6353,14 @@ func (v *__GetPipelinesListInput) GetLimit() *int { return v.Limit }
 
 // GetOffset returns __GetPipelinesListInput.Offset, and is useful for accessing the field via an interface.
 func (v *__GetPipelinesListInput) GetOffset() *int { return v.Offset }
+
+// __GetSBPPaymentInput is used internally by genqlient
+type __GetSBPPaymentInput struct {
+	Id string `json:"id"`
+}
+
+// GetId returns __GetSBPPaymentInput.Id, and is useful for accessing the field via an interface.
+func (v *__GetSBPPaymentInput) GetId() string { return v.Id }
 
 // __GetUserAssetsInput is used internally by genqlient
 type __GetUserAssetsInput struct {
@@ -4895,6 +6529,30 @@ func (v *__RunPipelineInput) GetPipeline_slug() string { return v.Pipeline_slug 
 
 // GetInput returns __RunPipelineInput.Input, and is useful for accessing the field via an interface.
 func (v *__RunPipelineInput) GetInput() json.RawMessage { return v.Input }
+
+// __ScheduleSubscriptionPlanChangeInput is used internally by genqlient
+type __ScheduleSubscriptionPlanChangeInput struct {
+	Plan_slug string `json:"plan_slug"`
+}
+
+// GetPlan_slug returns __ScheduleSubscriptionPlanChangeInput.Plan_slug, and is useful for accessing the field via an interface.
+func (v *__ScheduleSubscriptionPlanChangeInput) GetPlan_slug() string { return v.Plan_slug }
+
+// __SearchPipelinesInput is used internally by genqlient
+type __SearchPipelinesInput struct {
+	Limit  *int    `json:"limit"`
+	Offset *int    `json:"offset"`
+	Search *string `json:"search"`
+}
+
+// GetLimit returns __SearchPipelinesInput.Limit, and is useful for accessing the field via an interface.
+func (v *__SearchPipelinesInput) GetLimit() *int { return v.Limit }
+
+// GetOffset returns __SearchPipelinesInput.Offset, and is useful for accessing the field via an interface.
+func (v *__SearchPipelinesInput) GetOffset() *int { return v.Offset }
+
+// GetSearch returns __SearchPipelinesInput.Search, and is useful for accessing the field via an interface.
+func (v *__SearchPipelinesInput) GetSearch() *string { return v.Search }
 
 // __SetRunShareInput is used internally by genqlient
 type __SetRunShareInput struct {
@@ -5115,6 +6773,37 @@ func CancelSubscription(
 	}
 
 	data_ = &CancelSubscriptionResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by CancelSubscriptionPlanChange.
+const CancelSubscriptionPlanChange_Operation = `
+mutation CancelSubscriptionPlanChange {
+	cancel_subscription_plan_change {
+		success
+		cancelled
+	}
+}
+`
+
+func CancelSubscriptionPlanChange(
+	ctx_ context.Context,
+	client_ graphql.Client,
+) (data_ *CancelSubscriptionPlanChangeResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "CancelSubscriptionPlanChange",
+		Query:  CancelSubscriptionPlanChange_Operation,
+	}
+
+	data_ = &CancelSubscriptionPlanChangeResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
@@ -5357,6 +7046,43 @@ func CreateAsset(
 	return data_, err_
 }
 
+// The mutation executed by CreateAuthHandoffCode.
+const CreateAuthHandoffCode_Operation = `
+mutation CreateAuthHandoffCode ($redirect_uri: String!, $code_challenge: String!) {
+	create_auth_handoff_code(redirect_uri: $redirect_uri, code_challenge: $code_challenge) {
+		code
+		expires_at
+	}
+}
+`
+
+func CreateAuthHandoffCode(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	redirect_uri string,
+	code_challenge string,
+) (data_ *CreateAuthHandoffCodeResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "CreateAuthHandoffCode",
+		Query:  CreateAuthHandoffCode_Operation,
+		Variables: &__CreateAuthHandoffCodeInput{
+			Redirect_uri:   redirect_uri,
+			Code_challenge: code_challenge,
+		},
+	}
+
+	data_ = &CreateAuthHandoffCodeResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
 // The mutation executed by CreateCheckoutSession.
 const CreateCheckoutSession_Operation = `
 mutation CreateCheckoutSession ($whop_plan_id: String!, $affiliate_code: String) {
@@ -5383,6 +7109,78 @@ func CreateCheckoutSession(
 	}
 
 	data_ = &CreateCheckoutSessionResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by CreateCryptoPayment.
+const CreateCryptoPayment_Operation = `
+mutation CreateCryptoPayment ($provider: String!, $attempt_id: uuid!, $credit_pack_slug: String, $plan_slug: String, $currency_id: String!, $country: String) {
+	create_crypto_payment(provider: $provider, attempt_id: $attempt_id, credit_pack_slug: $credit_pack_slug, plan_slug: $plan_slug, currency_id: $currency_id, country: $country) {
+		success
+		payment_id
+		deposit_address
+		expected_usdt
+		credits
+		network
+		currency_id
+		expires_at
+		provider
+		status
+		asset
+		amount
+		remaining_amount
+		payment_uri
+		qr_code_data_url
+		top_up_payment_uri
+		top_up_qr_code_data_url
+		required_confirmations
+		confirmations
+		amount_paid_usdt
+		granted_at
+		tx_hash
+	}
+}
+`
+
+// Create a crypto payment intent on the chosen USDT network. Pass EXACTLY ONE
+// of credit_pack_slug (one-time pack, permanent credits) or plan_slug
+// (subscription, monthly expiring credits). `country` is the user's CountrySelect
+// choice — the server still independently re-validates it against
+// resolve_payment_providers, this is not a trust boundary. Returns the deposit
+// address + exact expected_usdt to send, and the row id (payment_id) to poll
+// with GetCryptoPayment.
+func CreateCryptoPayment(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	provider string,
+	attempt_id string,
+	credit_pack_slug *string,
+	plan_slug *string,
+	currency_id string,
+	country *string,
+) (data_ *CreateCryptoPaymentResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "CreateCryptoPayment",
+		Query:  CreateCryptoPayment_Operation,
+		Variables: &__CreateCryptoPaymentInput{
+			Provider:         provider,
+			Attempt_id:       attempt_id,
+			Credit_pack_slug: credit_pack_slug,
+			Plan_slug:        plan_slug,
+			Currency_id:      currency_id,
+			Country:          country,
+		},
+	}
+
+	data_ = &CreateCryptoPaymentResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
@@ -5421,6 +7219,60 @@ func CreatePersonalAccessToken(
 	}
 
 	data_ = &CreatePersonalAccessTokenResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by CreateSBPPayment.
+const CreateSBPPayment_Operation = `
+mutation CreateSBPPayment ($provider: String!, $attempt_id: uuid!, $credit_pack_slug: String, $plan_slug: String, $country: String, $recurring_consent: Boolean) {
+	create_sbp_payment(provider: $provider, attempt_id: $attempt_id, credit_pack_slug: $credit_pack_slug, plan_slug: $plan_slug, country: $country, recurring_consent: $recurring_consent) {
+		success
+		payment_id
+		status
+		payment_uri
+		amount
+		currency
+		credits
+		expires_at
+		detail
+	}
+}
+`
+
+// Russian SBP checkout. The server fixes the exact RUB amount, creates the
+// payment through the selected enabled provider, and settles after confirmation.
+func CreateSBPPayment(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	provider string,
+	attempt_id string,
+	credit_pack_slug *string,
+	plan_slug *string,
+	country *string,
+	recurring_consent *bool,
+) (data_ *CreateSBPPaymentResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "CreateSBPPayment",
+		Query:  CreateSBPPayment_Operation,
+		Variables: &__CreateSBPPaymentInput{
+			Provider:          provider,
+			Attempt_id:        attempt_id,
+			Credit_pack_slug:  credit_pack_slug,
+			Plan_slug:         plan_slug,
+			Country:           country,
+			Recurring_consent: recurring_consent,
+		},
+	}
+
+	data_ = &CreateSBPPaymentResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
@@ -5509,7 +7361,7 @@ query EstimatePipelineCost ($pipeline_slug: String!, $input: jsonb!) {
 		routed_reason_code
 		routed_reason_params
 		incompatible_models
-		engine_caps
+		model_input_schema
 	}
 }
 `
@@ -5534,6 +7386,45 @@ func EstimatePipelineCost(
 	}
 
 	data_ = &EstimatePipelineCostResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The mutation executed by ExchangeAuthHandoffCode.
+const ExchangeAuthHandoffCode_Operation = `
+mutation ExchangeAuthHandoffCode ($code: String!, $redirect_uri: String!, $code_verifier: String!) {
+	exchange_auth_handoff_code(code: $code, redirect_uri: $redirect_uri, code_verifier: $code_verifier) {
+		token
+		expires_at
+	}
+}
+`
+
+func ExchangeAuthHandoffCode(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	code string,
+	redirect_uri string,
+	code_verifier string,
+) (data_ *ExchangeAuthHandoffCodeResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "ExchangeAuthHandoffCode",
+		Query:  ExchangeAuthHandoffCode_Operation,
+		Variables: &__ExchangeAuthHandoffCodeInput{
+			Code:          code,
+			Redirect_uri:  redirect_uri,
+			Code_verifier: code_verifier,
+		},
+	}
+
+	data_ = &ExchangeAuthHandoffCodeResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
@@ -5663,6 +7554,54 @@ func GetAssetThumbnailsByIds(
 	return data_, err_
 }
 
+// The query executed by GetCheckoutProviders.
+const GetCheckoutProviders_Operation = `
+query GetCheckoutProviders ($country: String!, $platform: String!, $locale: String!) {
+	resolve_payment_providers(args: {p_country:$country,p_platform:$platform,p_locale:$locale}) {
+		slug
+		kind
+		label
+		description
+		fee_bps
+		price_source
+		sort_order
+		supports_recurring
+	}
+}
+`
+
+// Providers this user may actually pay with, already filtered by country and
+// platform and already localized. The precedence rule lives in the database
+// function so the picker and the server-side check cannot disagree.
+func GetCheckoutProviders(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	country string,
+	platform string,
+	locale string,
+) (data_ *GetCheckoutProvidersResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "GetCheckoutProviders",
+		Query:  GetCheckoutProviders_Operation,
+		Variables: &__GetCheckoutProvidersInput{
+			Country:  country,
+			Platform: platform,
+			Locale:   locale,
+		},
+	}
+
+	data_ = &GetCheckoutProvidersResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
 // The query executed by GetCreditBalance.
 const GetCreditBalance_Operation = `
 query GetCreditBalance {
@@ -5776,6 +7715,104 @@ func GetCreditPacks(
 	return data_, err_
 }
 
+// The query executed by GetCryptoPayment.
+const GetCryptoPayment_Operation = `
+query GetCryptoPayment ($id: uuid!) {
+	get_crypto_payment_status(payment_id: $id) {
+		success
+		payment_id
+		provider
+		status
+		credits
+		expected_usdt
+		amount_paid_usdt
+		deposit_address
+		currency_id
+		network
+		expires_at
+		granted_at
+		tx_hash
+		asset
+		amount
+		remaining_amount
+		payment_uri
+		qr_code_data_url
+		top_up_payment_uri
+		top_up_qr_code_data_url
+		required_confirmations
+		confirmations
+	}
+}
+`
+
+// Poll a single crypto payment by id to drive the checkout UI. status:
+// pending → seen → confirmed → granted (terminal); or underpaid / expired.
+func GetCryptoPayment(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	id string,
+) (data_ *GetCryptoPaymentResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "GetCryptoPayment",
+		Query:  GetCryptoPayment_Operation,
+		Variables: &__GetCryptoPaymentInput{
+			Id: id,
+		},
+	}
+
+	data_ = &GetCryptoPaymentResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by GetCryptoPaymentCurrencies.
+const GetCryptoPaymentCurrencies_Operation = `
+query GetCryptoPaymentCurrencies ($provider: String!) {
+	crypto_payment_currencies(where: {enabled:{_eq:true},provider:{_eq:$provider}}, order_by: {sort_order:asc}) {
+		currency_id
+		network
+		asset
+		label
+		decimals
+		min_usdt
+	}
+}
+`
+
+// USDT networks a user can pay on (Base/TON/Solana/BEP-20/ERC-20). Anonymous +
+// user readable; only enabled rows, ordered for display.
+func GetCryptoPaymentCurrencies(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	provider string,
+) (data_ *GetCryptoPaymentCurrenciesResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "GetCryptoPaymentCurrencies",
+		Query:  GetCryptoPaymentCurrencies_Operation,
+		Variables: &__GetCryptoPaymentCurrenciesInput{
+			Provider: provider,
+		},
+	}
+
+	data_ = &GetCryptoPaymentCurrenciesResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
 // The query executed by GetCurrentUser.
 const GetCurrentUser_Operation = `
 query GetCurrentUser {
@@ -5801,6 +7838,96 @@ func GetCurrentUser(
 	}
 
 	data_ = &GetCurrentUserResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by GetDispatchBlocks.
+const GetDispatchBlocks_Operation = `
+query GetDispatchBlocks {
+	dispatch_blocks {
+		id
+		pipeline_slug
+		user_id
+		reason
+		created_at
+	}
+}
+`
+
+// GetDispatchBlocks — the kill-switch state that applies to the caller, used to
+// render the "temporarily paused" banner and disable the run button before the
+// user spends effort on a form that would only 503.
+//
+// Row-level permissions already scope this: a user sees the everyone-scoped rows
+// plus their own, an anonymous visitor sees only the everyone-scoped ones. So
+// the client does no filtering by user — it only matches on pipeline_slug, where
+// a null slug means "every pipeline".
+func GetDispatchBlocks(
+	ctx_ context.Context,
+	client_ graphql.Client,
+) (data_ *GetDispatchBlocksResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "GetDispatchBlocks",
+		Query:  GetDispatchBlocks_Operation,
+	}
+
+	data_ = &GetDispatchBlocksResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by GetLocalizedPrices.
+const GetLocalizedPrices_Operation = `
+query GetLocalizedPrices ($country: String!) {
+	localized_product_prices(where: {country:{_eq:$country}}) {
+		product_kind
+		product_slug
+		country
+		currency
+		usd_price_cents
+		converted_price
+	}
+	countries(order_by: {name:asc}) {
+		code
+		name
+		currency
+	}
+}
+`
+
+// Indicative local display prices for every current public product. The country
+// chooses its ISO-4217 currency server-side; callers never fetch a raw rate or
+// duplicate conversion math. A payment provider's final quote is still the
+// authoritative amount charged.
+func GetLocalizedPrices(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	country string,
+) (data_ *GetLocalizedPricesResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "GetLocalizedPrices",
+		Query:  GetLocalizedPrices_Operation,
+		Variables: &__GetLocalizedPricesInput{
+			Country: country,
+		},
+	}
+
+	data_ = &GetLocalizedPricesResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
@@ -6045,6 +8172,104 @@ func GetNotifications(
 	return data_, err_
 }
 
+// The query executed by GetPendingSubscriptionPlanChange.
+const GetPendingSubscriptionPlanChange_Operation = `
+query GetPendingSubscriptionPlanChange {
+	subscription_plan_changes(where: {status:{_eq:"pending"}}, limit: 1) {
+		id
+		kind
+		status
+		effective_at
+		to_plan_version {
+			id
+			plan {
+				slug
+				name
+				sort_order
+			}
+		}
+	}
+}
+`
+
+func GetPendingSubscriptionPlanChange(
+	ctx_ context.Context,
+	client_ graphql.Client,
+) (data_ *GetPendingSubscriptionPlanChangeResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "GetPendingSubscriptionPlanChange",
+		Query:  GetPendingSubscriptionPlanChange_Operation,
+	}
+
+	data_ = &GetPendingSubscriptionPlanChangeResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by GetPipelineBySlug.
+const GetPipelineBySlug_Operation = `
+query GetPipelineBySlug ($slug: String!) {
+	pipelines(where: {slug:{_eq:$slug},is_active:{_eq:true}}, limit: 1) {
+		id
+		slug
+		name
+		description
+		category
+		icon_url
+		preview_url
+		providers
+		models
+		input_schema
+		ui_schema
+		output_schema
+		tags
+		hints
+		cancellable
+		translations {
+			locale
+			name
+			description
+			form_i18n
+		}
+	}
+}
+`
+
+// GetPipelineBySlug — one runnable catalog record for compact clients such as
+// the Chrome side panel. It keeps the schemas needed to render and validate the
+// form, while leaving the page-only SEO content and showcase examples behind.
+func GetPipelineBySlug(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	slug string,
+) (data_ *GetPipelineBySlugResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "GetPipelineBySlug",
+		Query:  GetPipelineBySlug_Operation,
+		Variables: &__GetPipelineBySlugInput{
+			Slug: slug,
+		},
+	}
+
+	data_ = &GetPipelineBySlugResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
 // The query executed by GetPipelineRun.
 const GetPipelineRun_Operation = `
 query GetPipelineRun ($id: uuid!) {
@@ -6066,6 +8291,10 @@ query GetPipelineRun ($id: uuid!) {
 			input_schema
 			ui_schema
 			cancellable
+			translations {
+				locale
+				name
+			}
 		}
 		assets {
 			id
@@ -6120,6 +8349,10 @@ query GetPipelineRuns ($limit: Int = 12, $offset: Int = 0, $where: pipeline_runs
 			input_schema
 			ui_schema
 			cancellable
+			translations {
+				locale
+				name
+			}
 		}
 		status
 		input
@@ -6297,6 +8530,7 @@ query GetPipelines {
 			model {
 				slug
 				label
+				public_name
 			}
 			translations {
 				locale
@@ -6435,10 +8669,52 @@ func GetPlans(
 	return data_, err_
 }
 
+// The query executed by GetSBPPayment.
+const GetSBPPayment_Operation = `
+query GetSBPPayment ($id: uuid!) {
+	get_sbp_payment_status(payment_id: $id) {
+		success
+		payment_id
+		status
+		payment_uri
+		amount
+		currency
+		credits
+		expires_at
+		detail
+	}
+}
+`
+
+func GetSBPPayment(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	id string,
+) (data_ *GetSBPPaymentResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "GetSBPPayment",
+		Query:  GetSBPPayment_Operation,
+		Variables: &__GetSBPPaymentInput{
+			Id: id,
+		},
+	}
+
+	data_ = &GetSBPPaymentResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
 // The query executed by GetSubscription.
 const GetSubscription_Operation = `
 query GetSubscription {
-	subscriptions {
+	subscriptions(where: {status:{_in:["active","past_due"]}}, limit: 1) {
 		id
 		plan_id
 		plan_version_id
@@ -6446,6 +8722,7 @@ query GetSubscription {
 		period_start
 		period_end
 		cancel_at_period_end
+		metadata
 		plan {
 			slug
 			name
@@ -6524,6 +8801,42 @@ func GetUserAssets(
 	}
 
 	data_ = &GetUserAssetsResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by GetUserSubscriptionCredits.
+const GetUserSubscriptionCredits_Operation = `
+query GetUserSubscriptionCredits {
+	user_credit_balance_breakdown {
+		subscription_mc
+		retry_mc
+		expiring_mc
+		next_expiry_at
+	}
+}
+`
+
+// The caller's current EXPIRING (subscription) credit balance. Returns the
+// user's own row via RLS (empty when they have no subscription credits).
+// Permanent credits = total balance − remaining_mc.
+func GetUserSubscriptionCredits(
+	ctx_ context.Context,
+	client_ graphql.Client,
+) (data_ *GetUserSubscriptionCreditsResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "GetUserSubscriptionCredits",
+		Query:  GetUserSubscriptionCredits_Operation,
+	}
+
+	data_ = &GetUserSubscriptionCreditsResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
@@ -6708,15 +9021,81 @@ func MarkNotificationRead(
 	return data_, err_
 }
 
+// The query executed by Models.
+const Models_Operation = `
+query Models {
+	models(order_by: {sort_order:asc,slug:asc}) {
+		slug
+		provider
+		label
+		public_name
+		aliases
+		provider_info {
+			label
+		}
+		description
+		long_description
+		featured
+		sort_order
+		capabilities {
+			capability_slug
+		}
+		pipeline_models(order_by: {sort_order:asc}) {
+			pipeline_slug
+			sort_order
+			input_schema
+			auto_route_order
+		}
+		translations {
+			locale
+			description
+			long_description
+		}
+	}
+}
+`
+
+// Models — the public model catalog, for the /models index and /models/<slug>
+// detail pages. The anonymous select permission on `models` already filters to
+// active, non-internal SKUs, so this returns exactly the publicly-listable set.
+//
+// `pipeline_models` here is only the wiring (which pipelines run this model);
+// the pipeline's own title/description/pricing is joined in the web build from
+// loadPipelineCatalog() rather than re-fetched — one source of truth for
+// pipeline metadata, and no new Hasura relationship to maintain.
+func Models(
+	ctx_ context.Context,
+	client_ graphql.Client,
+) (data_ *ModelsResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "Models",
+		Query:  Models_Operation,
+	}
+
+	data_ = &ModelsResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
 // The query executed by PipelineModels.
 const PipelineModels_Operation = `
 query PipelineModels ($slug: String!) {
 	pipeline_models(where: {pipeline_slug:{_eq:$slug}}, order_by: {sort_order:asc}) {
 		model_slug
 		sort_order
+		input_schema
+		auto_route_order
 		model {
 			slug
 			label
+			public_name
 			description
 			provider
 			translations {
@@ -6729,10 +9108,12 @@ query PipelineModels ($slug: String!) {
 `
 
 // PipelineModels — the models wired to a pipeline (pipeline_models ⋈ models),
-// ordered by sort_order. The user select permission on `models` filters the
+// ordered by sort_order. The caller's select permission on `models` filters the
 // relationship to active, non-internal SKUs, so `model` is null for hidden ones
-// (the client drops those). Feeds the model-picker card label/description,
-// replacing the generated MODEL_META (web/src/lib/models.generated.ts).
+// (the client drops those). Feeds the model-picker card name/description,
+// replacing the generated MODEL_META (web/src/lib/models.generated.ts). The
+// picker shows public_name when the vendor has one, else label — see
+// displayName() in web/src/lib/modelPresentation.ts.
 func PipelineModels(
 	ctx_ context.Context,
 	client_ graphql.Client,
@@ -7140,6 +9521,103 @@ func RunPipeline(
 	return data_, err_
 }
 
+// The mutation executed by ScheduleSubscriptionPlanChange.
+const ScheduleSubscriptionPlanChange_Operation = `
+mutation ScheduleSubscriptionPlanChange ($plan_slug: String!) {
+	schedule_subscription_plan_change(plan_slug: $plan_slug) {
+		success
+		change_id
+		status
+		effective_at
+	}
+}
+`
+
+func ScheduleSubscriptionPlanChange(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	plan_slug string,
+) (data_ *ScheduleSubscriptionPlanChangeResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "ScheduleSubscriptionPlanChange",
+		Query:  ScheduleSubscriptionPlanChange_Operation,
+		Variables: &__ScheduleSubscriptionPlanChangeInput{
+			Plan_slug: plan_slug,
+		},
+	}
+
+	data_ = &ScheduleSubscriptionPlanChangeResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by SearchPipelines.
+const SearchPipelines_Operation = `
+query SearchPipelines ($limit: Int = 20, $offset: Int = 0, $search: String = "%%") {
+	pipelines(where: {_and:[{is_active:{_eq:true}},{_or:[{name:{_ilike:$search}},{description:{_ilike:$search}},{category:{_ilike:$search}},{translations:{_or:[{name:{_ilike:$search}},{description:{_ilike:$search}}]}}]}]}, order_by: [{sort_order:asc},{slug:asc}], limit: $limit, offset: $offset) {
+		id
+		slug
+		name
+		description
+		category
+		icon_url
+		preview_url
+		providers
+		models
+		tags
+		hints
+		cancellable
+		translations {
+			locale
+			name
+			description
+		}
+	}
+	pipelines_aggregate(where: {_and:[{is_active:{_eq:true}},{_or:[{name:{_ilike:$search}},{description:{_ilike:$search}},{category:{_ilike:$search}},{translations:{_or:[{name:{_ilike:$search}},{description:{_ilike:$search}}]}}]}]}) {
+		aggregate {
+			count
+		}
+	}
+}
+`
+
+// SearchPipelines — paginated catalog search for compact interactive clients.
+func SearchPipelines(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	limit *int,
+	offset *int,
+	search *string,
+) (data_ *SearchPipelinesResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "SearchPipelines",
+		Query:  SearchPipelines_Operation,
+		Variables: &__SearchPipelinesInput{
+			Limit:  limit,
+			Offset: offset,
+			Search: search,
+		},
+	}
+
+	data_ = &SearchPipelinesResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
 // The mutation executed by SetRunShare.
 const SetRunShare_Operation = `
 mutation SetRunShare ($id: uuid!, $token: uuid, $watermark: Boolean!) {
@@ -7313,6 +9791,58 @@ func WatchActivePipelineRunsForwardData(interfaceChan interface{}, jsonRawMsg js
 	dataChan_, ok := interfaceChan.(chan WatchActivePipelineRunsWsResponse)
 	if !ok {
 		return errors.New("failed to cast interface into 'chan WatchActivePipelineRunsWsResponse'")
+	}
+	dataChan_ <- wsResp
+	return nil
+}
+
+// The subscription executed by WatchBillingUpdates.
+const WatchBillingUpdates_Operation = `
+subscription WatchBillingUpdates {
+	users(limit: 1) {
+		updated_at
+	}
+}
+`
+
+// The TigerBeetle-backed balance/history Actions cannot be subscription roots.
+// users.updated_at is touched whenever billing changes, regardless of provider.
+// To unsubscribe, use [graphql.WebSocketClient.Unsubscribe]
+func WatchBillingUpdates(
+	ctx_ context.Context,
+	client_ graphql.WebSocketClient,
+) (dataChan_ chan WatchBillingUpdatesWsResponse, subscriptionID_ string, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "WatchBillingUpdates",
+		Query:  WatchBillingUpdates_Operation,
+	}
+
+	dataChan_ = make(chan WatchBillingUpdatesWsResponse)
+	subscriptionID_, err_ = client_.Subscribe(req_, dataChan_, WatchBillingUpdatesForwardData)
+
+	return dataChan_, subscriptionID_, err_
+}
+
+type WatchBillingUpdatesWsResponse graphql.BaseResponse[*WatchBillingUpdatesResponse]
+
+func WatchBillingUpdatesForwardData(interfaceChan interface{}, jsonRawMsg json.RawMessage) error {
+	var gqlResp graphql.Response
+	var wsResp WatchBillingUpdatesWsResponse
+	err := json.Unmarshal(jsonRawMsg, &gqlResp)
+	if err != nil {
+		return err
+	}
+	if len(gqlResp.Errors) == 0 {
+		err = json.Unmarshal(jsonRawMsg, &wsResp)
+		if err != nil {
+			return err
+		}
+	} else {
+		wsResp.Errors = gqlResp.Errors
+	}
+	dataChan_, ok := interfaceChan.(chan WatchBillingUpdatesWsResponse)
+	if !ok {
+		return errors.New("failed to cast interface into 'chan WatchBillingUpdatesWsResponse'")
 	}
 	dataChan_ <- wsResp
 	return nil

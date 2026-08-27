@@ -8,6 +8,10 @@ package: pipe2
 
 # Hasura custom scalar mappings
 bindings:
+  # Postgres INET (users.signup_ip / last_ip, migration 73) — genqlient needs an
+  # explicit binding for every Hasura scalar or codegen hard-fails.
+  inet:
+    type: string
   uuid:
     type: string
   timestamp:
