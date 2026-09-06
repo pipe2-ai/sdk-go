@@ -599,42 +599,15 @@ func (v *CreateAuthHandoffCodeResponse) GetCreate_auth_handoff_code() CreateAuth
 	return v.Create_auth_handoff_code
 }
 
-// CreateCheckoutSessionCreate_checkout_sessionCreate_checkout_session_output includes the requested fields of the GraphQL type create_checkout_session_output.
-type CreateCheckoutSessionCreate_checkout_sessionCreate_checkout_session_output struct {
-	Success bool   `json:"success"`
-	Url     string `json:"url"`
-}
-
-// GetSuccess returns CreateCheckoutSessionCreate_checkout_sessionCreate_checkout_session_output.Success, and is useful for accessing the field via an interface.
-func (v *CreateCheckoutSessionCreate_checkout_sessionCreate_checkout_session_output) GetSuccess() bool {
-	return v.Success
-}
-
-// GetUrl returns CreateCheckoutSessionCreate_checkout_sessionCreate_checkout_session_output.Url, and is useful for accessing the field via an interface.
-func (v *CreateCheckoutSessionCreate_checkout_sessionCreate_checkout_session_output) GetUrl() string {
-	return v.Url
-}
-
-// CreateCheckoutSessionResponse is returned by CreateCheckoutSession on success.
-type CreateCheckoutSessionResponse struct {
-	// Create a Whop checkout session with the buyer's user_id baked into metadata
-	Create_checkout_session CreateCheckoutSessionCreate_checkout_sessionCreate_checkout_session_output `json:"create_checkout_session"`
-}
-
-// GetCreate_checkout_session returns CreateCheckoutSessionResponse.Create_checkout_session, and is useful for accessing the field via an interface.
-func (v *CreateCheckoutSessionResponse) GetCreate_checkout_session() CreateCheckoutSessionCreate_checkout_sessionCreate_checkout_session_output {
-	return v.Create_checkout_session
-}
-
-// CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output includes the requested fields of the GraphQL type create_crypto_payment_output.
-type CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output struct {
+// CreatePaymentCreate_paymentPayment_output includes the requested fields of the GraphQL type payment_output.
+type CreatePaymentCreate_paymentPayment_output struct {
 	Success                 bool     `json:"success"`
 	Payment_id              string   `json:"payment_id"`
-	Deposit_address         string   `json:"deposit_address"`
-	Expected_usdt           float64  `json:"expected_usdt"`
+	Deposit_address         *string  `json:"deposit_address"`
+	Expected_usdt           *float64 `json:"expected_usdt"`
 	Credits                 float64  `json:"credits"`
-	Network                 string   `json:"network"`
-	Currency_id             string   `json:"currency_id"`
+	Network                 *string  `json:"network"`
+	Currency_id             *string  `json:"currency_id"`
 	Expires_at              string   `json:"expires_at"`
 	Provider                string   `json:"provider"`
 	Status                  string   `json:"status"`
@@ -645,132 +618,112 @@ type CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output struct
 	Qr_code_data_url        *string  `json:"qr_code_data_url"`
 	Top_up_payment_uri      *string  `json:"top_up_payment_uri"`
 	Top_up_qr_code_data_url *string  `json:"top_up_qr_code_data_url"`
-	Required_confirmations  int      `json:"required_confirmations"`
-	Confirmations           int      `json:"confirmations"`
+	Required_confirmations  *int     `json:"required_confirmations"`
+	Confirmations           *int     `json:"confirmations"`
 	Amount_paid_usdt        *float64 `json:"amount_paid_usdt"`
 	Granted_at              *string  `json:"granted_at"`
 	Tx_hash                 *string  `json:"tx_hash"`
+	Currency                *string  `json:"currency"`
+	Detail                  *string  `json:"detail"`
 }
 
-// GetSuccess returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Success, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetSuccess() bool {
-	return v.Success
-}
+// GetSuccess returns CreatePaymentCreate_paymentPayment_output.Success, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetSuccess() bool { return v.Success }
 
-// GetPayment_id returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Payment_id, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetPayment_id() string {
-	return v.Payment_id
-}
+// GetPayment_id returns CreatePaymentCreate_paymentPayment_output.Payment_id, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetPayment_id() string { return v.Payment_id }
 
-// GetDeposit_address returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Deposit_address, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetDeposit_address() string {
+// GetDeposit_address returns CreatePaymentCreate_paymentPayment_output.Deposit_address, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetDeposit_address() *string {
 	return v.Deposit_address
 }
 
-// GetExpected_usdt returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Expected_usdt, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetExpected_usdt() float64 {
+// GetExpected_usdt returns CreatePaymentCreate_paymentPayment_output.Expected_usdt, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetExpected_usdt() *float64 {
 	return v.Expected_usdt
 }
 
-// GetCredits returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Credits, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetCredits() float64 {
-	return v.Credits
-}
+// GetCredits returns CreatePaymentCreate_paymentPayment_output.Credits, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetCredits() float64 { return v.Credits }
 
-// GetNetwork returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Network, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetNetwork() string {
-	return v.Network
-}
+// GetNetwork returns CreatePaymentCreate_paymentPayment_output.Network, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetNetwork() *string { return v.Network }
 
-// GetCurrency_id returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Currency_id, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetCurrency_id() string {
-	return v.Currency_id
-}
+// GetCurrency_id returns CreatePaymentCreate_paymentPayment_output.Currency_id, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetCurrency_id() *string { return v.Currency_id }
 
-// GetExpires_at returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Expires_at, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetExpires_at() string {
-	return v.Expires_at
-}
+// GetExpires_at returns CreatePaymentCreate_paymentPayment_output.Expires_at, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetExpires_at() string { return v.Expires_at }
 
-// GetProvider returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Provider, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetProvider() string {
-	return v.Provider
-}
+// GetProvider returns CreatePaymentCreate_paymentPayment_output.Provider, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetProvider() string { return v.Provider }
 
-// GetStatus returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Status, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetStatus() string {
-	return v.Status
-}
+// GetStatus returns CreatePaymentCreate_paymentPayment_output.Status, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetStatus() string { return v.Status }
 
-// GetAsset returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Asset, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetAsset() *string {
-	return v.Asset
-}
+// GetAsset returns CreatePaymentCreate_paymentPayment_output.Asset, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetAsset() *string { return v.Asset }
 
-// GetAmount returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Amount, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetAmount() string {
-	return v.Amount
-}
+// GetAmount returns CreatePaymentCreate_paymentPayment_output.Amount, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetAmount() string { return v.Amount }
 
-// GetRemaining_amount returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Remaining_amount, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetRemaining_amount() *string {
+// GetRemaining_amount returns CreatePaymentCreate_paymentPayment_output.Remaining_amount, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetRemaining_amount() *string {
 	return v.Remaining_amount
 }
 
-// GetPayment_uri returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Payment_uri, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetPayment_uri() *string {
-	return v.Payment_uri
-}
+// GetPayment_uri returns CreatePaymentCreate_paymentPayment_output.Payment_uri, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetPayment_uri() *string { return v.Payment_uri }
 
-// GetQr_code_data_url returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Qr_code_data_url, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetQr_code_data_url() *string {
+// GetQr_code_data_url returns CreatePaymentCreate_paymentPayment_output.Qr_code_data_url, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetQr_code_data_url() *string {
 	return v.Qr_code_data_url
 }
 
-// GetTop_up_payment_uri returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Top_up_payment_uri, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetTop_up_payment_uri() *string {
+// GetTop_up_payment_uri returns CreatePaymentCreate_paymentPayment_output.Top_up_payment_uri, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetTop_up_payment_uri() *string {
 	return v.Top_up_payment_uri
 }
 
-// GetTop_up_qr_code_data_url returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Top_up_qr_code_data_url, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetTop_up_qr_code_data_url() *string {
+// GetTop_up_qr_code_data_url returns CreatePaymentCreate_paymentPayment_output.Top_up_qr_code_data_url, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetTop_up_qr_code_data_url() *string {
 	return v.Top_up_qr_code_data_url
 }
 
-// GetRequired_confirmations returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Required_confirmations, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetRequired_confirmations() int {
+// GetRequired_confirmations returns CreatePaymentCreate_paymentPayment_output.Required_confirmations, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetRequired_confirmations() *int {
 	return v.Required_confirmations
 }
 
-// GetConfirmations returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Confirmations, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetConfirmations() int {
-	return v.Confirmations
-}
+// GetConfirmations returns CreatePaymentCreate_paymentPayment_output.Confirmations, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetConfirmations() *int { return v.Confirmations }
 
-// GetAmount_paid_usdt returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Amount_paid_usdt, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetAmount_paid_usdt() *float64 {
+// GetAmount_paid_usdt returns CreatePaymentCreate_paymentPayment_output.Amount_paid_usdt, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetAmount_paid_usdt() *float64 {
 	return v.Amount_paid_usdt
 }
 
-// GetGranted_at returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Granted_at, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetGranted_at() *string {
-	return v.Granted_at
+// GetGranted_at returns CreatePaymentCreate_paymentPayment_output.Granted_at, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetGranted_at() *string { return v.Granted_at }
+
+// GetTx_hash returns CreatePaymentCreate_paymentPayment_output.Tx_hash, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetTx_hash() *string { return v.Tx_hash }
+
+// GetCurrency returns CreatePaymentCreate_paymentPayment_output.Currency, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetCurrency() *string { return v.Currency }
+
+// GetDetail returns CreatePaymentCreate_paymentPayment_output.Detail, and is useful for accessing the field via an interface.
+func (v *CreatePaymentCreate_paymentPayment_output) GetDetail() *string { return v.Detail }
+
+// CreatePaymentResponse is returned by CreatePayment on success.
+type CreatePaymentResponse struct {
+	// Create a payment through the selected provider
+	Create_payment CreatePaymentCreate_paymentPayment_output `json:"create_payment"`
 }
 
-// GetTx_hash returns CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output.Tx_hash, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output) GetTx_hash() *string {
-	return v.Tx_hash
-}
-
-// CreateCryptoPaymentResponse is returned by CreateCryptoPayment on success.
-type CreateCryptoPaymentResponse struct {
-	// Create an idempotent server-priced crypto payment or monthly invoice
-	Create_crypto_payment CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output `json:"create_crypto_payment"`
-}
-
-// GetCreate_crypto_payment returns CreateCryptoPaymentResponse.Create_crypto_payment, and is useful for accessing the field via an interface.
-func (v *CreateCryptoPaymentResponse) GetCreate_crypto_payment() CreateCryptoPaymentCreate_crypto_paymentCreate_crypto_payment_output {
-	return v.Create_crypto_payment
+// GetCreate_payment returns CreatePaymentResponse.Create_payment, and is useful for accessing the field via an interface.
+func (v *CreatePaymentResponse) GetCreate_payment() CreatePaymentCreate_paymentPayment_output {
+	return v.Create_payment
 }
 
 // CreatePersonalAccessTokenCreate_personal_access_tokenCreate_personal_access_token_output includes the requested fields of the GraphQL type create_personal_access_token_output.
@@ -816,65 +769,6 @@ type CreatePersonalAccessTokenResponse struct {
 // GetCreate_personal_access_token returns CreatePersonalAccessTokenResponse.Create_personal_access_token, and is useful for accessing the field via an interface.
 func (v *CreatePersonalAccessTokenResponse) GetCreate_personal_access_token() CreatePersonalAccessTokenCreate_personal_access_tokenCreate_personal_access_token_output {
 	return v.Create_personal_access_token
-}
-
-// CreateSBPPaymentCreate_sbp_paymentSbp_payment_output includes the requested fields of the GraphQL type sbp_payment_output.
-type CreateSBPPaymentCreate_sbp_paymentSbp_payment_output struct {
-	Success     bool    `json:"success"`
-	Payment_id  string  `json:"payment_id"`
-	Status      string  `json:"status"`
-	Payment_uri string  `json:"payment_uri"`
-	Amount      string  `json:"amount"`
-	Currency    string  `json:"currency"`
-	Credits     float64 `json:"credits"`
-	Expires_at  string  `json:"expires_at"`
-	Detail      *string `json:"detail"`
-}
-
-// GetSuccess returns CreateSBPPaymentCreate_sbp_paymentSbp_payment_output.Success, and is useful for accessing the field via an interface.
-func (v *CreateSBPPaymentCreate_sbp_paymentSbp_payment_output) GetSuccess() bool { return v.Success }
-
-// GetPayment_id returns CreateSBPPaymentCreate_sbp_paymentSbp_payment_output.Payment_id, and is useful for accessing the field via an interface.
-func (v *CreateSBPPaymentCreate_sbp_paymentSbp_payment_output) GetPayment_id() string {
-	return v.Payment_id
-}
-
-// GetStatus returns CreateSBPPaymentCreate_sbp_paymentSbp_payment_output.Status, and is useful for accessing the field via an interface.
-func (v *CreateSBPPaymentCreate_sbp_paymentSbp_payment_output) GetStatus() string { return v.Status }
-
-// GetPayment_uri returns CreateSBPPaymentCreate_sbp_paymentSbp_payment_output.Payment_uri, and is useful for accessing the field via an interface.
-func (v *CreateSBPPaymentCreate_sbp_paymentSbp_payment_output) GetPayment_uri() string {
-	return v.Payment_uri
-}
-
-// GetAmount returns CreateSBPPaymentCreate_sbp_paymentSbp_payment_output.Amount, and is useful for accessing the field via an interface.
-func (v *CreateSBPPaymentCreate_sbp_paymentSbp_payment_output) GetAmount() string { return v.Amount }
-
-// GetCurrency returns CreateSBPPaymentCreate_sbp_paymentSbp_payment_output.Currency, and is useful for accessing the field via an interface.
-func (v *CreateSBPPaymentCreate_sbp_paymentSbp_payment_output) GetCurrency() string {
-	return v.Currency
-}
-
-// GetCredits returns CreateSBPPaymentCreate_sbp_paymentSbp_payment_output.Credits, and is useful for accessing the field via an interface.
-func (v *CreateSBPPaymentCreate_sbp_paymentSbp_payment_output) GetCredits() float64 { return v.Credits }
-
-// GetExpires_at returns CreateSBPPaymentCreate_sbp_paymentSbp_payment_output.Expires_at, and is useful for accessing the field via an interface.
-func (v *CreateSBPPaymentCreate_sbp_paymentSbp_payment_output) GetExpires_at() string {
-	return v.Expires_at
-}
-
-// GetDetail returns CreateSBPPaymentCreate_sbp_paymentSbp_payment_output.Detail, and is useful for accessing the field via an interface.
-func (v *CreateSBPPaymentCreate_sbp_paymentSbp_payment_output) GetDetail() *string { return v.Detail }
-
-// CreateSBPPaymentResponse is returned by CreateSBPPayment on success.
-type CreateSBPPaymentResponse struct {
-	// Create an idempotent server-priced SBP payment through the selected enabled provider
-	Create_sbp_payment CreateSBPPaymentCreate_sbp_paymentSbp_payment_output `json:"create_sbp_payment"`
-}
-
-// GetCreate_sbp_payment returns CreateSBPPaymentResponse.Create_sbp_payment, and is useful for accessing the field via an interface.
-func (v *CreateSBPPaymentResponse) GetCreate_sbp_payment() CreateSBPPaymentCreate_sbp_paymentSbp_payment_output {
-	return v.Create_sbp_payment
 }
 
 // DeleteAssetActionDelete_assetDelete_asset_output includes the requested fields of the GraphQL type delete_asset_output.
@@ -1484,153 +1378,6 @@ func (v *GetCryptoPaymentCurrenciesResponse) GetCrypto_payment_currencies() []Ge
 	return v.Crypto_payment_currencies
 }
 
-// GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output includes the requested fields of the GraphQL type crypto_payment_status_output.
-type GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output struct {
-	Success                 bool     `json:"success"`
-	Payment_id              string   `json:"payment_id"`
-	Provider                string   `json:"provider"`
-	Status                  string   `json:"status"`
-	Credits                 float64  `json:"credits"`
-	Expected_usdt           float64  `json:"expected_usdt"`
-	Amount_paid_usdt        *float64 `json:"amount_paid_usdt"`
-	Deposit_address         string   `json:"deposit_address"`
-	Currency_id             string   `json:"currency_id"`
-	Network                 string   `json:"network"`
-	Expires_at              string   `json:"expires_at"`
-	Granted_at              *string  `json:"granted_at"`
-	Tx_hash                 *string  `json:"tx_hash"`
-	Asset                   *string  `json:"asset"`
-	Amount                  string   `json:"amount"`
-	Remaining_amount        *string  `json:"remaining_amount"`
-	Payment_uri             *string  `json:"payment_uri"`
-	Qr_code_data_url        *string  `json:"qr_code_data_url"`
-	Top_up_payment_uri      *string  `json:"top_up_payment_uri"`
-	Top_up_qr_code_data_url *string  `json:"top_up_qr_code_data_url"`
-	Required_confirmations  int      `json:"required_confirmations"`
-	Confirmations           int      `json:"confirmations"`
-}
-
-// GetSuccess returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Success, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetSuccess() bool {
-	return v.Success
-}
-
-// GetPayment_id returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Payment_id, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetPayment_id() string {
-	return v.Payment_id
-}
-
-// GetProvider returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Provider, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetProvider() string {
-	return v.Provider
-}
-
-// GetStatus returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Status, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetStatus() string {
-	return v.Status
-}
-
-// GetCredits returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Credits, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetCredits() float64 {
-	return v.Credits
-}
-
-// GetExpected_usdt returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Expected_usdt, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetExpected_usdt() float64 {
-	return v.Expected_usdt
-}
-
-// GetAmount_paid_usdt returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Amount_paid_usdt, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetAmount_paid_usdt() *float64 {
-	return v.Amount_paid_usdt
-}
-
-// GetDeposit_address returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Deposit_address, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetDeposit_address() string {
-	return v.Deposit_address
-}
-
-// GetCurrency_id returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Currency_id, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetCurrency_id() string {
-	return v.Currency_id
-}
-
-// GetNetwork returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Network, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetNetwork() string {
-	return v.Network
-}
-
-// GetExpires_at returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Expires_at, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetExpires_at() string {
-	return v.Expires_at
-}
-
-// GetGranted_at returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Granted_at, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetGranted_at() *string {
-	return v.Granted_at
-}
-
-// GetTx_hash returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Tx_hash, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetTx_hash() *string {
-	return v.Tx_hash
-}
-
-// GetAsset returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Asset, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetAsset() *string {
-	return v.Asset
-}
-
-// GetAmount returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Amount, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetAmount() string {
-	return v.Amount
-}
-
-// GetRemaining_amount returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Remaining_amount, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetRemaining_amount() *string {
-	return v.Remaining_amount
-}
-
-// GetPayment_uri returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Payment_uri, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetPayment_uri() *string {
-	return v.Payment_uri
-}
-
-// GetQr_code_data_url returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Qr_code_data_url, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetQr_code_data_url() *string {
-	return v.Qr_code_data_url
-}
-
-// GetTop_up_payment_uri returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Top_up_payment_uri, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetTop_up_payment_uri() *string {
-	return v.Top_up_payment_uri
-}
-
-// GetTop_up_qr_code_data_url returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Top_up_qr_code_data_url, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetTop_up_qr_code_data_url() *string {
-	return v.Top_up_qr_code_data_url
-}
-
-// GetRequired_confirmations returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Required_confirmations, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetRequired_confirmations() int {
-	return v.Required_confirmations
-}
-
-// GetConfirmations returns GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output.Confirmations, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output) GetConfirmations() int {
-	return v.Confirmations
-}
-
-// GetCryptoPaymentResponse is returned by GetCryptoPayment on success.
-type GetCryptoPaymentResponse struct {
-	// Poll one owned crypto payment through the server-side gateway client
-	Get_crypto_payment_status GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output `json:"get_crypto_payment_status"`
-}
-
-// GetGet_crypto_payment_status returns GetCryptoPaymentResponse.Get_crypto_payment_status, and is useful for accessing the field via an interface.
-func (v *GetCryptoPaymentResponse) GetGet_crypto_payment_status() GetCryptoPaymentGet_crypto_payment_statusCrypto_payment_status_output {
-	return v.Get_crypto_payment_status
-}
-
 // GetCurrentUserCurrent_userCurrent_user_output includes the requested fields of the GraphQL type current_user_output.
 type GetCurrentUserCurrent_userCurrent_user_output struct {
 	Id                    string  `json:"id"`
@@ -2160,6 +1907,186 @@ type GetNotificationsUnreadNotifications_aggregateAggregateNotifications_aggrega
 func (v *GetNotificationsUnreadNotifications_aggregateAggregateNotifications_aggregate_fields) GetCount() int {
 	return v.Count
 }
+
+// GetPaymentGet_payment_statusPayment_output includes the requested fields of the GraphQL type payment_output.
+type GetPaymentGet_payment_statusPayment_output struct {
+	Success                 bool     `json:"success"`
+	Payment_id              string   `json:"payment_id"`
+	Provider                string   `json:"provider"`
+	Status                  string   `json:"status"`
+	Credits                 float64  `json:"credits"`
+	Expected_usdt           *float64 `json:"expected_usdt"`
+	Amount_paid_usdt        *float64 `json:"amount_paid_usdt"`
+	Deposit_address         *string  `json:"deposit_address"`
+	Currency_id             *string  `json:"currency_id"`
+	Network                 *string  `json:"network"`
+	Expires_at              string   `json:"expires_at"`
+	Granted_at              *string  `json:"granted_at"`
+	Tx_hash                 *string  `json:"tx_hash"`
+	Asset                   *string  `json:"asset"`
+	Amount                  string   `json:"amount"`
+	Remaining_amount        *string  `json:"remaining_amount"`
+	Payment_uri             *string  `json:"payment_uri"`
+	Qr_code_data_url        *string  `json:"qr_code_data_url"`
+	Top_up_payment_uri      *string  `json:"top_up_payment_uri"`
+	Top_up_qr_code_data_url *string  `json:"top_up_qr_code_data_url"`
+	Required_confirmations  *int     `json:"required_confirmations"`
+	Confirmations           *int     `json:"confirmations"`
+	Currency                *string  `json:"currency"`
+	Detail                  *string  `json:"detail"`
+}
+
+// GetSuccess returns GetPaymentGet_payment_statusPayment_output.Success, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetSuccess() bool { return v.Success }
+
+// GetPayment_id returns GetPaymentGet_payment_statusPayment_output.Payment_id, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetPayment_id() string { return v.Payment_id }
+
+// GetProvider returns GetPaymentGet_payment_statusPayment_output.Provider, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetProvider() string { return v.Provider }
+
+// GetStatus returns GetPaymentGet_payment_statusPayment_output.Status, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetStatus() string { return v.Status }
+
+// GetCredits returns GetPaymentGet_payment_statusPayment_output.Credits, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetCredits() float64 { return v.Credits }
+
+// GetExpected_usdt returns GetPaymentGet_payment_statusPayment_output.Expected_usdt, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetExpected_usdt() *float64 {
+	return v.Expected_usdt
+}
+
+// GetAmount_paid_usdt returns GetPaymentGet_payment_statusPayment_output.Amount_paid_usdt, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetAmount_paid_usdt() *float64 {
+	return v.Amount_paid_usdt
+}
+
+// GetDeposit_address returns GetPaymentGet_payment_statusPayment_output.Deposit_address, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetDeposit_address() *string {
+	return v.Deposit_address
+}
+
+// GetCurrency_id returns GetPaymentGet_payment_statusPayment_output.Currency_id, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetCurrency_id() *string { return v.Currency_id }
+
+// GetNetwork returns GetPaymentGet_payment_statusPayment_output.Network, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetNetwork() *string { return v.Network }
+
+// GetExpires_at returns GetPaymentGet_payment_statusPayment_output.Expires_at, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetExpires_at() string { return v.Expires_at }
+
+// GetGranted_at returns GetPaymentGet_payment_statusPayment_output.Granted_at, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetGranted_at() *string { return v.Granted_at }
+
+// GetTx_hash returns GetPaymentGet_payment_statusPayment_output.Tx_hash, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetTx_hash() *string { return v.Tx_hash }
+
+// GetAsset returns GetPaymentGet_payment_statusPayment_output.Asset, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetAsset() *string { return v.Asset }
+
+// GetAmount returns GetPaymentGet_payment_statusPayment_output.Amount, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetAmount() string { return v.Amount }
+
+// GetRemaining_amount returns GetPaymentGet_payment_statusPayment_output.Remaining_amount, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetRemaining_amount() *string {
+	return v.Remaining_amount
+}
+
+// GetPayment_uri returns GetPaymentGet_payment_statusPayment_output.Payment_uri, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetPayment_uri() *string { return v.Payment_uri }
+
+// GetQr_code_data_url returns GetPaymentGet_payment_statusPayment_output.Qr_code_data_url, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetQr_code_data_url() *string {
+	return v.Qr_code_data_url
+}
+
+// GetTop_up_payment_uri returns GetPaymentGet_payment_statusPayment_output.Top_up_payment_uri, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetTop_up_payment_uri() *string {
+	return v.Top_up_payment_uri
+}
+
+// GetTop_up_qr_code_data_url returns GetPaymentGet_payment_statusPayment_output.Top_up_qr_code_data_url, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetTop_up_qr_code_data_url() *string {
+	return v.Top_up_qr_code_data_url
+}
+
+// GetRequired_confirmations returns GetPaymentGet_payment_statusPayment_output.Required_confirmations, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetRequired_confirmations() *int {
+	return v.Required_confirmations
+}
+
+// GetConfirmations returns GetPaymentGet_payment_statusPayment_output.Confirmations, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetConfirmations() *int { return v.Confirmations }
+
+// GetCurrency returns GetPaymentGet_payment_statusPayment_output.Currency, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetCurrency() *string { return v.Currency }
+
+// GetDetail returns GetPaymentGet_payment_statusPayment_output.Detail, and is useful for accessing the field via an interface.
+func (v *GetPaymentGet_payment_statusPayment_output) GetDetail() *string { return v.Detail }
+
+// GetPaymentResponse is returned by GetPayment on success.
+type GetPaymentResponse struct {
+	// Get the status of an owned payment through its selected provider
+	Get_payment_status GetPaymentGet_payment_statusPayment_output `json:"get_payment_status"`
+}
+
+// GetGet_payment_status returns GetPaymentResponse.Get_payment_status, and is useful for accessing the field via an interface.
+func (v *GetPaymentResponse) GetGet_payment_status() GetPaymentGet_payment_statusPayment_output {
+	return v.Get_payment_status
+}
+
+// GetPaymentsPaymentsPayment_output includes the requested fields of the GraphQL type payment_output.
+type GetPaymentsPaymentsPayment_output struct {
+	Payment_id string  `json:"payment_id"`
+	Provider   string  `json:"provider"`
+	Kind       *string `json:"kind"`
+	Status     string  `json:"status"`
+	Credits    float64 `json:"credits"`
+	Amount     string  `json:"amount"`
+	Currency   *string `json:"currency"`
+	Expires_at string  `json:"expires_at"`
+	Granted_at *string `json:"granted_at"`
+	Created_at *string `json:"created_at"`
+}
+
+// GetPayment_id returns GetPaymentsPaymentsPayment_output.Payment_id, and is useful for accessing the field via an interface.
+func (v *GetPaymentsPaymentsPayment_output) GetPayment_id() string { return v.Payment_id }
+
+// GetProvider returns GetPaymentsPaymentsPayment_output.Provider, and is useful for accessing the field via an interface.
+func (v *GetPaymentsPaymentsPayment_output) GetProvider() string { return v.Provider }
+
+// GetKind returns GetPaymentsPaymentsPayment_output.Kind, and is useful for accessing the field via an interface.
+func (v *GetPaymentsPaymentsPayment_output) GetKind() *string { return v.Kind }
+
+// GetStatus returns GetPaymentsPaymentsPayment_output.Status, and is useful for accessing the field via an interface.
+func (v *GetPaymentsPaymentsPayment_output) GetStatus() string { return v.Status }
+
+// GetCredits returns GetPaymentsPaymentsPayment_output.Credits, and is useful for accessing the field via an interface.
+func (v *GetPaymentsPaymentsPayment_output) GetCredits() float64 { return v.Credits }
+
+// GetAmount returns GetPaymentsPaymentsPayment_output.Amount, and is useful for accessing the field via an interface.
+func (v *GetPaymentsPaymentsPayment_output) GetAmount() string { return v.Amount }
+
+// GetCurrency returns GetPaymentsPaymentsPayment_output.Currency, and is useful for accessing the field via an interface.
+func (v *GetPaymentsPaymentsPayment_output) GetCurrency() *string { return v.Currency }
+
+// GetExpires_at returns GetPaymentsPaymentsPayment_output.Expires_at, and is useful for accessing the field via an interface.
+func (v *GetPaymentsPaymentsPayment_output) GetExpires_at() string { return v.Expires_at }
+
+// GetGranted_at returns GetPaymentsPaymentsPayment_output.Granted_at, and is useful for accessing the field via an interface.
+func (v *GetPaymentsPaymentsPayment_output) GetGranted_at() *string { return v.Granted_at }
+
+// GetCreated_at returns GetPaymentsPaymentsPayment_output.Created_at, and is useful for accessing the field via an interface.
+func (v *GetPaymentsPaymentsPayment_output) GetCreated_at() *string { return v.Created_at }
+
+// GetPaymentsResponse is returned by GetPayments on success.
+type GetPaymentsResponse struct {
+	// List the current user's payments across all providers
+	Payments []GetPaymentsPaymentsPayment_output `json:"payments"`
+}
+
+// GetPayments returns GetPaymentsResponse.Payments, and is useful for accessing the field via an interface.
+func (v *GetPaymentsResponse) GetPayments() []GetPaymentsPaymentsPayment_output { return v.Payments }
 
 // GetPendingSubscriptionPlanChangeResponse is returned by GetPendingSubscriptionPlanChange on success.
 type GetPendingSubscriptionPlanChangeResponse struct {
@@ -3461,67 +3388,6 @@ type GetPlansResponse struct {
 // GetPlans returns GetPlansResponse.Plans, and is useful for accessing the field via an interface.
 func (v *GetPlansResponse) GetPlans() []GetPlansPlans { return v.Plans }
 
-// GetSBPPaymentGet_sbp_payment_statusSbp_payment_output includes the requested fields of the GraphQL type sbp_payment_output.
-type GetSBPPaymentGet_sbp_payment_statusSbp_payment_output struct {
-	Success     bool    `json:"success"`
-	Payment_id  string  `json:"payment_id"`
-	Status      string  `json:"status"`
-	Payment_uri string  `json:"payment_uri"`
-	Amount      string  `json:"amount"`
-	Currency    string  `json:"currency"`
-	Credits     float64 `json:"credits"`
-	Expires_at  string  `json:"expires_at"`
-	Detail      *string `json:"detail"`
-}
-
-// GetSuccess returns GetSBPPaymentGet_sbp_payment_statusSbp_payment_output.Success, and is useful for accessing the field via an interface.
-func (v *GetSBPPaymentGet_sbp_payment_statusSbp_payment_output) GetSuccess() bool { return v.Success }
-
-// GetPayment_id returns GetSBPPaymentGet_sbp_payment_statusSbp_payment_output.Payment_id, and is useful for accessing the field via an interface.
-func (v *GetSBPPaymentGet_sbp_payment_statusSbp_payment_output) GetPayment_id() string {
-	return v.Payment_id
-}
-
-// GetStatus returns GetSBPPaymentGet_sbp_payment_statusSbp_payment_output.Status, and is useful for accessing the field via an interface.
-func (v *GetSBPPaymentGet_sbp_payment_statusSbp_payment_output) GetStatus() string { return v.Status }
-
-// GetPayment_uri returns GetSBPPaymentGet_sbp_payment_statusSbp_payment_output.Payment_uri, and is useful for accessing the field via an interface.
-func (v *GetSBPPaymentGet_sbp_payment_statusSbp_payment_output) GetPayment_uri() string {
-	return v.Payment_uri
-}
-
-// GetAmount returns GetSBPPaymentGet_sbp_payment_statusSbp_payment_output.Amount, and is useful for accessing the field via an interface.
-func (v *GetSBPPaymentGet_sbp_payment_statusSbp_payment_output) GetAmount() string { return v.Amount }
-
-// GetCurrency returns GetSBPPaymentGet_sbp_payment_statusSbp_payment_output.Currency, and is useful for accessing the field via an interface.
-func (v *GetSBPPaymentGet_sbp_payment_statusSbp_payment_output) GetCurrency() string {
-	return v.Currency
-}
-
-// GetCredits returns GetSBPPaymentGet_sbp_payment_statusSbp_payment_output.Credits, and is useful for accessing the field via an interface.
-func (v *GetSBPPaymentGet_sbp_payment_statusSbp_payment_output) GetCredits() float64 {
-	return v.Credits
-}
-
-// GetExpires_at returns GetSBPPaymentGet_sbp_payment_statusSbp_payment_output.Expires_at, and is useful for accessing the field via an interface.
-func (v *GetSBPPaymentGet_sbp_payment_statusSbp_payment_output) GetExpires_at() string {
-	return v.Expires_at
-}
-
-// GetDetail returns GetSBPPaymentGet_sbp_payment_statusSbp_payment_output.Detail, and is useful for accessing the field via an interface.
-func (v *GetSBPPaymentGet_sbp_payment_statusSbp_payment_output) GetDetail() *string { return v.Detail }
-
-// GetSBPPaymentResponse is returned by GetSBPPayment on success.
-type GetSBPPaymentResponse struct {
-	// Poll one owned SBP payment and settle it through its recorded provider
-	Get_sbp_payment_status GetSBPPaymentGet_sbp_payment_statusSbp_payment_output `json:"get_sbp_payment_status"`
-}
-
-// GetGet_sbp_payment_status returns GetSBPPaymentResponse.Get_sbp_payment_status, and is useful for accessing the field via an interface.
-func (v *GetSBPPaymentResponse) GetGet_sbp_payment_status() GetSBPPaymentGet_sbp_payment_statusSbp_payment_output {
-	return v.Get_sbp_payment_status
-}
-
 // GetSubscriptionResponse is returned by GetSubscription on success.
 type GetSubscriptionResponse struct {
 	// An array relationship
@@ -4097,8 +3963,13 @@ type ModelsModels struct {
 	Provider_info    ModelsModelsProvider_infoProviders `json:"provider_info"`
 	Description      string                             `json:"description"`
 	Long_description *string                            `json:"long_description"`
+	Icon_url         *string                            `json:"icon_url"`
+	Poster_url       *string                            `json:"poster_url"`
+	Max_input_images *int                               `json:"max_input_images"`
 	Featured         bool                               `json:"featured"`
-	Sort_order       int                                `json:"sort_order"`
+	// Pipe2 editorial output-quality score. NULL means not yet assessed.
+	Quality_score *int16 `json:"quality_score"`
+	Sort_order    int    `json:"sort_order"`
 	// An array relationship
 	Capabilities []ModelsModelsCapabilitiesModel_capabilities `json:"capabilities"`
 	// An array relationship
@@ -4131,8 +4002,20 @@ func (v *ModelsModels) GetDescription() string { return v.Description }
 // GetLong_description returns ModelsModels.Long_description, and is useful for accessing the field via an interface.
 func (v *ModelsModels) GetLong_description() *string { return v.Long_description }
 
+// GetIcon_url returns ModelsModels.Icon_url, and is useful for accessing the field via an interface.
+func (v *ModelsModels) GetIcon_url() *string { return v.Icon_url }
+
+// GetPoster_url returns ModelsModels.Poster_url, and is useful for accessing the field via an interface.
+func (v *ModelsModels) GetPoster_url() *string { return v.Poster_url }
+
+// GetMax_input_images returns ModelsModels.Max_input_images, and is useful for accessing the field via an interface.
+func (v *ModelsModels) GetMax_input_images() *int { return v.Max_input_images }
+
 // GetFeatured returns ModelsModels.Featured, and is useful for accessing the field via an interface.
 func (v *ModelsModels) GetFeatured() bool { return v.Featured }
+
+// GetQuality_score returns ModelsModels.Quality_score, and is useful for accessing the field via an interface.
+func (v *ModelsModels) GetQuality_score() *int16 { return v.Quality_score }
 
 // GetSort_order returns ModelsModels.Sort_order, and is useful for accessing the field via an interface.
 func (v *ModelsModels) GetSort_order() int { return v.Sort_order }
@@ -4236,13 +4119,17 @@ type Models_bool_exp struct {
 	Capabilities     *Model_capabilities_bool_exp `json:"capabilities"`
 	Description      *String_comparison_exp       `json:"description"`
 	Featured         *Boolean_comparison_exp      `json:"featured"`
+	Icon_url         *String_comparison_exp       `json:"icon_url"`
 	Is_active        *Boolean_comparison_exp      `json:"is_active"`
 	Label            *String_comparison_exp       `json:"label"`
 	Long_description *String_comparison_exp       `json:"long_description"`
+	Max_input_images *Int_comparison_exp          `json:"max_input_images"`
 	Pipeline_models  *Pipeline_models_bool_exp    `json:"pipeline_models"`
+	Poster_url       *String_comparison_exp       `json:"poster_url"`
 	Provider         *String_comparison_exp       `json:"provider"`
 	Provider_info    *Providers_bool_exp          `json:"provider_info"`
 	Public_name      *String_comparison_exp       `json:"public_name"`
+	Quality_score    *Smallint_comparison_exp     `json:"quality_score"`
 	Slug             *String_comparison_exp       `json:"slug"`
 	Sort_order       *Int_comparison_exp          `json:"sort_order"`
 	Translations     *Model_translations_bool_exp `json:"translations"`
@@ -4269,6 +4156,9 @@ func (v *Models_bool_exp) GetDescription() *String_comparison_exp { return v.Des
 // GetFeatured returns Models_bool_exp.Featured, and is useful for accessing the field via an interface.
 func (v *Models_bool_exp) GetFeatured() *Boolean_comparison_exp { return v.Featured }
 
+// GetIcon_url returns Models_bool_exp.Icon_url, and is useful for accessing the field via an interface.
+func (v *Models_bool_exp) GetIcon_url() *String_comparison_exp { return v.Icon_url }
+
 // GetIs_active returns Models_bool_exp.Is_active, and is useful for accessing the field via an interface.
 func (v *Models_bool_exp) GetIs_active() *Boolean_comparison_exp { return v.Is_active }
 
@@ -4278,8 +4168,14 @@ func (v *Models_bool_exp) GetLabel() *String_comparison_exp { return v.Label }
 // GetLong_description returns Models_bool_exp.Long_description, and is useful for accessing the field via an interface.
 func (v *Models_bool_exp) GetLong_description() *String_comparison_exp { return v.Long_description }
 
+// GetMax_input_images returns Models_bool_exp.Max_input_images, and is useful for accessing the field via an interface.
+func (v *Models_bool_exp) GetMax_input_images() *Int_comparison_exp { return v.Max_input_images }
+
 // GetPipeline_models returns Models_bool_exp.Pipeline_models, and is useful for accessing the field via an interface.
 func (v *Models_bool_exp) GetPipeline_models() *Pipeline_models_bool_exp { return v.Pipeline_models }
+
+// GetPoster_url returns Models_bool_exp.Poster_url, and is useful for accessing the field via an interface.
+func (v *Models_bool_exp) GetPoster_url() *String_comparison_exp { return v.Poster_url }
 
 // GetProvider returns Models_bool_exp.Provider, and is useful for accessing the field via an interface.
 func (v *Models_bool_exp) GetProvider() *String_comparison_exp { return v.Provider }
@@ -4289,6 +4185,9 @@ func (v *Models_bool_exp) GetProvider_info() *Providers_bool_exp { return v.Prov
 
 // GetPublic_name returns Models_bool_exp.Public_name, and is useful for accessing the field via an interface.
 func (v *Models_bool_exp) GetPublic_name() *String_comparison_exp { return v.Public_name }
+
+// GetQuality_score returns Models_bool_exp.Quality_score, and is useful for accessing the field via an interface.
+func (v *Models_bool_exp) GetQuality_score() *Smallint_comparison_exp { return v.Quality_score }
 
 // GetSlug returns Models_bool_exp.Slug, and is useful for accessing the field via an interface.
 func (v *Models_bool_exp) GetSlug() *String_comparison_exp { return v.Slug }
@@ -5445,6 +5344,46 @@ func (v *SetRunShareUpdate_pipeline_runs_by_pkPipeline_runs) GetShare_watermark(
 	return v.Share_watermark
 }
 
+// Boolean expression to compare columns of type "smallint". All fields are combined with logical 'AND'.
+type Smallint_comparison_exp struct {
+	Eq      *int16  `json:"_eq"`
+	Gt      *int16  `json:"_gt"`
+	Gte     *int16  `json:"_gte"`
+	In      []int16 `json:"_in"`
+	Is_null *bool   `json:"_is_null"`
+	Lt      *int16  `json:"_lt"`
+	Lte     *int16  `json:"_lte"`
+	Neq     *int16  `json:"_neq"`
+	Nin     []int16 `json:"_nin"`
+}
+
+// GetEq returns Smallint_comparison_exp.Eq, and is useful for accessing the field via an interface.
+func (v *Smallint_comparison_exp) GetEq() *int16 { return v.Eq }
+
+// GetGt returns Smallint_comparison_exp.Gt, and is useful for accessing the field via an interface.
+func (v *Smallint_comparison_exp) GetGt() *int16 { return v.Gt }
+
+// GetGte returns Smallint_comparison_exp.Gte, and is useful for accessing the field via an interface.
+func (v *Smallint_comparison_exp) GetGte() *int16 { return v.Gte }
+
+// GetIn returns Smallint_comparison_exp.In, and is useful for accessing the field via an interface.
+func (v *Smallint_comparison_exp) GetIn() []int16 { return v.In }
+
+// GetIs_null returns Smallint_comparison_exp.Is_null, and is useful for accessing the field via an interface.
+func (v *Smallint_comparison_exp) GetIs_null() *bool { return v.Is_null }
+
+// GetLt returns Smallint_comparison_exp.Lt, and is useful for accessing the field via an interface.
+func (v *Smallint_comparison_exp) GetLt() *int16 { return v.Lt }
+
+// GetLte returns Smallint_comparison_exp.Lte, and is useful for accessing the field via an interface.
+func (v *Smallint_comparison_exp) GetLte() *int16 { return v.Lte }
+
+// GetNeq returns Smallint_comparison_exp.Neq, and is useful for accessing the field via an interface.
+func (v *Smallint_comparison_exp) GetNeq() *int16 { return v.Neq }
+
+// GetNin returns Smallint_comparison_exp.Nin, and is useful for accessing the field via an interface.
+func (v *Smallint_comparison_exp) GetNin() []int16 { return v.Nin }
+
 // Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'.
 type String_array_comparison_exp struct {
 	// is the array contained in the given array value
@@ -6114,45 +6053,37 @@ func (v *__CreateAuthHandoffCodeInput) GetRedirect_uri() string { return v.Redir
 // GetCode_challenge returns __CreateAuthHandoffCodeInput.Code_challenge, and is useful for accessing the field via an interface.
 func (v *__CreateAuthHandoffCodeInput) GetCode_challenge() string { return v.Code_challenge }
 
-// __CreateCheckoutSessionInput is used internally by genqlient
-type __CreateCheckoutSessionInput struct {
-	Whop_plan_id   string  `json:"whop_plan_id"`
-	Affiliate_code *string `json:"affiliate_code"`
+// __CreatePaymentInput is used internally by genqlient
+type __CreatePaymentInput struct {
+	Provider          string  `json:"provider"`
+	Attempt_id        string  `json:"attempt_id"`
+	Credit_pack_slug  *string `json:"credit_pack_slug"`
+	Plan_slug         *string `json:"plan_slug"`
+	Currency_id       *string `json:"currency_id"`
+	Country           *string `json:"country"`
+	Recurring_consent *bool   `json:"recurring_consent"`
 }
 
-// GetWhop_plan_id returns __CreateCheckoutSessionInput.Whop_plan_id, and is useful for accessing the field via an interface.
-func (v *__CreateCheckoutSessionInput) GetWhop_plan_id() string { return v.Whop_plan_id }
+// GetProvider returns __CreatePaymentInput.Provider, and is useful for accessing the field via an interface.
+func (v *__CreatePaymentInput) GetProvider() string { return v.Provider }
 
-// GetAffiliate_code returns __CreateCheckoutSessionInput.Affiliate_code, and is useful for accessing the field via an interface.
-func (v *__CreateCheckoutSessionInput) GetAffiliate_code() *string { return v.Affiliate_code }
+// GetAttempt_id returns __CreatePaymentInput.Attempt_id, and is useful for accessing the field via an interface.
+func (v *__CreatePaymentInput) GetAttempt_id() string { return v.Attempt_id }
 
-// __CreateCryptoPaymentInput is used internally by genqlient
-type __CreateCryptoPaymentInput struct {
-	Provider         string  `json:"provider"`
-	Attempt_id       string  `json:"attempt_id"`
-	Credit_pack_slug *string `json:"credit_pack_slug"`
-	Plan_slug        *string `json:"plan_slug"`
-	Currency_id      string  `json:"currency_id"`
-	Country          *string `json:"country"`
-}
+// GetCredit_pack_slug returns __CreatePaymentInput.Credit_pack_slug, and is useful for accessing the field via an interface.
+func (v *__CreatePaymentInput) GetCredit_pack_slug() *string { return v.Credit_pack_slug }
 
-// GetProvider returns __CreateCryptoPaymentInput.Provider, and is useful for accessing the field via an interface.
-func (v *__CreateCryptoPaymentInput) GetProvider() string { return v.Provider }
+// GetPlan_slug returns __CreatePaymentInput.Plan_slug, and is useful for accessing the field via an interface.
+func (v *__CreatePaymentInput) GetPlan_slug() *string { return v.Plan_slug }
 
-// GetAttempt_id returns __CreateCryptoPaymentInput.Attempt_id, and is useful for accessing the field via an interface.
-func (v *__CreateCryptoPaymentInput) GetAttempt_id() string { return v.Attempt_id }
+// GetCurrency_id returns __CreatePaymentInput.Currency_id, and is useful for accessing the field via an interface.
+func (v *__CreatePaymentInput) GetCurrency_id() *string { return v.Currency_id }
 
-// GetCredit_pack_slug returns __CreateCryptoPaymentInput.Credit_pack_slug, and is useful for accessing the field via an interface.
-func (v *__CreateCryptoPaymentInput) GetCredit_pack_slug() *string { return v.Credit_pack_slug }
+// GetCountry returns __CreatePaymentInput.Country, and is useful for accessing the field via an interface.
+func (v *__CreatePaymentInput) GetCountry() *string { return v.Country }
 
-// GetPlan_slug returns __CreateCryptoPaymentInput.Plan_slug, and is useful for accessing the field via an interface.
-func (v *__CreateCryptoPaymentInput) GetPlan_slug() *string { return v.Plan_slug }
-
-// GetCurrency_id returns __CreateCryptoPaymentInput.Currency_id, and is useful for accessing the field via an interface.
-func (v *__CreateCryptoPaymentInput) GetCurrency_id() string { return v.Currency_id }
-
-// GetCountry returns __CreateCryptoPaymentInput.Country, and is useful for accessing the field via an interface.
-func (v *__CreateCryptoPaymentInput) GetCountry() *string { return v.Country }
+// GetRecurring_consent returns __CreatePaymentInput.Recurring_consent, and is useful for accessing the field via an interface.
+func (v *__CreatePaymentInput) GetRecurring_consent() *bool { return v.Recurring_consent }
 
 // __CreatePersonalAccessTokenInput is used internally by genqlient
 type __CreatePersonalAccessTokenInput struct {
@@ -6161,34 +6092,6 @@ type __CreatePersonalAccessTokenInput struct {
 
 // GetName returns __CreatePersonalAccessTokenInput.Name, and is useful for accessing the field via an interface.
 func (v *__CreatePersonalAccessTokenInput) GetName() string { return v.Name }
-
-// __CreateSBPPaymentInput is used internally by genqlient
-type __CreateSBPPaymentInput struct {
-	Provider          string  `json:"provider"`
-	Attempt_id        string  `json:"attempt_id"`
-	Credit_pack_slug  *string `json:"credit_pack_slug"`
-	Plan_slug         *string `json:"plan_slug"`
-	Country           *string `json:"country"`
-	Recurring_consent *bool   `json:"recurring_consent"`
-}
-
-// GetProvider returns __CreateSBPPaymentInput.Provider, and is useful for accessing the field via an interface.
-func (v *__CreateSBPPaymentInput) GetProvider() string { return v.Provider }
-
-// GetAttempt_id returns __CreateSBPPaymentInput.Attempt_id, and is useful for accessing the field via an interface.
-func (v *__CreateSBPPaymentInput) GetAttempt_id() string { return v.Attempt_id }
-
-// GetCredit_pack_slug returns __CreateSBPPaymentInput.Credit_pack_slug, and is useful for accessing the field via an interface.
-func (v *__CreateSBPPaymentInput) GetCredit_pack_slug() *string { return v.Credit_pack_slug }
-
-// GetPlan_slug returns __CreateSBPPaymentInput.Plan_slug, and is useful for accessing the field via an interface.
-func (v *__CreateSBPPaymentInput) GetPlan_slug() *string { return v.Plan_slug }
-
-// GetCountry returns __CreateSBPPaymentInput.Country, and is useful for accessing the field via an interface.
-func (v *__CreateSBPPaymentInput) GetCountry() *string { return v.Country }
-
-// GetRecurring_consent returns __CreateSBPPaymentInput.Recurring_consent, and is useful for accessing the field via an interface.
-func (v *__CreateSBPPaymentInput) GetRecurring_consent() *bool { return v.Recurring_consent }
 
 // __DeleteAssetActionInput is used internally by genqlient
 type __DeleteAssetActionInput struct {
@@ -6266,14 +6169,6 @@ type __GetCryptoPaymentCurrenciesInput struct {
 // GetProvider returns __GetCryptoPaymentCurrenciesInput.Provider, and is useful for accessing the field via an interface.
 func (v *__GetCryptoPaymentCurrenciesInput) GetProvider() string { return v.Provider }
 
-// __GetCryptoPaymentInput is used internally by genqlient
-type __GetCryptoPaymentInput struct {
-	Id string `json:"id"`
-}
-
-// GetId returns __GetCryptoPaymentInput.Id, and is useful for accessing the field via an interface.
-func (v *__GetCryptoPaymentInput) GetId() string { return v.Id }
-
 // __GetLocalizedPricesInput is used internally by genqlient
 type __GetLocalizedPricesInput struct {
 	Country string `json:"country"`
@@ -6293,6 +6188,30 @@ func (v *__GetNotificationsInput) GetLimit() int { return v.Limit }
 
 // GetOffset returns __GetNotificationsInput.Offset, and is useful for accessing the field via an interface.
 func (v *__GetNotificationsInput) GetOffset() int { return v.Offset }
+
+// __GetPaymentInput is used internally by genqlient
+type __GetPaymentInput struct {
+	Provider string `json:"provider"`
+	Id       string `json:"id"`
+}
+
+// GetProvider returns __GetPaymentInput.Provider, and is useful for accessing the field via an interface.
+func (v *__GetPaymentInput) GetProvider() string { return v.Provider }
+
+// GetId returns __GetPaymentInput.Id, and is useful for accessing the field via an interface.
+func (v *__GetPaymentInput) GetId() string { return v.Id }
+
+// __GetPaymentsInput is used internally by genqlient
+type __GetPaymentsInput struct {
+	Limit  *int `json:"limit"`
+	Offset *int `json:"offset"`
+}
+
+// GetLimit returns __GetPaymentsInput.Limit, and is useful for accessing the field via an interface.
+func (v *__GetPaymentsInput) GetLimit() *int { return v.Limit }
+
+// GetOffset returns __GetPaymentsInput.Offset, and is useful for accessing the field via an interface.
+func (v *__GetPaymentsInput) GetOffset() *int { return v.Offset }
 
 // __GetPipelineBySlugInput is used internally by genqlient
 type __GetPipelineBySlugInput struct {
@@ -6353,14 +6272,6 @@ func (v *__GetPipelinesListInput) GetLimit() *int { return v.Limit }
 
 // GetOffset returns __GetPipelinesListInput.Offset, and is useful for accessing the field via an interface.
 func (v *__GetPipelinesListInput) GetOffset() *int { return v.Offset }
-
-// __GetSBPPaymentInput is used internally by genqlient
-type __GetSBPPaymentInput struct {
-	Id string `json:"id"`
-}
-
-// GetId returns __GetSBPPaymentInput.Id, and is useful for accessing the field via an interface.
-func (v *__GetSBPPaymentInput) GetId() string { return v.Id }
 
 // __GetUserAssetsInput is used internally by genqlient
 type __GetUserAssetsInput struct {
@@ -7083,47 +6994,10 @@ func CreateAuthHandoffCode(
 	return data_, err_
 }
 
-// The mutation executed by CreateCheckoutSession.
-const CreateCheckoutSession_Operation = `
-mutation CreateCheckoutSession ($whop_plan_id: String!, $affiliate_code: String) {
-	create_checkout_session(whop_plan_id: $whop_plan_id, affiliate_code: $affiliate_code) {
-		success
-		url
-	}
-}
-`
-
-func CreateCheckoutSession(
-	ctx_ context.Context,
-	client_ graphql.Client,
-	whop_plan_id string,
-	affiliate_code *string,
-) (data_ *CreateCheckoutSessionResponse, err_ error) {
-	req_ := &graphql.Request{
-		OpName: "CreateCheckoutSession",
-		Query:  CreateCheckoutSession_Operation,
-		Variables: &__CreateCheckoutSessionInput{
-			Whop_plan_id:   whop_plan_id,
-			Affiliate_code: affiliate_code,
-		},
-	}
-
-	data_ = &CreateCheckoutSessionResponse{}
-	resp_ := &graphql.Response{Data: data_}
-
-	err_ = client_.MakeRequest(
-		ctx_,
-		req_,
-		resp_,
-	)
-
-	return data_, err_
-}
-
-// The mutation executed by CreateCryptoPayment.
-const CreateCryptoPayment_Operation = `
-mutation CreateCryptoPayment ($provider: String!, $attempt_id: uuid!, $credit_pack_slug: String, $plan_slug: String, $currency_id: String!, $country: String) {
-	create_crypto_payment(provider: $provider, attempt_id: $attempt_id, credit_pack_slug: $credit_pack_slug, plan_slug: $plan_slug, currency_id: $currency_id, country: $country) {
+// The mutation executed by CreatePayment.
+const CreatePayment_Operation = `
+mutation CreatePayment ($provider: String!, $attempt_id: uuid!, $credit_pack_slug: String, $plan_slug: String, $currency_id: String, $country: String, $recurring_consent: Boolean) {
+	create_payment(provider: $provider, attempt_id: $attempt_id, credit_pack_slug: $credit_pack_slug, plan_slug: $plan_slug, currency_id: $currency_id, country: $country, recurring_consent: $recurring_consent) {
 		success
 		payment_id
 		deposit_address
@@ -7146,41 +7020,40 @@ mutation CreateCryptoPayment ($provider: String!, $attempt_id: uuid!, $credit_pa
 		amount_paid_usdt
 		granted_at
 		tx_hash
+		currency
+		detail
 	}
 }
 `
 
-// Create a crypto payment intent on the chosen USDT network. Pass EXACTLY ONE
-// of credit_pack_slug (one-time pack, permanent credits) or plan_slug
-// (subscription, monthly expiring credits). `country` is the user's CountrySelect
-// choice — the server still independently re-validates it against
-// resolve_payment_providers, this is not a trust boundary. Returns the deposit
-// address + exact expected_usdt to send, and the row id (payment_id) to poll
-// with GetCryptoPayment.
-func CreateCryptoPayment(
+// Create a payment through the selected provider. The provider registry chooses
+// the payment rail, so adding another provider does not add another mutation.
+func CreatePayment(
 	ctx_ context.Context,
 	client_ graphql.Client,
 	provider string,
 	attempt_id string,
 	credit_pack_slug *string,
 	plan_slug *string,
-	currency_id string,
+	currency_id *string,
 	country *string,
-) (data_ *CreateCryptoPaymentResponse, err_ error) {
+	recurring_consent *bool,
+) (data_ *CreatePaymentResponse, err_ error) {
 	req_ := &graphql.Request{
-		OpName: "CreateCryptoPayment",
-		Query:  CreateCryptoPayment_Operation,
-		Variables: &__CreateCryptoPaymentInput{
-			Provider:         provider,
-			Attempt_id:       attempt_id,
-			Credit_pack_slug: credit_pack_slug,
-			Plan_slug:        plan_slug,
-			Currency_id:      currency_id,
-			Country:          country,
+		OpName: "CreatePayment",
+		Query:  CreatePayment_Operation,
+		Variables: &__CreatePaymentInput{
+			Provider:          provider,
+			Attempt_id:        attempt_id,
+			Credit_pack_slug:  credit_pack_slug,
+			Plan_slug:         plan_slug,
+			Currency_id:       currency_id,
+			Country:           country,
+			Recurring_consent: recurring_consent,
 		},
 	}
 
-	data_ = &CreateCryptoPaymentResponse{}
+	data_ = &CreatePaymentResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
@@ -7219,60 +7092,6 @@ func CreatePersonalAccessToken(
 	}
 
 	data_ = &CreatePersonalAccessTokenResponse{}
-	resp_ := &graphql.Response{Data: data_}
-
-	err_ = client_.MakeRequest(
-		ctx_,
-		req_,
-		resp_,
-	)
-
-	return data_, err_
-}
-
-// The mutation executed by CreateSBPPayment.
-const CreateSBPPayment_Operation = `
-mutation CreateSBPPayment ($provider: String!, $attempt_id: uuid!, $credit_pack_slug: String, $plan_slug: String, $country: String, $recurring_consent: Boolean) {
-	create_sbp_payment(provider: $provider, attempt_id: $attempt_id, credit_pack_slug: $credit_pack_slug, plan_slug: $plan_slug, country: $country, recurring_consent: $recurring_consent) {
-		success
-		payment_id
-		status
-		payment_uri
-		amount
-		currency
-		credits
-		expires_at
-		detail
-	}
-}
-`
-
-// Russian SBP checkout. The server fixes the exact RUB amount, creates the
-// payment through the selected enabled provider, and settles after confirmation.
-func CreateSBPPayment(
-	ctx_ context.Context,
-	client_ graphql.Client,
-	provider string,
-	attempt_id string,
-	credit_pack_slug *string,
-	plan_slug *string,
-	country *string,
-	recurring_consent *bool,
-) (data_ *CreateSBPPaymentResponse, err_ error) {
-	req_ := &graphql.Request{
-		OpName: "CreateSBPPayment",
-		Query:  CreateSBPPayment_Operation,
-		Variables: &__CreateSBPPaymentInput{
-			Provider:          provider,
-			Attempt_id:        attempt_id,
-			Credit_pack_slug:  credit_pack_slug,
-			Plan_slug:         plan_slug,
-			Country:           country,
-			Recurring_consent: recurring_consent,
-		},
-	}
-
-	data_ = &CreateSBPPaymentResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
@@ -7715,63 +7534,6 @@ func GetCreditPacks(
 	return data_, err_
 }
 
-// The query executed by GetCryptoPayment.
-const GetCryptoPayment_Operation = `
-query GetCryptoPayment ($id: uuid!) {
-	get_crypto_payment_status(payment_id: $id) {
-		success
-		payment_id
-		provider
-		status
-		credits
-		expected_usdt
-		amount_paid_usdt
-		deposit_address
-		currency_id
-		network
-		expires_at
-		granted_at
-		tx_hash
-		asset
-		amount
-		remaining_amount
-		payment_uri
-		qr_code_data_url
-		top_up_payment_uri
-		top_up_qr_code_data_url
-		required_confirmations
-		confirmations
-	}
-}
-`
-
-// Poll a single crypto payment by id to drive the checkout UI. status:
-// pending → seen → confirmed → granted (terminal); or underpaid / expired.
-func GetCryptoPayment(
-	ctx_ context.Context,
-	client_ graphql.Client,
-	id string,
-) (data_ *GetCryptoPaymentResponse, err_ error) {
-	req_ := &graphql.Request{
-		OpName: "GetCryptoPayment",
-		Query:  GetCryptoPayment_Operation,
-		Variables: &__GetCryptoPaymentInput{
-			Id: id,
-		},
-	}
-
-	data_ = &GetCryptoPaymentResponse{}
-	resp_ := &graphql.Response{Data: data_}
-
-	err_ = client_.MakeRequest(
-		ctx_,
-		req_,
-		resp_,
-	)
-
-	return data_, err_
-}
-
 // The query executed by GetCryptoPaymentCurrencies.
 const GetCryptoPaymentCurrencies_Operation = `
 query GetCryptoPaymentCurrencies ($provider: String!) {
@@ -8161,6 +7923,112 @@ func GetNotifications(
 	}
 
 	data_ = &GetNotificationsResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by GetPayment.
+const GetPayment_Operation = `
+query GetPayment ($provider: String!, $id: uuid!) {
+	get_payment_status(provider: $provider, payment_id: $id) {
+		success
+		payment_id
+		provider
+		status
+		credits
+		expected_usdt
+		amount_paid_usdt
+		deposit_address
+		currency_id
+		network
+		expires_at
+		granted_at
+		tx_hash
+		asset
+		amount
+		remaining_amount
+		payment_uri
+		qr_code_data_url
+		top_up_payment_uri
+		top_up_qr_code_data_url
+		required_confirmations
+		confirmations
+		currency
+		detail
+	}
+}
+`
+
+// Poll a single crypto payment by id to drive the checkout UI. status:
+// pending → seen → confirmed → granted (terminal); or underpaid / expired.
+func GetPayment(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	provider string,
+	id string,
+) (data_ *GetPaymentResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "GetPayment",
+		Query:  GetPayment_Operation,
+		Variables: &__GetPaymentInput{
+			Provider: provider,
+			Id:       id,
+		},
+	}
+
+	data_ = &GetPaymentResponse{}
+	resp_ := &graphql.Response{Data: data_}
+
+	err_ = client_.MakeRequest(
+		ctx_,
+		req_,
+		resp_,
+	)
+
+	return data_, err_
+}
+
+// The query executed by GetPayments.
+const GetPayments_Operation = `
+query GetPayments ($limit: Int = 50, $offset: Int = 0) {
+	payments(limit: $limit, offset: $offset) {
+		payment_id
+		provider
+		kind
+		status
+		credits
+		amount
+		currency
+		expires_at
+		granted_at
+		created_at
+	}
+}
+`
+
+func GetPayments(
+	ctx_ context.Context,
+	client_ graphql.Client,
+	limit *int,
+	offset *int,
+) (data_ *GetPaymentsResponse, err_ error) {
+	req_ := &graphql.Request{
+		OpName: "GetPayments",
+		Query:  GetPayments_Operation,
+		Variables: &__GetPaymentsInput{
+			Limit:  limit,
+			Offset: offset,
+		},
+	}
+
+	data_ = &GetPaymentsResponse{}
 	resp_ := &graphql.Response{Data: data_}
 
 	err_ = client_.MakeRequest(
@@ -8669,48 +8537,6 @@ func GetPlans(
 	return data_, err_
 }
 
-// The query executed by GetSBPPayment.
-const GetSBPPayment_Operation = `
-query GetSBPPayment ($id: uuid!) {
-	get_sbp_payment_status(payment_id: $id) {
-		success
-		payment_id
-		status
-		payment_uri
-		amount
-		currency
-		credits
-		expires_at
-		detail
-	}
-}
-`
-
-func GetSBPPayment(
-	ctx_ context.Context,
-	client_ graphql.Client,
-	id string,
-) (data_ *GetSBPPaymentResponse, err_ error) {
-	req_ := &graphql.Request{
-		OpName: "GetSBPPayment",
-		Query:  GetSBPPayment_Operation,
-		Variables: &__GetSBPPaymentInput{
-			Id: id,
-		},
-	}
-
-	data_ = &GetSBPPaymentResponse{}
-	resp_ := &graphql.Response{Data: data_}
-
-	err_ = client_.MakeRequest(
-		ctx_,
-		req_,
-		resp_,
-	)
-
-	return data_, err_
-}
-
 // The query executed by GetSubscription.
 const GetSubscription_Operation = `
 query GetSubscription {
@@ -9035,7 +8861,11 @@ query Models {
 		}
 		description
 		long_description
+		icon_url
+		poster_url
+		max_input_images
 		featured
+		quality_score
 		sort_order
 		capabilities {
 			capability_slug

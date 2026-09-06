@@ -22,6 +22,8 @@ bindings:
     type: encoding/json.RawMessage
   bigint:
     type: int64
+  smallint:
+    type: int16
   numeric:
     type: float64
 
