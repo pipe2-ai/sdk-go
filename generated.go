@@ -71,7 +71,9 @@ type AssetImportStatusAsset_imports_by_pkAsset_imports struct {
 	Code        *string `json:"code"`
 	Error       *string `json:"error"`
 	Asset_id    *string `json:"asset_id"`
-	Finished_at *string `json:"finished_at"`
+	// An object relationship
+	Asset       *AssetImportStatusAsset_imports_by_pkAsset_importsAssetAssets `json:"asset"`
+	Finished_at *string                                                       `json:"finished_at"`
 }
 
 // GetId returns AssetImportStatusAsset_imports_by_pkAsset_imports.Id, and is useful for accessing the field via an interface.
@@ -100,10 +102,26 @@ func (v *AssetImportStatusAsset_imports_by_pkAsset_imports) GetError() *string {
 // GetAsset_id returns AssetImportStatusAsset_imports_by_pkAsset_imports.Asset_id, and is useful for accessing the field via an interface.
 func (v *AssetImportStatusAsset_imports_by_pkAsset_imports) GetAsset_id() *string { return v.Asset_id }
 
+// GetAsset returns AssetImportStatusAsset_imports_by_pkAsset_imports.Asset, and is useful for accessing the field via an interface.
+func (v *AssetImportStatusAsset_imports_by_pkAsset_imports) GetAsset() *AssetImportStatusAsset_imports_by_pkAsset_importsAssetAssets {
+	return v.Asset
+}
+
 // GetFinished_at returns AssetImportStatusAsset_imports_by_pkAsset_imports.Finished_at, and is useful for accessing the field via an interface.
 func (v *AssetImportStatusAsset_imports_by_pkAsset_imports) GetFinished_at() *string {
 	return v.Finished_at
 }
+
+// AssetImportStatusAsset_imports_by_pkAsset_importsAssetAssets includes the requested fields of the GraphQL type assets.
+// The GraphQL type's documentation follows.
+//
+// columns and relationships of "assets"
+type AssetImportStatusAsset_imports_by_pkAsset_importsAssetAssets struct {
+	Url string `json:"url"`
+}
+
+// GetUrl returns AssetImportStatusAsset_imports_by_pkAsset_importsAssetAssets.Url, and is useful for accessing the field via an interface.
+func (v *AssetImportStatusAsset_imports_by_pkAsset_importsAssetAssets) GetUrl() string { return v.Url }
 
 // AssetImportStatusResponse is returned by AssetImportStatus on success.
 type AssetImportStatusResponse struct {
@@ -7213,6 +7231,9 @@ query AssetImportStatus ($id: uuid!) {
 		code
 		error
 		asset_id
+		asset {
+			url
+		}
 		finished_at
 	}
 }
